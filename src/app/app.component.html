@@ -1,0 +1,36 @@
+<div class="container">
+  <ais-instantsearch [config]="config">
+    <div class="search-panel">
+      <div class="search-panel__results">
+        <div class="searchbox">
+          <ais-search-box placeholder=""></ais-search-box>
+        </div>
+
+        <ais-hits>
+          <ng-template let-hits="hits" let-results="results">
+            <!-- No results message -->
+            <div *ngIf="hits.length === 0">
+              No results found matching <strong>{{results.query}}</strong>.
+            </div>
+
+            <!-- Hit template -->
+            <div *ngFor="let hit of hits">
+              <h6>
+                <ais-highlight attribute="fields.title" [hit]="hit">
+                </ais-highlight>
+              </h6>
+              <p *ngIf="hit.fields.content">This result has content</p>
+              <a class="block" href='{{hit.fields.link}}'>{{hit.fields.link}}</a>
+              
+            </div>
+          </ng-template>
+        </ais-hits>
+
+        <div class="pagination">
+          <ais-pagination></ais-pagination>
+        </div>
+      </div>
+
+    </div>
+  </ais-instantsearch>
+</div>

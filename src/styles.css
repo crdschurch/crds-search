@@ -1,0 +1,12 @@
+/* /* You can add global styles to this file, and also import other style files */
+
+.ais-Highlight-highlighted,
+.ais-Snippet-highlighted {
+  background-color: transparent !important;
+  font-style: normal;
+  color: #737373;
+}
+
+.ais-Highlight {
+  color: #000;
+}
