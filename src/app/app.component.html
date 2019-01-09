@@ -19,7 +19,7 @@
                 <ais-highlight attribute="fields.title" [hit]="hit">
                 </ais-highlight>
               </h6>
-              <p *ngIf="hit.fields.content">This result has content</p>
+              <p *ngIf="hit.fields.content">{{hit.fields.content }}</p>
               <a class="block" href='{{hit.fields.link}}'>{{hit.fields.link}}</a>
               
             </div>

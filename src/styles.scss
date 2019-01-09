@@ -1,0 +1,17 @@
+// global styles
+$bootstrap-sass-asset-helper: false;
+$icon-font-path: '~/bootstrap-sass/assets/fonts/bootstrap';
+$icon-font-name: 'glyphicons-halflings-regular';
+$cr-path-to-icons-sprite: '/crds-styles/assets/svgs/';
+@import '~crds-styles/assets/stylesheets/crds-styles';
+
+.ais-Highlight-highlighted,
+.ais-Snippet-highlighted {
+  background-color: transparent !important;
+  font-style: normal;
+  color: #737373;
+}
+
+.ais-Highlight {
+  color: #000;
+}
