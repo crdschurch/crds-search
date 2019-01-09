@@ -19,9 +19,8 @@
                 <ais-highlight attribute="fields.title" [hit]="hit">
                 </ais-highlight>
               </h6>
-              <p *ngIf="hit.fields.content">{{hit.fields.content }}</p>
+              <p class="hit-excerpt" *ngIf="hit.fields.content">{{hit.fields.content.substr(0,200) + '...'}}</p>
               <a class="block" href='{{hit.fields.link}}'>{{hit.fields.link}}</a>
-              
             </div>
           </ng-template>
         </ais-hits>
