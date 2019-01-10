@@ -6,8 +6,8 @@
     </div>
 
     <!-- Hit template -->
-    <div *ngFor="let hit of hits" class="search-card card">
-      <div *ngIf="hit.type == 'video'">
+    <div *ngFor="let hit of hits" class="search-card card" [ngSwitch]="hit.type">
+      <div *ngSwitchCase="'video'">
         <img class="card-img-top img-responsive" src="{{hit.image_url}}" />
         <div class="search-card-block">
           <h6>
@@ -16,7 +16,7 @@
           </h6>
         </div>
       </div>
-      <div *ngIf="hit.type == 'article'">
+      <div *ngSwitchCase="'article'">
         <img class="card-img-top img-responsive" src="{{hit.image_url}}" />
         <div class="search-card-block">
           <h6>
@@ -24,6 +24,13 @@
             </ais-highlight>
           </h6>
         </div>
+      </div>
+      <div *ngSwitchDefault>
+        <h6>
+          <ais-highlight attribute="title" [hit]="hit">
+          </ais-highlight>
+        </h6>
+        <p>This result has no type</p>
       </div>
     </div>
   </ng-template>
