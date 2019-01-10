@@ -3,10 +3,14 @@ import { NgModule } from '@angular/core';
 import { NgAisModule } from 'angular-instantsearch';
 
 import { AppComponent } from './app.component';
+import { ResultsComponent } from './components/results/results.component';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ResultsComponent,
+    SearchComponent
   ],
   imports: [
     NgAisModule.forRoot(),

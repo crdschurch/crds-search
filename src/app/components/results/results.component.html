@@ -1,0 +1,30 @@
+<ais-hits>
+  <ng-template let-hits="hits" let-results="results">
+    <!-- No results message -->
+    <div *ngIf="hits.length === 0">
+      No results found matching <strong>{{results.query}}</strong>.
+    </div>
+
+    <!-- Hit template -->
+    <div *ngFor="let hit of hits" class="search-card card">
+      <div *ngIf="hit.type == 'video'">
+        <img class="card-img-top img-responsive" src="{{hit.image_url}}" />
+        <div class="search-card-block">
+          <h6>
+            <ais-highlight attribute="title" [hit]="hit">
+            </ais-highlight>
+          </h6>
+        </div>
+      </div>
+      <div *ngIf="hit.type == 'article'">
+        <img class="card-img-top img-responsive" src="{{hit.image_url}}" />
+        <div class="search-card-block">
+          <h6>
+            <ais-highlight attribute="title" [hit]="hit">
+            </ais-highlight>
+          </h6>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</ais-hits>
