@@ -1,5 +1,13 @@
-<img class="card-img-top img-responsive" src="{{hit.image}}" />
-<div class="search-card-block">
+<a class="relative" href="{{hit.url}}">
+  <div class="card-stamp bg-charcoal text-white">
+    <span class="font-size-smallest">{{hit.duration}}</span>
+    <svg class="icon" viewBox="0 0 256 256">
+      <use xlink:href="/assets/svgs/icons.svg#media-article"></use>
+    </svg>
+  </div>
+  <img class="card-img-top img-responsive" src="{{hit.image}}" />
+</a>
+<div class="block">
   <h6 class="flush-bottom">
     <ais-highlight attribute="title" [hit]="hit">
     </ais-highlight>

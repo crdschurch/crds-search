@@ -6,15 +6,9 @@
     </div>
 
     <div class="cards-4x">
-      <div class="row">
-        <!-- Hit template -->
-        <!-- Eventually we will use [ngSwitch]="hit.contentType" -->
-        <app-hit 
-          *ngFor="let hit of hits"
-          [hit]="hit"
-          class="card search-card"
-        ></app-hit>
-      </div>
+      <!-- Hit template -->
+      <!-- Eventually we will use [ngSwitch]="hit.contentType" -->
+      <app-hit *ngFor="let hit of hits" [hit]="hit" class="card search-card"></app-hit>
     </div>
   </ng-template>
 </ais-hits>

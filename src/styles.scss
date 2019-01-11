@@ -8,18 +8,8 @@ $cr-path-to-icons-sprite: '/crds-styles/assets/svgs/';
 // component imports
 @import './app/components/search/search.component';
 @import './app/components/search-input/search-input.component';
-@import './app/components/results/results.component';
 @import './app/components/nav-tabs/nav-tabs.component';
+@import './app/components/hits/hits.component';
+@import './app/components/hit/hit.component';
 
 * {box-sizing: border-box;}
-
-.ais-Highlight-highlighted,
-.ais-Snippet-highlighted {
-  background-color: transparent !important;
-  font-style: normal;
-  color: #737373;
-}
-
-.ais-Highlight {
-  color: #000;
-}
