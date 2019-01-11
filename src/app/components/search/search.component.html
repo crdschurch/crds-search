@@ -1,20 +1,14 @@
 <ais-instantsearch [config]="config">
   <div class="search-panel">
     <div class="search-panel__results">
-      <div class="searchbox">
-        <ais-search-box placeholder="Search"></ais-search-box>
-      </div>
-
+      <app-search-input></app-search-input>
       <app-nav-tabs></app-nav-tabs>
-
       <div class="cards-4x">
         <app-results></app-results>
       </div>
-
       <!-- <div class="pagination">
         <ais-pagination></ais-pagination>
       </div> -->
     </div>
-
   </div>
 </ais-instantsearch>

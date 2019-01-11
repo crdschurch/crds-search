@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { ResultsComponent } from './components/results/results.component';
 import { SearchComponent } from './components/search/search.component';
 import { NavTabsComponent } from './components/nav-tabs/nav-tabs.component';
+import { SearchInputComponent } from './components/search-input/search-input.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ResultsComponent,
     SearchComponent,
-    NavTabsComponent
+    NavTabsComponent,
+    SearchInputComponent
   ],
   imports: [
     NgAisModule.forRoot(),
