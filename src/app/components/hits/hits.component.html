@@ -6,26 +6,14 @@
     </div>
 
     <div class="cards-4x">
-      <!-- Hit template -->
-      <div *ngFor="let hit of hits" [ngSwitch]="hit.contentType">
-        <app-video-hit *ngSwitchCase="'video'" [hit]="hit"></app-video-hit>
-        <div *ngSwitchCase="'article'" class="search-card search-article-card card">
-          <img class="card-img-top img-responsive" src="{{hit.image}}" />
-          <div class="search-card-block">
-            <h6 class="flush-bottom">
-              <ais-highlight attribute="title" [hit]="hit">
-              </ais-highlight>
-            </h6>
-            <small>{{hit.contentType}}</small>
-          </div>
-        </div>
-        <div *ngSwitchDefault class="card search-card">
-          <h6>
-            <ais-highlight attribute="title" [hit]="hit">
-            </ais-highlight>
-          </h6>
-          <p>This result has no type</p>
-        </div>
+      <div class="row">
+        <!-- Hit template -->
+        <!-- Eventually we will use [ngSwitch]="hit.contentType" -->
+        <app-hit 
+          *ngFor="let hit of hits"
+          [hit]="hit"
+          class="card search-card"
+        ></app-hit>
       </div>
     </div>
   </ng-template>
