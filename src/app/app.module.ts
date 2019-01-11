@@ -3,18 +3,20 @@ import { NgModule } from '@angular/core';
 import { NgAisModule } from 'angular-instantsearch';
 
 import { AppComponent } from './app.component';
-import { ResultsComponent } from './components/results/results.component';
 import { SearchComponent } from './components/search/search.component';
+import { HitsComponent } from './components/hits/hits.component';
 import { NavTabsComponent } from './components/nav-tabs/nav-tabs.component';
 import { SearchInputComponent } from './components/search-input/search-input.component';
+import { VideoHitComponent } from './components/video-hit/video-hit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ResultsComponent,
     SearchComponent,
     NavTabsComponent,
-    SearchInputComponent
+    SearchInputComponent,
+    HitsComponent,
+    VideoHitComponent
   ],
   imports: [
     NgAisModule.forRoot(),
