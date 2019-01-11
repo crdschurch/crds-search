@@ -11,6 +11,8 @@ $cr-path-to-icons-sprite: '/crds-styles/assets/svgs/';
 @import './app/components/results/results.component';
 @import './app/components/nav-tabs/nav-tabs.component';
 
+* {box-sizing: border-box;}
+
 .ais-Highlight-highlighted,
 .ais-Snippet-highlighted {
   background-color: transparent !important;

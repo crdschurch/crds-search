@@ -1,3 +1,22 @@
-.ais-SearchBox-form input.ais-SearchBox-input {
+.searchbox {
+  margin-bottom: 0;
+}
+
+input.ais-SearchBox-input {
   border: 0 !important;
+  padding: 1rem;
+  padding-left: 3rem;
+  color: #4D4D4D;
+  background: #F4F4F4;
+  border-radius: 0;
+}
+
+// this is the little maginfying glass icon
+.ais-SearchBox-submit {
+  margin-left: 15px;
+}
+
+// x to close search
+.ais-SearchBox-reset {
+  margin-right: 15px;
 }
