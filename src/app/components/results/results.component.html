@@ -6,9 +6,9 @@
     </div>
 
     <!-- Hit template -->
-    <div *ngFor="let hit of hits" class="search-card card" [ngSwitch]="hit.type">
+    <div *ngFor="let hit of hits" class="search-card card" [ngSwitch]="hit.contentType">
       <div *ngSwitchCase="'video'">
-        <img class="card-img-top img-responsive" src="{{hit.image_url}}" />
+        <img class="card-img-top img-responsive" src="{{hit.image}}" />
         <div class="search-card-block">
           <h6>
             <ais-highlight attribute="title" [hit]="hit">
@@ -17,12 +17,13 @@
         </div>
       </div>
       <div *ngSwitchCase="'article'">
-        <img class="card-img-top img-responsive" src="{{hit.image_url}}" />
+        <img class="card-img-top img-responsive" src="{{hit.image}}" />
         <div class="search-card-block">
-          <h6>
+          <h6 class="flush-bottom">
             <ais-highlight attribute="title" [hit]="hit">
             </ais-highlight>
           </h6>
+          <small>{{hit.contentType}}</small>
         </div>
       </div>
       <div *ngSwitchDefault>

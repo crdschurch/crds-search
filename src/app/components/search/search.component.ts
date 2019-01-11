@@ -13,7 +13,7 @@ const searchClient = algoliasearch(
 })
 export class SearchComponent {
   config = {
-    indexName: 'prod_test',
+    indexName: 'dev_crds',
     searchClient,
   };
 }
