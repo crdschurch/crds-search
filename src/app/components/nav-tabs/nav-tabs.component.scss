@@ -1,0 +1,36 @@
+// horizontal tabs
+.nav-tabs {
+  li {
+    margin-right: 0.5rem;
+
+    @media screen and (min-width: 767px) {
+      margin-right: 1.5rem;
+    }
+
+    &.active {
+      border-bottom: 3px solid rgba(0, 149, 217, 1); // #0095D9;
+
+      > a,
+      > a:hover,
+      > a:focus {
+        border: 0;
+      }
+    }
+
+    > a,
+    > a:hover,
+    > a:focus {
+      border: 0;
+      /* stylelint-disable */
+      background-color: transparent !important;
+      /* stylelint-enable */
+      color: rgba(115, 115, 115, 1); // #737373;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    > a:hover {
+      color: rgba(77, 77, 77, 1); // #4D4D4D;
+    }
+  }
+}
