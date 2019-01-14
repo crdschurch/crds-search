@@ -11,10 +11,9 @@
     <!-- Hit template -->
 
     <ng-container *ngFor="let hit of hits" [ngSwitch]="hit.contentType">
-      <app-video-hit *ngSwitchCase="'video'" [hit]="hit" class="card hit"></app-video-hit>
-      <app-hit *ngSwitchDefault [hit]="hit" class="card hit"></app-hit>
+      <app-video-hit *ngSwitchCase="'video'" [hit]="hit" class="hit video-hit"></app-video-hit>
+      <app-hit *ngSwitchDefault [hit]="hit" class="hit"></app-hit>
     </ng-container>
 
   </ng-template>
 </ais-hits>
-<ais-refinement-list attribute="contentType"></ais-refinement-list>

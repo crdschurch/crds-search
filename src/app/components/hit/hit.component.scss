@@ -31,6 +31,7 @@
       max-width: 120px;
       // pin to right hand side in flex
       margin-left: auto;
+      text-align: right;
     }
   }
 
@@ -52,6 +53,12 @@
 
     @media (min-width: 767px) {
       padding-right: 1rem;
+    }
+
+    .hit-url {
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      word-break: break-word;
     }
   }
 }
