@@ -9,11 +9,19 @@ input.ais-SearchBox-input {
   color: #4D4D4D;
   background: #F4F4F4;
   border-radius: 0;
+
+  @media (min-width: 767px) {
+    padding-left: calc((2/12)*100% + 36px);
+  }
 }
 
 // this is the little maginfying glass icon
 .ais-SearchBox-submit {
   margin-left: 15px;
+
+  @media (min-width: 767px) {
+    margin-left: calc((2/12)*100%);
+  }
 }
 
 // x to close search
