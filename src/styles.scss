@@ -12,4 +12,10 @@ $cr-path-to-icons-sprite: '/crds-styles/assets/svgs/';
 @import './app/components/hits/hits.component';
 @import './app/components/hit/hit.component';
 
-* {box-sizing: border-box;}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: #4D4D4D;
+}
