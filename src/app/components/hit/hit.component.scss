@@ -1,3 +1,9 @@
+.ais-Highlight,
+.ais-Highlight-highlighted,
+.ais-Snippet-highlighted {
+  font-size: 1.1875rem;
+}
+
 .ais-Highlight-highlighted,
 .ais-Snippet-highlighted {
   background-color: transparent !important;
@@ -5,3 +11,49 @@
   font-weight: 500;
   color: #151515;
 }
+
+.hit {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  margin-bottom: 0;
+  padding: 1rem 0;
+  border-bottom: 1px solid #E7E7E7;
+
+  @media (min-width: 767px) {
+    flex-direction: row;
+  }
+
+  .hit-meta {
+    color: #979797;
+    @media (min-width: 767px) {
+      width: 30%;
+      max-width: 120px;
+      // pin to right hand side in flex
+      margin-left: auto;
+    }
+  }
+
+  .hit-img {
+    margin-bottom: 1rem;
+    @media (min-width: 767px) {
+      width: 50vw;
+      max-width: 150px;
+      margin-right: 1rem;
+    }
+
+    @media (min-width: 960px) {
+      max-width: 200px;
+    }
+  }
+
+  .hit-text {
+    color: #737373;
+
+    @media (min-width: 767px) {
+      padding-right: 1rem;
+    }
+  }
+}
+
+

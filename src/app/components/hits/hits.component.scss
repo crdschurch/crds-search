@@ -1,0 +1,7 @@
+// BAD: remove this after prototyping phase
+.cards-4x {
+  @media (max-width: 767px) {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
