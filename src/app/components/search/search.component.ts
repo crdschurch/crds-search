@@ -14,6 +14,6 @@ const searchClient = algoliasearch(
 export class SearchComponent {
   config = {
     indexName: 'dev_crds',
-    searchClient,
+    searchClient
   };
 }
