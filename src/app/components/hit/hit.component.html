@@ -1,12 +1,8 @@
-<a *ngIf="hit.img" class="relative hit-img" href="{{hit.url}}">
-  <div class="card-stamp bg-charcoal text-white">
-    <span class="font-size-smallest">{{hit.duration}}</span>
-    <svg class="icon" viewBox="0 0 256 256">
-      <use xlink:href="/assets/svgs/icons.svg#media-video"></use>
-    </svg>
-  </div>
-  <img class="img-responsive" src="{{hit.image}}" />
-</a>
+<ng-container *ngIf="hit.image">
+  <a class="relative hit-img" href="{{hit.url}}">
+    <img class="img-responsive" src="{{hit.image}}" />
+  </a>
+</ng-container>
 
 <div class="hit-text">
   <ais-highlight attribute="title" [hit]="hit" class="block font-size-large text-gray-dark push-half-bottom" style="line-height: 1;">
