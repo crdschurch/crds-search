@@ -1,19 +1,18 @@
-<ais-hits>
-  <ng-template let-hits="hits" let-results="results">
-    <!-- No results message -->
+<!-- Suggested search queries -->
+<ng-container *ngIf="results.query === ''">
+  <app-suggested></app-suggested>
+</ng-container>
 
-    <ng-container *ngIf="hits.length === 0">
-      <h4>No results found matching <strong>{{results.query}}</strong>.</h4>
-    </ng-container>
-    <p *ngIf="hits.length > 1">{{hits.length}} results</p>
+<ng-container *ngIf="results.query !== ''">
+  <!-- No results message -->
+  <ng-container *ngIf="hits.length === 0">
+    <h4>No results found matching <strong>{{results.query}}</strong>.</h4>
+  </ng-container>
+  <p *ngIf="hits.length > 1">{{hits.length}} results</p>
 
-    <!-- <div class="cards-4x"></div> -->
-    <!-- Hit template -->
-
-    <ng-container *ngFor="let hit of hits" [ngSwitch]="hit.contentType">
-      <app-video-hit *ngSwitchCase="'video'" [hit]="hit" class="hit video-hit"></app-video-hit>
-      <app-hit *ngSwitchDefault [hit]="hit" class="hit"></app-hit>
-    </ng-container>
-
-  </ng-template>
-</ais-hits>
+  <!-- Hit template -->
+  <ng-container *ngFor="let hit of hits" [ngSwitch]="hit.contentType">
+    <app-video-hit *ngSwitchCase="'video'" [hit]="hit" class="hit video-hit"></app-video-hit>
+    <app-hit *ngSwitchDefault [hit]="hit" class="hit"></app-hit>
+  </ng-container>
+</ng-container>

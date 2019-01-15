@@ -9,6 +9,7 @@ import { SearchInputComponent } from './components/search-input/search-input.com
 import { HitsComponent } from './components/hits/hits.component';
 import { HitComponent } from './components/hit/hit.component';
 import { VideoHitComponent } from './components/video-hit/video-hit.component';
+import { SuggestedComponent } from './components/suggested/suggested.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { VideoHitComponent } from './components/video-hit/video-hit.component';
     SearchInputComponent,
     HitsComponent,
     HitComponent,
-    VideoHitComponent
+    VideoHitComponent,
+    SuggestedComponent
   ],
   imports: [
     NgAisModule.forRoot(),

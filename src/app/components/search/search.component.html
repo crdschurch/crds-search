@@ -6,11 +6,14 @@
         <div class="row">
           <div class="col-xs-12 col-md-8 col-md-offset-2">
             <app-nav-tabs></app-nav-tabs>
-            <app-hits></app-hits>
-
+            <ais-hits>
+              <ng-template let-hits="hits" let-results="results">
+                <app-hits [hits]="hits" [results]="results"></app-hits>
+              </ng-template>
+            </ais-hits>
             <!-- <div class="pagination">
-        <ais-pagination></ais-pagination>
-      </div> -->
+                  <ais-pagination></ais-pagination>
+                </div> -->
           </div>
         </div>
       </div>

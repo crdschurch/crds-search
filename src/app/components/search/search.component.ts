@@ -15,5 +15,5 @@ export class SearchComponent {
   config = {
     indexName: 'dev_crds',
     searchClient
-  };
+  }
 }
