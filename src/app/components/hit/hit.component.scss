@@ -28,8 +28,8 @@
     width: 100%;
     color: #979797;
     @media (min-width: 767px) {
-      width: 30%;
-      max-width: 120px;
+      width: 40%;
+      max-width: 150px;
       // pin to right hand side in flex
       margin-left: auto;
       text-align: right;
@@ -46,6 +46,10 @@
       @media (min-width: 767px) {
         display: block;
         margin: 0;
+        &::after {
+          content: '';
+          margin: 0;
+        }
       }
     }
   }
