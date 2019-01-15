@@ -25,6 +25,7 @@
   }
 
   .hit-meta {
+    width: 100%;
     color: #979797;
     @media (min-width: 767px) {
       width: 30%;
@@ -32,6 +33,20 @@
       // pin to right hand side in flex
       margin-left: auto;
       text-align: right;
+    }
+
+    .hit-author {
+      display: inline;
+  
+      &::after {
+        content: '•';
+        margin: 0 .5rem;
+      }
+      
+      @media (min-width: 767px) {
+        display: block;
+        margin: 0;
+      }
     }
   }
 

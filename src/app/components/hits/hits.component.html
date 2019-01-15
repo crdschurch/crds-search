@@ -8,10 +8,20 @@
   <ng-container *ngIf="hits.length === 0">
     <h4>No results found matching <strong>{{results.query}}</strong>.</h4>
   </ng-container>
-  <p *ngIf="hits.length > 1">{{hits.length}} results</p>
+
+  <!-- Hit counter -->
+  <p class="font-size-small text-gray-light" *ngIf="hits.length > 1">
+    <span *ngIf="hits.length >= results.hitsPerPage">
+      showing
+    </span> 
+    {{hits.length}}
+    <span *ngIf="hits.length >= results.hitsPerPage">of {{results.nbHits}} </span>
+    results
+  </p>
 
   <!-- Hit template -->
   <ng-container *ngFor="let hit of hits" [ngSwitch]="hit.contentType">
+    <app-article-hit *ngSwitchCase="'article'" [hit]="hit" class="hit article-hit"></app-article-hit>
     <app-video-hit *ngSwitchCase="'video'" [hit]="hit" class="hit video-hit"></app-video-hit>
     <app-hit *ngSwitchDefault [hit]="hit" class="hit"></app-hit>
   </ng-container>
