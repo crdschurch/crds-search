@@ -10,6 +10,7 @@ import { HitsComponent } from './components/hits/hits.component';
 import { HitComponent } from './components/hit/hit.component';
 import { VideoHitComponent } from './components/video-hit/video-hit.component';
 import { SuggestedComponent } from './components/suggested/suggested.component';
+import { ArticleHitComponent } from './components/article-hit/article-hit.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { SuggestedComponent } from './components/suggested/suggested.component';
     HitsComponent,
     HitComponent,
     VideoHitComponent,
-    SuggestedComponent
+    SuggestedComponent,
+    ArticleHitComponent
   ],
   imports: [
     NgAisModule.forRoot(),
