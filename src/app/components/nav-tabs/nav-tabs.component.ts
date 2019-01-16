@@ -1,21 +1,35 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-nav-tabs',
   templateUrl: './nav-tabs.component.html',
   styleUrls: ['./nav-tabs.component.scss']
 })
-export class NavTabsComponent {
+export class NavTabsComponent implements OnChanges {
   @Input() hits;
   @Input() results;
+
+  currentRefinements = [];
+
   constructor() { }
 
-  public handleFilterClick(event: any) {
-    var filter = event.target.innerText;
-    var refinementInput:HTMLInputElement = document.querySelector(`input[value=${filter}]`);
-    if (!refinementInput.checked) {
-      refinementInput.click();  
+  public setFilters() {
+    var refinements: any = document.querySelectorAll('.ais-RefinementList-checkbox');
+    for (var i = 0; i < refinements.length; i += 1) {
+      if (refinements[i].value !== null) {
+        this.currentRefinements.push(refinements[i].value);
+      }
     }
   }
 
+  public handleFilterClick(event: any) {
+    // var filter = event.target.innerText;
+    // if (!this.refinementInput.checked) {
+    //   this.refinementInput.click();  
+    // }
+  }
+
+  ngOnChanges(changes) {
+    this.setFilters();
+  }
 }

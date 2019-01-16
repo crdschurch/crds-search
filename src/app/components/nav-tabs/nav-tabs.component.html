@@ -1,9 +1,6 @@
 <ng-container *ngIf="results.query !== ''">
-  <ais-refinement-list style="position: absolute; visibility: hidden; margin: -9999999px;" attribute="contentType"></ais-refinement-list>
-  <ul class="nav nav-tabs push-bottom" role="tablist">
+  <ais-refinement-list attribute="contentType"></ais-refinement-list>
+  <!-- <ul class="nav nav-tabs push-bottom" role="tablist">
     <li role="presentation" (click)="handleFilterClick($event)" class="active"><a>All</a></li>
-    <li role="presentation" (click)="handleFilterClick($event)" *ngFor="let unique of hits | filterUnique">
-      <a>{{unique}}</a>
-    </li>
-  </ul>
+  </ul> -->
 </ng-container>

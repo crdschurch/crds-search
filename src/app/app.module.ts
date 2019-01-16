@@ -12,6 +12,8 @@ import { VideoHitComponent } from './components/video-hit/video-hit.component';
 import { SuggestedComponent } from './components/suggested/suggested.component';
 import { ArticleHitComponent } from './components/article-hit/article-hit.component';
 import { FilterUniquePipe } from './filterUnique.pipe';
+import { MessageHitComponent } from './components/message-hit/message-hit.component';
+import { SeriesHitComponent } from './components/series-hit/series-hit.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { FilterUniquePipe } from './filterUnique.pipe';
     VideoHitComponent,
     SuggestedComponent,
     ArticleHitComponent,
-    FilterUniquePipe
+    FilterUniquePipe,
+    MessageHitComponent,
+    SeriesHitComponent
   ],
   imports: [
     NgAisModule.forRoot(),

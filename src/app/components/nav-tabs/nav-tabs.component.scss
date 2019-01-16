@@ -34,3 +34,27 @@
     }
   }
 }
+
+.ais-RefinementList-list {
+  display: flex;
+  margin-bottom: 1rem;
+  padding: .5rem 0;
+  border-bottom: 1px solid #ddd;
+  overflow-x: scroll;
+
+  // hide checkbox
+  .ais-RefinementList-count {
+    visibility: hidden;
+    display: none;
+  }
+
+  .ais-RefinementList-label {
+    display: inline-flex;
+  }
+
+  .ais-RefinementList-labelText {
+    margin-right: .5rem;
+    font-size: 1rem;
+    text-transform: capitalize;
+  }
+}

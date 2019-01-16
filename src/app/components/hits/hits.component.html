@@ -1,8 +1,3 @@
-<!-- Suggested search queries -->
-<ng-container *ngIf="results.query === ''">
-  <app-suggested></app-suggested>
-</ng-container>
-
 <ng-container *ngIf="results.query !== ''">
   <!-- No results message -->
   <ng-container *ngIf="hits.length === 0">
@@ -23,6 +18,7 @@
   <ng-container *ngFor="let hit of hits" [ngSwitch]="hit.contentType">
     <app-article-hit *ngSwitchCase="'article'" [hit]="hit" class="hit article-hit"></app-article-hit>
     <app-video-hit *ngSwitchCase="'video'" [hit]="hit" class="hit video-hit"></app-video-hit>
+    <app-series-hit *ngSwitchCase="'series'" [hit]="hit" class="hit series-hit"></app-series-hit>
     <app-hit *ngSwitchDefault [hit]="hit" class="hit"></app-hit>
   </ng-container>
 </ng-container>
