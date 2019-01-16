@@ -10,9 +10,9 @@ export class NavTabsComponent {
   @Input() results;
   constructor() { }
 
-  public handleFilterClick(event: Event) {
+  public handleFilterClick(event: any) {
     var filter = event.target.innerText;
-    var refinementInput = document.querySelector(`input[value=${filter}]`);
+    var refinementInput:HTMLInputElement = document.querySelector(`input[value=${filter}]`);
     if (!refinementInput.checked) {
       refinementInput.click();  
     }
