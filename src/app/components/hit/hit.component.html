@@ -11,7 +11,7 @@
     {{hit.description.substr(0, 180)}}
     <span *ngIf="hit.description.length > 180" style="margin-left: -3px;">...</span>
   </p>
-  <a class="hit-url font-size-smaller" href="hit.url">{{hit.url}}</a>
+  <a class="hit-url font-size-smaller" href="{{hit.url}}">{{hit.url}}</a>
 </div>
 
 <div class="hit-meta">
