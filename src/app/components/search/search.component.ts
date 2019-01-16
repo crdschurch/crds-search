@@ -15,13 +15,19 @@ const searchClient = algoliasearch(
 
 export class SearchComponent {
   public searchTerm:String = null;
+  public helper: any;
 
   config = {
     indexName: 'dev_crds',
+    searchFunction: (helper) => {
+      this.helper = helper;
+      this.helper.search();
+    },
     searchClient
   }
 
   public setSearchTerm(e) {
     this.searchTerm = e;
+    console.log(this.helper);
   }
 }

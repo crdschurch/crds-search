@@ -14,8 +14,11 @@ export class SuggestedComponent {
       "title": "man camp signup",
       "url": "https://crossroads.net/mancamp/signup"
     }, {
-      "title": "articles on leadership",
+      "title": "leadership",
       "url": "https://media.crossroads.net/topics/leadership"
+    },
+    {
+      "title": "relationships"
     }
   ]
 
