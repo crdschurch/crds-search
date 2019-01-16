@@ -18,3 +18,15 @@
   margin: 2rem auto;
   text-align: center;
 }
+
+.ais-RefinementList-item {
+  .ais-RefinementList-checkbox {
+    margin-right: .5rem;
+  }
+  .ais-RefinementList-labelText span {
+    margin-right: .5rem;
+    font-size: 14px;
+    font-weight: 300;
+    color: #737377;
+  }
+}

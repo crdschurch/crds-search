@@ -1,6 +1,9 @@
-<ul class="nav nav-tabs push-bottom" role="tablist">
-  <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">All</a></li>
-  <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Messages</a></li>
-  <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Videos</a></li>
-  <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Articles</a></li>
-</ul>
+<ng-container *ngIf="results.query !== ''">
+  <ais-refinement-list style="position: absolute; visibility: hidden; margin: -9999999px;" attribute="contentType"></ais-refinement-list>
+  <ul class="nav nav-tabs push-bottom" role="tablist">
+    <li role="presentation" (click)="handleFilterClick($event)" class="active"><a>All</a></li>
+    <li role="presentation" (click)="handleFilterClick($event)" *ngFor="let unique of hits | filterUnique">
+      <a>{{unique}}</a>
+    </li>
+  </ul>
+</ng-container>

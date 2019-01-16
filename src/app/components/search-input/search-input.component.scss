@@ -1,5 +1,5 @@
 .searchbox {
-  margin-bottom: 0;
+  margin-bottom: 1rem;
 }
 
 input.ais-SearchBox-input {
@@ -10,7 +10,7 @@ input.ais-SearchBox-input {
   background: #F4F4F4;
   border-radius: 0;
 
-  @media (min-width: 991px) {
+  @media (min-width: 992px) {
     padding-left: calc((2/12)*100% + 36px);
   }
 }
@@ -19,8 +19,8 @@ input.ais-SearchBox-input {
 .ais-SearchBox-submit {
   margin-left: 15px;
 
-  @media (min-width: 991px) {
-    margin-left: calc((2/12)*100%);
+  @media (min-width: 992px) {
+    margin-left: calc((2/12)*100% + 6px);
   }
 }
 
