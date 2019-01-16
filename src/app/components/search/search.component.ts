@@ -11,9 +11,17 @@ const searchClient = algoliasearch(
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
+
+
 export class SearchComponent {
+  public searchTerm:String = null;
+
   config = {
     indexName: 'dev_crds',
     searchClient
+  }
+
+  public setSearchTerm(e) {
+    this.searchTerm = e;
   }
 }

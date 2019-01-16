@@ -2,9 +2,7 @@ import {Component, Output, EventEmitter} from '@angular/core';
 
 @Component({selector: 'app-suggested', templateUrl: './suggested.component.html', styleUrls: ['./suggested.component.scss']})
 
-export class SuggestedComponent {
-  @Output() selected = new EventEmitter<string>();
-
+export class SuggestedComponent {  
   content = [
     {
       "title": "Superbowl 2019",
@@ -20,6 +18,8 @@ export class SuggestedComponent {
       "url": "https://media.crossroads.net/topics/leadership"
     }
   ]
+
+  @Output() selected = new EventEmitter<string>();
   constructor() {}
 
   public handleSuggestedClick(term) {
