@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-message-hit',
@@ -6,7 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./message-hit.component.scss']
 })
 export class MessageHitComponent {
-
+  @Input() hit;
   constructor() { }
-
 }

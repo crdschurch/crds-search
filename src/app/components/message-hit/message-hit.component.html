@@ -7,6 +7,7 @@
 <div class="hit-text">
   <ais-highlight attribute="title" [hit]="hit" class="block font-size-large text-gray-dark push-half-bottom" style="line-height: 1;">
   </ais-highlight>
+  <span class="block push-quarter-bottom control-label">Series: {{hit.series}}</span>
   <p *ngIf="hit.description" class="font-size-smaller push-quarter-bottom">
     {{hit.description.substr(0, 180)}}
     <span *ngIf="hit.description.length > 180" style="margin-left: -3px;">...</span>
@@ -15,7 +16,6 @@
 
 <div class="hit-meta">
   <p class="font-size-smaller flush">
-    <span class="hit-series">{{hit.series}}</span>
     <span class="hit-date">{{hit.date}}</span>
   </p>
 </div>
