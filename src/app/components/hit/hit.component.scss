@@ -35,7 +35,8 @@
       text-align: right;
     }
 
-    .hit-author {
+    .hit-author,
+    .hit-series {
       display: inline;
   
       &::after {

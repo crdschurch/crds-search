@@ -6,13 +6,28 @@ input.ais-SearchBox-input {
   border: 0 !important;
   padding: 1rem;
   padding-left: 3rem;
-  color: #4D4D4D;
-  background: #F4F4F4;
+  background-color: #F4F4F4;
   border-radius: 0;
+  color: #4D4D4D;
+  transition: .25s all ease;
+
+  &:focus {
+    background-color: #efefef;
+  }
+  
+  &::placeholder {
+    color: #979797;
+  }
 
   @media (min-width: 992px) {
     padding-left: calc((2/12)*100% + 36px);
   }
+}
+
+
+.ais-SearchBox-reset,
+.ais-SearchBox-submit {
+  color: #979797;
 }
 
 // this is the little maginfying glass icon

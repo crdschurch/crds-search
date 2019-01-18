@@ -1,21 +1,28 @@
 <ng-container *ngIf="hit.image">
-  <a class="relative hit-img" href="{{hit.url}}">
-    <img class="img-responsive" src="{{hit.image}}" />
+  <a class="relative hit-img" href="{{ hit.url }}">
+    <img class="img-responsive" src="{{ hit.image }}" />
   </a>
 </ng-container>
 
 <div class="hit-text">
-  <ais-highlight attribute="title" [hit]="hit" class="block font-size-large text-gray-dark push-half-bottom" style="line-height: 1;">
+  <ais-highlight
+    attribute="title"
+    [hit]="hit"
+    class="block font-size-large text-gray-dark push-half-bottom"
+    style="line-height: 1;"
+  >
   </ais-highlight>
-  <p *ngIf="hit.description" class="font-size-smaller push-quarter-bottom">
-    {{hit.description.substr(0, 180)}}
-    <span *ngIf="hit.description.length > 180" style="margin-left: -3px;">...</span>
+  <p *ngIf="hit.address" class="font-size-smaller">
+    {{ hit.address }}
   </p>
-  <p *ngIf="hit.serviceTimes" class="control-label">Services: {{hit.serviceTimes}}</p>
+  <p *ngIf="hit.serviceTimes" class="font-size-smaller">
+    <span class="control-label block">Service Times</span>
+    {{ hit.serviceTimes }}
+  </p>
 </div>
 
 <div class="hit-meta">
-  <a class="font-size-smaller flush">
+  <a href="{{ hit.mapUrl }}" target="_blank" class="font-size-smaller flush">
     <!-- Get Directions -->
     Get Directions
   </a>

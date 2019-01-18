@@ -7,7 +7,6 @@
           <div class="col-xs-12 col-md-8 col-md-offset-2">
             <ais-hits>
               <ng-template let-hits="hits" let-results="results">
-                <!-- Suggested search queries -->
                 <app-suggested *ngIf="results.query === ''" (selected)="setSearchTerm($event)"></app-suggested>
                 <app-nav-tabs [hits]="hits" [results]="results"></app-nav-tabs>
                 <app-hits [hits]="hits" [results]="results"></app-hits>
