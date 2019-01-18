@@ -14,6 +14,7 @@ import { ArticleHitComponent } from './components/article-hit/article-hit.compon
 import { FilterUniquePipe } from './filterUnique.pipe';
 import { MessageHitComponent } from './components/message-hit/message-hit.component';
 import { SeriesHitComponent } from './components/series-hit/series-hit.component';
+import { LocationHitComponent } from './components/location-hit/location-hit.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { SeriesHitComponent } from './components/series-hit/series-hit.component
     ArticleHitComponent,
     FilterUniquePipe,
     MessageHitComponent,
-    SeriesHitComponent
+    SeriesHitComponent,
+    LocationHitComponent
   ],
   imports: [
     NgAisModule.forRoot(),
