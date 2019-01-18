@@ -34,6 +34,7 @@
   .hit-meta {
     width: 100%;
     color: #979797;
+
     @media (min-width: 767px) {
       width: 40vw;
       max-width: 180px;
@@ -45,15 +46,16 @@
     .hit-author,
     .hit-series {
       display: inline;
-  
+
       &::after {
         content: '•';
         margin: 0 .5rem;
       }
-      
+
       @media (min-width: 767px) {
         display: block;
         margin: 0;
+
         &::after {
           content: '';
           margin: 0;
@@ -64,6 +66,7 @@
 
   .hit-img {
     margin-bottom: 1rem;
+
     @media (min-width: 767px) {
       width: 50vw;
       max-width: 150px;
@@ -79,6 +82,10 @@
   .hit-text {
     color: #4D4D4D;
 
+    .hit-title {
+      text-decoration: none;
+    }
+
     @media (min-width: 767px) {
       padding-right: 1rem;
     }
@@ -90,5 +97,3 @@
     }
   }
 }
-
-

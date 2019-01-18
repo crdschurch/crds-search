@@ -5,13 +5,10 @@
 </ng-container>
 
 <div class="hit-text">
-  <ais-highlight
-    attribute="title"
-    [hit]="hit"
-    class="block font-size-large text-gray-dark push-half-bottom"
-    style="line-height: 1;"
-  >
-  </ais-highlight>
+  <a class="hit-title" href="{{hit.url}}">
+    <ais-highlight attribute="title" [hit]="hit">
+    </ais-highlight>
+  </a>
   <p *ngIf="hit.address" class="font-size-smaller">
     {{ hit.address }}
   </p>
