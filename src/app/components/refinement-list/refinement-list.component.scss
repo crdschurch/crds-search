@@ -37,6 +37,7 @@
 
 // fix mobile overflow bug
 .ais-RefinementList {
+  width: 100%;
   @media (max-width: 480px) {
     width: 90vw;
     max-width: 368px;

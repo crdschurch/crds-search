@@ -1,11 +1,11 @@
 import { Component, Input, OnChanges } from '@angular/core';
 
 @Component({
-  selector: 'app-nav-tabs',
-  templateUrl: './nav-tabs.component.html',
-  styleUrls: ['./nav-tabs.component.scss']
+  selector: 'app-refinement-list',
+  templateUrl: './refinement-list.component.html',
+  styleUrls: ['./refinement-list.component.scss']
 })
-export class NavTabsComponent implements OnChanges {
+export class RefinementList implements OnChanges {
   @Input() hits;
   @Input() results;
 
