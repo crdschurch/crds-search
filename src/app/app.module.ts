@@ -15,6 +15,7 @@ import { MessageHitComponent } from './components/message-hit/message-hit.compon
 import { SeriesHitComponent } from './components/series-hit/series-hit.component';
 import { LocationHitComponent } from './components/location-hit/location-hit.component';
 import { RefinementList } from './components/refinement-list/refinement-list.component';
+import { AudioHitComponent } from './components/audio-hit/audio-hit.component';
 
 @NgModule({
   declarations: [
@@ -23,13 +24,14 @@ import { RefinementList } from './components/refinement-list/refinement-list.com
     SearchInputComponent,
     HitsComponent,
     HitComponent,
-    VideoHitComponent,
     SuggestedComponent,
-    ArticleHitComponent,
     FilterUniquePipe,
+    ArticleHitComponent,
+    AudioHitComponent,
+    LocationHitComponent,
     MessageHitComponent,
     SeriesHitComponent,
-    LocationHitComponent,
+    VideoHitComponent,
     RefinementList
   ],
   imports: [
