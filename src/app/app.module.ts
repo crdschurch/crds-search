@@ -4,7 +4,6 @@ import { NgAisModule } from 'angular-instantsearch';
 
 import { AppComponent } from './app.component';
 import { SearchComponent } from './components/search/search.component';
-import { NavTabsComponent } from './components/nav-tabs/nav-tabs.component';
 import { SearchInputComponent } from './components/search-input/search-input.component';
 import { HitsComponent } from './components/hits/hits.component';
 import { HitComponent } from './components/hit/hit.component';
@@ -15,12 +14,12 @@ import { FilterUniquePipe } from './filterUnique.pipe';
 import { MessageHitComponent } from './components/message-hit/message-hit.component';
 import { SeriesHitComponent } from './components/series-hit/series-hit.component';
 import { LocationHitComponent } from './components/location-hit/location-hit.component';
+import { RefinementList } from './components/refinement-list/refinement-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchComponent,
-    NavTabsComponent,
     SearchInputComponent,
     HitsComponent,
     HitComponent,
@@ -30,7 +29,8 @@ import { LocationHitComponent } from './components/location-hit/location-hit.com
     FilterUniquePipe,
     MessageHitComponent,
     SeriesHitComponent,
-    LocationHitComponent
+    LocationHitComponent,
+    RefinementList
   ],
   imports: [
     NgAisModule.forRoot(),
