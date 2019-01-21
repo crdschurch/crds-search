@@ -8,7 +8,7 @@
             <ais-hits>
               <ng-template let-hits="hits" let-results="results">
                 <app-suggested *ngIf="results.query === ''" (selected)="setSearchTerm($event)"></app-suggested>
-                <app-refinement-list [hits]="hits" [results]="results"></app-nav-tabs>
+                <app-refinement-list [hits]="hits" [results]="results"></app-refinement-list>
                 <app-hits [hits]="hits" [results]="results"></app-hits>
               </ng-template>
             </ais-hits>
