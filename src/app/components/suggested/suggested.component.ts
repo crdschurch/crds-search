@@ -1,31 +1,15 @@
-import {Component, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ContentfulService} from 'src/app/contentful.service';
 
 @Component({selector: 'app-suggested', templateUrl: './suggested.component.html', styleUrls: ['./suggested.component.scss']})
 
-export class SuggestedComponent {  
-  content = [
-    {
-      "title": "Superbowl 2019",
-      "url": "https://www.crossroads.net/superbowl/"
-    }, {
-      "title": "jobs",
-      "url": "https://www.crossroads.net/jobs/"
-    }, {
-      "title": "man camp signup",
-      "url": "https://crossroads.net/mancamp/signup"
-    }, {
-      "title": "leadership",
-      "url": "https://media.crossroads.net/topics/leadership"
-    },
-    {
-      "title": "relationships"
-    }
-  ]
+export class SuggestedComponent implements OnInit {
+  private content$;
+  constructor(private contentService : ContentfulService) {
+    console.log(this.contentService);
+  }
 
-  @Output() selected = new EventEmitter<string>();
-  constructor() {}
-
-  public handleSuggestedClick(term) {
-    this.selected.emit(term.title);
+  ngOnInit() {
+    this.content$ = this.contentService.getContentBlock('2l2IrgFvciN84qnwfkMCtI');
   }
 }

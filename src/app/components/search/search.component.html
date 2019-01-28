@@ -6,11 +6,9 @@
         <ng-template let-hits="hits" let-results="results">
           <div class="container-fluid">
             <div class="row">
-              <!-- <app-suggested *ngIf="results.query === ''" (selected)="setSearchTerm($event)"></app-suggested> -->
-              <div class="col-xs-12 col-md-2 col-md-offset-2">
+              <div class="col-xs-12 col-md-8 col-md-offset-2">
+                <app-suggested *ngIf="results.query === ''"></app-suggested>
                 <app-refinement-list [hits]="hits" [results]="results"></app-refinement-list>
-              </div>
-              <div class="col-xs-12 col-md-6">
                 <app-hits [hits]="hits" [results]="results"></app-hits>
               </div>
             </div>
