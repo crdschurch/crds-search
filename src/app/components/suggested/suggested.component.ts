@@ -4,7 +4,7 @@ import {ContentfulService} from 'src/app/contentful.service';
 @Component({selector: 'app-suggested', templateUrl: './suggested.component.html', styleUrls: ['./suggested.component.scss']})
 
 export class SuggestedComponent implements OnInit {
-  private content$;
+  public content$;
   constructor(private contentService : ContentfulService) {
     
   }
