@@ -18,16 +18,7 @@ export class SearchComponent {
   public helper: any;
 
   config = {
-    indexName: 'dev_crds',
-    searchFunction: (helper) => {
-      this.helper = helper;
-      this.helper.search();
-    },
+    indexName: 'int_crds',
     searchClient
-  }
-
-  public setSearchTerm(e) {
-    this.searchTerm = e;
-    console.log(this.helper);
   }
 }

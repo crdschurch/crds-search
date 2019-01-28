@@ -2,22 +2,21 @@
   <div class="search-panel">
     <div class="search-panel__results">
       <app-search-input [searchTerm]="searchTerm"></app-search-input>
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-xs-12 col-md-8 col-md-offset-2">
-            <ais-hits>
-              <ng-template let-hits="hits" let-results="results">
-                <!-- <app-suggested *ngIf="results.query === ''" (selected)="setSearchTerm($event)"></app-suggested> -->
+      <ais-hits>
+        <ng-template let-hits="hits" let-results="results">
+          <div class="container-fluid">
+            <div class="row">
+              <!-- <app-suggested *ngIf="results.query === ''" (selected)="setSearchTerm($event)"></app-suggested> -->
+              <div class="col-xs-12 col-md-2 col-md-offset-2">
                 <app-refinement-list [hits]="hits" [results]="results"></app-refinement-list>
+              </div>
+              <div class="col-xs-12 col-md-6">
                 <app-hits [hits]="hits" [results]="results"></app-hits>
-              </ng-template>
-            </ais-hits>
+              </div>
+            </div>
           </div>
-          <!-- <div class="pagination">
-                  <ais-pagination></ais-pagination>
-                </div> -->
-        </div>
-      </div>
+        </ng-template>
+      </ais-hits>
     </div>
   </div>
 </ais-instantsearch>
