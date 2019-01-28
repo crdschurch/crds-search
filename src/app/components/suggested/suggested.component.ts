@@ -6,10 +6,10 @@ import {ContentfulService} from 'src/app/contentful.service';
 export class SuggestedComponent implements OnInit {
   private content$;
   constructor(private contentService : ContentfulService) {
-    console.log(this.contentService);
+    
   }
 
   ngOnInit() {
-    this.content$ = this.contentService.getContentBlock('2l2IrgFvciN84qnwfkMCtI');
+    this.content$ = this.contentService.getSuggestedContentBlock('2l2IrgFvciN84qnwfkMCtI');
   }
 }

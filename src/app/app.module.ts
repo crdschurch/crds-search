@@ -10,7 +10,7 @@ import { HitComponent } from './components/hit/hit.component';
 import { VideoHitComponent } from './components/video-hit/video-hit.component';
 import { SuggestedComponent } from './components/suggested/suggested.component';
 import { ArticleHitComponent } from './components/article-hit/article-hit.component';
-import { FilterUniquePipe } from './filterUnique.pipe';
+import { ParseMarkdownPipe } from './parseMarkdown.pipe';
 import { MessageHitComponent } from './components/message-hit/message-hit.component';
 import { SeriesHitComponent } from './components/series-hit/series-hit.component';
 import { LocationHitComponent } from './components/location-hit/location-hit.component';
@@ -25,7 +25,7 @@ import { EpisodeHitComponent } from './components/episode-hit/episode-hit.compon
     HitsComponent,
     HitComponent,
     SuggestedComponent,
-    FilterUniquePipe,
+    ParseMarkdownPipe,
     ArticleHitComponent,
     EpisodeHitComponent,
     LocationHitComponent,

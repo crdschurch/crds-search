@@ -19,7 +19,7 @@ export class ContentfulService {
     });;
   }
 
-  public getContentBlock(id): Observable<Suggested> {
+  public getSuggestedContentBlock(id): Observable<Suggested> {
     return from(this.client.getEntry(id)).pipe(
      map((entry: any) => {
        return new Suggested(entry.fields.content);

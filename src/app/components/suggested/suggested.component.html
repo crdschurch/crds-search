@@ -1,5 +1,2 @@
-<div class="suggested-container">
-  <div *ngIf="content$|async as content">
-    {{content.content}}
-  </div>
+<div class="suggested-container text-gray-dark" *ngIf="content$|async as content" [innerHTML]="content.content | parseMarkdown">
 </div>
