@@ -1,16 +1,7 @@
-import {Component, Input, OnChanges} from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({selector: 'app-search-input', templateUrl: './search-input.component.html', styleUrls: ['./search-input.component.scss']})
 
-export class SearchInputComponent implements OnChanges {
-  @Input()searchTerm : String;
-
+export class SearchInputComponent {
   constructor() {}
-
-  ngOnChanges(changes) {
-    var input : HTMLInputElement = document.querySelector('input.ais-SearchBox-input');
-    if (input != undefined) {
-      input.value = changes.searchTerm.currentValue;
-    }
-  }
 }
