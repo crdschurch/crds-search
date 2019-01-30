@@ -1,9 +1,5 @@
 <ng-container *ngIf="results.query !== ''">
-  <!-- No results message -->
-  <ng-container *ngIf="hits.length === 0">
-    <h6>No results found matching <strong>{{results.query}}</strong>.</h6>
-  </ng-container>
-
+  
   <!-- Hit counter -->
   <p class="font-size-small text-gray-light" *ngIf="hits.length > 1">
     <span *ngIf="hits.length >= results.hitsPerPage">

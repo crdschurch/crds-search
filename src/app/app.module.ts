@@ -15,6 +15,7 @@ import { SeriesHitComponent } from './components/series-hit/series-hit.component
 import { LocationHitComponent } from './components/location-hit/location-hit.component';
 import { RefinementList } from './components/refinement-list/refinement-list.component';
 import { EpisodeHitComponent } from './components/episode-hit/episode-hit.component';
+import { NoResultsComponent } from './components/no-results/no-results.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { EpisodeHitComponent } from './components/episode-hit/episode-hit.compon
     MessageHitComponent,
     SeriesHitComponent,
     VideoHitComponent,
-    RefinementList
+    RefinementList,
+    NoResultsComponent
   ],
   imports: [
     NgAisModule.forRoot(),
