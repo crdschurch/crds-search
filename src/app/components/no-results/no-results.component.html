@@ -1,4 +1,23 @@
-<ng-container *ngIf='hits.length === 0 && results.query !== ""'>
-  <h6>No results found matching <strong>{{results.query}}</strong>.</h6>
-  <p>Can't find what you are looking for? Try searching <a href="">Corkboard</a> or in Crossroads Groups</p>
+<ng-container *ngIf='hits.length === 0 && results.query !== undefined && results.query !== ""'>
+  <div class="row">
+    <h1 class="text-lowercase page-header">Whoops</h1>
+    <div class="col-sm-6">
+      <h2 class="tagline push-bottom">We're sorry - we can't find anything for <strong>{{results.query}}</strong>.</h2>
+      <p>Try searching in these other places:</p>
+      <p><a href="">Corkboard</a></p>
+      <p><a href="">Groups</a></p>
+      <p><a href="https://www.facebook.com/crdschurch/" target="_blank">Facebook</a></p>
+      <p class="push-top">
+        <strong>Still need help?</strong>
+        <br>Browse our
+        <a href="help">help section</a>,
+        <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;tf=1&amp;to=websupport@%63ros%73ro%61ds%2Enet"
+          target="_blank">email us</a> or give us a call at 513‑731‑7400.
+      </p>
+    </div>
+    <div class="col-sm-6">
+      <img class="img-responsive" title="No Search Results Found Crushed Coffee Cup" src="//crossroads-media.imgix.net/images/coffee-cup-crushed.jpg?auto=compress,format"
+        alt="No search results found!">
+    </div>
+  </div>
 </ng-container>
