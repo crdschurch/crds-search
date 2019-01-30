@@ -1,5 +1,5 @@
 {
-  "baseUrl": "https://int.crossroads.net",
+  "baseUrl": "http://localhost:3000/",
   "testFiles": "**/*spec.js",
   "numTestsKeptInMemory": 0,
   "video": false
