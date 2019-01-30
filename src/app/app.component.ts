@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { environment } from './../environments/environment.int';
 import * as algoliasearch from 'algoliasearch';
 
 const searchClient = algoliasearch(
-  '8Y3N3H5PNJ',
-  '609661e7d659e337fe7a1b5bee6b42f0'
+  environment.ALGOLIA_APP_ID,
+  environment.ALGOLIA_API_KEY
 );
 
 @Component({
@@ -15,7 +16,7 @@ const searchClient = algoliasearch(
 
 export class AppComponent {
   config = {
-    indexName: 'int_crds',
+    indexName: environment.ALGOLIA_INDEX,
     searchClient
   }
 }
