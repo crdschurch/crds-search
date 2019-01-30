@@ -1,22 +1,15 @@
 import { Component } from '@angular/core';
-import { environment } from './../environments/environment.int';
-import * as algoliasearch from 'algoliasearch';
-
-const searchClient = algoliasearch(
-  environment.ALGOLIA_APP_ID,
-  environment.ALGOLIA_API_KEY
-);
+import { SearchService }  from './search.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 
-
 export class AppComponent {
-  config = {
-    indexName: environment.ALGOLIA_INDEX,
-    searchClient
+  public config;
+  constructor(public searchService : SearchService) {
+    this.config = this.searchService.configAlgolia();
   }
 }

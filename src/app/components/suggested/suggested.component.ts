@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {ContentfulService} from 'src/app/contentful.service';
+import { Component, OnInit } from '@angular/core';
+import { ContentfulService } from 'src/app/contentful.service';
 
 @Component({selector: 'app-suggested', templateUrl: './suggested.component.html', styleUrls: ['./suggested.component.scss']})
 
