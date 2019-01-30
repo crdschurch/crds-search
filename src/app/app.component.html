@@ -1,1 +1,22 @@
-<app-search class="font-family-base"></app-search>
+<div class="search">
+  <ais-instantsearch [config]="config">
+    <div class="search-panel">
+      <div class="search-panel__results">
+        <app-search-input></app-search-input>
+        <ais-hits>
+          <ng-template let-hits="hits" let-results="results">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-xs-12 col-md-8 col-md-offset-2">
+                  <app-suggested *ngIf="results.query === ''"></app-suggested>
+                  <app-refinement-list [hits]="hits" [results]="results"></app-refinement-list>
+                  <app-hits [hits]="hits" [results]="results"></app-hits>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </ais-hits>
+      </div>
+    </div>
+  </ais-instantsearch>
+</div>

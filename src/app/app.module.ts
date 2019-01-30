@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { NgAisModule } from 'angular-instantsearch';
 
 import { AppComponent } from './app.component';
-import { SearchComponent } from './components/search/search.component';
 import { SearchInputComponent } from './components/search-input/search-input.component';
 import { HitsComponent } from './components/hits/hits.component';
 import { HitComponent } from './components/hit/hit.component';
@@ -20,7 +19,6 @@ import { EpisodeHitComponent } from './components/episode-hit/episode-hit.compon
 @NgModule({
   declarations: [
     AppComponent,
-    SearchComponent,
     SearchInputComponent,
     HitsComponent,
     HitComponent,
