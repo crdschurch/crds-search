@@ -16,6 +16,7 @@ import { LocationHitComponent } from './components/location-hit/location-hit.com
 import { RefinementList } from './components/refinement-list/refinement-list.component';
 import { EpisodeHitComponent } from './components/episode-hit/episode-hit.component';
 import { NoResultsComponent } from './components/no-results/no-results.component';
+import { PerspectiveHitComponent } from './components/perspective-hit/perspective-hit.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { NoResultsComponent } from './components/no-results/no-results.component
     EpisodeHitComponent,
     LocationHitComponent,
     MessageHitComponent,
+    PerspectiveHitComponent,
     SeriesHitComponent,
     VideoHitComponent,
     RefinementList,

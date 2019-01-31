@@ -1,23 +1,23 @@
-<div class="crds-styles push-bottom">
-  <ais-instantsearch [config]="config">
-    <div class="search-panel">
-      <div class="search-panel__results">
-        <app-search-input></app-search-input>
-        <ais-hits>
-          <ng-template let-hits="hits" let-results="results">
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-xs-12 col-md-8 col-md-offset-2">
+<div class="crds-styles push-ends">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12 col-md-8 col-md-offset-2">
+        <ais-instantsearch [config]="config">
+          <div class="search-panel">
+            <div class="search-panel__results">
+              <app-search-input></app-search-input>
+              <ais-hits>
+                <ng-template let-hits="hits" let-results="results">
                   <app-suggested [results]="results"></app-suggested>
                   <app-refinement-list [hits]="hits" [results]="results"></app-refinement-list>
                   <app-no-results [hits]="hits" [results]="results"></app-no-results>
                   <app-hits [hits]="hits" [results]="results"></app-hits>
-                </div>
-              </div>
+                </ng-template>
+              </ais-hits>
             </div>
-          </ng-template>
-        </ais-hits>
+          </div>
+        </ais-instantsearch>
       </div>
     </div>
-  </ais-instantsearch>
+  </div>
 </div>
