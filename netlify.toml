@@ -1,0 +1,8 @@
+[build]
+  command = "yarn run build"
+
+[context.master]
+  command = "yarn run build --prod"
+
+[context.release]
+  command = "yarn run build --demo"
