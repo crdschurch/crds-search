@@ -1,5 +1,5 @@
 {
-  "baseUrl": "http://localhost:3000/",
+  "baseUrl": "https://crds-search.netlify.com/",
   "testFiles": "**/*spec.js",
   "numTestsKeptInMemory": 0,
   "video": false
