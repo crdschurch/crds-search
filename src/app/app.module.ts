@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { NgAisModule } from 'angular-instantsearch';
 
 import { AppComponent } from './app.component';
-import { SearchComponent } from './components/search/search.component';
 import { SearchInputComponent } from './components/search-input/search-input.component';
 import { HitsComponent } from './components/hits/hits.component';
 import { HitComponent } from './components/hit/hit.component';
@@ -16,11 +15,11 @@ import { SeriesHitComponent } from './components/series-hit/series-hit.component
 import { LocationHitComponent } from './components/location-hit/location-hit.component';
 import { RefinementList } from './components/refinement-list/refinement-list.component';
 import { EpisodeHitComponent } from './components/episode-hit/episode-hit.component';
+import { NoResultsComponent } from './components/no-results/no-results.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchComponent,
     SearchInputComponent,
     HitsComponent,
     HitComponent,
@@ -32,7 +31,8 @@ import { EpisodeHitComponent } from './components/episode-hit/episode-hit.compon
     MessageHitComponent,
     SeriesHitComponent,
     VideoHitComponent,
-    RefinementList
+    RefinementList,
+    NoResultsComponent
   ],
   imports: [
     NgAisModule.forRoot(),

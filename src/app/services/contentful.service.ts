@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { createClient } from 'contentful/dist/contentful.browser.min.js';
-import { environment } from './../environments/environment.int';
+import { environment } from '../../environments/environment';
 import { Observable, from } from 'rxjs';
-import { Suggested } from './suggested';
+import { Suggested } from '../suggested';
 import { map } from 'rxjs/operators';
 
 @Injectable({

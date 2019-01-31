@@ -6,7 +6,7 @@ $cr-path-to-icons-sprite: '/crds-styles/assets/svgs/';
 @import '~crds-styles/assets/stylesheets/crds-styles';
 
 // component imports
-@import './app/components/search/search.component';
+@import './app/app.component';
 @import './app/components/search-input/search-input.component';
 @import './app/components/hits/hits.component';
 @import './app/components/hit/hit.component';
@@ -15,8 +15,4 @@ $cr-path-to-icons-sprite: '/crds-styles/assets/svgs/';
 
 * {
   box-sizing: border-box;
-}
-
-body {
-  color: #4D4D4D;
 }
