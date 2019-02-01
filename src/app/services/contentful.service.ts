@@ -18,7 +18,6 @@ export class ContentfulService {
       environment: environment.CONTENTFUL_ENV
     });;
   }
-
   public getSuggestedContentBlock(id): Observable<Suggested> {
     return from(this.client.getEntry(id)).pipe(
      map((entry: any) => {
