@@ -1,4 +1,4 @@
-<a class="relative hit-img" href="{{hit.url}}">
+<a *ngIf="hit.image !== null" class="relative hit-img" href="{{hit.url}}">
   <div class="card-stamp bg-charcoal text-white">
     <span class="font-size-smallest push-quarter-right">{{hit.duration}}</span>
     <svg class="icon" viewBox="0 0 256 256">

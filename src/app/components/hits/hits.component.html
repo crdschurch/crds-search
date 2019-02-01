@@ -11,11 +11,13 @@
 
   <!-- Hit template -->
   <ng-container *ngFor="let hit of hits" [ngSwitch]="hit.contentType">
-    <app-article-hit *ngSwitchCase="'article'" [hit]="hit" class="hit article-hit"></app-article-hit>
-    <app-episode-hit *ngSwitchCase="'episode'" [hit]="hit" class="hit episode-hit"></app-episode-hit>
-    <app-location-hit *ngSwitchCase="'location'" [hit]="hit" class="hit location-hit"></app-location-hit>
-    <app-message-hit *ngSwitchCase="'message'" [hit]="hit" class="hit series-hit"></app-message-hit>
-    <app-series-hit *ngSwitchCase="'series'" [hit]="hit" class="hit series-hit"></app-series-hit>
+    <app-article-hit *ngSwitchCase="'article'" [hit]="hit" class="hit hit-article"></app-article-hit>
+    <app-author-hit *ngSwitchCase="'author'" [hit]="hit" class="hit hit-author"></app-author-hit>
+    <app-episode-hit *ngSwitchCase="'episode'" [hit]="hit" class="hit hit-episode"></app-episode-hit>
+    <app-location-hit *ngSwitchCase="'location'" [hit]="hit" class="hit hit-location"></app-location-hit>
+    <app-message-hit *ngSwitchCase="'message'" [hit]="hit" class="hit hit-message"></app-message-hit>
+    <app-perspective-hit *ngSwitchCase="'perspective'" [hit]="hit" class="hit hit-perspective"></app-perspective-hit>
+    <app-series-hit *ngSwitchCase="'series'" [hit]="hit" class="hit hit-series"></app-series-hit>
     <app-video-hit *ngSwitchCase="'video'" [hit]="hit" class="hit video-hit"></app-video-hit>
     <app-hit *ngSwitchDefault [hit]="hit" class="hit"></app-hit>
   </ng-container>

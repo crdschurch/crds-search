@@ -9,9 +9,6 @@
     <ais-highlight attribute="title" [hit]="hit">
     </ais-highlight>
   </a>
-  <p *ngIf="hit.address" class="font-size-smaller">
-    {{ hit.address }}
-  </p>
   <p *ngIf="hit.serviceTimes" class="font-size-smaller">
     <span class="control-label block">Service Times</span>
     {{ hit.serviceTimes }}

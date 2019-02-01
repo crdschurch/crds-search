@@ -14,14 +14,9 @@ OnDestroy {
   constructor(private analyticsService : AnalyticsService) {}
 
   ngOnInit() {
-    this.results$Subscription = this
-      .results$
-      .pipe(debounceTime(1500))
+    this.results$Subscription = this.results$.pipe(debounceTime(1500))
       .subscribe((res) => {
-        console.log(res);
-        this
-          .analyticsService
-          .trackSearch(res.query, res.count);
+        this.analyticsService.trackSearch(res.query, res.count);
       })
   }
 
