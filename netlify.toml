@@ -1,8 +1,10 @@
 [build]
-  command = "yarn run build"
+  command = '''yarn run build &
+  bash ./cypress/kickOffCypress.sh'''
 
 [context.master]
   command = "yarn run build --prod"
 
 [context.release]
-  command = "yarn run build --demo"
+  command = '''yarn run build --demo &
+  bash ./cypress/kickOffCypress.sh'''
