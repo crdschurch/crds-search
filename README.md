@@ -1,6 +1,8 @@
 # crds-search
-## Getting started
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/caa2b10d-2178-41be-81d4-1da422d1dc1c/deploy-status)](https://app.netlify.com/sites/int-crds-search/deploys)
+
+## Getting started
 To run this project locally, install the dependencies and run the local server:
 
 ```sh
