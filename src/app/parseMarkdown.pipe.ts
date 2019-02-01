@@ -8,7 +8,7 @@ import kramed from 'kramed';
 @Pipe({name: 'parseMarkdown'})
 export class ParseMarkdownPipe implements PipeTransform {
   transform(items : any) : any {
-    let parsed = kramed(items)
+    let parsed = kramed(items);
     return parsed;
   }
 }

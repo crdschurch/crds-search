@@ -12,6 +12,6 @@ export class SuggestedComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.content$ = this.contentService.getSuggestedContentBlock('2l2IrgFvciN84qnwfkMCtI');
+    this.content$ = this.contentService.getSuggestedContentBlock();
   }
 }
