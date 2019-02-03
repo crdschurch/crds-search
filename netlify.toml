@@ -6,5 +6,4 @@
   command = "yarn run build --prod"
 
 [context.release]
-  command = '''yarn run build --demo &
-  bash ./cypress/kickOffCypress.sh'''
+  command = "yarn run build --demo"
