@@ -1,33 +1,30 @@
-import { ContentfulApi } from '../Contentful/ContentfulApi';
 import { ContentfulElementValidator as Element } from '../Contentful/ContentfulElementValidator'
+import { ContentBlockManager } from '../Contentful/Models/ContentBlockModel';
 
 function preSearchContentBlockShouldBeDisplayed(contentBlock) {
   cy.get('app-suggested').find('.suggested-container').as('preSearchContentBlock');
-  //Element.shouldContainText('preSearchContentBlock', contentBlock.content); //TODO when fixed, test this
-  cy.get('@preSearchContentBlock').should('exist').and('contain', 'Popular Results'); //TODO switch this to content block values
+  Element.shouldContainText('preSearchContentBlock', contentBlock.content);
 }
 
 describe('The pre-search content block should be displayed:', function () {
   let preSearchContentBlock;
 
   beforeEach(function () {
-    const content = new ContentfulApi();
-    const contentBlockManager = content.retrieveContentBlockManager();
+    cy.visit('/');
 
-    //cy.visit('/');
-
-    cy.wrap({contentBlockManager}).its('contentBlockManager.contentBlocksReady').should('be.true').then(() => {
-      preSearchContentBlock = contentBlockManager.getContentBlockByTitle('suggestedSearch');
+    const cbm = new ContentBlockManager()
+    cbm.saveContentBlockByTitle('suggestedSearch');
+    cy.wrap({ cbm }).its("cbm.suggestedSearch").should('exist').then(() => {
+      preSearchContentBlock = cbm['suggestedSearch'];
     });
   });
 
-  it.only('Before a search', function () {
-    cy.log('DONE!');
-    //preSearchContentBlockShouldBeDisplayed(preSearchContentBlock);
+  it('Before a search', function () {
+    preSearchContentBlockShouldBeDisplayed(preSearchContentBlock);
   });
 
-  it('After the search bar is emptied', function () {
-    const searchString = 'God'
+  it('After the search bar is cleared using the icon or manually', function () {
+    const searchString = 'a'
     cy.get('.ais-SearchBox-input').as('searchField');
     cy.get('@searchField').type(searchString);
 

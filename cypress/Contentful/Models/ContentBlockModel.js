@@ -1,45 +1,35 @@
 import { TextField } from '../Fields/TextField';
-import { assertPlatform } from '@angular/core';
-
-export class ContentBlockManager1 {
-  getContentBlockByTitle(title){
-    const collectionResponse = ContentfulApi.getEntryCollection('content_type=content_block&select=sys.id,fields.title&limit=1000');
-    //wait until response is ready syncronously
-    //find collectionResponse id that matches the title
-    const blockId = '123';
-    assert.exists(blockId, `Content block with title '${title}' was not found.`);
-
-    const blockResponse = ContentfulApi.getSingleEntry(blockId,'select=fields.title,fields.content');
-    //create content block entry with blockResponse result and return
-  }
-}
+import { ContentfulApi } from '../ContentfulApi';
 
 export class ContentBlockManager {
-  storeContentBlockItems(response){
-    this._raw_content_block_list = response.items;
-    this._list_ready = true;
-  }
+  saveContentBlockByTitle(title){
+    const allContentBlocks = ContentfulApi.getEntryCollection('content_type=content_block&select=sys.id,fields.title&limit=1000');
+    cy.wrap({allContentBlocks}).its('allContentBlocks.responseReady').should('be.true').then(() => {
+      let response_list = allContentBlocks.responseBody.items;
 
-  getContentBlockByTitle(name) {
-    cy.log(`first in list ${this._raw_content_block_list[0].fields.title}`);
-    this._raw_content_block_list.forEach(block =>
-      cy.log(`block title ${block.fields.title} and matches ${block.fields.title === name}`)
-    )
-    const index = 0;
-    //const index = this._raw_content_block_list.findIndex(block => block.fields.title === name);
-    //if index not found, fail test
-    return new ContentBlockModel(this._raw_content_block_list[index].fields);
-  }
+      const index = response_list.findIndex(block => block.fields.title === title);
+      assert.isAbove(index, -1, `Index for content block with title '${title}' was found`)
+      const entryId = response_list[index].sys.id;
 
-  get contentBlocksReady(){
-    return this._list_ready;
+      const blockResponse = ContentfulApi.getSingleEntry(entryId,'select=fields.title,fields.content');
+      cy.wrap({blockResponse}).its('blockResponse.responseReady').should('be.true').then(() => {
+        this[title] = new ContentBlockModel(blockResponse.responseBody.fields);
+      });
+    });
   }
 }
 
 export class ContentBlockModel {
-  constructor(responseItem){
-    this._content = new TextField(responseItem.content);
+  constructor(responseFields){
+    this._title = new TextField(responseFields.title);
+    this._title.required = true;
+
+    this._content = new TextField(responseFields.content);
     this._content.required = true;
+  }
+
+  get title(){
+    return this._title;
   }
 
   get content(){
