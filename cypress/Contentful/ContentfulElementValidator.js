@@ -10,13 +10,4 @@ export class ContentfulElementValidator {
       });
     }
   }
-
-  // static shouldMatchSubsetOfText(alias, textFieldObject) {
-  //   if (textFieldObject.isRequiredOrHasContent) {
-  //     cy.get(`@${alias}`).should('be.visible');
-  //     cy.get(`@${alias}`).should('have.prop', 'textContent').then($elementText => {
-  //       expect(textFieldObject.normalized).to.contain(Formatter.normalizeText($elementText));
-  //     });
-  //   }
-  // }
 }
