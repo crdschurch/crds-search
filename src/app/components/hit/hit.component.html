@@ -1,30 +1,25 @@
-<div class="hit">
-  <a *ngIf="hit.image" class="relative hit-img" href="{{hit.url}}">
-    <div *ngIf="hit.contentType == 'article' || hit.contentType == 'video' || hit.contentType == 'episode'" class="card-stamp bg-charcoal text-white">
-      <span class="font-size-smallest push-quarter-right">{{hit.duration}}</span>
-      <svg class="icon" viewBox="0 0 256 256" [ngSwitch]="hit.contentType">
-        <use *ngSwitchCase="'article'" xlink:href="/assets/svgs/icons.svg#media-article"></use>
-        <use *ngSwitchCase="'video'" xlink:href="/assets/svgs/icons.svg#media-video"></use>
-        <use *ngSwitchCase="'episode'" xlink:href="/assets/svgs/icons.svg#media-podcast"></use>
-      </svg>
-    </div>
-    <img class="img-responsive" src="{{hit.image}}" />
-  </a>
-
-  <app-hit-text [hit]="hit"></app-hit-text>
-
-  <div class="hit-meta">
-    <p class="font-size-smaller flush">
-      <a *ngIf="hit.map_url" 
-        href="{{ hit.map_url }}" 
-        target="_blank" 
-        class="font-size-smaller flush">
-        Get Directions
-      </a>
-      <span *ngIf="hit.author" class="hit-author">{{hit.author}}</span>
-      <span *ngIf="hit.series" class="hit-series">{{hit.series}}</span>
-      <span *ngIf="hit.start_date && hit.end_date" class="hit-series-date">{{hit.start_date}} - {{hit.end_date}}</span>
-      <span *ngIf="hit.date" class="hit-date">{{hit.date}}</span>
-    </p>
+<a *ngIf="hit.image" class="relative hit-img" href="{{hit.url}}">
+  <div *ngIf="hit.contentType == 'article' || hit.contentType == 'video' || hit.contentType == 'episode'" class="card-stamp bg-charcoal text-white">
+    <span class="font-size-smallest push-quarter-right">{{hit.duration}}</span>
+    <svg class="icon" viewBox="0 0 256 256" [ngSwitch]="hit.contentType">
+      <use *ngSwitchCase="'article'" xlink:href="/assets/svgs/icons.svg#media-article"></use>
+      <use *ngSwitchCase="'video'" xlink:href="/assets/svgs/icons.svg#media-video"></use>
+      <use *ngSwitchCase="'episode'" xlink:href="/assets/svgs/icons.svg#media-podcast"></use>
+    </svg>
   </div>
+  <img class="img-responsive" src="{{hit.image}}" />
+</a>
+
+<app-hit-text [hit]="hit"></app-hit-text>
+
+<div class="hit-meta">
+  <p class="font-size-smaller flush">
+    <a *ngIf="hit.map_url" href="{{ hit.map_url }}" target="_blank" class="font-size-smaller flush">
+      Get Directions
+    </a>
+    <span *ngIf="hit.author" class="hit-author">{{hit.author}}</span>
+    <span *ngIf="hit.series" class="hit-series">{{hit.series}}</span>
+    <span *ngIf="hit.start_date && hit.end_date" class="hit-series-date">{{hit.start_date}} - {{hit.end_date}}</span>
+    <span *ngIf="hit.date" class="hit-date">{{hit.date}}</span>
+  </p>
 </div>
