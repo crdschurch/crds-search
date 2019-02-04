@@ -1,6 +1,5 @@
 [build]
-  command = '''yarn run build &
-  bash ./cypress/kickOffCypress.sh'''
+  command = '''yarn run build'''
 
 [context.master]
   command = "yarn run build --prod"
