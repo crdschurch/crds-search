@@ -22,6 +22,7 @@ import { EpisodeHitComponent } from './components/episode-hit/episode-hit.compon
 import { NoResultsComponent } from './components/no-results/no-results.component';
 import { PerspectiveHitComponent } from './components/perspective-hit/perspective-hit.component';
 import { AuthorHitComponent } from './components/author-hit/author-hit.component';
+import { HitTextComponent } from './components/hit-text/hit-text.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { AuthorHitComponent } from './components/author-hit/author-hit.component
     VideoHitComponent,
     RefinementList,
     NoResultsComponent,
-    AuthorHitComponent
+    AuthorHitComponent,
+    HitTextComponent
   ],
   imports: [
     NgAisModule.forRoot(),

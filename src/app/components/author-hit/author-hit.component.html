@@ -2,15 +2,6 @@
   <img class="img-responsive" src="{{hit.image}}" />
 </a>
 
-<div class="hit-text">
-  <a class="hit-title" href="{{hit.url}}">
-    <ais-highlight attribute="author" [hit]="hit">
-    </ais-highlight>
-  </a>
-  <p *ngIf="hit.description" class="font-size-smaller push-quarter-bottom">
-    {{hit.description.substr(0, 180)}}
-    <span *ngIf="hit.description.length > 180" style="margin-left: -3px;">...</span>
-  </p>
-</div>
+<app-hit-text [hit]="hit"></app-hit-text>
 
 <div class="hit-meta"></div>
