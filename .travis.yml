@@ -1,9 +1,9 @@
 language: node_js
 node_js: 10
-cache: npm
-install: npm ci
+cache: yarn
+install: yarn install
 script:
-  - "$(npm bin)/cypress run --record --key $cypressDashboard -c baseUrl=$baseURL --env CONTENTFUL_SPACE_ID=$contentfulSpaceId,CONTENTFUL_ENV=$contentfulEnv,CONTENTFUL_ACCESS_TOKEN=$contentfulToken"
+  - "$(yarn bin)/cypress run --record --key $cypressDashboard -c baseUrl=$baseURL --env CONTENTFUL_SPACE_ID=$contentfulSpaceId,CONTENTFUL_ENV=$contentfulEnv,CONTENTFUL_ACCESS_TOKEN=$contentfulToken"
 notifications:
   slack:
     rooms:
