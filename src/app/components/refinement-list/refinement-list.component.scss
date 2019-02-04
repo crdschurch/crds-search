@@ -13,7 +13,7 @@
   margin-bottom: 1rem;
   padding: .5rem 0;
   border-bottom: 1px solid #ddd;
-  overflow-x: scroll;
+  overflow-x: auto;
 
   // hide checkbox
   .ais-RefinementList-count {
@@ -34,6 +34,7 @@
     // have the same highlight class as actual highlighted stuff
     .ais-Highlight {
       padding-left: .25rem;
+      color: #979797;
       font-size: .875rem;
       font-weight: 300;
     }

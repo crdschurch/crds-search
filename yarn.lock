@@ -735,7 +735,7 @@ algoliasearch-helper@^2.26.0, algoliasearch-helper@^2.26.1:
     qs "^6.5.1"
     util "^0.10.3"
 
-algoliasearch@3.32.0, algoliasearch@^3.27.0, algoliasearch@^3.29.0:
+algoliasearch@^3.27.0, algoliasearch@^3.29.0:
   version "3.32.0"
   resolved "https://registry.yarnpkg.com/algoliasearch/-/algoliasearch-3.32.0.tgz#5818168c26ff921bd0346a919071bac928b747ce"
   integrity sha512-C8oQnPTf0wPuyD2jSZwtBAPvz+lHOE7zRIPpgXGBuNt6ZNcC4omsbytG26318rT77a8h4759vmIp6n9p8iw4NA==
@@ -774,6 +774,13 @@ angular-instantsearch@2.1.0:
     nouislider "^10.0.0"
     querystring-es3 "^0.2.1"
     tslib "^1.7.1"
+
+angulartics2@6.3.1:
+  version "6.3.1"
+  resolved "https://registry.yarnpkg.com/angulartics2/-/angulartics2-6.3.1.tgz#1e5f82571e182855265aeb733e49097bbb0b4d2e"
+  integrity sha512-uqV8iraCKdFbR5YIg0q8q9BgHCijBATuRf9h1flAF6wZYbAkZTjjsyH8iPXGBGuWPXDGmm8pBtpNEevrDY9J7w==
+  dependencies:
+    tslib "^1.9.0"
 
 ansi-align@^2.0.0:
   version "2.0.0"

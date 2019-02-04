@@ -6,6 +6,10 @@
   padding: 1.5rem 0;
   border-bottom: 1px solid #E7E7E7;
 
+  &:last-child {
+    border: 0;
+  }
+
   @media (min-width: 767px) {
     flex-direction: row;
   }
