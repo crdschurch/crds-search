@@ -10,18 +10,10 @@ import { AppComponent } from './app.component';
 import { SearchInputComponent } from './components/search-input/search-input.component';
 import { HitsComponent } from './components/hits/hits.component';
 import { HitComponent } from './components/hit/hit.component';
-import { VideoHitComponent } from './components/video-hit/video-hit.component';
 import { SuggestedComponent } from './components/suggested/suggested.component';
-import { ArticleHitComponent } from './components/article-hit/article-hit.component';
 import { ParseMarkdownPipe } from './parseMarkdown.pipe';
-import { MessageHitComponent } from './components/message-hit/message-hit.component';
-import { SeriesHitComponent } from './components/series-hit/series-hit.component';
-import { LocationHitComponent } from './components/location-hit/location-hit.component';
 import { RefinementList } from './components/refinement-list/refinement-list.component';
-import { EpisodeHitComponent } from './components/episode-hit/episode-hit.component';
 import { NoResultsComponent } from './components/no-results/no-results.component';
-import { PerspectiveHitComponent } from './components/perspective-hit/perspective-hit.component';
-import { AuthorHitComponent } from './components/author-hit/author-hit.component';
 import { HitTextComponent } from './components/hit-text/hit-text.component';
 
 @NgModule({
@@ -32,16 +24,8 @@ import { HitTextComponent } from './components/hit-text/hit-text.component';
     HitComponent,
     SuggestedComponent,
     ParseMarkdownPipe,
-    ArticleHitComponent,
-    EpisodeHitComponent,
-    LocationHitComponent,
-    MessageHitComponent,
-    PerspectiveHitComponent,
-    SeriesHitComponent,
-    VideoHitComponent,
     RefinementList,
     NoResultsComponent,
-    AuthorHitComponent,
     HitTextComponent
   ],
   imports: [
