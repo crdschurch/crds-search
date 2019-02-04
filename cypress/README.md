@@ -22,11 +22,13 @@ CYPRESS_INSTALL_BINARY = 0
 ## Run Locally
 
 After defining local environment variables, run the Cypress UI with:
+
 ```sh
 yarn run cypress open
 ```
 
 or headless with:
+
 ```sh
 yarn run cypress run
 ```
