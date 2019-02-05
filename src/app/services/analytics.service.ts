@@ -8,12 +8,12 @@ export class AnalyticsService {
 
   constructor(private analytics : Angulartics2) { }
 
-  public trackSearch(query, resultsCount) {
+  public trackSearch(Query, ResultsCount) {
     this.analytics.eventTrack.next({
       action: 'WebsiteSearch',
       properties: {
-        query,
-        resultsCount
+        Query,
+        ResultsCount
       }
     });
   }
