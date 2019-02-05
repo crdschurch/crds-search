@@ -16,7 +16,9 @@ OnDestroy {
   ngOnInit() {
     this.results$Subscription = this.results$.pipe(debounceTime(1500))
       .subscribe((res) => {
-        this.analyticsService.trackSearch(res.query, res.count);
+        if (res.query.length > 0 && res.query !== '') {
+          this.analyticsService.trackSearch(res.query, res.count);
+        }
       })
   }
 
