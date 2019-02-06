@@ -4,14 +4,13 @@
    top: 0;
    padding-top: .5rem;
    margin-bottom: .5rem;
-   width: calc(100vw - 30px);
+   width: 100%;
    background-color: #fff;
    border-bottom: 1px solid #ddd;
    overflow-x: auto;
    z-index: 1;
 
    @media (min-width: 991px) {
-     width: 100%;
      position: relative;
      padding-top: 0;
    }
