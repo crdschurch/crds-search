@@ -10,18 +10,18 @@ import {map} from 'rxjs/operators';
 export class ContentfulService {
   private client;
   constructor() {
-    this.client = createClient({space: environment.CONTENTFUL_SPACE_ID, accessToken: environment.CONTENTFUL_ACCESS_TOKEN, environment: environment.CONTENTFUL_ENV});;
+    this.client = createClient({space: environment.CONTENTFUL_SPACE_ID, accessToken: environment.CONTENTFUL_ACCESS_TOKEN, environment: environment.CONTENTFUL_ENV});
   }
 
   public getSuggestedContentBlock() : Observable < Suggested > {
-    return from(this.client.getEntries({ "sys.contentType.sys.id" : "content_block", "limit": 1000})).pipe(map((data : any) => {
-      let entries = data.items;
-      let title = 'suggestedSearch';
-      for (let entry of entries) {
-        if (entry.fields.title == title) {
-          return new Suggested(entry.fields.content);
-        }
-      }
-    }));
+    return from(this.client.getEntries({
+      "access_token": environment.CONTENTFUL_ACCESS_TOKEN,
+      "content_type": "content_block",
+      "fields.title": "suggestedSearch"}))
+        .pipe(map((data : any) => {
+          let suggestedContentBlock = data.items[0].fields.content;
+          console.log(data.items[0].fields.content);
+          return new Suggested(suggestedContentBlock);
+        }));
   }
 }
