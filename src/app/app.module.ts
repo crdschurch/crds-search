@@ -12,7 +12,7 @@ import { HitsComponent } from './components/hits/hits.component';
 import { HitComponent } from './components/hit/hit.component';
 import { SuggestedComponent } from './components/suggested/suggested.component';
 import { ParseMarkdownPipe } from './parseMarkdown.pipe';
-import { RefinementList } from './components/refinement-list/refinement-list.component';
+import { TabFilter } from './components/tab-filter/tab-filter.component';
 import { NoResultsComponent } from './components/no-results/no-results.component';
 import { HitTextComponent } from './components/hit-text/hit-text.component';
 
@@ -24,7 +24,7 @@ import { HitTextComponent } from './components/hit-text/hit-text.component';
     HitComponent,
     SuggestedComponent,
     ParseMarkdownPipe,
-    RefinementList,
+    TabFilter,
     NoResultsComponent,
     HitTextComponent
   ],

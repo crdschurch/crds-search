@@ -1,5 +1,5 @@
 <div class="crds-styles push-ends">
-  <div class="container">
+   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-lg-10 col-lg-offset-1">
         <ais-instantsearch [config]="config">
@@ -9,7 +9,7 @@
               <ais-hits>
                 <ng-template let-hits="hits" let-results="results">
                   <app-suggested [results]="results"></app-suggested>
-                  <app-refinement-list [hits]="hits" [results]="results"></app-refinement-list>
+                  <app-tab-filter [hits]="hits" [results]="results"></app-tab-filter>
                   <app-no-results [hits]="hits" [results]="results"></app-no-results>
                   <app-hits [hits]="hits" [results]="results"></app-hits>
                 </ng-template>
