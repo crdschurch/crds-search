@@ -19,7 +19,7 @@
     display: block;
     margin-bottom: .5rem;
   }
-  
+
   .ais-Highlight,
   .ais-Highlight-highlighted,
   .ais-Snippet-highlighted {
@@ -27,7 +27,7 @@
     font-weight: 500;
     color: #4d4d4d;
   }
-  
+
   .ais-Highlight-highlighted,
   .ais-Snippet-highlighted {
     background-color: transparent !important;
@@ -38,7 +38,6 @@
 
   .hit-meta {
     width: 100%;
-    color: #979797;
 
     @media (min-width: 767px) {
       width: 40vw;
@@ -83,7 +82,7 @@
     @media (min-width: 1120px) {
       max-width: 180px;
     }
-    
+
     img {
       width: 100%;
     }
@@ -105,5 +104,24 @@
       overflow-wrap: break-word;
       word-break: break-word;
     }
+  }
+}
+
+.hit-author {
+  flex-direction: row;
+  .hit-img {
+    margin-right: 1rem;
+    width: 80px;
+    img {
+      min-width: 5rem;
+      height: 80px;
+      min-height: 5rem;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  }
+
+  .hit-meta {
+    width: 0;
   }
 }
