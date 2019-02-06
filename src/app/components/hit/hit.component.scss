@@ -17,28 +17,23 @@
   // override InstantSearch styles
   .ais-Highlight {
     display: block;
-    margin-bottom: .5rem;
   }
 
   .ais-Highlight,
   .ais-Highlight-highlighted,
   .ais-Snippet-highlighted {
-    font-size: 1.1875rem;
-    font-weight: 500;
-    color: #4d4d4d;
+    font-size: 1.25rem;
+    font-weight: 600;
   }
 
   .ais-Highlight-highlighted,
   .ais-Snippet-highlighted {
-    background-color: transparent !important;
+    background-color: #F0D28C !important;
     font-style: normal;
-    font-weight: 600;
     color: #151515;
   }
 
   .hit-meta {
-    width: 100%;
-
     @media (min-width: 767px) {
       width: 40vw;
       max-width: 180px;
@@ -69,7 +64,6 @@
   }
 
   .hit-img {
-    width: 100%;
     margin-bottom: 1rem;
 
     @media (min-width: 767px) {
@@ -89,14 +83,21 @@
   }
 
   .hit-text {
-    color: #4D4D4D;
-
+    // preserve line length
+    max-width: 32rem;
     .hit-title {
       text-decoration: none;
+      margin-bottom: .5rem;
     }
 
     @media (min-width: 767px) {
       padding-right: 1rem;
+    }
+
+    .hit-subtitle {
+      font-size: .75rem;
+      font-weight: 600;
+      text-transform: uppercase;
     }
 
     .hit-url {
