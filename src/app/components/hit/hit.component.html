@@ -1,4 +1,4 @@
-<a *ngIf="hit.image" class="relative hit-img" href="{{hit.url}}">
+<a *ngIf="hit.image" class="hit-img relative full-width" href="{{hit.url}}">
   <div *ngIf="hit.contentType == 'article' || hit.contentType == 'video' || hit.contentType == 'episode'" class="card-stamp bg-charcoal text-white">
     <span class="font-size-smallest push-quarter-right">{{hit.duration}}</span>
     <svg class="icon" viewBox="0 0 256 256" [ngSwitch]="hit.contentType">
@@ -12,7 +12,7 @@
 
 <app-hit-text [hit]="hit"></app-hit-text>
 
-<div class="hit-meta">
+<div class="hit-meta text-gray-light full-width">
   <p class="font-size-smaller flush">
     <a *ngIf="hit.map_url" href="{{ hit.map_url }}" target="_blank" class="font-size-smaller flush">
       Get Directions

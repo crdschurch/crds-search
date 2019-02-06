@@ -1,7 +1,8 @@
-<div class="hit-text">
+<div class="hit-text text-gray-dark">
   <a class="hit-title" href="{{hit.url}}">
-    <ais-highlight attribute="title" [hit]="hit">
+    <ais-highlight class="text-gray-dark" attribute="title" [hit]="hit">
     </ais-highlight>
+    <span *ngIf="hit.category" class="hit-subtitle text-gray-light">{{hit.category}}</span>
   </a>
   <ng-container *ngIf="hit.contentType !== 'location'; else locationText">
     <p *ngIf="hit.description" class="font-size-smaller push-quarter-bottom">
