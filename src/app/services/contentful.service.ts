@@ -20,7 +20,6 @@ export class ContentfulService {
       "fields.title": "suggestedSearch"}))
         .pipe(map((data : any) => {
           let suggestedContentBlock = data.items[0].fields.content;
-          console.log(data.items[0].fields.content);
           return new Suggested(suggestedContentBlock);
         }));
   }
