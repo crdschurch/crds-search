@@ -12,9 +12,11 @@ export class SearchService {
       appId: environment.ALGOLIA_APP_ID,
       apiKey: environment.ALGOLIA_API_KEY,
       urlSync: {
+        // @ts-ignore
         mapping?: {
           q: 'query'
         },
+        // @ts-ignore
         trackedParameters?: ['query']
       }
   }
