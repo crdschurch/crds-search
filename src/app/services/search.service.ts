@@ -11,8 +11,15 @@ export class SearchService {
       indexName: environment.ALGOLIA_INDEX,
       appId: environment.ALGOLIA_APP_ID,
       apiKey: environment.ALGOLIA_API_KEY,
-      routing: false
-    }
+      urlSync: {
+        // @ts-ignore
+        mapping?: {
+          q: 'query'
+        },
+        // @ts-ignore
+        trackedParameters?: ['query']
+      }
+  }
 
     return config;
   }
