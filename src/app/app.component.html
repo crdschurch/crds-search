@@ -1,19 +1,19 @@
 <div class="crds-styles push-ends">
-   <div class="container">
+  <div class="container">
     <div class="row">
       <div class="col-xs-12 col-lg-10 col-lg-offset-1">
         <ais-instantsearch [config]="config">
           <div class="search-panel">
             <div class="search-panel__results">
               <app-search-input></app-search-input>
-              <ais-hits>
-                <ng-template let-hits="hits" let-results="results">
+              <ais-infinite-hits>
+                <ng-template let-hits="hits" let-results="results" let-refine="showMore">
                   <app-suggested [results]="results"></app-suggested>
                   <app-tab-filter [hits]="hits" [results]="results"></app-tab-filter>
                   <app-no-results [hits]="hits" [results]="results"></app-no-results>
-                  <app-hits [hits]="hits" [results]="results"></app-hits>
+                  <app-hits [hits]="hits" [results]="results" [refine]="refine"></app-hits>
                 </ng-template>
-              </ais-hits>
+              </ais-infinite-hits>
             </div>
           </div>
         </ais-instantsearch>

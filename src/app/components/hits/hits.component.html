@@ -3,7 +3,7 @@
   <p class="font-size-small text-gray-light" *ngIf="hits.length > 1">
     <span *ngIf="hits.length >= results.hitsPerPage">
       showing
-    </span> 
+    </span>
     {{hits.length}}
     <span *ngIf="hits.length >= results.hitsPerPage">of {{results.nbHits}} </span>
     results
@@ -13,4 +13,10 @@
   <ng-container *ngFor="let hit of hits">
     <app-hit [hit]="hit" class="hit hit-{{hit.contentType}}"></app-hit>
   </ng-container>
+  <!-- Show more button template -->
+  <div *ngIf="hits.length < results.nbHits" class="hits-show-more-container">
+    <button class="btn btn-primary btn-outline" (click)="refine($event)">
+      Show more
+    </button>
+  </div>
 </ng-container>
