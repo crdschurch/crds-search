@@ -1,7 +1,7 @@
 # int build & anything that doesn't match below
 [build]
   command = '''
-  yarn run build --development &&
+  yarn run build --configuration=development &&
   bash ./cypress/kickOffCypress.sh
   '''
 
