@@ -6,10 +6,10 @@
   '''
 
 [context.deploy-preview]
-  command = "yarn run build --preview"
+  command = "yarn run build --configuration=preview"
 
 [context.release]
-  command = "yarn run build --demo"
+  command = "yarn run build --configuration=demo"
 
 [context.master]
-  command = "yarn run build --prod"
+  command = "yarn run build --configuration=prod"

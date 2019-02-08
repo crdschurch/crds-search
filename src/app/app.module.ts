@@ -15,6 +15,7 @@ import { ParseMarkdownPipe } from './parseMarkdown.pipe';
 import { TabFilter } from './components/tab-filter/tab-filter.component';
 import { NoResultsComponent } from './components/no-results/no-results.component';
 import { HitTextComponent } from './components/hit-text/hit-text.component';
+import { StripHtmlPipe } from './stripHtml.pipe'
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { HitTextComponent } from './components/hit-text/hit-text.component';
     ParseMarkdownPipe,
     TabFilter,
     NoResultsComponent,
-    HitTextComponent
+    HitTextComponent,
+    StripHtmlPipe
   ],
   imports: [
     NgAisModule.forRoot(),
