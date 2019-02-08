@@ -1,11 +1,15 @@
+# int build & anything that doesn't match below
 [build]
   command = '''
-  yarn run build &&
+  yarn run build --development &&
   bash ./cypress/kickOffCypress.sh
   '''
 
-[context.master]
-  command = "yarn run build --prod"
+[context.deploy-preview]
+  command = "yarn run build --preview"
 
 [context.release]
   command = "yarn run build --demo"
+
+[context.master]
+  command = "yarn run build --prod"
