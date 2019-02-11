@@ -9,7 +9,10 @@
   command = "yarn run build --configuration=preview"
 
 [context.release]
-  command = "yarn run build --configuration=demo"
+  command = '''
+  yarn run build --configuration=demo &&
+  bash ./cypress/kickOffCypress.sh
+  '''
 
 [context.master]
   command = "yarn run build --configuration=prod"
