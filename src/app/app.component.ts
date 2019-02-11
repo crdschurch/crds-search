@@ -42,6 +42,7 @@ export class AppComponent implements OnInit{
       // header
       var header = new CRDS.SharedHeader(options);
       header.render();
+      
       // footer
       new CRDS.SharedFooter(options);
     })();

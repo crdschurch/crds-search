@@ -1,5 +1,9 @@
 <ng-container *ngIf="results.query !== '' && hits.length !== 0">
-  <ais-menu attribute="contentType" [limit]="5" [showMoreLimit]="12">
+  <ais-menu 
+    attribute="contentType" 
+    [limit]="5"
+    [showMoreLimit]="9"
+    [sortBy]="['count']">
   </ais-menu>
   <!-- <ais-refinement-list attribute="contentType"></ais-refinement-list> -->
 </ng-container>
