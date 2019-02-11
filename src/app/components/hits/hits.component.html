@@ -1,11 +1,11 @@
 <ng-container *ngIf="results.query !== ''">
   <!-- Hit counter -->
   <p class="font-size-small text-gray-light" *ngIf="hits.length > 1">
-    <span *ngIf="hits.length >= results.hitsPerPage">
+    <span *ngIf="hits.length > results.hitsPerPage">
       showing
     </span>
     {{hits.length}}
-    <span *ngIf="hits.length >= results.hitsPerPage">of {{results.nbHits}} </span>
+    <span *ngIf="hits.length > results.hitsPerPage">of {{results.nbHits}} </span>
     results
   </p>
 
