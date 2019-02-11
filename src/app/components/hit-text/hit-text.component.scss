@@ -1,0 +1,40 @@
+.hit-text {
+  display: flex;
+  flex-direction: column;
+
+  // override InstantSearch styles
+  .ais-Highlight {
+    display: block;
+    font-weight: 500;
+  }
+
+  .ais-Highlight,
+  .ais-Highlight-highlighted,
+  .ais-Snippet-highlighted {
+    font-size: 2.125rem;
+    line-height: 1;
+  }
+
+  .ais-Highlight-highlighted,
+  .ais-Snippet-highlighted {
+    display: inline-block;
+    background-color: #F0D28C !important;
+    font-style: normal;
+    color: #151515;
+  }
+  
+  .hit-title {
+    text-decoration: none;
+    margin-bottom: .5rem;
+  }
+
+  @media (min-width: 767px) {
+    padding-right: 1rem;
+  }
+
+  .hit-url {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+}

@@ -13,13 +13,11 @@
 
 <app-hit-text [hit]="hit"></app-hit-text>
 
-<div class="hit-meta text-gray-light full-width">
+<div class="hit-meta text-gray-light">
   <p class="font-size-smaller flush">
     <a *ngIf="hit.map_url" href="{{ hit.map_url }}" target="_blank" class="font-size-smaller flush">
       Get Directions
     </a>
-    <span *ngIf="hit.author" class="hit-author">{{hit.author}}</span>
-    <span *ngIf="hit.series" class="hit-series">{{hit.series}}</span>
     <span *ngIf="hit.start_date && hit.end_date" class="hit-series-date">{{hit.start_date}} - {{hit.end_date}}</span>
     <span *ngIf="hit.date" class="hit-date">{{hit.date}}</span>
   </p>
