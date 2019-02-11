@@ -8,7 +8,7 @@
       <use *ngSwitchCase="'episode'" xlink:href="/assets/svgs/icons.svg#media-podcast"></use>
     </svg>
   </div>
-  <img class="img-responsive" src="{{hit.image}}" />
+  <img class="img-responsive" src="{{hit.image}}?auto=format,compress&w=400&h=300&fit=crop" />
 </a>
 
 <app-hit-text [hit]="hit"></app-hit-text>
