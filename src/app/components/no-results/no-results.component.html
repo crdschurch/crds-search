@@ -1,10 +1,10 @@
 <ng-container *ngIf='hits.length === 0 && results.query !== undefined && results.query !== ""'>
   <div class="no-results">
     <h1 class="text-lowercase page-header">Whoops</h1>
-    <h2 class="lead push-bottom">We can't find anything for <strong>{{results.query}}</strong>.</h2>
+    <h2 class="lead push-bottom" data-automation-id="no-results-message">We can't find anything for <strong>{{results.query}}</strong>.</h2>
     <p>Try checking out these other places:</p>
-    <p><a href="{{corkboardUrl}}">Corkboard</a></p>
-    <p><a href="{{groupsUrl}}">Groups</a></p>
+    <p><a href="{{corkboardUrl}}" data-automation-id="no-results-corkboard-link">Corkboard</a></p>
+    <p><a href="{{groupsUrl}}" data-automation-id="no-results-corkboard-link">Groups</a></p>
     <p><a href="https://www.facebook.com/crdschurch/" target="_blank">Facebook</a></p>
     <p class="push-top">
       <strong>Still need help?</strong>
