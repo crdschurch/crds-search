@@ -22,7 +22,7 @@ fi
 #     test_this_URL=$DEPLOY_URL
 # fi
 
-test_this_URL='https://int-crds-search.netlify.com/' #TODO this will be some EnvVar from Netlify once this is live.
+test_this_URL=$SITE_URL
 body="{\"request\": { \"branch\":\"$HEAD\", \"config\": {\"env\": { \"baseURL\": \"$test_this_URL\", \"contentfulSpaceId\": \"$CONTENTFUL_SPACE_ID\", \"contentfulEnv\": \"$CONTENTFUL_ENV\", \"contentfulToken\": \"$CONTENTFUL_ACCESS_TOKEN\", \"DEBUG_NetlifyContext\": \"$CONTEXT\"}}}}"
 
 curl -s -X POST \

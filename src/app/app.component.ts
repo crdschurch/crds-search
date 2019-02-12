@@ -15,7 +15,7 @@ import { AnalyticsService } from './services/analytics.service';
 export class AppComponent implements OnInit{
   public config;
   constructor(
-    private searchService : SearchService, 
+    private searchService : SearchService,
     private windowRef: NativeWindowRefService,
     private angulartics2Segment: Angulartics2Segment,
     private angulartics2GA: Angulartics2GoogleAnalytics,
@@ -31,7 +31,7 @@ export class AppComponent implements OnInit{
   private initHeaderFooter() {
     const CRDS = this.windowRef.nativeWindow.CRDS;
     const { apiEndpoint, appEndpoint, cmsEndpoint, crdsEnv } = environment;
-    
+
     (function() {
       var options: any = {};
       options.cmsEndpoint = cmsEndpoint + '/';
@@ -42,7 +42,7 @@ export class AppComponent implements OnInit{
       // header
       var header = new CRDS.SharedHeader(options);
       header.render();
-      
+
       // footer
       new CRDS.SharedFooter(options);
     })();

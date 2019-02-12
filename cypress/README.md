@@ -17,6 +17,7 @@ CONTENTFUL_ENV
 RUN_CYPRESS #true/false
 TRAVIS_CI #Travis's API Authentication token
 CYPRESS_INSTALL_BINARY = 0
+SITE_URL #https://int.crossroads.net/search
 ```
 
 ## Run Locally
