@@ -1,23 +1,24 @@
-<ng-container *ngIf="hit.image">
-  <a class="relative hit-img" href="{{hit.url}}">
-    <img class="img-responsive" src="{{hit.image}}" />
-  </a>
-</ng-container>
+<a *ngIf="hit.image" class="hit-img relative full-width" href="{{hit.url}}">
+  <div *ngIf="hit.contentType == 'article' || hit.contentType == 'video' || hit.contentType == 'episode' || hit.contentType == 'message'" class="card-stamp bg-charcoal text-white">
+    <span class="font-size-smallest push-quarter-right">{{hit.duration}}</span>
+    <svg class="icon" viewBox="0 0 256 256" [ngSwitch]="hit.contentType">
+      <use *ngSwitchCase="'article'" xlink:href="/assets/svgs/icons.svg#media-article"></use>
+      <use *ngSwitchCase="'video'" xlink:href="/assets/svgs/icons.svg#media-video"></use>
+      <use *ngSwitchCase="'message'" xlink:href="/assets/svgs/icons.svg#media-video"></use>
+      <use *ngSwitchCase="'episode'" xlink:href="/assets/svgs/icons.svg#media-podcast"></use>
+    </svg>
+  </div>
+  <img class="img-responsive" src="{{hit.image}}?auto=format,compress&w=400&h=300&fit=crop" />
+</a>
 
-<div class="hit-text">
-  <a class="hit-title" href="{{hit.url}}">
-    <ais-highlight attribute="title" [hit]="hit">
-    </ais-highlight>
-  </a>
-  <p *ngIf="hit.description" class="font-size-smaller push-quarter-bottom">
-    {{hit.description.substr(0, 180)}}
-    <span *ngIf="hit.description.length > 180" style="margin-left: -3px;">...</span>
-  </p>
-  <a class="hit-url font-size-smaller" href="{{hit.url}}">{{hit.url}}</a>
-</div>
+<app-hit-text [hit]="hit"></app-hit-text>
 
-<div class="hit-meta">
+<div class="hit-meta text-gray-light">
   <p class="font-size-smaller flush">
-    {{hit.date}}
+    <a *ngIf="hit.map_url" href="{{ hit.map_url }}" target="_blank" class="font-size-smaller flush">
+      Get Directions
+    </a>
+    <span *ngIf="hit.start_date && hit.end_date" class="hit-series-date">{{hit.start_date}} - {{hit.end_date}}</span>
+    <span *ngIf="hit.date" class="hit-date">{{hit.date}}</span>
   </p>
 </div>

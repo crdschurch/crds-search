@@ -1,27 +1,22 @@
 <ng-container *ngIf="results.query !== ''">
-  <!-- No results message -->
-  <ng-container *ngIf="hits.length === 0">
-    <h6>No results found matching <strong>{{results.query}}</strong>.</h6>
-  </ng-container>
-
   <!-- Hit counter -->
   <p class="font-size-small text-gray-light" *ngIf="hits.length > 1">
-    <span *ngIf="hits.length >= results.hitsPerPage">
+    <span *ngIf="hits.length == results.hitsPerPage && hits.length !== results.nbHits">
       showing
-    </span> 
+    </span>
     {{hits.length}}
-    <span *ngIf="hits.length >= results.hitsPerPage">of {{results.nbHits}} </span>
+    <span *ngIf="hits.length == results.hitsPerPage && hits.length !== results.nbHits">of {{results.nbHits}} </span>
     results
   </p>
 
   <!-- Hit template -->
-  <ng-container *ngFor="let hit of hits" [ngSwitch]="hit.contentType">
-    <app-article-hit *ngSwitchCase="'article'" [hit]="hit" class="hit article-hit"></app-article-hit>
-    <app-episode-hit *ngSwitchCase="'episode'" [hit]="hit" class="hit episode-hit"></app-episode-hit>
-    <app-location-hit *ngSwitchCase="'location'" [hit]="hit" class="hit location-hit"></app-location-hit>
-    <app-message-hit *ngSwitchCase="'message'" [hit]="hit" class="hit series-hit"></app-message-hit>
-    <app-series-hit *ngSwitchCase="'series'" [hit]="hit" class="hit series-hit"></app-series-hit>
-    <app-video-hit *ngSwitchCase="'video'" [hit]="hit" class="hit video-hit"></app-video-hit>
-    <app-hit *ngSwitchDefault [hit]="hit" class="hit"></app-hit>
+  <ng-container *ngFor="let hit of hits">
+    <app-hit [hit]="hit" class="hit hit-{{hit.contentType}}"></app-hit>
   </ng-container>
+  <!-- Show more button template -->
+  <div *ngIf="hits.length < results.nbHits" class="hits-show-more-container">
+    <button class="btn btn-primary btn-outline" (click)="refine($event)">
+      Show more
+    </button>
+  </div>
 </ng-container>

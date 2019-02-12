@@ -57,11 +57,65 @@
                 }
               ]
             },
+            "preview": {
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": true,
+              "extractCss": false,
+              "namedChunks": true,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "fileReplacements": [
+                {
+                  "replace": "/src/environments/environment.ts",
+                  "with": "/src/environments/environment.int.ts"
+                }
+              ]
+            },
+            "development": {
+              "baseHref": "/search/",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "fileReplacements": [
+                {
+                  "replace": "/src/environments/environment.ts",
+                  "with": "/src/environments/environment.int.ts"
+                }
+              ]
+            },
+            "demo": {
+              "baseHref": "/search/",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "fileReplacements": [
+                {
+                  "replace": "/src/environments/environment.ts",
+                  "with": "/src/environments/environment.demo.ts"
+                }
+              ]
+            },
             "production": {
               "fileReplacements": [{
                 "replace": "src/environments/environment.ts",
                 "with": "src/environments/environment.prod.ts"
               }],
+              "baseHref": "/search/",
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
