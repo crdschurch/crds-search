@@ -1,0 +1,26 @@
+<div class="hit-text text-gray-dark">
+    <span *ngIf="hit.category" class="text-gray font-size-smaller font-family-base-mid text-uppercase">{{hit.category}}</span>
+  <a class="hit-title component-header" href="{{hit.url}}">
+    <ais-highlight class="text-gray-dark" attribute="title" [hit]="hit">
+    </ais-highlight>
+  </a>
+  <ng-container *ngIf="hit.contentType !== 'location'; else locationText">
+    <p *ngIf="hit.description" class="font-size-smaller push-quarter-bottom">
+      {{hit.description.substr(0, 180)}}
+      <span *ngIf="hit.description.length > 180" style="margin-left: -3px;">...</span>
+    </p>
+  </ng-container>
+  <ng-template #locationText>
+    <p *ngIf="hit.serviceTimes" class="font-size-smaller">
+      <span class="control-label block">Service Times</span>
+      {{ hit.serviceTimes }}
+    </p>
+  </ng-template>
+  <p class="font-size-smaller text-gray-light flush">
+    <span *ngIf="hit.author" class="hit-author">{{hit.author}}</span>
+    <span *ngIf="hit.series" class="hit-series">{{hit.series}}</span>
+    <span *ngIf="hit.children_count > 1 && hit.contentType == 'series'" class="hit-children">{{hit.children_count}} messages</span>
+    <span *ngIf="hit.children_count > 1 && hit.contentType == 'podcast'" class="hit-children">{{hit.children_count}} episodes</span>
+  </p>
+  <a *ngIf="hit.contentType == 'page' || hit.contentType == 'promo'" class="hit-url font-size-smaller" href="{{hit.url}}">{{hit.url}}</a>
+</div>

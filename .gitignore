@@ -4,3 +4,8 @@ yarn-debug.log
 yarn-error.log
 dist/
 .DS_Store
+.vscode
+loadenv.ps1
+cypress/videos
+cypress/screenshots
+cypress.env.json

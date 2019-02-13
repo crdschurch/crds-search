@@ -2,14 +2,18 @@
 // `ng build ---prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-export const environment = {
-  production: false
+export const environment: any = {
+  production: false,
+  CONTENTFUL_SPACE_ID: 'y3a9myzsdjan',
+  CONTENTFUL_ACCESS_TOKEN: 'cdc473421d1e2f089515a5fe791ef575715b67024840b6aa1ee157b0e43d18d3',
+  CONTENTFUL_ENV: 'int',
+  ALGOLIA_INDEX: 'int_crds',
+  ALGOLIA_APP_ID: '8Y3N3H5PNJ',
+  ALGOLIA_API_KEY: '609661e7d659e337fe7a1b5bee6b42f0',
+  crdsEnv: 'int',
+  authRedirectUrl: 'https://int.crossroads.net/signin', 
+  cookieDomain: '.crossroads.net', 
+  cmsEndpoint: 'https://contentint.crossroads.net', 
+  appEndpoint: 'https://int.crossroads.net',
+  apiEndpoint: "https://gatewayint.crossroads.net"
 };
-
-/*
- * In development mode, to ignore zone related error stack frames such as
- * `zone.run`, `zoneDelegate.invokeTask` for easier debugging, you can
- * import the following file, but please comment it out in production mode
- * because it will have performance impact when throw error
- */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
