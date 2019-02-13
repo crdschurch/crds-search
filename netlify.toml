@@ -15,4 +15,4 @@
   '''
 
 [context.master]
-  command = "yarn run build --configuration=prod"
+  command = "yarn run build --configuration=production"
