@@ -1,6 +1,6 @@
 {
   "projectId": "zxgg1j",
-  "baseUrl": "https://int.crossroads.net/search",
+  "baseUrl": "http://localhost:3000/",
   "testFiles": "**/*spec.js",
   "numTestsKeptInMemory": 0,
   "video": false
