@@ -34,10 +34,10 @@ describe('Concerning searches with no results:', function () {
 
     //Expected urls exist
     cy.get('@noResultsBlock').find('[data-automation-id="no-results-corkboard-link"]').as('corkboardLink');
-    cy.get('@corkboardLink').should('be.visible').and('has.attr', 'href', `${Cypress.env('CRDS_URL')}/corkboard`);
+    cy.get('@corkboardLink').should('be.visible').and('has.attr', 'href').and('contains', `/corkboard`);
 
     cy.get('@noResultsBlock').find('[data-automation-id="no-results-groups-link"]').as('groupsLink');
-    cy.get('@groupsLink').should('be.visible').and('has.attr', 'href', `${Cypress.env('CRDS_URL')}/groups/search`);
+    cy.get('@groupsLink').should('be.visible').and('has.attr', 'href').and('contains', `/groups/search`);
   })
 
   it('When a successful search is made after a no-results search, results are displayed', function () {
