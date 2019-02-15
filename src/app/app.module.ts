@@ -6,16 +6,17 @@ import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 import { Angulartics2GoogleTagManager } from 'angulartics2/gtm';
 import { Angulartics2Segment } from 'angulartics2/segment';
 
+import { StripHtmlPipe } from './stripHtml.pipe';
+import { ParseMarkdownPipe } from './parseMarkdown.pipe';
 import { AppComponent } from './app.component';
 import { SearchInputComponent } from './components/search-input/search-input.component';
 import { HitsComponent } from './components/hits/hits.component';
 import { HitComponent } from './components/hit/hit.component';
 import { SuggestedComponent } from './components/suggested/suggested.component';
-import { ParseMarkdownPipe } from './parseMarkdown.pipe';
 import { TabFilter } from './components/tab-filter/tab-filter.component';
 import { NoResultsComponent } from './components/no-results/no-results.component';
 import { HitTextComponent } from './components/hit-text/hit-text.component';
-import { StripHtmlPipe } from './stripHtml.pipe'
+import { HitWidgetComponent } from './components/hit-widget/hit-widget.component'
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { StripHtmlPipe } from './stripHtml.pipe'
     TabFilter,
     NoResultsComponent,
     HitTextComponent,
-    StripHtmlPipe
+    StripHtmlPipe,
+    HitWidgetComponent
   ],
   imports: [
     NgAisModule.forRoot(),
