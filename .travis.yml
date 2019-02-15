@@ -6,5 +6,4 @@ script:
 - "$(yarn bin)/cypress run --record --key $cypressDashboard -c baseUrl=$baseURL --env
   CONTENTFUL_SPACE_ID=$contentfulSpaceId,CONTENTFUL_ENV=$contentfulEnv,CONTENTFUL_ACCESS_TOKEN=$contentfulToken"
 notifications:
-  slack:
-    secure: YhPv4bDhJ+buvmwIrZW8a67xt4E7fR42PQUSf4bHiZQ03nVc4aqQ1Yru7MtOkR0LZkbSquP/8c+kaTrkjq/RC4m9WGo3/hth3FDIygk2x0s1snSdMGatkqETQEAalXU+uUYCfbaR4YWjZsBeTyv0il3f1QkZKIhvekHLuo4U9MYyFw10mkMfZPpGg9/ip9LDq4uYfFNoOU31F5xaOEeKhEG+hFC7Ded2nfw9SEC9fBT74VDmSKtGGRIbypi09bq9SiNY6KKT/AvCGWgeD140shOm0vu6pfxwQ1qCEAbx4N3Kc1RISysHJWnFim8kNQVNhZXER3ADqC/xkqtIK23EwMfF15qYsWY+H7fvMjA7fa3/cFUgABXGlmRX1U4QLN8xaFmgLXzHpK7YG3TDNWfZR+3R6hn03bUq/NdKddle98INIideH7eM0l7xXhnyqQCpWDVjL+kwa6hisb6YlN7b7TsgqI1/K2KHiCzPoGXwmoaK0S8jkguxoT33FvVJwxA+oIMQ8Gq82+NFhB5OhdFMVxe9Ww/PCA41q9QPAluaU9fV3KCHoOBUK+unpfcQCNFc9ZLiDL0MsWzNdWS/wI4QuugY9x9Ab6OF2aPcRjUXV8pgrVDcjZgp2EgLOD1Kb58H4maJLas8hfWuv9o6Hdvwe3LtrsBor3cj/ekakTFdjOE=
+  slack: crdschurch:iZZLQf36DkUtiv0SqLhlOklj
