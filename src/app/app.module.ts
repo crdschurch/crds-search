@@ -6,8 +6,8 @@ import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 import { Angulartics2GoogleTagManager } from 'angulartics2/gtm';
 import { Angulartics2Segment } from 'angulartics2/segment';
 
-import { StripHtmlPipe } from './stripHtml.pipe';
-import { ParseMarkdownPipe } from './parseMarkdown.pipe';
+import { ParseMarkdownPipe } from './pipes/parseMarkdown.pipe';
+import { SafePipe } from './pipes/safe.pipe';
 import { AppComponent } from './app.component';
 import { SearchInputComponent } from './components/search-input/search-input.component';
 import { HitsComponent } from './components/hits/hits.component';
@@ -20,16 +20,16 @@ import { HitWidgetComponent } from './components/hit-widget/hit-widget.component
 
 @NgModule({
   declarations: [
+    ParseMarkdownPipe,
+    SafePipe,
     AppComponent,
     SearchInputComponent,
     HitsComponent,
     HitComponent,
     SuggestedComponent,
-    ParseMarkdownPipe,
     TabFilter,
     NoResultsComponent,
     HitTextComponent,
-    StripHtmlPipe,
     HitWidgetComponent
   ],
   imports: [

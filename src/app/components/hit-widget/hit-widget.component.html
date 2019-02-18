@@ -1,8 +1,14 @@
-<div class="bg-overlay"></div>
-<div class="hit-widget-image" style="display: block; position: static;">
-  <img src="{{hit.image}}" class="img-responsive">
-</div>
+<ng-container *ngIf="hit.image">
+  <div class="bg-overlay"></div>
+  <div class="hit-widget-image" style="display: block; position: static;">
+    <img src="{{hit.image}}" class="img-responsive">
+  </div>
+</ng-container>
 
 <div class="hit-widget-content" [innerHTML]="hit.description">
- <!-- Content goes in here -->
+  <!-- Content goes in here -->
+</div>
+
+<div *ngIf="hit.iframe" class="hit-widget-iframe">
+  <iframe id="widgetIframe" [src]="hit.iframe | safe" (onload)="iframeLoaded()" frameborder="0" height="100%" width="100%"></iframe>
 </div>
