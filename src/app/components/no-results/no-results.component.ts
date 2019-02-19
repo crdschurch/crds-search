@@ -12,6 +12,7 @@ export class NoResultsComponent implements OnInit {
 
   public corkboardUrl;
   public groupsUrl;
+  public helpUrl;
 
   constructor() {
   }
@@ -19,5 +20,6 @@ export class NoResultsComponent implements OnInit {
   ngOnInit() {
     this.corkboardUrl = `${environment.appEndpoint}/corkboard`;
     this.groupsUrl = `${environment.appEndpoint}/groups/search`;
+    this.helpUrl = `${environment.appEndpoint}/help`;
   }
 }
