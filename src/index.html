@@ -13,7 +13,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://d1tmclqz61gqwd.cloudfront.net/javascripts/crds-shared-header-v0.7.3.min.js"></script>
   <script src="https://use.typekit.net/ccb3vpa.js"></script>
-  <!-- Google Tag Manager -->
+
   <script>
     (function (w, d, s, l, i) {
       w[l] = w[l] || [];
@@ -30,12 +30,6 @@
       f.parentNode.insertBefore(j, f);
     })(window, document, 'script',
       'dataLayer', 'GTM-MFS4MJ');
-
-    try {
-      Typekit.load({
-        async: true
-      });
-    } catch (e) {}
   </script>
 </head>
 
@@ -47,6 +41,15 @@
   <div class="crds-shared-header">
     <div data-footer></div>
   </div>
+  <script>
+    try {
+      Typekit.load({
+        async: false
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  </script>
 </body>
 
 </html>
