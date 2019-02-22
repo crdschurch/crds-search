@@ -4201,6 +4201,11 @@ image-size@~0.5.0:
   resolved "https://registry.yarnpkg.com/image-size/-/image-size-0.5.5.tgz#09dfd4ab9d20e29eb1c3e80b8990378df9e3cb9c"
   integrity sha1-Cd/Uq50g4p6xw+gLiZA3jfnjy5w=
 
+imgix.js@^2.2.3:
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/imgix.js/-/imgix.js-2.2.4.tgz#8c157aa32ddfd78fb23b1a5e6ba2c8b28e30d702"
+  integrity sha1-jBV6oy3f14+yOxpea6LIso4w1wI=
+
 immediate@~3.0.5:
   version "3.0.6"
   resolved "https://registry.yarnpkg.com/immediate/-/immediate-3.0.6.tgz#9db1dbd0faf8de6fbe0f5dd5e56bb606280de69b"
