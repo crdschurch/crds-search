@@ -1,5 +1,5 @@
-<ng-container *ngIf="results.query !== '' && hits.length !== 0">
-  <ais-menu
+<ng-container >
+  <ais-menu [ngClass]="{'hide': results.query == '' || hits.length == 0 }"
     attribute="contentType"
     [limit]="5"
     [showMoreLimit]="9"
