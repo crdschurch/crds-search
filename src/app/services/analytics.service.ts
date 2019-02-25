@@ -17,4 +17,15 @@ export class AnalyticsService {
       }
     });
   }
+
+  public trackConversion(Query, TargetUrl, TargetPosition) {
+    this.analytics.eventTrack.next({
+      action: 'WebsiteSearchConversion',
+      properties: {
+        Query,
+        TargetUrl,
+        TargetPosition
+      }
+    });
+  }
 }
