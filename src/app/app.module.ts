@@ -7,7 +7,6 @@ import { Angulartics2GoogleTagManager } from 'angulartics2/gtm';
 import { Angulartics2Segment } from 'angulartics2/segment';
 
 import { ParseMarkdownPipe } from './pipes/parseMarkdown.pipe';
-import { SafePipe } from './pipes/safe.pipe';
 import { AppComponent } from './app.component';
 import { SearchInputComponent } from './components/search-input/search-input.component';
 import { HitsComponent } from './components/hits/hits.component';
@@ -21,7 +20,6 @@ import { HitWidgetComponent } from './components/hit-widget/hit-widget.component
 @NgModule({
   declarations: [
     ParseMarkdownPipe,
-    SafePipe,
     AppComponent,
     SearchInputComponent,
     HitsComponent,
