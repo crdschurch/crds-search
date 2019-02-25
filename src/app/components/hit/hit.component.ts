@@ -1,15 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-hit',
   templateUrl: './hit.component.html',
   styleUrls: ['./hit.component.scss']
 })
-export class HitComponent implements OnInit {
+export class HitComponent {
   @Input() hit;
-  constructor() { }
-
-  ngOnInit() {
-  }
-
 }

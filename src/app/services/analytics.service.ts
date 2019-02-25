@@ -18,12 +18,12 @@ export class AnalyticsService {
     });
   }
 
-  public trackConversion(Query, TargetUrl, TargetPosition) {
+  public trackConversion(Query, Target, TargetPosition) {
     this.analytics.eventTrack.next({
       action: 'WebsiteSearchConversion',
       properties: {
         Query,
-        TargetUrl,
+        Target,
         TargetPosition
       }
     });
