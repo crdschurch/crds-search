@@ -6,13 +6,14 @@ import { Angulartics2Segment } from 'angulartics2/segment';
 import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 import { AnalyticsService } from './services/analytics.service';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   public config;
   constructor(
     private searchService : SearchService,
@@ -39,11 +40,9 @@ export class AppComponent implements OnInit{
       options.imgEndpoint = `${apiEndpoint}/gateway/api/image/profile/`;
       options.crdsCookiePrefix = crdsEnv;
 
-      // header
       var header = new CRDS.SharedHeader(options);
       header.render();
-
-      // footer
+      
       new CRDS.SharedFooter(options);
     })();
   }

@@ -22,15 +22,11 @@
   }
 
   .hit-widget-content {
-    position: relative;
-    padding: 20px;
-    background: #151515;
-    @media (min-width: 767px) {
-      position: absolute;
-      right: 0;
-      bottom: 20px;
-      left: 0;
-      background: transparent;
-    }
+    background: transparent;
+    bottom: 20px;
+    left: 0;
+    padding: 15px 15px 20px;
+    position: absolute;
+    right: 0;
   }
 }

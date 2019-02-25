@@ -27,7 +27,7 @@ export class HitsComponent implements OnChanges, OnInit, OnDestroy {
 
   ngOnChanges(changes) {
     // if we ever search immediately, then this won't work
-    if (!changes.results.firstChange) {
+    if (Object.keys(changes.results.currentValue).length > 0) {
       const curQuery = changes.results.currentValue.query;
       const curCount = changes.results.currentValue.hits.length;
       this
