@@ -16,6 +16,7 @@ OnDestroy {
   constructor(private analyticsService : AnalyticsService) {}
 
   public handleHitClick(event : any) {
+    event.preventDefault();
     let targetEl = event.path.find(this.isParent);
     let targetTitle = targetEl.querySelector('.hit-title .ais-Highlight').innerText;
     let target;
@@ -32,13 +33,12 @@ OnDestroy {
       this.results.query,
       target,
       targetPostion
-      )
+    )
   }
 
   private isParent(el) {
     let str = el.outerHTML;
-    // the space is important, without app-hit-text also returns
-    if (str.includes("app-hit ")) {
+    if (str.includes("data-hit")) {
       return el;
     } 
   }
