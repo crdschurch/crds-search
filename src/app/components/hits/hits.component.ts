@@ -16,7 +16,6 @@ OnDestroy {
   constructor(private analyticsService : AnalyticsService) {}
 
   public handleHitClick(event : any) {
-    event.preventDefault();
     let targetEl = event.path.find(this.isParent);
     let targetTitle = targetEl.querySelector('.hit-title .ais-Highlight').innerText;
     let target;
