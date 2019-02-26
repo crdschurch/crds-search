@@ -1,7 +1,7 @@
-import {Component, Input, OnChanges, OnInit, OnDestroy} from '@angular/core';
-import {Subject, Subscription} from 'rxjs';
-import {debounceTime} from 'rxjs/operators';
-import {AnalyticsService} from 'src/app/services/analytics.service';
+import { Component, Input, OnChanges, OnInit, OnDestroy} from '@angular/core';
+import { Subject, Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
+import { AnalyticsService } from 'src/app/services/analytics.service';
 
 @Component({selector: 'app-hits', templateUrl: './hits.component.html', styleUrls: ['./hits.component.scss']})
 
@@ -43,32 +43,30 @@ OnDestroy {
   }
 
   ngOnInit() {
+    // send analytics on URL param search
+    if (this.results.hits !== undefined && this.results.query !== "") {
+      this.analyticsService.trackSearch(this.results.query, this.results.hits.length);
+    }
+
     this.results$Subscription = this
       .results$
       .pipe(debounceTime(1500))
       .subscribe((res) => {
         if (res.query.length > 0 && res.query !== '') {
-          this
-            .analyticsService
-            .trackSearch(res.query, res.count);
+          this.analyticsService.trackSearch(res.query, res.count);
         }
       })
   }
 
   ngOnChanges(changes) {
-    // if we ever search immediately, then this won't work
     if (changes.results && !changes.results.firstChange) {
       const curQuery = changes.results.currentValue.query;
       const curCount = changes.results.currentValue.hits.length;
-      this
-        .results$
-        .next({query: curQuery, count: curCount});
+      this.results$.next({query: curQuery, count: curCount});
     }
   }
 
   ngOnDestroy() {
-    this
-      .results$Subscription
-      .unsubscribe();
+    this.results$Subscription.unsubscribe();
   }
 }
