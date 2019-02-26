@@ -1,9 +1,11 @@
-<ng-container >
-  <ais-menu [ngClass]="{'hide': results.query == '' || hits.length == 0 }"
-    attribute="contentType"
-    [limit]="5"
-    [showMoreLimit]="9"
-    [sortBy]="['count']">
-  </ais-menu>
-  <!-- <ais-refinement-list attribute="contentType"></ais-refinement-list> -->
-</ng-container>
+<ais-stats>
+    <ng-template let-state="state">
+      <ais-menu
+              [hidden]="state.nbHits === 0 || !state.query"
+              attribute="contentType"
+              [limit]="5"
+              [showMoreLimit]="9"
+              [sortBy]="['count']">
+      </ais-menu>
+    </ng-template>
+  </ais-stats>

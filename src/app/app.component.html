@@ -5,15 +5,15 @@
         <ais-instantsearch [config]="config">
           <div class="search-panel">
             <div class="search-panel__results">
-              <app-search-input></app-search-input>
-              <ais-infinite-hits>
-                <ng-template let-hits="hits" let-results="results" let-refine="showMore">
-                  <app-suggested [results]="results"></app-suggested>
-                  <app-tab-filter [hits]="hits" [results]="results"></app-tab-filter>
-                  <app-no-results [hits]="hits" [results]="results"></app-no-results>
-                  <app-hits [hits]="hits" [results]="results" [refine]="refine"></app-hits>
-                </ng-template>
-              </ais-infinite-hits>
+                <app-search-input></app-search-input>
+                <app-tab-filter></app-tab-filter>
+                <ais-infinite-hits>
+                  <ng-template let-hits="hits" let-results="results" let-refine="showMore">
+                    <app-suggested [results]="results"></app-suggested>
+                    <app-no-results [hits]="hits" [results]="results"></app-no-results>
+                    <app-hits [hits]="hits" [results]="results" [refine]="refine"></app-hits>
+                  </ng-template>
+                </ais-infinite-hits>
             </div>
           </div>
         </ais-instantsearch>

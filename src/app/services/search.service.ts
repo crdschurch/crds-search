@@ -11,7 +11,7 @@ export class SearchService {
       indexName: environment.ALGOLIA_INDEX,
       appId: environment.ALGOLIA_APP_ID,
       apiKey: environment.ALGOLIA_API_KEY,
-      urlSync: true
+      routing: true
   }
   
     return config;
