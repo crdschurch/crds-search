@@ -4,13 +4,44 @@ import {debounceTime} from 'rxjs/operators';
 import {AnalyticsService} from 'src/app/services/analytics.service';
 
 @Component({selector: 'app-hits', templateUrl: './hits.component.html', styleUrls: ['./hits.component.scss']})
-export class HitsComponent implements OnChanges, OnInit, OnDestroy {
-  @Input() hits;
-  @Input() results;
-  @Input() refine;
+
+export class HitsComponent implements OnChanges,
+OnInit,
+OnDestroy {
+  @Input()hits;
+  @Input()results;
+  @Input()refine;
   private results$ : Subject < any > = new Subject();
   private results$Subscription : Subscription;
   constructor(private analyticsService : AnalyticsService) {}
+
+  public handleHitClick(event : any) {
+    event.preventDefault();
+    let targetEl = event.path.find(this.isParent);
+    let targetTitle = targetEl.querySelector('.hit-title .ais-Highlight').innerText;
+    let target;
+    let targetPostion;
+
+    for (var i = 0; i < this.results.hits.length; i += 1) {
+      if (this.results.hits[i].title.toLowerCase() === targetTitle.toLowerCase()) {
+        target = this.results.hits[i];
+        targetPostion = i + 1;
+      }  
+    }
+
+    this.analyticsService.trackConversion( 
+      this.results.query,
+      target,
+      targetPostion
+    )
+  }
+
+  private isParent(el) {
+    let str = el.outerHTML;
+    if (str.includes("data-hit")) {
+      return el;
+    } 
+  }
 
   ngOnInit() {
     this.results$Subscription = this
