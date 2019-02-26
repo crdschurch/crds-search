@@ -1,5 +1,6 @@
 import { ContentfulElementValidator as Element } from '../Contentful/ContentfulElementValidator'
 import { ContentBlockManager } from '../Contentful/Models/ContentBlockModel';
+import { SearchBar } from '../support/SearchBar';
 
 function preSearchContentBlockShouldBeDisplayed(contentBlock) {
   cy.get('app-suggested').find('.suggested-container').as('preSearchContentBlock');
@@ -25,14 +26,14 @@ describe('The pre-search content block should be displayed:', function () {
 
   it('After the search bar is cleared using the icon or manually', function () {
     const searchString = 'a'
-    cy.get('.ais-SearchBox-input').as('searchField');
-    cy.get('@searchField').type(searchString);
+    SearchBar.enterKeyword(searchString);
 
     cy.get('.ais-SearchBox-reset').as('clearSearchIcon').click();
     preSearchContentBlockShouldBeDisplayed(preSearchContentBlock);
 
-    cy.get('@searchField').type(searchString);
-    cy.get('@searchField').clear();
+    SearchBar.enterKeyword(searchString);
+    SearchBar.clear();
+
     preSearchContentBlockShouldBeDisplayed(preSearchContentBlock);
   });
 });
