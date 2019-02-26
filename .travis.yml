@@ -4,6 +4,6 @@ cache: yarn
 install: yarn install
 script:
 - "$(yarn bin)/cypress run --record --key $cypressDashboard -c baseUrl=$baseURL --env
-  CONTENTFUL_SPACE_ID=$contentfulSpaceId,CONTENTFUL_ENV=$contentfulEnv,CONTENTFUL_ACCESS_TOKEN=$contentfulToken"
+  CONTENTFUL_SPACE_ID=$contentfulSpaceId,CONTENTFUL_ENV=$contentfulEnv,CONTENTFUL_ACCESS_TOKEN=$contentfulToken,CRDS_BASE_URL=$crdsBaseUrl"
 notifications:
   slack: crdschurch:iZZLQf36DkUtiv0SqLhlOklj
