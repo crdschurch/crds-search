@@ -10,7 +10,6 @@
   </p>
 
   <!-- Hit template -->
-  <ng-container *ngFor="let hit of hits">
     <app-hit *ngIf="hit.contentType !== 'search_widget'" [hit]="hit" class="hit hit-{{hit.contentType}}"></app-hit>
     <app-hit-widget *ngIf="hit.contentType == 'search_widget'" [hit]="hit" class="hit hit-widget overlay-card"></app-hit-widget>
   </ng-container>
