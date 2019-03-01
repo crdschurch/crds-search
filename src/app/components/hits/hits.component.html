@@ -11,8 +11,8 @@
 
   <!-- Hit template -->
   <ng-container *ngFor="let hit of hits">
-    <app-hit *ngIf="hit.contentType !== 'search_widget'" [hit]="hit" class="hit hit-{{hit.contentType}}"></app-hit>
-    <app-hit-widget *ngIf="hit.contentType == 'search_widget'" [hit]="hit" class="hit hit-widget overlay-card"></app-hit-widget>
+    <app-hit *ngIf="!hit.showHTML" [hit]="hit" class="hit hit-{{hit.contentType}}"></app-hit>
+    <app-hit-widget *ngIf="hit.showHTML" [hit]="hit" class="hit hit-widget overlay-card"></app-hit-widget>
   </ng-container>
   <!-- Show more button template -->
   <div *ngIf="hits.length < results.nbHits" class="hits-show-more-container">
