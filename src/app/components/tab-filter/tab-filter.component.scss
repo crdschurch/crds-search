@@ -1,19 +1,13 @@
 .ais-Menu {
    display: inline-block;
-   position: sticky;
-   top: 0;
-   padding-top: .5rem;
+   position: relative;
+   padding-top: 0;
    margin-bottom: .5rem;
    width: 100%;
    background-color: #fff;
    border-bottom: 1px solid #ddd;
    overflow-x: auto;
    z-index: 1;
-
-   @media (min-width: 991px) {
-     position: relative;
-     padding-top: 0;
-   }
 
   .ais-Menu-list {
     display: inline-flex;
