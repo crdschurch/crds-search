@@ -24,7 +24,11 @@ class ResponseWrapper {
 export class ContentfulApi {
   static getEntryCollection(query) {
     const responseWrapper = new ResponseWrapper();
-    cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&${query}`)
+    cy.request({
+      method: 'GET',
+      url: `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&${query}`,
+      failOnStatusCode: false
+    })
       .then((response) => {
         const jsonResponse = JSON.parse(response.body);
         responseWrapper.responseBody = jsonResponse;
@@ -32,9 +36,13 @@ export class ContentfulApi {
     return responseWrapper;
   }
 
-  static getSingleEntry(id, query) {
+  static getSingleEntry(id) {
     const responseWrapper = new ResponseWrapper();
-    cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries/${id}?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&${query}`)
+    cy.request({
+      method: 'GET',
+      url: `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries/${id}?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}`,
+      failOnStatusCode: false
+    })
       .then((response) => {
         const jsonResponse = JSON.parse(response.body);
         responseWrapper.responseBody = jsonResponse;
