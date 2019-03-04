@@ -1,8 +1,14 @@
-<div class="bg-overlay"></div>
-<div class="hit-widget-image" style="display: block; position: static;">
-  <img *ngIf="hit.image" [attr.ix-src]="hit.image + '?auto=format,compress&fit=crop&crop=faces&w=1.6180&h=1'" sizes="(min-width: 768px) 540px, 100vw"
-    class="img-responsive" alt="{{hit.title}}">
-</div>
-<div class="hit-widget-content" [innerHTML]="hit.description">
-  <!-- Content goes in here -->
-</div>
+<!-- Styled Image Widget -->
+<ng-container *ngIf="hit.image; else htmlOnly">
+  <div class="bg-overlay"></div>
+  <div class="hit-widget-image" style="display: block; position: static;">
+    <img [attr.ix-src]="hit.image + '?auto=format,compress&fit=crop&crop=faces&w=1.6180&h=1'" sizes="(min-width: 768px) 540px, 100vw"
+      class="img-responsive" alt="{{hit.title}}">
+    <div class="hit-widget-content" [innerHTML]="hit.description"></div>
+  </div>
+</ng-container>
+
+<!-- Blank HTML Widget -->
+<ng-template #htmlOnly>
+  <div [innerHTML]="hit.description"></div>
+</ng-template>
