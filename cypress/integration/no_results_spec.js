@@ -1,10 +1,5 @@
 import { Formatter } from '../support/Formatter';
-
-function searchForKeyword(keyword) {
-  cy.get('.ais-SearchBox-input').as('searchField');
-  cy.get('@searchField').clear();
-  cy.get('@searchField').type(keyword);
-}
+import { SearchBar } from '../support/SearchBar';
 
 describe('Concerning searches with no results:', function () {
   beforeEach(function (){
@@ -13,7 +8,7 @@ describe('Concerning searches with no results:', function () {
 
   it('When a keyword returns no results, the expected "no results" message is displayed', function () {
     const noResultsKeyword = 'a7'
-    searchForKeyword(noResultsKeyword);
+    SearchBar.enterKeyword(noResultsKeyword);
 
     cy.get('app-no-results').find('.no-results').as('noResultsBlock');
     cy.get('@noResultsBlock').should('be.visible');
@@ -27,7 +22,7 @@ describe('Concerning searches with no results:', function () {
 
   it('When a keyword returns no results, links to other pages are displayed', function () {
     const noResultsKeyword = 'a7'
-    searchForKeyword(noResultsKeyword);
+    SearchBar.enterKeyword(noResultsKeyword);
 
     cy.get('app-no-results').find('.no-results').as('noResultsBlock');
     cy.get('@noResultsBlock').should('be.visible');
@@ -42,10 +37,10 @@ describe('Concerning searches with no results:', function () {
 
   it('When a successful search is made after a no-results search, results are displayed', function () {
     const noResultsKeyword = 'a7'
-    searchForKeyword(noResultsKeyword);
+    SearchBar.enterKeyword(noResultsKeyword);
 
     const resultsKeyword = 'god'
-    searchForKeyword(resultsKeyword);
+    SearchBar.enterKeyword(resultsKeyword);
 
     cy.get('app-hits').find('app-hit').as('firstResult');
     cy.get('@firstResult').should('be.visible');

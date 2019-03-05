@@ -10,7 +10,8 @@ export class SearchService {
     let config = {
       indexName: environment.ALGOLIA_INDEX,
       appId: environment.ALGOLIA_APP_ID,
-      apiKey: environment.ALGOLIA_API_KEY
+      apiKey: environment.ALGOLIA_API_KEY,
+      routing: true
   }
   
     return config;

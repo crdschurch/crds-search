@@ -1,3 +1,8 @@
+// fixes a weird mobile overflowing issue
+.search-panel__results {
+  max-width: 100%;
+}
+
 .searchbox {
   margin-bottom: 1rem;
 }
