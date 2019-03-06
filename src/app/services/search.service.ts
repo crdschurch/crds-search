@@ -6,12 +6,12 @@ import { environment } from '../../environments/environment';
 })
 
 export class SearchService {
-  public configAlgolia() {
+  public configAlgolia(routing : boolean) {
     let config = {
       indexName: environment.ALGOLIA_INDEX,
       appId: environment.ALGOLIA_APP_ID,
       apiKey: environment.ALGOLIA_API_KEY,
-      routing: true
+      routing: routing
   }
   
     return config;
