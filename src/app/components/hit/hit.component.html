@@ -9,7 +9,11 @@
       <use *ngSwitchCase="'episode'" xlink:href="/assets/svgs/icons.svg#media-podcast"></use>
     </svg>
   </div>
-  <img class="img-responsive" [attr.ix-src]="hit.image + '?auto=format,compress&w=4&h=3&fit=crop'" sizes="(min-width: 768px) 180px, 100vw" alt="{{ hit.title }}">
+
+  <img class="img-responsive"
+    [attr.ix-src]="hit.contentType == 'album' || hit.contentType == 'song' || hit.contentType == 'podcast' || hit.contentType == 'episode' ?  hit.image + albumImgixParams : hit.image + imgixParams" 
+    sizes="(min-width: 768px) 180px, 100vw" 
+    alt="{{ hit.title }}">
 </a>
 
 <app-hit-text [hit]="hit"></app-hit-text>
