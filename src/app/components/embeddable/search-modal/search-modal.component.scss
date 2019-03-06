@@ -38,4 +38,9 @@ $cr-path-to-icons-sprite: '/crds-styles/assets/svgs/';
     transform: translateY(0);
     visibility: visible;
   }
+
+  .modal-header,
+  .modal-content {
+    border: 0;
+  }
 }
