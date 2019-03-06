@@ -5,15 +5,12 @@ export class ContentBlockManager {
   saveContentBlockByTitle(title) {
     const allContentBlocks = ContentfulApi.getEntryCollection('content_type=content_block&select=sys.id,fields.title&limit=1000');
     cy.wrap({ allContentBlocks }).its('allContentBlocks.responseReady').should('be.true').then(() => {
-      let response_list = allContentBlocks.responseBody.items;
+      const blockResponse = allContentBlocks.responseBody.items.find(b => b.fields.title === title);
+      expect(blockResponse).to.not.be.undefined;
 
-      const index = response_list.findIndex(block => block.fields.title === title);
-      assert.isAbove(index, -1, `Index for content block with title '${title}' was found`)
-      const entryId = response_list[index].sys.id;
-
-      const blockResponse = ContentfulApi.getSingleEntry(entryId, 'select=fields.title,fields.content');
-      cy.wrap({ blockResponse }).its('blockResponse.responseReady').should('be.true').then(() => {
-        this[title] = new ContentBlockModel(blockResponse.responseBody.fields);
+      const blockEntry = ContentfulApi.getSingleEntry(blockResponse.sys.id);
+      cy.wrap({ blockEntry }).its('blockEntry.responseReady').should('be.true').then(() => {
+        this[title] = new ContentBlockModel(blockEntry.responseBody.fields);
       });
     });
   }
