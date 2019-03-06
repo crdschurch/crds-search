@@ -14,17 +14,28 @@ $cr-path-to-icons-sprite: '/crds-styles/assets/svgs/';
 @import '../../hit-text/hit-text.component';
 @import '../../tab-filter/tab-filter.component';
 @import '~angular-instantsearch/bundles/instantsearch.min.css';
-@import '~angular-instantsearch/bundles/instantsearch-theme-algolia.min.css';¬
-
+@import '~angular-instantsearch/bundles/instantsearch-theme-algolia.min.css';
 
 * {
   box-sizing: border-box;
 }
 
-.container {
-    width: 100%;
-}
+.modal-search {
+  background-color: #ffffff;
 
-.modal-content {
+  .modal-content {
     min-height: 100vw;
+    background-color: #ffffff;
+    opacity: 0;
+    transform: translate3d(0,0,0) translateY(-10px);
+    transition: all .4s ease-in-out;
+    transition-delay: 100ms;
+    visibility: hidden;
+  }
+
+  &.in .modal-content {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+  }
 }
