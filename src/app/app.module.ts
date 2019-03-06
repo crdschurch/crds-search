@@ -15,7 +15,8 @@ import { SuggestedComponent } from './components/suggested/suggested.component';
 import { TabFilter } from './components/tab-filter/tab-filter.component';
 import { NoResultsComponent } from './components/no-results/no-results.component';
 import { HitTextComponent } from './components/hit-text/hit-text.component';
-import { HitWidgetComponent } from './components/hit-widget/hit-widget.component'
+import { HitWidgetComponent } from './components/hit-widget/hit-widget.component';
+import { ImgixAspectRatioPipe } from './pipes/imgix-aspect-ratio.pipe'
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { HitWidgetComponent } from './components/hit-widget/hit-widget.component
     TabFilter,
     NoResultsComponent,
     HitTextComponent,
-    HitWidgetComponent
+    HitWidgetComponent,
+    ImgixAspectRatioPipe
   ],
   imports: [
     NgAisModule.forRoot(),
