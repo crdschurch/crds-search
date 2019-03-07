@@ -2,6 +2,37 @@ import { TextField } from '../Fields/TextField';
 import { ImageField } from '../Fields/ImageField';
 import { DateField } from '../Fields/DateField';
 import { ContentfulApi } from '../ContentfulApi';
+import { MessageModel } from './MessageModel';
+
+export class LinkHelper {
+  // {
+  //   "sys": {
+  //       "type": "Link",
+  //       "linkType": "Asset",
+  //       "id": "3NDDT4ntZZnrtPPjnYrbNc"
+  //   } }
+  constructor(linkObject, includesObject){
+    this._type = linkObject.sys.linkType;
+    this._id = linkObject.sys.id;
+    this._object_list = includesObject[this._type];
+  }
+
+  get isPublished(){
+    if(this._object_list === undefined){
+      return false;
+    }
+
+    return this.linkObject !== undefined;
+  }
+
+  //this is the stuff you can make into a model
+  get linkObject(){
+    if(this._link_object === undefined && this._object_list !== undefined){
+      this._link_object = this._object_list.find(a => a.sys.id === this._id);
+    }
+    return this._link_object;
+  }
+}
 
 export class SeriesManager {
   // saveCurrentSeries() {
@@ -47,9 +78,33 @@ export class SeriesManager {
     });
   }
 
-  // get currentSeries() {
-  //   return this._current_series;
-  // }
+  saveRecentlyUpdatedSeriesWithMessage() {
+    const seriesList = ContentfulApi.getEntryCollection('content_type=series&order=-sys.updatedAt&limit=3');
+    cy.wrap({ seriesList }).its('seriesList.responseReady').should('be.true').then(() => {
+      //for each series
+      //for each video in the series
+      //find the asset matching the video. If found, end;
+
+      seriesList.responseBody.items.forEach(s => {
+        s.fields.videos.forEach(v =>{
+          let messageLink = new LinkHelper(v, seriesList.responseBody.includes);
+
+          if(messageLink.isPublished){
+            this._recently_updated_series = new SeriesModel(s.fields);
+            const message = new MessageModel(messageLink.linkObject);
+            message.series = this._recently_updated_series;
+            this._recently_updated_series.saveMessage(message);
+            return;
+          }
+        });
+      });
+    });
+  }
+
+  get recentlyUpdatedSeries()
+  {
+    return this._recently_updated_series;
+  }
 }
 
 export class SeriesModel {
@@ -70,6 +125,7 @@ export class SeriesModel {
     this._starts_at = new DateField(responseItem.starts_at);
     this._ends_at = new DateField(responseItem.ends_at);
     this._youtube_url = new TextField(responseItem.youtube_url);
+    this._messages = [];
   }
 
   get title() {
@@ -114,5 +170,14 @@ export class SeriesModel {
 
   get youtubeURL() {
     return this._youtube_url;
+  }
+
+  //TODO is this the smartest way to do this?
+  saveMessage(messageModel){
+    this._messages.push(messageModel);
+  }
+
+  getMessageAtIndex(index){
+    return this._messages[index];
   }
 }
