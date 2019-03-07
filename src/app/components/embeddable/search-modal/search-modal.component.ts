@@ -6,12 +6,9 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   styleUrls: ['./search-modal.component.scss'],
   encapsulation: ViewEncapsulation.Emulated
 })
-export class SearchModalComponent implements OnInit {
+export class SearchModalComponent {
   public isVisible = false;
 
   constructor() { 
-  }
-
-  ngOnInit() {
   }
 }
