@@ -11,7 +11,7 @@
   </div>
 
   <img class="img-responsive"
-    [attr.ix-src]="hit.contentType == 'album' || hit.contentType == 'song' || hit.contentType == 'podcast' || hit.contentType == 'episode' ?  hit.image + albumImgixParams : hit.image + imgixParams" 
+    [attr.ix-src]="hit | imgixAspectRatio" 
     sizes="(min-width: 768px) 180px, 100vw" 
     alt="{{ hit.title }}">
 </a>
