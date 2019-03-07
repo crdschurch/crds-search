@@ -3,9 +3,11 @@ $bootstrap-sass-asset-helper: false;
 $icon-font-path: '~/bootstrap-sass/assets/fonts/bootstrap';
 $icon-font-name: 'glyphicons-halflings-regular';
 $cr-path-to-icons-sprite: '/crds-styles/assets/svgs/';
-//@import '~crds-styles/assets/stylesheets/crds-styles';
+// @import '~crds-styles/assets/stylesheets/crds-styles';
 
 // component imports
+@import '~angular-instantsearch/bundles/instantsearch.min.css';
+@import '~angular-instantsearch/bundles/instantsearch-theme-algolia.min.css';
 @import '../../app.component';
 @import '../search-input/search-input.component';
 @import '../hits/hits.component';
@@ -13,8 +15,7 @@ $cr-path-to-icons-sprite: '/crds-styles/assets/svgs/';
 @import '../hit-widget/hit-widget.component';
 @import '../hit-text/hit-text.component';
 @import '../tab-filter/tab-filter.component';
-@import '~angular-instantsearch/bundles/instantsearch.min.css';
-@import '~angular-instantsearch/bundles/instantsearch-theme-algolia.min.css';
+
 
 * {
   box-sizing: border-box;

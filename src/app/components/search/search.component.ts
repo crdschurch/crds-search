@@ -5,7 +5,7 @@ import { Angulartics2Segment } from 'angulartics2/segment';
 import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 import { AnalyticsService } from '../../services/analytics.service';
 
-@Component({ selector: 'app-search', templateUrl: './search.component.html', styleUrls: ['./search.component.scss'], encapsulation: ViewEncapsulation.Native })
+@Component({ selector: 'app-search', templateUrl: './search.component.html', styleUrls: ['./search.component.scss'], encapsulation: ViewEncapsulation.None })
 
 export class SearchComponent implements OnInit {
     @Input() routingEnabled: boolean; 

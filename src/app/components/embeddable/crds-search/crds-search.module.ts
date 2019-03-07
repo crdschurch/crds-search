@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Injector } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { createCustomElement } from '@angular/elements';
 import { SearchModalComponent } from '../search-modal/search-modal.component';
 import { SearchInputComponent } from '../../../components/search-input/search-input.component';
 import { HitsComponent } from '../../../components/hits/hits.component';
@@ -48,15 +47,10 @@ import { Angulartics2Segment } from 'angulartics2/segment';
     entryComponents: [
         SearchModalComponent
     ],
-    exports: [SearchModalComponent]
+    exports: [SearchModalComponent, SearchComponent]
 })
 export class CrdsSearchModule {
     constructor(private injector: Injector) {
 
-    }
-
-    ngDoBootstrap() {
-        const el = createCustomElement(SearchModalComponent, { injector: this.injector });
-        customElements.define('crds-search', el);
     }
 }

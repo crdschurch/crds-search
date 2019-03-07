@@ -1,15 +1,16 @@
 {
   "name": "crds-search",
-  "version": "0.0.1",
-  "private": true,
+  "version": "0.0.4",
+  "private": false,
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port 3000",
-    "build": "ng build --prod --output-hashing=none",
+    "build": "ng build --output-hashing=none",
+    "component": "ng build --output-hashing=none --configuration=component",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "package": "cat ./dist/search-ui/runtime.js ./dist/search-ui/polyfills.js ./dist/search-ui/scripts.js ./dist/search-ui/main.js > crds-search.js"
+    "package": "mkdirp ./dist/search-component && cat ./dist/search-ui/runtime.js ./dist/search-ui/polyfills.js ./dist/search-ui/scripts.js ./dist/search-ui/main.js > ./dist/search-component/crds-search.js"
   },
   "dependencies": {
     "@angular/animations": "7.2.0",
@@ -30,7 +31,7 @@
     "contentful": "^7.1.0",
     "core-js": "2.6.1",
     "crds-shared-header": "^0.7.2",
-    "crds-styles": "^3.2.1",
+    "crds-styles": "crdschurch/crds-styles#development",
     "imgix.js": "^3.1.0",
     "jquery": "^3.3.1",
     "node-sass": "^4.11.0",
