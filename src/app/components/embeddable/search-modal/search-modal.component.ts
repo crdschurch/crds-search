@@ -14,12 +14,12 @@ export class SearchModalComponent {
   }
 
   ngOnInit() {
-    $('#searchModal').on('show.bs.modal', () => {
-      this.isVisible = true;
+    $('#searchModal').on('shown.bs.modal', () => {
+      setTimeout(function() { $('input.ais-SearchBox-input').focus() }, 500);
     });
 
     $('#searchModal').on('hidden.bs.modal', () => {
-      this.isVisible = false;
+
     });
   }
 }
