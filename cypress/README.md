@@ -8,6 +8,9 @@ CYPRESS_CONTENTFUL_SPACE_ID
 CYPRESS_CONTENTFUL_ENV
 CYPRESS_CRDS_BASE_URL #https://int.crossroads.net
 CYPRESS_CRDS_MEDIA_ENDPOINT #https://mediaint.crossroads.net
+CYPRESS_ALGOLIA_INDEX
+CYPRESS_ALGOLIA_APP_ID
+CYPRESS_ALGOLIA_API_KEY
 ```
 
 
@@ -22,6 +25,9 @@ CYPRESS_INSTALL_BINARY = 0
 SITE_URL #https://int.crossroads.net/search
 CRDS_BASE_URL #https://int.crossroads.net
 CRDS_MEDIA_ENDPOINT #https://mediaint.crossroads.net
+ALGOLIA_INDEX
+ALGOLIA_APP_ID
+ALGOLIA_API_KEY
 ```
 
 ## Run Locally
