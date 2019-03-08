@@ -16,7 +16,7 @@
         <div class="modal-body">
           <div class="container">
             <div class="row">
-              <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+              <div *ngIf="isVisible" class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
                 <app-search [routingEnabled]="false"></app-search>
               </div>
             </div>

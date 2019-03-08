@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import * as jQuery from 'jquery';
 
 @Component({
   selector: 'app-search-modal',
@@ -9,6 +10,16 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 export class SearchModalComponent {
   public isVisible = false;
 
-  constructor() { 
+  constructor() {
+  }
+
+  ngOnInit() {
+    $('#searchModal').on('show.bs.modal', () => {
+      this.isVisible = true;
+    });
+
+    $('#searchModal').on('hidden.bs.modal', () => {
+      this.isVisible = false;
+    });
   }
 }
