@@ -1,0 +1,31 @@
+@import '../../search/search.component';
+
+.modal-search {
+    background-color: #ffffff;
+  
+    .modal-content {
+      min-height: 100vw;
+      background-color: #ffffff;
+      opacity: 0;
+      transform: translate3d(0,0,0) translateY(-10px);
+      transition: all .4s ease-in-out;
+      transition-delay: 100ms;
+      visibility: hidden;
+    }
+  
+    &.in .modal-content {
+      opacity: 1;
+      transform: translateY(0);
+      visibility: visible;
+    }
+  
+    .modal-header,
+    .modal-content {
+      border: 0;
+    }
+
+    .modal-dialog {
+      width: 100%;
+      margin: 0;
+    }
+  }
