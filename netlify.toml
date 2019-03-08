@@ -2,21 +2,25 @@
 [build]
   command = '''
   yarn run build --configuration=${COMPONENT_CONFIG}development &&
+  yarn run package &&
   bash ./cypress/kickOffCypress.sh
   '''
 
 [context.deploy-preview]
   command = '''
-  yarn run build --configuration=${COMPONENT_CONFIG}preview
+  yarn run build --configuration=${COMPONENT_CONFIG}preview &&
+  yarn run package
   '''
 
 [context.release]
   command = '''
   yarn run build --configuration=${COMPONENT_CONFIG}demo &&
+  yarn run package &&
   bash ./cypress/kickOffCypress.sh
   '''
 
 [context.master]
     command = '''
-  yarn run build --configuration=${COMPONENT_CONFIG}production
+  yarn run build --configuration=${COMPONENT_CONFIG}production &&
+  yarn run package 
   '''
