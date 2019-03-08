@@ -2,38 +2,25 @@
 [build]
   command = '''
   yarn run build --configuration=${COMPONENT_CONFIG}development &&
-  if [! -z "${COMPONENT_CONFIG}"]
-  then
-    yarn run package
-  fi 
-  && bash ./cypress/kickOffCypress.sh
+  yarn run package &&
+  bash ./cypress/kickOffCypress.sh
   '''
 
 [context.deploy-preview]
   command = '''
   yarn run build --configuration=${COMPONENT_CONFIG}preview &&
-  if [! -z "${COMPONENT_CONFIG}"]
-  then
-    yarn run package
-  fi
+  yarn run package
   '''
 
 [context.release]
   command = '''
   yarn run build --configuration=${COMPONENT_CONFIG}demo &&
   yarn run package &&
-  if [! -z "${COMPONENT_CONFIG}"]
-  then
-    yarn run package
-  fi 
-  && bash ./cypress/kickOffCypress.sh
+  bash ./cypress/kickOffCypress.sh
   '''
 
 [context.master]
     command = '''
   yarn run build --configuration=${COMPONENT_CONFIG}production &&
-  if [! -z "${COMPONENT_CONFIG}"]
-  then
-    yarn run package
-  fi
+  yarn run package 
   '''
