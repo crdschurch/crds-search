@@ -12,7 +12,6 @@ import { environment } from '../environments/environment';
   ],
   entryComponents: [AppComponent],
   providers: [],
-  // bootstrap: [AppComponent],
 })
 export class AppModule {
   constructor(private injector: Injector) {
