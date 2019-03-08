@@ -15,7 +15,7 @@ export class SearchModalComponent {
 
   ngOnInit() {
     $('#searchModal').on('shown.bs.modal', () => {
-      setTimeout(function() { $('input.ais-SearchBox-input').focus() }, 500);
+      setTimeout(() => { $('input.ais-SearchBox-input').focus() }, 500);
     });
 
     $('#searchModal').on('hidden.bs.modal', () => {
