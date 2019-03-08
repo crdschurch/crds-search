@@ -13,6 +13,8 @@ import { HitWidgetComponent } from '../../../components/hit-widget/hit-widget.co
 import { SearchComponent } from '../../../components/search/search.component';
 import { ParseMarkdownPipe } from '../../../pipes/parseMarkdown.pipe';
 import { NgAisModule } from 'angular-instantsearch';
+import { ImgixAspectRatioPipe } from '../../../pipes/imgix-aspect-ratio.pipe';
+
 
 import { Angulartics2RouterlessModule } from 'angulartics2/routerlessmodule';
 import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
@@ -31,7 +33,8 @@ import { Angulartics2Segment } from 'angulartics2/segment';
         HitTextComponent,
         HitWidgetComponent,
         SearchComponent,
-        SearchModalComponent
+        SearchModalComponent,
+        ImgixAspectRatioPipe
     ],
     imports: [
         NgAisModule.forRoot(),
