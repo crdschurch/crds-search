@@ -1,18 +1,26 @@
 # int build & anything that doesn't match below
 [build]
   command = '''
-  yarn run build --configuration=development &&
+  sed -i s/COMPONENT_PLACEHOLDER/$COMPONENT_CONFIG/g netlify.toml &&
+  yarn run build --configuration=COMPONENT_PLACEHOLDERdevelopment &&
   bash ./cypress/kickOffCypress.sh
   '''
 
 [context.deploy-preview]
-  command = "yarn run build --configuration=preview"
+  command = '''
+  sed -i s/COMPONENT_PLACEHOLDER/$COMPONENT_CONFIG/g netlify.toml &&
+  yarn run build --configuration=COMPONENT_PLACEHOLDERpreview
+  '''
 
 [context.release]
   command = '''
-  yarn run build --configuration=demo &&
+  sed -i s/COMPONENT_PLACEHOLDER/$COMPONENT_CONFIG/g netlify.toml &&
+  yarn run build --configuration=COMPONENT_PLACEHOLDERdemo &&
   bash ./cypress/kickOffCypress.sh
   '''
 
 [context.master]
-  command = "yarn run build --configuration=production"
+    command = '''
+  sed -i s/COMPONENT_PLACEHOLDER/$COMPONENT_CONFIG/g netlify.toml &&
+  yarn run build --configuration=COMPONENT_PLACEHOLDERproduction
+  '''
