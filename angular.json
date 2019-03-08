@@ -113,10 +113,12 @@
               ]
             },
             "production": {
-              "fileReplacements": [{
-                "replace": "src/environments/environment.ts",
-                "with": "src/environments/environment.prod.ts"
-              }],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
               "baseHref": "/search/",
               "optimization": true,
               "outputHashing": "all",
@@ -128,7 +130,7 @@
               "vendorChunk": false,
               "buildOptimizer": true
             },
-            "component": {
+            "component.development": {
               "baseHref": "/search/",
               "optimization": true,
               "outputHashing": "all",
@@ -142,9 +144,45 @@
               "fileReplacements": [
                 {
                   "replace": "/src/environments/environment.ts",
-                  "with": "/src/environments/environment.component.ts"
+                  "with": "/src/environments/environment.component.int.ts"
                 }
               ]
+            },
+            "component.demo": {
+              "baseHref": "/search/",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "fileReplacements": [
+                {
+                  "replace": "/src/environments/environment.ts",
+                  "with": "/src/environments/environment.component.demo.ts"
+                }
+              ]
+            },
+            "component.production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.component.prod.ts"
+                }
+              ],
+              "baseHref": "/search/",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
             }
           }
         },

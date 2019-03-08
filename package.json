@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "ng serve --port 3000",
     "build": "ng build --output-hashing=none",
-    "component": "ng build --output-hashing=none --configuration=component",
+    "component": "ng build --output-hashing=none",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
