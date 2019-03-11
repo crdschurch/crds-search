@@ -32,39 +32,41 @@ describe("Given that the link to a message includes its series, When a message o
   });
 
   it('The most recently updated message should have the correct url', function () {
+    const messageUrl = updatedMessage.absoluteUrl;
     const resultManager = new AlgoliaResultManager();
     resultManager.searchForKeyword(updatedMessage.title.text);
     cy.wrap({ resultManager }).its('resultManager.areResultsReady').should('be.true').then(() => {
-      const messageUrl = updatedMessage.absoluteUrl;
-      const match = resultManager.resultList.find(r => {
-        cy.log(`${r.url === messageUrl}`);
-        if(r.url === messageUrl){
-          expect(r.url).to.equal(messageUrl);
-          return true;
-        }
+      return resultManager.resultList.find(r => {
+        return r.url === messageUrl;
       });
-      //cy.wrap(match).should('not.be.undefined').then(() =>{
-      //expect(match.url).to.equal(messageUrl);
-      //});
+    }).then(matchingResult =>{
+      cy.log(`match ${matchingResult} ${matchingResult.url}`);
+      expect(matchingResult.url).to.equal(messageUrl);
     });
   })
 
   it('A message in the most recently updated series should have the correct url', function () {
+    const messageUrl = messageOnUpdatedSeries.absoluteUrl;
     const resultManager = new AlgoliaResultManager();
     resultManager.searchForKeyword(messageOnUpdatedSeries.title.text);
+    //let matchingResult;
     cy.wrap({ resultManager }).its('resultManager.areResultsReady').should('be.true').then(() => {
-      const messageUrl = messageOnUpdatedSeries.absoluteUrl;
-      const match = resultManager.resultList.find(r => {
-        cy.log(`${r.url === messageUrl}`);
-        if(r.url === messageUrl){
-          expect(r.url).to.equal(messageUrl);
-          return true;
-        }
+
+      return resultManager.resultList.find(r => {
+        return r.url === messageUrl;
+        // cy.log(`${r.url === messageUrl}`);
+        // if(r.url === messageUrl){
+        //   expect(r.url).to.equal(messageUrl);
+        //   return true;
+        // }
       });
 
-      //cy.wrap(match).should('not.be.undefined').then(() =>{
-      //expect(match.url).to.equal(messageUrl);
-      //});
+      // cy.wrap({match}).should('not.be.undefined').then(() =>{
+      //   expect(match.url).to.equal(messageUrl);
+      // });
+    }).then(matchingResult =>{
+      cy.log(`match ${matchingResult} ${matchingResult.url}`);
+      expect(matchingResult.url).to.equal(messageUrl);
     });
   })
 });
