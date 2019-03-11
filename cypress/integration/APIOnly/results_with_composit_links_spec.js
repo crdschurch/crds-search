@@ -1,6 +1,6 @@
-import { MessageManager } from '../Contentful/Models/MessageModel';
-import { SeriesManager } from '../Contentful/Models/SeriesModel';
-import { AlgoliaResultManager } from '../Algolia/AlgoliaResultManager';
+import { MessageManager } from '../../Contentful/Models/MessageModel';
+import { SeriesManager } from '../../Contentful/Models/SeriesModel';
+import { AlgoliaResultManager } from '../../Algolia/AlgoliaResultManager';
 
 /*
 * Note: Since we are not modifying entries in Contentful, these tests only passively confirm that the message link is stored correctly in Algolia when either the
