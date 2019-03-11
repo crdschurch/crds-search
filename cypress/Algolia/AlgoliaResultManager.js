@@ -6,7 +6,7 @@ export class AlgoliaResultManager {
   }
 
   searchForKeyword(keyword){
-    cy.log(`AlgoliaResultManager searching for keyword _${keyword}_`);
+    cy.log(`_${keyword}_ to search for`);
     this._results_ready = false;
     const response = AlgoliaApi.getQueryResponse(keyword);
     cy.wrap({response}).its('response.responseReady').should('be.true').then(() =>{
@@ -16,9 +16,10 @@ export class AlgoliaResultManager {
   }
 
   getResultByUrl(url){
-    cy.log(`looking for results by url ${url}`)
+    cy.log(`${url} need results for`)
     return this._hit_list.find(r => {
-      cy.log(`looking at hit with url ${r.url}`);
+      cy.log(`${r.url} current hit`);
+      cy.log(`${url} want url`);
       return r.url === url;
     });
   }
