@@ -37,11 +37,12 @@ describe("Given that the link to a message includes its series, When a message o
     cy.wrap({ resultManager }).its('resultManager.areResultsReady').should('be.true').then(() => {
       const messageUrl = updatedMessage.absoluteUrl;
       const match = resultManager.resultList.find(r => {
+        cy.log(`${r.url}`);
         return r.url === messageUrl;
       });
-
-      expect(match).to.not.be.undefined;
-      expect(match.url).to.equal(messageUrl);
+      cy.wrap(match).should('not.be.undefined').then(() =>{
+        expect(match.url).to.equal(messageUrl);
+      });
     });
   })
 
@@ -51,11 +52,13 @@ describe("Given that the link to a message includes its series, When a message o
     cy.wrap({ resultManager }).its('resultManager.areResultsReady').should('be.true').then(() => {
       const messageUrl = messageOnUpdatedSeries.absoluteUrl;
       const match = resultManager.resultList.find(r => {
+        cy.log(`${r.url}`);
         return r.url === messageUrl;
       });
 
-      expect(match).to.not.be.undefined;
-      expect(match.url).to.equal(messageUrl);
+      cy.wrap(match).should('not.be.undefined').then(() =>{
+        expect(match.url).to.equal(messageUrl);
+      });
     });
   })
 });
