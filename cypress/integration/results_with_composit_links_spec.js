@@ -31,9 +31,13 @@ describe("Given that the link to a message includes its series, When a message o
     const resultManager = new AlgoliaResultManager();
     resultManager.searchForKeyword(updatedMessage.title.text);
     cy.wrap({ resultManager }).its('resultManager.areResultsReady').should('be.true').then(() => {
-      const message = resultManager.getResultByUrl(updatedMessage.absoluteUrl);
-      expect(message.url).to.equal(updatedMessage.absoluteUrl);
-      expect(message).to.not.be.undefined;
+      const messageUrl = updatedMessage.absoluteUrl;
+      const match = resultManager.resultList.find(r => {
+        return r.url === messageUrl;
+      });
+
+      expect(match).to.not.be.undefined;
+      expect(match.url).to.equal(messageUrl);
     });
   })
 
@@ -41,9 +45,13 @@ describe("Given that the link to a message includes its series, When a message o
     const resultManager = new AlgoliaResultManager();
     resultManager.searchForKeyword(messageOnUpdatedSeries.title.text);
     cy.wrap({ resultManager }).its('resultManager.areResultsReady').should('be.true').then(() => {
-      const message = resultManager.getResultByUrl(messageOnUpdatedSeries.absoluteUrl);
-      expect(message.url).to.equal(messageOnUpdatedSeries.absoluteUrl);
-      expect(message).to.not.be.undefined;
+      const messageUrl = messageOnUpdatedSeries.absoluteUrl;
+      const match = resultManager.resultList.find(r => {
+        return r.url === messageUrl;
+      });
+
+      expect(match).to.not.be.undefined;
+      expect(match.url).to.equal(messageUrl);
     });
   })
 });

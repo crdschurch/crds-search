@@ -2,7 +2,8 @@ import { SearchBar } from '../support/SearchBar';
 
 //This returns the card title element, not the card
 function findCardTitleByHref(href, aliasForCard) {
-  cy.get(`[class*="hit-title"][href="${href}"]`).as(`${aliasForCard}`);
+  cy.get(`[class*="hit-title"][href="${href}"]`).first().as(`${aliasForCard}`);
+  cy.get(`@${aliasForCard}`).scrollIntoView();
 }
 
 function shouldNotFindCardWithHref(href) {

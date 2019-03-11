@@ -15,16 +15,20 @@ export class AlgoliaResultManager {
     })
   }
 
-  getResultByUrl(url){
-    cy.log(`${url} need results for`)
-    return this._hit_list.find(r => {
-      cy.log(`${r.url} current hit`);
-      cy.log(`${url} want url`);
-      return r.url === url;
-    });
-  }
+  // getResultByUrl(url){
+  //   cy.log(`${url} need results for`)
+  //   return this._hit_list.find(r => {
+  //     cy.log(`${r.url} current hit`);
+  //     cy.log(`${url} want url`);
+  //     return r.url === url;
+  //   });
+  // }
 
   get areResultsReady(){
     return this._results_ready;
+  }
+
+  get resultList(){
+    return this._hit_list;
   }
 }
