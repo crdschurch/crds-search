@@ -25,6 +25,10 @@ describe("Given that the link to a message includes its series, When a message o
     cy.wrap({ seriesManager }).its('seriesManager.recentlyUpdatedSeries').should('not.be.undefined').then(() => {
       messageOnUpdatedSeries = seriesManager.recentlyUpdatedSeries.getMessageAtIndex(0);
     });
+
+    cy.log(`id ${Cypress.env('ALGOLIA_APP_ID')}`);
+    cy.log(`key ${Cypress.env('ALGOLIA_API_KEY')}`);
+    cy.log(`index ${Cypress.env('ALGOLIA_INDEX')}`);
   });
 
   it('The most recently updated message should have the correct url', function () {
