@@ -3,5 +3,5 @@
   "baseUrl": "https://int.crossroads.net/search",
   "testFiles": "**/*spec.js",
   "numTestsKeptInMemory": 0,
-  "video": true
+  "video": false
 }
