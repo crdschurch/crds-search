@@ -1,4 +1,4 @@
-<a *ngIf="hit.image && hit.image !== null" class="hit-img relative full-width" href="{{hit.url}}">
+<a *ngIf="hit.image && hit.image !== null" class="hit-img relative" href="{{hit.url}}">
   <div *ngIf="hit.contentType == 'article' || hit.contentType == 'video' || hit.contentType == 'episode' || hit.contentType == 'message'"
     class="card-stamp bg-charcoal text-white">
     <span class="font-size-smallest push-quarter-right">{{hit.duration}}</span>
