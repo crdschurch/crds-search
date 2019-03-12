@@ -1,22 +1,24 @@
-<button data-toggle="modal" data-target="#searchModal" class="btn btn-search">
-  <svg class="icon icon-1 search-icon" viewBox="0 0 256 256">
-    <use xlink:href="/assets/svgs/icons.svg#search"></use>
-  </svg>
-</button>
-<div class="modal modal-splash modal-search" id="searchModal" data-backdrop="static" tabindex="-1" role="dialog"
-  aria-labelledby="fullscreenModalLabel">
-  <div class="modal-dialog modal-full">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="container">
-          <div class="row">
-            <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
-              <app-search [routingEnabled]="false"></app-search>
+<div class="crds-styles">
+  <button data-toggle="modal" data-target="#searchModal" class="btn btn-search">
+    <svg class="icon icon-1 search-icon" viewBox="0 0 256 256">
+      <use xlink:href="/assets/svgs/icons.svg#search"></use>
+    </svg>
+  </button>
+  <div class="modal modal-splash modal-search" id="searchModal" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="fullscreenModalLabel">
+    <div class="modal-dialog modal-full">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+                <app-search [routingEnabled]="false"></app-search>
+              </div>
             </div>
           </div>
         </div>
