@@ -16,14 +16,14 @@ OnDestroy {
   constructor(private analyticsService : AnalyticsService) {}
 
   public handleHitClick(event : any) {
-    let target:any, targetPostion:number, isWidget:boolean;
+    let target:any, position:number, isWidget:boolean;
     let targetEl = event.path.find(this.isParent);
     let targetId = targetEl.dataset.hitId;
 
     for (var i = 0; i < this.results.hits.length; i += 1) {
       if (this.results.hits[i].objectID.toLowerCase() === targetId.toLowerCase()) {
         target = this.results.hits[i];
-        targetPostion = i + 1;
+        position = i + 1;
         isWidget = this.isSearchWidget(targetEl); 
       }  
     }
@@ -31,7 +31,7 @@ OnDestroy {
     this.analyticsService.trackConversion( 
       this.results.query,
       target,
-      targetPostion,
+      position,
       isWidget
     )
   }
