@@ -17,12 +17,11 @@ OnDestroy {
 
   public handleHitClick(event : any) {
     let target:any, targetPostion:number, isWidget:boolean;
-
     let targetEl = event.path.find(this.isParent);
-    let targetTitle = targetEl.dataset.hitTitle;
+    let targetId = targetEl.dataset.hitId;
 
     for (var i = 0; i < this.results.hits.length; i += 1) {
-      if (this.results.hits[i].title.toLowerCase() === targetTitle.toLowerCase()) {
+      if (this.results.hits[i].objectID.toLowerCase() === targetId.toLowerCase()) {
         target = this.results.hits[i];
         targetPostion = i + 1;
         isWidget = this.isSearchWidget(targetEl); 
@@ -43,7 +42,7 @@ OnDestroy {
 
   private isParent(el) {
     let str = el.outerHTML;
-    if (str.includes("data-hit-title")) {
+    if (str.includes("data-hit-id")) {
       return el;
     } 
   }
