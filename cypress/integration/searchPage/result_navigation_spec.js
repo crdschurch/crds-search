@@ -1,4 +1,4 @@
-import { SearchBar } from '../support/SearchBar';
+import { SearchBar } from '../../support/SearchBar';
 
 //This returns the card title element, not the card
 function findCardTitleByHref(href, aliasForCard) {

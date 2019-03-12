@@ -1,5 +1,15 @@
 @import '../../search/search.component';
 
+.btn-search:hover {
+  background-color: #3b6e8f;
+  color: white;
+}
+
+.btn-search {
+  background-color: transparent;
+  margin: 0;
+}
+
 .modal-search {
     background-color: #ffffff;
   
