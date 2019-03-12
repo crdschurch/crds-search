@@ -16,10 +16,7 @@ OnDestroy {
   constructor(private analyticsService : AnalyticsService) {}
 
   public handleHitClick(event : any) {
-    event.preventDefault();
-    let target;
-    let targetPostion;
-    let isWidget;
+    let target:any, targetPostion:number, isWidget:boolean;
 
     let targetEl = event.path.find(this.isParent);
     let targetTitle = targetEl.dataset.hitTitle;
