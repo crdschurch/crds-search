@@ -16,28 +16,37 @@ OnDestroy {
   constructor(private analyticsService : AnalyticsService) {}
 
   public handleHitClick(event : any) {
-    let targetEl = event.path.find(this.isParent);
-    let targetTitle = targetEl.querySelector('.hit-title .ais-Highlight').innerText;
+    event.preventDefault();
     let target;
     let targetPostion;
+    let isWidget;
+
+    let targetEl = event.path.find(this.isParent);
+    let targetTitle = targetEl.dataset.hitTitle;
 
     for (var i = 0; i < this.results.hits.length; i += 1) {
       if (this.results.hits[i].title.toLowerCase() === targetTitle.toLowerCase()) {
         target = this.results.hits[i];
         targetPostion = i + 1;
+        isWidget = this.isSearchWidget(targetEl); 
       }  
     }
 
     this.analyticsService.trackConversion( 
       this.results.query,
       target,
-      targetPostion
+      targetPostion,
+      isWidget
     )
+  }
+
+  private isSearchWidget(el) {
+    return el.classList.contains("hit-widget") ? true : false;
   }
 
   private isParent(el) {
     let str = el.outerHTML;
-    if (str.includes("data-hit")) {
+    if (str.includes("data-hit-title")) {
       return el;
     } 
   }
