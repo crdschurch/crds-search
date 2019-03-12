@@ -28,20 +28,32 @@ describe("Given that the link to a message includes its series, When a message o
   });
 
   it('The most recently updated message should have the correct url', function () {
+    const messageUrl = updatedMessage.absoluteUrl;
     const resultManager = new AlgoliaResultManager();
+
     resultManager.searchForKeyword(updatedMessage.title.text);
+
     cy.wrap({ resultManager }).its('resultManager.areResultsReady').should('be.true').then(() => {
-      const message = resultManager.getResultByUrl(updatedMessage.absoluteUrl);
-      expect(message).to.not.be.undefined;
+      return resultManager.resultList.find(r => {
+        return r.url === messageUrl;
+      });
+    }).then(matchingResult => {
+      expect(matchingResult.url).to.equal(messageUrl);
     });
   })
 
   it('A message in the most recently updated series should have the correct url', function () {
+    const messageUrl = messageOnUpdatedSeries.absoluteUrl;
     const resultManager = new AlgoliaResultManager();
+
     resultManager.searchForKeyword(messageOnUpdatedSeries.title.text);
+
     cy.wrap({ resultManager }).its('resultManager.areResultsReady').should('be.true').then(() => {
-      const message = resultManager.getResultByUrl(messageOnUpdatedSeries.absoluteUrl);
-      expect(message).to.not.be.undefined;
+      return resultManager.resultList.find(r => {
+        return r.url === messageUrl;
+      });
+    }).then(matchingResult => {
+      expect(matchingResult.url).to.equal(messageUrl);
     });
   })
 });

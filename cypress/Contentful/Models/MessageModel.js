@@ -79,7 +79,6 @@ export class MessageModel {
   //null if series is unpublished or does not exist in Contentful
   //SeriesModel object if series exists
   set series(seriesModel) {
-    cy.log(`I'm assigning a series to a message ${seriesModel.title.text}`);//DEBUG
     this._series = seriesModel;
   }
 }
