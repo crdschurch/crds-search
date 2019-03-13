@@ -22,7 +22,7 @@ describe('Given a result indexed from a Page, When that link is clicked, Then th
     cy.visit('/');
   });
 
-  it.only('Keyword: "Woman Camp Signup" - page requires validation', function () {
+  it('Keyword: "Woman Camp Signup" - page requires validation', function () {
     const womanCampSignupUrl = `${Cypress.env('CRDS_BASE_URL')}/womancamp/signup/`;
     SearchBar.enterKeyword('Woman Camp Signup');
 
