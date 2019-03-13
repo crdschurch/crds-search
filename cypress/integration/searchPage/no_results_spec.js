@@ -1,5 +1,5 @@
-import { Formatter } from '../support/Formatter';
-import { SearchBar } from '../support/SearchBar';
+import { Formatter } from '../../support/Formatter';
+import { SearchBar } from '../../support/SearchBar';
 
 describe('Concerning searches with no results:', function () {
   beforeEach(function (){

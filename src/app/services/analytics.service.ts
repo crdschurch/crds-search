@@ -18,13 +18,14 @@ export class AnalyticsService {
     });
   }
 
-  public trackConversion(Query, Target, TargetPosition) {
+  public trackConversion(Query, Target, TargetPosition, isWidget) {
     this.analytics.eventTrack.next({
       action: 'WebsiteSearchConversion',
       properties: {
         Query,
         Target,
-        TargetPosition
+        TargetPosition,
+        isWidget
       }
     });
   }

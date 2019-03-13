@@ -1,6 +1,6 @@
-import { ContentfulElementValidator as Element } from '../Contentful/ContentfulElementValidator'
-import { ContentBlockManager } from '../Contentful/Models/ContentBlockModel';
-import { SearchBar } from '../support/SearchBar';
+import { ContentfulElementValidator as Element } from '../../Contentful/ContentfulElementValidator'
+import { ContentBlockManager } from '../../Contentful/Models/ContentBlockModel';
+import { SearchBar } from '../../support/SearchBar';
 
 function preSearchContentBlockShouldBeDisplayed(contentBlock) {
   cy.get('app-suggested').find('.suggested-container').as('preSearchContentBlock');
