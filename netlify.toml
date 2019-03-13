@@ -1,18 +1,26 @@
 # int build & anything that doesn't match below
 [build]
   command = '''
-  yarn run build --configuration=development &&
+  yarn run build --configuration=${COMPONENT_CONFIG}development &&
+  yarn run package &&
   bash ./cypress/kickOffCypress.sh
   '''
 
 [context.deploy-preview]
-  command = "yarn run build --configuration=preview"
+  command = '''
+  yarn run build --configuration=${COMPONENT_CONFIG}preview &&
+  yarn run package
+  '''
 
 [context.release]
   command = '''
-  yarn run build --configuration=demo &&
+  yarn run build --configuration=${COMPONENT_CONFIG}demo &&
+  yarn run package &&
   bash ./cypress/kickOffCypress.sh
   '''
 
 [context.master]
-  command = "yarn run build --configuration=production"
+    command = '''
+  yarn run build --configuration=${COMPONENT_CONFIG}production &&
+  yarn run package 
+  '''
