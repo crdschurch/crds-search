@@ -5,12 +5,6 @@ import { ContentfulApi } from '../ContentfulApi';
 import { MessageModel } from './MessageModel';
 
 export class LinkHelper {
-  // {
-  //   "sys": {
-  //       "type": "Link",
-  //       "linkType": "Asset",
-  //       "id": "3NDDT4ntZZnrtPPjnYrbNc"
-  //   } }
   constructor(linkObject, includesObject){
     this._type = linkObject.sys.linkType;
     this._id = linkObject.sys.id;
@@ -35,24 +29,6 @@ export class LinkHelper {
 }
 
 export class SeriesManager {
-  // saveCurrentSeries() {
-  //   const seriesList = ContentfulApi.getEntryCollection('content_type=series&select=sys.id,fields.published_at&order=-fields.starts_at&limit=5');
-  //   cy.wrap({ seriesList }).its('seriesList.responseReady').should('be.true').then(() => {
-  //     const responseList = seriesList.responseBody.items;
-
-  //     const now = Date.now();
-  //     const currentSeries = responseList.find(s => {
-  //       return (now >= new Date(s.fields.published_at));
-  //     });
-  //     const seriesEntryId = currentSeries.sys.id;
-
-  //     const seriesFullEntry = ContentfulApi.getSingleEntry(seriesEntryId);
-  //     cy.wrap({ seriesFullEntry }).its('seriesFullEntry.responseReady').should('be.true').then(() => {
-  //       this._current_series = new SeriesModel(seriesFullEntry.responseBody.fields);
-  //     });
-  //   });
-  // }
-
   saveMessageSeries(messageModel) {
     const seriesList = ContentfulApi.getEntryCollection('content_type=series&select=sys.id,fields.published_at,fields.videos&order=-fields.starts_at&limit=6');
     cy.wrap({ seriesList }).its('seriesList.responseReady').should('be.true').then(() => {
@@ -81,10 +57,6 @@ export class SeriesManager {
   saveRecentlyUpdatedSeriesWithMessage() {
     const seriesList = ContentfulApi.getEntryCollection('content_type=series&order=-sys.updatedAt&limit=3');
     cy.wrap({ seriesList }).its('seriesList.responseReady').should('be.true').then(() => {
-      //for each series
-      //for each video in the series
-      //find the asset matching the video. If found, end;
-
       seriesList.responseBody.items.forEach(s => {
         s.fields.videos.forEach(v =>{
           let messageLink = new LinkHelper(v, seriesList.responseBody.includes);
@@ -172,7 +144,6 @@ export class SeriesModel {
     return this._youtube_url;
   }
 
-  //TODO is this the smartest way to do this?
   saveMessage(messageModel){
     this._messages.push(messageModel);
   }

@@ -29,7 +29,7 @@ describe('Given a result indexed from a Page, When that link is clicked, Then th
     findCardTitleByHref(womanCampSignupUrl, 'womanCampSignupCard');
     cy.get('@womanCampSignupCard').should('exist').and('be.visible');
 
-    cy.get('@womanCampSignupCard').click();
+    cy.get('@womanCampSignupCard').click( {force: true});
     cy.contains('Sign In').should('exist').and('be.visible');
     cy.url().should('eq', `${Cypress.env('CRDS_BASE_URL')}/signin`);
   });
