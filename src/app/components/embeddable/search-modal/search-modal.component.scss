@@ -5,13 +5,14 @@
   color: white;
 }
 
-// .btn-search {
-//   background-color: transparent;
-//   margin: 0;
-// }
+.btn-search {
+  background-color: transparent;
+  margin: 0;
+}
 
 .modal-search {
     background-color: #ffffff;
+    overflow: auto;
   
     .modal-content {
       min-height: 100vw;
