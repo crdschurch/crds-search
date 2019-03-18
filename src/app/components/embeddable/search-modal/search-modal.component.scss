@@ -1,18 +1,40 @@
 @import '../../search/search.component';
 
-.btn-search {
+// override shared-header stuff
+.btn.btn-search.btn-search-modal {
+  margin-top: 1.125rem;
+  padding: 0;
   background-color: transparent;
-  margin: 0;
 
-  &.btn-search-modal:hover {
-    background-color: rgb(59, 110, 143);
-    color: white;
+  svg {
+    color: #979797;
+  }
+
+  @media (min-width: 992px) {
+    & {
+      height: 3.125em;
+      width: 3.125em;
+      margin: 0;
+
+      svg {
+        color: #4d4d4d;
+      }
+    }
+
+    &:hover {
+      background-color: rgb(59, 110, 143);
+      color: white;
+
+      svg {
+        color: #ffffff;
+      }
+    }
   }
 }
 
 .modal-search {
   background-color: #ffffff;
-  overflow: auto !important;
+  overflow: auto;
 
   .modal-content {
     min-height: 100vh;
