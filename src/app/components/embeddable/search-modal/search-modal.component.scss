@@ -1,41 +1,72 @@
 @import '../../search/search.component';
 
-.btn-search:hover {
-  background-color: #3b6e8f;
-  color: white;
-}
-
-.btn-search {
+// override shared-header stuff
+.btn.btn-search.btn-search-modal {
+  margin-top: 1.125rem;
+  padding: 0;
   background-color: transparent;
-  margin: 0;
-}
 
-.modal-search {
-    background-color: #ffffff;
-  
-    .modal-content {
-      min-height: 100vw;
-      background-color: #ffffff;
-      opacity: 0;
-      transform: translate3d(0,0,0) translateY(-10px);
-      transition: all .4s ease-in-out;
-      transition-delay: 100ms;
-      visibility: hidden;
-    }
-  
-    &.in .modal-content {
-      opacity: 1;
-      transform: translateY(0);
-      visibility: visible;
-    }
-  
-    .modal-header,
-    .modal-content {
-      border: 0;
-    }
+  svg {
+    color: #979797;
+  }
 
-    .modal-dialog {
-      width: 100%;
+  @media (min-width: 992px) {
+    & {
+      height: 3.125em;
+      width: 3.125em;
       margin: 0;
+
+      svg {
+        color: #4d4d4d;
+      }
+    }
+
+    &:hover {
+      background-color: rgb(59, 110, 143);
+      color: white;
+
+      svg {
+        color: #ffffff;
+      }
     }
   }
+}
+
+.modal.modal-search {
+  background-color: #ffffff;
+  overflow: auto;
+
+  .modal-content {
+    min-height: 100vh;
+    background-color: #ffffff;
+    opacity: 0;
+    transform: translate3d(0, 0, 0) translateY(-10px);
+    transition: all .4s ease-in-out;
+    transition-delay: 100ms;
+    visibility: hidden;
+  }
+
+  &.in .modal-content {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+  }
+
+  .modal-header,
+  .modal-content {
+    border: 0;
+  }
+
+  .modal-body {
+    padding: 20px 0 0 0;
+  }
+
+  .modal-header {
+    padding: 20px 20px 0 20px;
+  }
+
+  .modal-dialog {
+    width: 100%;
+    margin: 0;
+  }
+}

@@ -1,16 +1,17 @@
 .ais-Menu {
-   display: inline-block;
-   position: relative;
-   padding-top: 0;
-   margin-bottom: .5rem;
-   width: 100%;
-   background-color: #fff;
-   border-bottom: 1px solid #ddd;
-   overflow-x: auto;
-   z-index: 1;
+  display: inline-block;
+  position: relative;
+  padding-top: 0;
+  margin-bottom: .5rem;
+  width: 100%;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  overflow-x: auto;
+  z-index: 1;
 
   .ais-Menu-list {
     display: inline-flex;
+    margin-bottom: 0;
 
     .ais-Menu-count {
       visibility: hidden;
@@ -32,8 +33,9 @@
     }
 
     .ais-Menu-link:hover {
-      color: #151515;
       text-decoration: none;
+      color: #151515;
+      background-color: transparent !important;
     }
 
     .ais-Menu-label {
