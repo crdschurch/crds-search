@@ -42,7 +42,7 @@ describe('Concerning searches with no results:', function () {
     const resultsKeyword = 'god'
     SearchBar.enterKeyword(resultsKeyword);
 
-    cy.get('app-hits').find('app-hit').as('firstResult');
+    cy.get('app-hit').first().as('firstResult');
     cy.get('@firstResult').should('be.visible');
 
     cy.get('app-no-results').find('.no-results').should('not.exist');

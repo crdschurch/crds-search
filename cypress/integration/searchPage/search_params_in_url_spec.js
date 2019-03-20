@@ -44,7 +44,7 @@ describe('When someone navigates to a search url:', function () {
 
     cy.visit(urlWithQuery);
 
-    cy.get('app-hits').find('app-hit').as('firstResult');
+    cy.get('app-hit').first().as('firstResult');
     cy.get('@firstResult').should('be.visible');
   })
 
@@ -54,7 +54,7 @@ describe('When someone navigates to a search url:', function () {
 
     cy.visit(urlWithFilteredQuery);
 
-    cy.get('app-hits').find('app-hit').as('firstResult');
+    cy.get('app-hit').first().as('firstResult');
     cy.get('@firstResult').should('be.visible');
 
     cy.get('[class="ais-Menu-item ais-Menu-item--selected"]').as('selectedFilter');
