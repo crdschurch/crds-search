@@ -3,9 +3,8 @@ export class SearchBar {
     SearchBar.clear();
 
     cy.get('.ais-SearchBox-input').as('searchField');
-    cy.get('@searchField').type(keyword);
+    return cy.get('@searchField').type(keyword);
   }
-
 
   static clear(){
     cy.get('.ais-SearchBox-input').as('searchField').clear();
