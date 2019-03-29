@@ -1,4 +1,4 @@
-import { ContentBlockModel } from '../Shared/ContentBlockModel';
+import { ContentBlockEntry } from '../Shared/ContentBlockEntry';
 import { ContentfulLibrary } from 'crds-cypress-tools';
 
 export class ContentBlockQueryManager {
@@ -8,14 +8,7 @@ export class ContentBlockQueryManager {
     return cy.wrap({ contentBlockList }).its('contentBlockList.responseReady').should('be.true').then(() => {
       const contentBlock = contentBlockList.responseBody.items[0];
       if(contentBlock !== undefined)
-        this._query_result = new ContentBlockModel(contentBlock);
-
-      // const blockResponse = allContentBlocks.responseBody.items.find(b => b.fields.title === title);
-      // expect(blockResponse).to.not.be.undefined;
-      // const blockEntry = ContentfulApi.getSingleEntry(blockResponse.sys.id);
-      // cy.wrap({ blockEntry }).its('blockEntry.responseReady').should('be.true').then(() => {
-      //   this[title] = new ContentBlockModel(blockEntry.responseBody.fields);
-      // });
+        this._query_result = new ContentBlockEntry(contentBlock);
     });
   }
 

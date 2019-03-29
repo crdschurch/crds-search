@@ -1,7 +1,7 @@
 import { FormattedTextField, PlainTextField } from "./contentfulFields";
 
 //TODO this needs to be added to CCT
-export class ContentBlockModel {
+export class ContentBlockEntry {
   constructor (entryObject) {
     const fields = entryObject.fields;
 
