@@ -1,5 +1,7 @@
 import { PlainTextField, FormattedTextField, ImageLinkField, DateField, MessageLinkField } from './contentfulFields';
 import { ImageAsset } from './imageAsset';
+import { ContentfulLibrary } from 'crds-cypress-tools';
+import { MessageEntry } from 'crds-cypress-tools/lib/contentfulLibrary/resourceStructures/messageEntry';
 //TODO this has been updated - need to update CCT
 export class SeriesEntry {
   constructor (entryObject) {
@@ -16,12 +18,17 @@ export class SeriesEntry {
     this._ends_at = new DateField(fields.ends_at);
     this._youtube_url = new PlainTextField(fields.youtube_url);
 
-    //for each id in videos, create a message link
-    //when fetching, add to this._messages only if message_link.resource is not undefined after
-    this._message_links = [];
+    //Save each message id
+    this._message_ids = [];
     if (fields.videos !== undefined) {
-      fields.videos.forEach(v => this._message_links.push(new MessageLinkField(v)));
+      fields.videos.forEach(m => this._message_ids.push(m.sys.id))
     }
+
+    //when fetching, add to this._messages only if message_link.resource is not undefined after
+    // this._message_links = [];
+    // if (fields.videos !== undefined) {
+    //   fields.videos.forEach(v => this._message_links.push(new MessageLinkField(v)));
+    // }
   }
 
   //This must be called before a linked resource can be accessed
@@ -34,24 +41,36 @@ export class SeriesEntry {
   }
 
   fetchPublishedMessages() {
-    this._message_links.forEach(ml => ml.fetchResource(this));
-//TODO this isn't safe - can't chain
-    this._messages = [];
-    this._message_links.forEach(ml => {
-      cy.wrap({ ml }).its('ml.isResourceFetched').should('be.true').then(() => {
-        if (ml.resource !== undefined) {
-          this._messages.push(ml.resource);
-        }
-      });
+    const now = Cypress.moment(Date.now()).utc().format();
+    const messageList = ContentfulLibrary.query.entryList(`content_type=message&fields.published_at[lte]=${now}&sys.id[in]=${this._message_ids.join(',')}`);
+
+    return cy.wrap({ messageList }).its('messageList.responseReady').should('be.true').then(() => {
+      const messages = messageList.responseBody.items;
+      this._messages = [];
+      messages.forEach(m => {
+        this._messages.push(new MessageEntry(m, this));
+      })
     });
+
+
+    // this._message_links.forEach(ml => ml.fetchResource(this));
+    // //TODO this isn't safe - can't chain
+    // this._messages = [];
+    // this._message_links.forEach(ml => {
+    //   cy.wrap({ ml }).its('ml.isResourceFetched').should('be.true').then(() => {
+    //     if (ml.resource !== undefined) {
+    //       this._messages.push(ml.resource);
+    //     }
+    //   });
+    // });
   }
 
   //TODO later
-  _doWhenFetched(link, callback){
-    cy.wrap({ link }).its('link.isResourceFetched').should('be.true').then(() => {
-      callback(link.resource);
-    });
-  }
+  // _doWhenFetched(link, callback) {
+  //   cy.wrap({ link }).its('link.isResourceFetched').should('be.true').then(() => {
+  //     callback(link.resource);
+  //   });
+  // }
 
   get title() {
     return this._title;

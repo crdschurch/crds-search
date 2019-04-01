@@ -125,34 +125,34 @@ export class ImageLinkField extends ContentfulLinkField {
 }
 
 //These are links to message entries - after fetching this entry, the resource will be MessageEntry if it exists and is published, or undefined
-export class MessageLinkField extends ContentfulLinkField {
-  constructor (linkObject, isRequired = false) {
-    super(linkObject, isRequired);
-  }
+// export class MessageLinkField extends ContentfulLinkField {
+//   constructor (linkObject, isRequired = false) {
+//     super(linkObject, isRequired);
+//   }
 
-  // get resource() {
-  //   return this._resource_object;
-  // }
+//   // get resource() {
+//   //   return this._resource_object;
+//   // }
 
-  // get isResourceFetched() {
-  //   return this._resource_ready;
-  // }
+//   // get isResourceFetched() {
+//   //   return this._resource_ready;
+//   // }
 
-  fetchResource(seriesEntry) {
-    if (!this.hasValue) {
-      this._resource_ready = true;
-      return;
-    }
+//   fetchResource(seriesEntry) {
+//     if (!this.hasValue) {
+//       this._resource_ready = true;
+//       return;
+//     }
 
-    const id = this._value.sys.id;
-    const response = ContentfulLibrary.query.singleEntry(id, false); //TODO need to convert
-    cy.wrap({ response }).its('response.responseReady').should('be.true').then(() => {
+//     const id = this._value.sys.id;
+//     const response = ContentfulLibrary.query.singleEntry(id, false); //TODO need to convert
+//     cy.wrap({ response }).its('response.responseReady').should('be.true').then(() => {
 
-      if (response.responseBody.sys.type != 'Error') {
-        this._resource_object = new MessageEntry(response.responseBody, seriesEntry, true);
-      }
+//       if (response.responseBody.sys.type != 'Error') {
+//         this._resource_object = new MessageEntry(response.responseBody, seriesEntry, true);
+//       }
 
-      this._resource_ready = true;
-    });
-  }
-}
+//       this._resource_ready = true;
+//     });
+//   }
+// }
