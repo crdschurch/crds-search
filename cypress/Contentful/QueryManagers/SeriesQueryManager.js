@@ -1,6 +1,6 @@
 import { ContentfulLibrary } from 'crds-cypress-tools';
-//TODO need to implement LinkedEntries for this to properly work
-//SEARCH!!!
+import { SeriesEntry } from '../Shared/seriesEntry';
+
 export class SeriesQueryManager {
   /**
   * Warning! Published series are only displayed if their published_at date has passed
@@ -10,16 +10,7 @@ export class SeriesQueryManager {
     const seriesList = ContentfulLibrary.query.entryList(`${this._requiredQueryParameters}&order=-sys.updatedAt&fields.videos[exists]=true&limit=1`);
     return cy.wrap({ seriesList }).its('seriesList.responseReady').should('be.true').then(() => {
       const series = seriesList.responseBody.items[0];
-      this._query_result = new ContentfulLibrary.entry.series(series);
-    });
-  }
-
-  //OLD
-  fetchCurrentSeries() {
-    this._query_result = undefined;
-    const seriesList = ContentfulLibrary.query.entryList(`${this._requiredQueryParameters}&order=-fields.starts_at&limit=1`);
-    return cy.wrap({ seriesList }).its('seriesList.responseReady').should('be.true').then(() => {
-      this._query_result = new ContentfulLibrary.entry.series(seriesList.responseBody.items[0]);
+      this._query_result = new SeriesEntry(series);//ContentfulLibrary.entry.series(series);
     });
   }
 
@@ -30,22 +21,16 @@ export class SeriesQueryManager {
     return cy.wrap({ seriesList }).its('seriesList.responseReady').should('be.true').then(() => {
       const series = seriesList.responseBody.items[0];
       if (series !== undefined)
-        this._query_result = new ContentfulLibrary.entry.series(series);
+        this._query_result = new SeriesEntry(series);
     });
   }
+
   get queryResult() {
     return this._query_result;
   }
 
   get _requiredQueryParameters() {
-    const now = Cypress.moment(Date.now()).format();
+    const now = Cypress.moment(Date.now()).utc().format();
     return `content_type=series&fields.published_at[lte]=${now}`;
-  }
-}
-
-export class SearchSeriesModel extends ContentfulLibrary.entry.series {
-  constructor(entryObject){
-    super(entryObject);
-    this._messages = [];
   }
 }

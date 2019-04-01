@@ -33,12 +33,12 @@ export class SeriesEntry {
     });
   }
 
-  fetchMessages(){
+  fetchPublishedMessages() {
     this._message_links.forEach(ml => ml.fetchResource(this));
 //TODO this isn't safe - can't chain
     this._messages = [];
     this._message_links.forEach(ml => {
-      cy.wrap({ ml }).its('isResourceFetched').should('be.true').then(() => {
+      cy.wrap({ ml }).its('ml.isResourceFetched').should('be.true').then(() => {
         if (ml.resource !== undefined) {
           this._messages.push(ml.resource);
         }
@@ -47,8 +47,8 @@ export class SeriesEntry {
   }
 
   //TODO later
-  doWhenFetched(link, callback){
-    cy.wrap({ link }).its('isResourceFetched').should('be.true').then(() => {
+  _doWhenFetched(link, callback){
+    cy.wrap({ link }).its('link.isResourceFetched').should('be.true').then(() => {
       callback(link.resource);
     });
   }

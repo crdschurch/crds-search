@@ -70,8 +70,7 @@ export class DateField extends ContentfulField {
   }
 }
 
-//These are links to image assets - fetching this asset will return an ImageAsset if it exists
-export class ImageLinkField extends ContentfulField {
+class ContentfulLinkField extends ContentfulField {
   constructor (linkObject, isRequired = false) {
     super(linkObject, isRequired);
   }
@@ -83,6 +82,26 @@ export class ImageLinkField extends ContentfulField {
   get isResourceFetched() {
     return this._resource_ready;
   }
+
+  //Overwrite this in subclass
+  fetchResource() {
+    throw new Error("fetchResource() is undefined");
+  }
+}
+
+//These are links to image assets - after fetching this asset, the resource will be an ImageAsset if it exists, or undefined
+export class ImageLinkField extends ContentfulLinkField {
+  constructor (linkObject, isRequired = false) {
+    super(linkObject, isRequired);
+  }
+
+  // get resource() {
+  //   return this._resource_object;
+  // }
+
+  // get isResourceFetched() {
+  //   return this._resource_ready;
+  // }
 
   fetchResource() {
     if (!this.hasValue) {
@@ -105,18 +124,19 @@ export class ImageLinkField extends ContentfulField {
   }
 }
 
-export class MessageLinkField extends ContentfulField {
+//These are links to message entries - after fetching this entry, the resource will be MessageEntry if it exists and is published, or undefined
+export class MessageLinkField extends ContentfulLinkField {
   constructor (linkObject, isRequired = false) {
     super(linkObject, isRequired);
   }
 
-  get resource() {
-    return this._resource_object;
-  }
+  // get resource() {
+  //   return this._resource_object;
+  // }
 
-  get isResourceFetched() {
-    return this._resource_ready;
-  }
+  // get isResourceFetched() {
+  //   return this._resource_ready;
+  // }
 
   fetchResource(seriesEntry) {
     if (!this.hasValue) {

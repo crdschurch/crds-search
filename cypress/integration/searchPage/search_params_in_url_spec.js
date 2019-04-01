@@ -8,7 +8,7 @@ function getUrlWithQuery(keyword, filterLabel = undefined) {
   }
   return url;
 }
-
+//TODO make defect or send slowly?
 describe('When someone searches:', function () {
   beforeEach(function () {
     cy.visit('/');

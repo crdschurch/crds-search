@@ -1,59 +1,46 @@
-import { MessageManager } from '../../Contentful/Models/MessageModel';
-import { SeriesManager } from '../../Contentful/Models/SeriesModel';
-import { AlgoliaResultManager } from '../../Algolia/AlgoliaResultManager';
+import { AlgoliaQueryManager } from '../../Algolia/AlgoliaQueryManager';
+import { SeriesQueryManager } from '../../Contentful/QueryManagers/SeriesQueryManager';
+import { MessageQueryManager } from '../../Contentful/QueryManagers/MessageQueryManager';
 
 /*
 * Note: Since we are not modifying entries in Contentful, these tests only passively confirm that the message link is stored correctly in Algolia when either the
 * Message or Series slug is updated.
 */
 describe("Given that the link to a message includes its series, When a message or series is updated, Then the message result should have the correct link:", function () {
-  let updatedMessage;
-  let messageOnUpdatedSeries;
-  before(function () {
-    //Retrieve all our test data here for clearer tests
-    const messageManager = new MessageManager();
-    const seriesManager = new SeriesManager();
-
-    messageManager.saveMostRecentlyUpdatedMessage();
-    cy.wrap({ messageManager }).its('messageManager.recentlyUpdatedMessage').should('not.be.undefined').then(() => {
-      updatedMessage = messageManager.recentlyUpdatedMessage;
-      seriesManager.saveMessageSeries(updatedMessage);
-      cy.wrap({ updatedMessage }).its('updatedMessage.series').should('not.be.undefined');
-    });
-
-    seriesManager.saveRecentlyUpdatedSeriesWithMessage();
-    cy.wrap({ seriesManager }).its('seriesManager.recentlyUpdatedSeries').should('not.be.undefined').then(() => {
-      messageOnUpdatedSeries = seriesManager.recentlyUpdatedSeries.getMessageAtIndex(0);
-    });
-  });
-
   it('The most recently updated message should have the correct url', function () {
-    const messageUrl = updatedMessage.absoluteUrl;
-    const resultManager = new AlgoliaResultManager();
+    const mqm = new MessageQueryManager();
+    mqm.fetchRecentlyUpdatedMessage().then(() =>{
+      const updatedMessage = mqm.queryResult;
+      const messageURL = updatedMessage.URL.absolute;
 
-    resultManager.searchForKeyword(updatedMessage.title.text);
-
-    cy.wrap({ resultManager }).its('resultManager.areResultsReady').should('be.true').then(() => {
-      return resultManager.resultList.find(r => {
-        return r.url === messageUrl;
-      });
-    }).then(matchingResult => {
-      expect(matchingResult.url).to.equal(messageUrl);
-    });
+      const aqm = new AlgoliaQueryManager();
+      aqm.fetchResultsForKeyword(updatedMessage.title.text).then(() =>{
+        const match = aqm.queryResult.find(r => {
+          return r.url === messageURL;
+        });
+        expect(match.url).to.equal(messageURL);
+      })
+    })
   })
 
   it('A message in the most recently updated series should have the correct url', function () {
-    const messageUrl = messageOnUpdatedSeries.absoluteUrl;
-    const resultManager = new AlgoliaResultManager();
+    const sqm = new SeriesQueryManager();
+    sqm.saveRecentlyUpdatedSeriesWithMessage().then(()=>{
+      const updatedSeries = sqm.queryResult;
 
-    resultManager.searchForKeyword(messageOnUpdatedSeries.title.text);
-
-    cy.wrap({ resultManager }).its('resultManager.areResultsReady').should('be.true').then(() => {
-      return resultManager.resultList.find(r => {
-        return r.url === messageUrl;
+      updatedSeries.fetchPublishedMessages();
+      cy.wrap({updatedSeries}).its('updatedSeries.messages').should('have.length.gte', 1).then(() =>{
+        return updatedSeries.messages[0];
+      })
+    }).then(firstMessage =>{
+      const messageURL = firstMessage.URL.absolute;
+      const aqm = new AlgoliaQueryManager();
+      aqm.fetchResultsForKeyword(firstMessage.title.text).then(() =>{
+        const match = aqm.queryResult.find(r => {
+          return r.url === messageURL;
+        });
+        expect(match.url).to.equal(messageURL);
       });
-    }).then(matchingResult => {
-      expect(matchingResult.url).to.equal(messageUrl);
-    });
+    })
   })
 });
