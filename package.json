@@ -2,6 +2,7 @@
   "name": "crds-search",
   "version": "0.0.4",
   "private": false,
+  "license": "ISC",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port 3000",
