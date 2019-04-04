@@ -2175,9 +2175,9 @@ cosmiconfig@^4.0.0:
     require-from-string "^2.0.1"
 
 crds-cypress-tools@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/crds-cypress-tools/-/crds-cypress-tools-1.1.1.tgz#482c1b1df2afad6b972299ace5b08708d2b4963e"
-  integrity sha512-ySx9BDbtfaTTnnCDY2ycXSf247SmVcp9FH61BHrz3X9egVcKiATAJ+r8W6paEcBY/mrmQ27SVTdMIvhPNVMFjg==
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/crds-cypress-tools/-/crds-cypress-tools-1.2.0.tgz#1c72237ccb195cef9dc90fd25dd93a5e21d04196"
+  integrity sha512-OUQ4bOzSZvlHy7VOUtKHj/9L41cbNbrELIlkOoRNDKlNs3GqSTHxHq2lQjaFHot0+jgArzdrzLqurk33+Wr7KA==
 
 crds-shared-header@^0.7.2:
   version "0.7.3"

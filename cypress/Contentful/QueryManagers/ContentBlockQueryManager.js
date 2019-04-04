@@ -1,4 +1,4 @@
-import { ContentBlockEntry } from '../Shared/ContentBlockEntry';
+//import { ContentBlockEntry } from '../Shared/ContentBlockEntry';
 import { ContentfulLibrary } from 'crds-cypress-tools';
 
 export class ContentBlockQueryManager {
@@ -8,7 +8,7 @@ export class ContentBlockQueryManager {
     return cy.wrap({ contentBlockList }).its('contentBlockList.responseReady').should('be.true').then(() => {
       const contentBlock = contentBlockList.responseBody.items[0];
       if(contentBlock !== undefined)
-        this._query_result = new ContentBlockEntry(contentBlock);
+        this._query_result = new ContentfulLibrary.entry.contentBlock(contentBlock);
     });
   }
 

@@ -1,5 +1,5 @@
 import { ContentfulLibrary } from 'crds-cypress-tools';
-import { MessageEntry } from '../Shared/messageEntry';
+// import { MessageEntry } from '../Shared/messageEntry';
 import { SeriesQueryManager } from './SeriesQueryManager';
 
 export class MessageQueryManager {
@@ -11,7 +11,7 @@ export class MessageQueryManager {
       const sqm = new SeriesQueryManager();
       return sqm.fetchSeriesForMessage(updatedMessage.sys.id).then(() => {
         const series = sqm.queryResult;
-        this._query_result = new MessageEntry(updatedMessage, series);
+        this._query_result = new ContentfulLibrary.entry.message(updatedMessage, series);
       });
     });
   }

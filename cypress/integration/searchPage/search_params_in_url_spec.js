@@ -8,7 +8,7 @@ function getUrlWithQuery(keyword, filterLabel = undefined) {
   }
   return url;
 }
-//TODO make defect or send slowly?
+
 describe('When someone searches:', function () {
   beforeEach(function () {
     cy.visit('/');
@@ -18,12 +18,12 @@ describe('When someone searches:', function () {
     const keyword = 'God';
     const expectedUrl = getUrlWithQuery(keyword);
 
-    SearchBar.enterKeyword(keyword).then(() => {
+    SearchBar.enterKeyword(keyword, 1000).then(() => {
       cy.url().should('eq', expectedUrl);
     });
   });
 
-  it('For a keyword a selects filter, the keyword and filter should be included in the url', function () {
+  it('For a keyword and selects filter, the keyword and filter should be included in the url', function () {
     const keyword = 'God';
 
     SearchBar.enterKeyword(keyword).then(() => {

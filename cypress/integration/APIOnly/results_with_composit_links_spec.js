@@ -28,11 +28,12 @@ describe("Given that the link to a message includes its series, When a message o
     sqm.saveRecentlyUpdatedSeriesWithMessage().then(()=>{
       const updatedSeries = sqm.queryResult;
 
-      updatedSeries.fetchPublishedMessages();
-      cy.wrap({updatedSeries}).its('updatedSeries.messages').should('have.length.gte', 1).then(() =>{
-        return updatedSeries.messages[0];
-      })
-    }).then(firstMessage =>{
+      updatedSeries.fetchPublishedMessages().then(() =>{
+        cy.wrap({updatedSeries}).its('updatedSeries.messages').should('have.length.gte', 1).then(() =>{
+          return updatedSeries.messages[0];
+        });
+      });
+    }).then(firstMessage => {
       const messageURL = firstMessage.URL.absolute;
       const aqm = new AlgoliaQueryManager();
       aqm.fetchResultsForKeyword(firstMessage.title.text).then(() =>{
