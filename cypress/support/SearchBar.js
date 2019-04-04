@@ -3,7 +3,7 @@ export class SearchBar {
    * Types a keyword into the search bar.
    *
    * @param {string} keyword
-   * @param {number} charEntryDelay (ms)
+   * @param {number} charEntryDelay ms (optional)
    */
   static enterKeyword(keyword, charEntryDelay = 10) {
     SearchBar.clear();

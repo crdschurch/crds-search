@@ -1,4 +1,3 @@
-//import { ContentBlockEntry } from '../Shared/ContentBlockEntry';
 import { ContentfulLibrary } from 'crds-cypress-tools';
 
 export class ContentBlockQueryManager {
