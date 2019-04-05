@@ -12,23 +12,23 @@ function shouldNotFindCardWithHref(href) {
 
 describe('Given a result indexed from a Page, When that link is clicked, Then the expected page opens:', function () {
   beforeEach(function () {
-    cy.visit('/');
+    cy.visit('/search');
   });
 
   it('Keyword: "Woman Camp Signup" - page requires validation', function () {
-    const womanCampSignupUrl = `${Cypress.env('CRDS_BASE_URL')}/womancamp/signup/`;
+    const womanCampSignupUrl = `${Cypress.config().baseUrl}/womancamp/signup/`;
     SearchBar.enterKeyword('Woman Camp Signup').then(() => {
       findCardTitleByHref(womanCampSignupUrl, 'womanCampSignupCard');
       cy.get('@womanCampSignupCard').should('exist').and('be.visible');
 
       cy.get('@womanCampSignupCard').click({ force: true });
       cy.contains('Sign In').should('exist').and('be.visible');
-      cy.url().should('eq', `${Cypress.env('CRDS_BASE_URL')}/signin`);
+      cy.url().should('eq', `${Cypress.config().baseUrl}/signin`);
     });
   });
 
   it('Keyword: "Woman Camp" - just an ordinary page', function () {
-    const womanCampUrl = `${Cypress.env('CRDS_BASE_URL')}/womancamp/`;
+    const womanCampUrl = `${Cypress.config().baseUrl}/womancamp/`;
     SearchBar.enterKeyword('Woman Camp').then(() => {
 
       findCardTitleByHref(womanCampUrl, 'womanCampCard');
@@ -40,7 +40,7 @@ describe('Given a result indexed from a Page, When that link is clicked, Then th
   });
 
   it('Keyword: "Locker Room" - page excluded from search', function () {
-    const lockerRoomUrl = `${Cypress.env('CRDS_BASE_URL')}/lockerroom`;
+    const lockerRoomUrl = `${Cypress.config().baseUrl}/lockerroom`;
     SearchBar.enterKeyword('Locker Room').then(() => {
       shouldNotFindCardWithHref(lockerRoomUrl);
     });
@@ -49,11 +49,11 @@ describe('Given a result indexed from a Page, When that link is clicked, Then th
 
 describe('Given a result indexed from a System Page, When that link is clicked, Then the expected page opens:', function () {
   beforeEach(function () {
-    cy.visit('/');
+    cy.visit('/search');
   });
 
   it('Keyword: "Live Streaming" - page lives in crds-net', function () {
-    const liveUrl = `${Cypress.env('CRDS_BASE_URL')}/live`;
+    const liveUrl = `${Cypress.config().baseUrl}/live`;
     SearchBar.enterKeyword('Live Streaming').then(() => {
       findCardTitleByHref(liveUrl, 'liveStreamingCard');
       cy.get('@liveStreamingCard').should('exist').and('be.visible');
@@ -64,7 +64,7 @@ describe('Given a result indexed from a System Page, When that link is clicked, 
   })
 
   it('Keyword: "Corkboard" - pages lives in crds-corkboard and is an angular page', function () {
-    const corkboardUrl = `${Cypress.env('CRDS_BASE_URL')}/corkboard`;
+    const corkboardUrl = `${Cypress.config().baseUrl}/corkboard`;
     SearchBar.enterKeyword('Corkboard').then(() => {
       findCardTitleByHref(corkboardUrl, 'corkboardCard');
       cy.get('@corkboardCard').should('exist').and('be.visible');
@@ -75,7 +75,7 @@ describe('Given a result indexed from a System Page, When that link is clicked, 
   });
 
   it('Keyword: "Media" - page lives in crds-media and requires a redirect to the media subdomain', function () {
-    const mediaURL = `${Cypress.env('CRDS_BASE_URL')}/media`;
+    const mediaURL = `${Cypress.config().baseUrl}/media`;
     SearchBar.enterKeyword('Media').then(() => {
       findCardTitleByHref(mediaURL, 'mediaCard');
       cy.get('@mediaCard').should('exist').and('be.visible');

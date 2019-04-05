@@ -2,7 +2,7 @@ import { SearchBar } from '../../support/SearchBar';
 
 function getUrlWithQuery(keyword, filterLabel = undefined) {
   const encodedKeyword = encodeURI(keyword);
-  let url = `${Cypress.config().baseUrl}/?query=${encodedKeyword}`
+  let url = `${Cypress.config().baseUrl}/search?query=${encodedKeyword}`
   if (filterLabel !== undefined) {
     url = `${url}&menu%5BcontentType%5D=${filterLabel}`
   }
@@ -11,7 +11,7 @@ function getUrlWithQuery(keyword, filterLabel = undefined) {
 
 describe('When someone searches:', function () {
   beforeEach(function () {
-    cy.visit('/');
+    cy.visit('/search');
   });
 
   it('For a keyword, the keyword should be included in the url', function () {

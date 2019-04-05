@@ -5,7 +5,7 @@ describe('The pre-search content block should be displayed:', function () {
   let preSearchContentBlock;
 
   beforeEach(function () {
-    cy.visit('/');
+    cy.visit('/search');
 
     const cbqm = new ContentBlockQueryManager()
     cbqm.fetchContentBlockByTitle('suggestedSearch').then(() =>{

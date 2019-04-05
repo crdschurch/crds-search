@@ -3,7 +3,7 @@ import { SearchBar } from '../../support/SearchBar';
 
 describe('Concerning searches with no results:', function () {
   beforeEach(function () {
-    cy.visit('/');
+    cy.visit('/search');
   });
 
   it('When a keyword returns no results, the expected "no results" message is displayed', function () {
