@@ -23,3 +23,8 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+import { Formatter } from './Formatter';
+Cypress.Commands.add('displayedText', {prevSubject: 'element'}, (subject) =>{
+  return cy.wrap(subject).should('have.prop', 'textContent').then(elementText => Formatter.normalizeText(elementText));
+});

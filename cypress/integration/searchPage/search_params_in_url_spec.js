@@ -12,30 +12,30 @@ function getUrlWithQuery(keyword, filterLabel = undefined) {
 describe('When someone searches:', function () {
   beforeEach(function () {
     cy.visit('/');
-  })
+  });
 
   it('For a keyword, the keyword should be included in the url', function () {
     const keyword = 'God';
     const expectedUrl = getUrlWithQuery(keyword);
 
-    SearchBar.enterKeyword(keyword);
+    SearchBar.enterKeyword(keyword, 1000).then(() => {
+      cy.url().should('eq', expectedUrl);
+    });
+  });
 
-    cy.url().should('eq', expectedUrl);
-  })
-
-  it('For a keyword a selects filter, the keyword and filter should be included in the url', function () {
+  it('For a keyword and selects filter, the keyword and filter should be included in the url', function () {
     const keyword = 'God';
 
-    SearchBar.enterKeyword(keyword);
+    SearchBar.enterKeyword(keyword).then(() => {
+      cy.get('.ais-Menu-item').last().as('searchFilter');
+      cy.get('@searchFilter').find('.ais-Menu-label').should('have.prop', 'textContent').then(label => {
+        cy.get('@searchFilter').click();
 
-    cy.get('.ais-Menu-item').last().as('searchFilter');
-    cy.get('@searchFilter').find('.ais-Menu-label').should('have.prop', 'textContent').then(label => {
-      cy.get('@searchFilter').click();
-
-      const expectedUrl = getUrlWithQuery(keyword, label);
-      cy.url().should('eq', expectedUrl);
-    })
-  })
+        const expectedUrl = getUrlWithQuery(keyword, label);
+        cy.url().should('eq', expectedUrl);
+      });
+    });
+  });
 });
 
 describe('When someone navigates to a search url:', function () {

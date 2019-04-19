@@ -1,11 +1,5 @@
-import { ContentfulElementValidator as Element } from '../../Contentful/ContentfulElementValidator'
-import { ContentBlockManager } from '../../Contentful/Models/ContentBlockModel';
+import { ContentBlockQueryManager } from '../../Contentful/QueryManagers/ContentBlockQueryManager';
 import { SearchBar } from '../../support/SearchBar';
-
-function preSearchContentBlockShouldBeDisplayed(contentBlock) {
-  cy.get('app-suggested').find('.suggested-container').as('preSearchContentBlock');
-  Element.shouldContainText('preSearchContentBlock', contentBlock.content);
-}
 
 describe('The pre-search content block should be displayed:', function () {
   let preSearchContentBlock;
@@ -13,27 +7,36 @@ describe('The pre-search content block should be displayed:', function () {
   beforeEach(function () {
     cy.visit('/');
 
-    const cbm = new ContentBlockManager()
-    cbm.saveContentBlockByTitle('suggestedSearch');
-    cy.wrap({ cbm }).its("cbm.suggestedSearch").should('exist').then(() => {
-      preSearchContentBlock = cbm['suggestedSearch'];
-    });
+    const cbqm = new ContentBlockQueryManager()
+    cbqm.fetchContentBlockByTitle('suggestedSearch').then(() =>{
+      preSearchContentBlock = cbqm.queryResult;
+    })
+
+    //Define common elements
+    cy.get('app-suggested').find('.suggested-container').as('preSearchContent');
   });
 
   it('Before a search', function () {
-    preSearchContentBlockShouldBeDisplayed(preSearchContentBlock);
+    cy.get('@preSearchContent').should('be.visible').displayedText().then(elementText =>{
+      expect(elementText).to.contain(preSearchContentBlock.content.displayedText);
+    })
   });
 
   it('After the search bar is cleared using the icon or manually', function () {
     const searchString = 'a'
-    SearchBar.enterKeyword(searchString);
+    SearchBar.enterKeyword(searchString).then(() =>{
+      cy.get('.ais-SearchBox-reset').as('clearSearchIcon').click();
+      cy.get('@preSearchContent').should('be.visible').displayedText().then(elementText =>{
+        expect(elementText).to.contain(preSearchContentBlock.content.displayedText);
+      })
+    })
 
-    cy.get('.ais-SearchBox-reset').as('clearSearchIcon').click();
-    preSearchContentBlockShouldBeDisplayed(preSearchContentBlock);
+    SearchBar.enterKeyword(searchString).then(()=>{
+      SearchBar.clear();
 
-    SearchBar.enterKeyword(searchString);
-    SearchBar.clear();
-
-    preSearchContentBlockShouldBeDisplayed(preSearchContentBlock);
+      cy.get('@preSearchContent').should('be.visible').displayedText().then(elementText =>{
+        expect(elementText).to.contain(preSearchContentBlock.content.displayedText);
+      })
+    });
   });
 });

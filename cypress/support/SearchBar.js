@@ -1,11 +1,16 @@
 export class SearchBar {
-  static enterKeyword(keyword) {
+  /**
+   * Types a keyword into the search bar.
+   *
+   * @param {string} keyword
+   * @param {number} charEntryDelay ms (optional)
+   */
+  static enterKeyword(keyword, charEntryDelay = 10) {
     SearchBar.clear();
 
     cy.get('.ais-SearchBox-input').as('searchField');
-    cy.get('@searchField').type(keyword);
+    return cy.get('@searchField').type(keyword, { delay: charEntryDelay });
   }
-
 
   static clear(){
     cy.get('.ais-SearchBox-input').as('searchField').clear();
