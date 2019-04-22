@@ -27,7 +27,8 @@ describe('Given a result indexed from a Page, When that link is clicked, Then th
     });
   });
 
-  it('Keyword: "Woman Camp" - just an ordinary page', function () {
+  //This event is passed, so does not appear near the top of search results
+  it.skip('Keyword: "Woman Camp" - just an ordinary page', function () {
     const womanCampUrl = `${Cypress.config().baseUrl}/womancamp/`;
     SearchBar.enterKeyword('Woman Camp').then(() => {
 

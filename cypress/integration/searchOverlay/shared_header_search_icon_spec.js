@@ -1,8 +1,18 @@
-describe('lll', function () {
-  it('The search overlay should open when the search icon is clicked on the homepage', function (){
-    cy.visit('/');
+import { SearchPanel } from '../../support/SearchPanel';
 
-    cy.get('crds-search[id=""] > button[data-target="#searchModal"]').as('searchIcon').click();
-//TODO add id to search button to make it unique from mobile
-  })
-})
+describe('The Search modal should be displayed when the search icon is clicked:', function () {
+  const pagesWithSearchIcon = ['/', '/giving', '/live'];
+  pagesWithSearchIcon.forEach(url => {
+    it(`From ${url}`, function () {
+      cy.visit(url);
+
+      //TODO replace element selector when shared header PR merged
+      cy.get('crds-search').eq(1).find('button[data-target="#searchModal"]').as('searchIcon').click();
+
+      //DE6720 - When the desktop search icon is clicked, the mobile search modal is what opens
+      cy.get('#mobile-search').find('.search-panel').as('searchPanel');
+      const searchPanel = new SearchPanel('searchPanel');
+      searchPanel.searchField.should('be.visible');
+    });
+  });
+});
