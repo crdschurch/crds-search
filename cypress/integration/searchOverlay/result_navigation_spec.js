@@ -1,10 +1,13 @@
 import { SearchPanelFactory } from '../../support/SearchPanel'
-
+//TODO test this
 describe('Given a result indexed from a Page, When that link is clicked, Then the expected page opens:', function () {
   let search;
   beforeEach(function () {
-    cy.visit('/search');
-    search = SearchPanelFactory.SearchPage();
+    cy.visit('/firstimpressions');
+
+    //DE6720 - force open the modal
+    cy.get('button[data-target="#searchModal"]').first().click({force: true});
+    search = SearchPanelFactory.MobileSharedHeaderSearchModal();
   });
 
   it('Keyword: "Woman Camp Signup" - page requires validation', function () {
