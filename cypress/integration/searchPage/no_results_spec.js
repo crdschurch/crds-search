@@ -1,13 +1,11 @@
 import { Formatter } from '../../support/Formatter';
-import { SearchPanel } from '../../support/SearchPanel';
+import { SearchPanelFactory } from '../../support/SearchPanel';
 
 describe('Concerning searches with no results:', function () {
   let search;
   beforeEach(function () {
     cy.visit('/search');
-
-    cy.get('app-root').find('.search-panel').as('searchPanel');
-    search = new SearchPanel('searchPanel');
+    search = SearchPanelFactory.SearchPage();
   });
 
   it('When a keyword returns no results, the expected "no results" message is displayed', function () {
@@ -43,9 +41,7 @@ describe('Concerning searches with no results:', function () {
 
     const resultsKeyword = 'god'
     search.clearedSearchField.type(resultsKeyword).then(() => {
-      cy.get('app-hit').first().as('firstResult');
-      cy.get('@firstResult').should('be.visible');
-
+      search.resultList.first().as('firstResult').should('be.visible');
       search.noResultsBlock.should('not.exist');
     });
   });

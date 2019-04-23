@@ -1,24 +1,17 @@
-import { SearchBar } from '../../support/SearchBar';
-
-//This returns the card title element, not the card
-function findCardTitleByHref(href, aliasForCard) {
-  cy.get(`[class*="hit-title"][href="${href}"]`).first().as(`${aliasForCard}`);
-  cy.get(`@${aliasForCard}`).scrollIntoView();
-}
-
-function shouldNotFindCardWithHref(href) {
-  cy.get(`[class*="hit-title"][href="${href}"]`).should('not.exist');
-}
+import { SearchPanelFactory } from '../../support/SearchPanel'
 
 describe('Given a result indexed from a Page, When that link is clicked, Then the expected page opens:', function () {
+  let search;
   beforeEach(function () {
     cy.visit('/search');
+    search = SearchPanelFactory.SearchPage();
   });
 
   it('Keyword: "Woman Camp Signup" - page requires validation', function () {
     const womanCampSignupUrl = `${Cypress.config().baseUrl}/womancamp/signup/`;
-    SearchBar.enterKeyword('Woman Camp Signup').then(() => {
-      findCardTitleByHref(womanCampSignupUrl, 'womanCampSignupCard');
+
+    search.clearedSearchField.type('Woman Camp Signup').then(() => {
+      search.resultTitlesByHref(womanCampSignupUrl).first().scrollIntoView().as('womanCampSignupCard');
       cy.get('@womanCampSignupCard').should('exist').and('be.visible');
 
       cy.get('@womanCampSignupCard').click({ force: true });
@@ -27,12 +20,11 @@ describe('Given a result indexed from a Page, When that link is clicked, Then th
     });
   });
 
-  //This event is passed, so does not appear near the top of search results
-  it.skip('Keyword: "Woman Camp" - just an ordinary page', function () {
+  it('Keyword: "Woman Camp" - just an ordinary page', function () {
     const womanCampUrl = `${Cypress.config().baseUrl}/womancamp/`;
-    SearchBar.enterKeyword('Woman Camp').then(() => {
 
-      findCardTitleByHref(womanCampUrl, 'womanCampCard');
+    search.clearedSearchField.type('Woman Camp').then(() => {
+      search.resultTitlesByHref(womanCampUrl).first().scrollIntoView().as('womanCampCard');
       cy.get('@womanCampCard').should('exist').and('be.visible');
 
       cy.get('@womanCampCard').first().click();
@@ -42,21 +34,24 @@ describe('Given a result indexed from a Page, When that link is clicked, Then th
 
   it('Keyword: "Locker Room" - page excluded from search', function () {
     const lockerRoomUrl = `${Cypress.config().baseUrl}/lockerroom`;
-    SearchBar.enterKeyword('Locker Room').then(() => {
-      shouldNotFindCardWithHref(lockerRoomUrl);
+    search.clearedSearchField.type('Locker Room').then(() => {
+      search.resultTitlesByHref(lockerRoomUrl).should('not.exist');
     });
   })
 })
 
 describe('Given a result indexed from a System Page, When that link is clicked, Then the expected page opens:', function () {
+  let search;
   beforeEach(function () {
     cy.visit('/search');
+    search = SearchPanelFactory.SearchPage();
   });
 
   it('Keyword: "Live Streaming" - page lives in crds-net', function () {
     const liveUrl = `${Cypress.config().baseUrl}/live`;
-    SearchBar.enterKeyword('Live Streaming').then(() => {
-      findCardTitleByHref(liveUrl, 'liveStreamingCard');
+
+    search.clearedSearchField.type('Live Streaming').then(() => {
+      search.resultTitlesByHref(liveUrl).first().scrollIntoView().as('liveStreamingCard');
       cy.get('@liveStreamingCard').should('exist').and('be.visible');
 
       cy.get('@liveStreamingCard').click();
@@ -66,19 +61,21 @@ describe('Given a result indexed from a System Page, When that link is clicked, 
 
   it('Keyword: "Corkboard" - pages lives in crds-corkboard and is an angular page', function () {
     const corkboardUrl = `${Cypress.config().baseUrl}/corkboard`;
-    SearchBar.enterKeyword('Corkboard').then(() => {
-      findCardTitleByHref(corkboardUrl, 'corkboardCard');
+
+    search.clearedSearchField.type('Corkboard').then(() => {
+      search.resultTitlesByHref(corkboardUrl).first().scrollIntoView().as('corkboardCard');
       cy.get('@corkboardCard').should('exist').and('be.visible');
 
-      cy.get('@corkboardCard').click();
+      cy.get('@corkboardCard').click({ force: true });
       cy.get('[href="/corkboard/need"]', { timeout: 20000 }).as('corkboardNeedButton').should('exist').and('be.visible');
     });
   });
 
   it('Keyword: "Media" - page lives in crds-media and requires a redirect to the media subdomain', function () {
     const mediaURL = `${Cypress.config().baseUrl}/media`;
-    SearchBar.enterKeyword('Media').then(() => {
-      findCardTitleByHref(mediaURL, 'mediaCard');
+
+    search.clearedSearchField.type('Media').then(() => {
+      search.resultTitlesByHref(mediaURL).first().scrollIntoView().as('mediaCard');
       cy.get('@mediaCard').should('exist').and('be.visible');
 
       cy.get('@mediaCard').click();

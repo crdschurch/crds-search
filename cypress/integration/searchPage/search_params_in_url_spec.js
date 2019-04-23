@@ -1,4 +1,4 @@
-import { SearchBar } from '../../support/SearchBar';
+import { SearchPanelFactory } from '../../support/SearchPanel';
 
 function getUrlWithQuery(keyword, filterLabel = undefined) {
   const encodedKeyword = encodeURI(keyword);
@@ -10,24 +10,26 @@ function getUrlWithQuery(keyword, filterLabel = undefined) {
 }
 
 describe('When someone searches:', function () {
+  let search;
   beforeEach(function () {
     cy.visit('/search');
+    search = SearchPanelFactory.SearchPage();
   });
 
   it('For a keyword, the keyword should be included in the url', function () {
     const keyword = 'God';
     const expectedUrl = getUrlWithQuery(keyword);
 
-    SearchBar.enterKeyword(keyword, 1000).then(() => {
+    search.clearedSearchField.type(keyword, { delay: 1000 }).then(() => {
       cy.url().should('eq', expectedUrl);
     });
   });
 
   it('For a keyword and selects filter, the keyword and filter should be included in the url', function () {
     const keyword = 'God';
+    search.clearedSearchField.type(keyword).then(() => {
+      search.filterList.last().as('searchFilter');
 
-    SearchBar.enterKeyword(keyword).then(() => {
-      cy.get('.ais-Menu-item').last().as('searchFilter');
       cy.get('@searchFilter').find('.ais-Menu-label').should('have.prop', 'textContent').then(label => {
         cy.get('@searchFilter').click();
 
@@ -44,8 +46,8 @@ describe('When someone navigates to a search url:', function () {
 
     cy.visit(urlWithQuery);
 
-    cy.get('app-hit').first().as('firstResult');
-    cy.get('@firstResult').should('be.visible');
+    const search = SearchPanelFactory.SearchPage();
+    search.resultList.first().as('firstResult').should('be.visible');
   })
 
   it('With a keyword and filter in it, the page should load with the filtered results for the keyword', function () {
@@ -54,11 +56,10 @@ describe('When someone navigates to a search url:', function () {
 
     cy.visit(urlWithFilteredQuery);
 
-    cy.get('app-hit').first().as('firstResult');
-    cy.get('@firstResult').should('be.visible');
+    const search = SearchPanelFactory.SearchPage();
+    search.resultList.first().as('firstResult').should('be.visible');
 
-    cy.get('[class="ais-Menu-item ais-Menu-item--selected"]').as('selectedFilter');
-    cy.get('@selectedFilter').find('.ais-Menu-label').should('have.prop', 'textContent').then(label => {
+    search.selectedFilter.find('.ais-Menu-label').as('selectedFilter').should('have.prop', 'textContent').then(label => {
       expect(label).to.be.eq(filterType);
     })
   })
