@@ -28,7 +28,7 @@ describe('Given a result indexed from a Page, When that link is clicked, Then th
     search.clearedSearchField.type('Woman Camp');
     search.getResultTitlesByHref(womanCampUrl).first().scrollIntoView().as('womanCampCard')
       .should('exist').and('be.visible')
-      .click();
+      .click({ force: true });
 
     cy.url().should('eq', womanCampUrl);
   });
@@ -57,7 +57,7 @@ describe('Given a result indexed from a System Page, When that link is clicked, 
     search.clearedSearchField.type('Live Streaming');
     search.getResultTitlesByHref(liveUrl).first().scrollIntoView().as('liveStreamingCard')
       .should('exist').and('be.visible')
-      .click();
+      .click({ force: true });
 
     cy.get('#recent-message-btn').as('watchMessageButton').should('exist').and('be.visible');
   })

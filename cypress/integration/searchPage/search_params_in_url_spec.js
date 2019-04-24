@@ -28,7 +28,7 @@ describe('When someone searches:', function () {
   it('For a keyword and selects filter, the keyword and filter should be included in the url', function () {
     const keyword = 'God';
     search.clearedSearchField.type(keyword).then(() => {
-      search.filterList.eq(1).as('searchFilter'); //Select the second filter
+      search.filterList.eq(1).scrollIntoView().as('searchFilter'); //Select the second filter
 
       cy.get('@searchFilter').find('.ais-Menu-label').should('have.prop', 'textContent').then(label => {
         cy.get('@searchFilter').click();
