@@ -1,16 +1,17 @@
 import { Formatter } from '../../support/Formatter';
-import { SearchBar } from '../../support/SearchBar';
+import { SearchPanelFactory } from '../../support/SearchPanel';
 
 describe('Concerning searches with no results:', function () {
+  let search;
   beforeEach(function () {
-    cy.visit('/');
+    cy.visit('/search');
+    search = SearchPanelFactory.SearchPage();
   });
 
   it('When a keyword returns no results, the expected "no results" message is displayed', function () {
     const noResultsKeyword = 'a7'
-    SearchBar.enterKeyword(noResultsKeyword).then(() => {
-      cy.get('.no-results').as('noResultsBlock');
-      cy.get('@noResultsBlock').should('be.visible');
+    search.clearedSearchField.type(noResultsKeyword).then(() => {
+      search.noResultsBlock.as('noResultsBlock').should('be.visible');
 
       //No results text matches
       cy.get('@noResultsBlock').find('[data-automation-id="no-results-message"]').as('noResultsMessage');
@@ -22,9 +23,8 @@ describe('Concerning searches with no results:', function () {
 
   it('When a keyword returns no results, links to other pages are displayed', function () {
     const noResultsKeyword = 'a7'
-    SearchBar.enterKeyword(noResultsKeyword).then(() => {
-      cy.get('.no-results').as('noResultsBlock');
-      cy.get('@noResultsBlock').should('be.visible');
+    search.clearedSearchField.type(noResultsKeyword).then(() => {
+      search.noResultsBlock.as('noResultsBlock').should('be.visible');
 
       //Expected urls exist
       cy.get('@noResultsBlock').find('[data-automation-id="no-results-corkboard-link"]').as('corkboardLink');
@@ -37,14 +37,12 @@ describe('Concerning searches with no results:', function () {
 
   it('When a successful search is made after a no-results search, results are displayed', function () {
     const noResultsKeyword = 'a7'
-    SearchBar.enterKeyword(noResultsKeyword);
+    search.clearedSearchField.type(noResultsKeyword);
 
     const resultsKeyword = 'god'
-    SearchBar.enterKeyword(resultsKeyword).then(() => {
-      cy.get('app-hit').first().as('firstResult');
-      cy.get('@firstResult').should('be.visible');
-
-      cy.get('app-no-results').find('.no-results').should('not.exist');
+    search.clearedSearchField.type(resultsKeyword).then(() => {
+      search.resultList.first().as('firstResult').should('be.visible');
+      search.noResultsBlock.should('not.exist');
     });
   });
 })
