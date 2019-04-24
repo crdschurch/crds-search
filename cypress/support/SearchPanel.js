@@ -1,8 +1,8 @@
-export class SearchPanelFactory{
+export class SearchPanelFactory {
   /**
    * Returns the SearchPanel for /search. Test must have /search open before calling this.
    */
-  static SearchPage(){
+  static SearchPage() {
     cy.get('app-root').find('.search-panel').as('searchPanel');
     return new SearchPanel('searchPanel');
   }
@@ -10,64 +10,64 @@ export class SearchPanelFactory{
   /**
    * Returns the SearchPanel for the mobile version of the Shared Header
    */
-  static MobileSharedHeaderSearchModal(){
+  static MobileSharedHeaderSearchModal() {
     cy.get('#mobile-search').find('.search-panel').as('searchPanel');
     return new SearchPanel('searchPanel');
   }
 }
 
 class SearchPanel {
-  constructor(panelAlias){
+  constructor (panelAlias) {
     this.alias = panelAlias;
   }
 
-  get searchField(){
+  get searchField() {
     return cy.get(`@${this.alias}`).find('.ais-SearchBox-input');
   }
 
-  get clearedSearchField(){
+  get clearedSearchField() {
     this.searchField.as('searchField').clear();
     cy.get('@searchField').should('have.prop', 'value', '');
     return this.searchField;
   }
 
   //X in the search field iff it has text
-  get resetIcon(){
+  get resetIcon() {
     return cy.get(`@${this.alias}`).find('.ais-SearchBox-reset');
   }
 
   /**
    * Results/Suggested
    */
-  get suggestedSearchBlock(){
+  get suggestedSearchBlock() {
     return cy.get(`@${this.alias}`).find('.suggested-container');
   }
 
-   get noResultsBlock(){
+  get noResultsBlock() {
     return cy.get(`@${this.alias}`).find('.no-results');
   }
 
-  get resultList(){
+  get resultList() {
     return cy.get(`@${this.alias}`).find('app-hit');
   }
 
   //This doesn't return the full card context - only the title line.
-  resultTitlesByHref(href){
+  getResultTitlesByHref(href) {
     return cy.get(`@${this.alias}`).find(`[class*="hit-title"][href="${href}"]`)
   }
 
   /**
    * Filters
    */
-  get filterList(){
+  get filterList() {
     return cy.get(`@${this.alias}`).find('.ais-Menu-item')
   }
 
-  get filterNames(){
+  get filterNames() {
     return cy.get(`@${this.alias}`).find('.ais-Menu-item').find('.ais-Menu-label');
   }
 
-  get selectedFilter(){
+  get selectedFilter() {
     return cy.get(`@${this.alias}`).find('[class="ais-Menu-item ais-Menu-item--selected"]')
   }
 }
