@@ -1,29 +1,8 @@
-import { RealAlgolia } from '../../Algolia/RealAlgolia';
+import { AlgoliaAPI } from '../../Algolia/AlgoliaAPI';
 
 /**
  * Verifies that the Algolia responses contain what we expect so we know our stubbed responses are accurate.
  */
-//TODO convert old Algolia query manager to use this
-describe('Tests the response for a keyword contain the expected properties', function () {
-  const keywords = ['god', 'lksjd;flakjds'];
-  keywords.forEach(keyword => {
-    it(`Response for keyword ${keyword} should have keyword, hit count, and pagination information`, function () {
-      const responseWrapper = RealAlgolia.fetchResultsForKeyword(keyword);
-      cy.wrap({ responseWrapper }).its('responseWrapper.responseReady').should('be.true').then(() => {
-        return responseWrapper.responseBody;
-      }).then(response => {
-        expect(response).to.have.property('query', keyword);
-        expect(response).to.have.property('params');
-
-        expect(response).to.have.property('hitsPerPage');
-        expect(response).to.have.property('hits').with.property('length').lte(response.hitsPerPage);
-
-        expect(response).to.have.property('nbHits');
-        expect(response).to.have.property('nbPages', Math.ceil(response.nbHits / response.hitsPerPage));
-      });
-    });
-  });
-});
 
 const standardProperties = ['title', 'category', 'tags', 'description', 'url', 'objectID', 'image']
 const contentTypeProperties = {
@@ -42,13 +21,29 @@ const contentTypeProperties = {
   album: ['date', 'duration', 'date_timestamp', 'author'],
 }
 
-describe('Tests the responses for each content type have the expected properties', function () {
-  Object.keys(contentTypeProperties).forEach(type => {
-    it(`Testing ${type} properties`, function () {
-      const responseWrapper = RealAlgolia.fetchResultsByContentType(type);
-      cy.wrap({ responseWrapper }).its('responseWrapper.responseReady').should('be.true').then(() => {
-        const response = responseWrapper.responseBody;
+describe('Tests that the responses from the Algilia API have expected properties', function (){
+  const keywords = ['god', 'lksjd;flakjds'];
+  keywords.forEach(keyword => {
 
+    it(`Response for keyword "${keyword}" should have keyword, hit count, and pagination information`, function () {
+      AlgoliaAPI.searchByKeyword(keyword).then(response => {
+        expect(response).to.have.property('query', keyword);
+        expect(response).to.have.property('params');
+
+        expect(response).to.have.property('hitsPerPage');
+        expect(response).to.have.property('hits').with.property('length').lte(response.hitsPerPage);
+
+        expect(response).to.have.property('nbHits');
+        expect(response).to.have.property('nbPages', Math.ceil(response.nbHits / response.hitsPerPage));
+      });
+    });
+  });
+
+  const algoliaContentTypes = Object.keys(contentTypeProperties);
+  algoliaContentTypes.forEach(type => {
+
+    it(`Responses for content type "${type}" should have expected properties`, function () {
+      AlgoliaAPI.searchByContentType(type).then(response => {
         expect(response).to.have.property('hits').with.property('length').gte('0');
         return response.hits[0];
       }).then(firstHit => {

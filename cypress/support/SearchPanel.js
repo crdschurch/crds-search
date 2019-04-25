@@ -60,14 +60,14 @@ class SearchPanel {
    * Filters
    */
   get filterList() {
-    return cy.get(`@${this.alias}`).find('.ais-Menu-item')
+    return cy.get(`@${this.alias}`).find('.ais-Menu-link')
   }
 
   get filterNames() {
-    return cy.get(`@${this.alias}`).find('.ais-Menu-item').find('.ais-Menu-label');
+    return this.filterList.find('.ais-Menu-label');
   }
 
   get selectedFilter() {
-    return cy.get(`@${this.alias}`).find('[class="ais-Menu-item ais-Menu-item--selected"]')
+    return cy.get(`@${this.alias}`).find('[class="ais-Menu-item ais-Menu-item--selected"]').find('.ais-Menu-link')
   }
 }
