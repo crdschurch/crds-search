@@ -32,7 +32,7 @@ class SearchPanel {
   }
 
   //X in the search field iff it has text
-  get resetIcon(){
+  get resetIcon() {
     return cy.get(`@${this.alias}`).find('.ais-SearchBox-reset');
   }
 
