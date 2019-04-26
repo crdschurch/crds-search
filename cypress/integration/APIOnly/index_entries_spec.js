@@ -1,18 +1,40 @@
 import { AlgoliaAPI } from "../../Algolia/AlgoliaAPI";
 
-//Want to make sure certain results are in the index without using the front end
+const expectedEntries = [
+  {
+    title: 'Woman Camp Signup',
+    url: `${Cypress.config().baseUrl}/womancamp/signup/`
+  },
+  {
+    title: 'Woman Camp',
+    url: `${Cypress.config().baseUrl}/womancamp/`
+  },
+  {
+    title: 'Live Streaming',
+    url: `${Cypress.config().baseUrl}/live`
+  },
+  {
+    title: 'Corkboard',
+    url: `${Cypress.config().baseUrl}/corkboard`
+  },
+  {
+    title: 'Media',
+    url: `${Cypress.config().baseUrl}/media`
+  }
+]
 
-describe('Tests that certain entries exist in the index', function (){
-  it('Woman Camp Signup should exist', function (){
-    const title = 'Woman Camp Signup'
-    AlgoliaAPI.searchByKeyword(title).then(response => {
-      expect(response).to.have.property('hits').with.property('length').gte('0');
-      return response.hits;
-    }).then(results => {
-      const match = results.find(r => {
-        return r.title === title;
-      });
-      expect(match.url).to.equal(`${Cypress.config().baseUrl}/womancamp/signup/`);
+describe('Tests that certain entries exist in the index', function () {
+  expectedEntries.forEach(entry => {
+    it(`${entry.title} should exist`, function () {
+      AlgoliaAPI.searchByKeyword(entry.title).then(response => {
+        expect(response).to.have.property('hits').with.property('length').gte('0');
+        return response.hits;
+      }).then(results => {
+        const match = results.find(r => {
+          return r.title === entry.title;
+        });
+        expect(match.url).to.equal(entry.url);
+      })
     })
   })
 })
