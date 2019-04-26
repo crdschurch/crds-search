@@ -4,15 +4,19 @@ import { SearchPanelFactory } from '../../support/SearchPanel';
 describe('The pre-search content block should be displayed:', function () {
   let preSearchContentBlock;
   let search;
-  beforeEach(function () {
-    cy.visit('/search');
-
+  before(function (){
     const cbqm = new ContentBlockQueryManager()
     cbqm.fetchContentBlockByTitle('suggestedSearch').then(() =>{
       preSearchContentBlock = cbqm.queryResult;
-    })
+    });
+  })
 
-    search = SearchPanelFactory.SearchPage();
+  beforeEach(function () {
+    cy.visit('/firstimpressions');
+
+    //DE6720 - force open the modal
+    cy.get('button[data-target="#searchModal"]').first().click({force: true});
+    search = SearchPanelFactory.MobileSharedHeaderSearchModal();
     search.suggestedSearchBlock.as('preSearchContent');
   });
 

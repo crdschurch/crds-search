@@ -3,9 +3,15 @@ import { SearchPanelFactory } from '../../support/SearchPanel';
 
 describe('Concerning searches with no results:', function () {
   let search;
+  before(function() {
+    cy.visit('/firstimpressions');
+
+    //DE6720 - force open the modal
+    cy.get('button[data-target="#searchModal"]').first().click({force: true});
+  });
+
   beforeEach(function () {
-    cy.visit('/search');
-    search = SearchPanelFactory.SearchPage();
+    search = SearchPanelFactory.MobileSharedHeaderSearchModal();
   });
 
   it('When a keyword returns no results, the expected "no results" message is displayed', function () {

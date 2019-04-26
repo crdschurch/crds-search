@@ -1,7 +1,7 @@
 import { SearchPanelFactory } from '../../support/SearchPanel'
 
 describe('The Search modal should be displayed when the search icon is clicked:', function () {
-  const pagesWithSearchIcon = ['/', '/giving', '/live'];
+  const pagesWithSearchIcon = ['/', '/giving', '/live', '/firstimpressions'];
   pagesWithSearchIcon.forEach(url => {
     it(`From ${url}`, function () {
       cy.visit(url);
