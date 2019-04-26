@@ -1,10 +1,26 @@
 import algoliasearch from "algoliasearch";
 
 export class AlgoliaAPI {
-  static searchByKeyword(keyword) {
-    return AlgoliaAPI.search({query: keyword});
+  /**
+   * Queries Algolia for a keyword
+   * @param {string} keyword
+   * @param {boolean} ignoreHitsPerPage - If true, returns up to the first 1000 hits, else returns up to the configured hitsPerPage limit
+   * @returns Cypress promise containing the response
+   */
+  static searchByKeyword(keyword, ignoreHitsPerPage=false) {
+    const queryObject = {query: keyword};
+    if(ignoreHitsPerPage == true){
+      queryObject.offset = 0;
+      queryObject.length = 1000;
+    }
+    return AlgoliaAPI.search(queryObject);
   }
 
+  /**
+   * Queries Algolia for results by content type
+   * @param {string} contentType
+   * @returns Cypress promise containing the response
+   */
   static searchByContentType(contentType) {
     return AlgoliaAPI.search({ facetFilters: [`contentType:${contentType}`] });
   }
