@@ -18,7 +18,7 @@ const expectedEntries = [
     url: `${Cypress.config().baseUrl}/corkboard`
   },
   {
-    title: 'Media',
+    title: 'Crossroads Media',
     url: `${Cypress.config().baseUrl}/media`
   }
 ]
