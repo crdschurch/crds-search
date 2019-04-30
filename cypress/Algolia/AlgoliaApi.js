@@ -1,4 +1,4 @@
-import { ResponseWrapper } from '../support/ResponseWrapper';
+import { ResponseWrapper } from './ResponseWrapper'
 
 export class AlgoliaApi {
   static getQueryResponse(keyword) {
