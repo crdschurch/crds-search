@@ -9,7 +9,7 @@ function getUrlWithQuery(keyword, filterLabel = undefined) {
   return url;
 }
 
-describe('When someone searches:', function () {
+describe.only('When someone searches:', function () {
   let search;
   beforeEach(function () {
     cy.visit('/search');
@@ -31,7 +31,7 @@ describe('When someone searches:', function () {
       search.filterList.eq(1).scrollIntoView().as('searchFilter'); //Select the second filter
 
       cy.get('@searchFilter').find('.ais-Menu-label').should('have.prop', 'textContent').then(label => {
-        cy.get('@searchFilter').click();
+        cy.get('@searchFilter').click({ force: true });
 
         const expectedUrl = getUrlWithQuery(keyword, label);
         cy.url().should('eq', expectedUrl);
