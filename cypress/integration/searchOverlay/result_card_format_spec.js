@@ -128,7 +128,7 @@ describe('Search results can be filtered by type and cards are formatted correct
     // search = SearchPanelFactory.MobileSharedHeaderSearchModal();
   })
 
-  //Cypress._.times(10, i => {
+  Cypress._.times(1, i => {
   resultContentSpecs.forEach(type => {
     it(`Tests ${type.filter} filter and card layout`, function () {
       if (currentKeyword !== type.keyword) {
@@ -137,36 +137,15 @@ describe('Search results can be filtered by type and cards are formatted correct
         currentKeyword = type.keyword;
       }
 
-      const pageFilter = new SearchFilterHelper('searchPanel');//TODO not liking the random alias
-      pageFilter.findFilterByName(type.filter).click();
-
-      pageFilter.findFilterByName(type.filter)
-        //cy.get(pageFilter.filterAlias).click()
-        .should('have.prop', 'class', 'ais-Menu-item ais-Menu-item--selected').then(() => {
-          //search.selectedFilterLabel.should('have.text', type.filter) //Redundant
+      search.filters.selectFilter(type.filter).then(() => {
           search.resultList.first().as(`first${type.filter}Card`);
 
           const firstCard = new ResultCard(`first${type.filter}Card`);
           type.cardComponents.forEach(content => {
             verifyCardHasComponent(firstCard, content);
           })
-       // })
       })
-
-      //search.getFilterByName(type.filter).as('filter').click();
-      //search.selectedFilterLabel.should('have.text', type.filter)
-      // search.aliasFilterByName(type.filter);
-      // cy.get(`@${type.filter}Filter`).click();
-      // cy.get(`@${type.filter}Filter`).should('have.prop', 'class', 'ais-Menu-item ais-Menu-item--selected').then(() => {
-      //   search.selectedFilterLabel.should('have.text', type.filter) //Redundant
-      //   search.resultList.first().as(`first${type.filter}Card`);
-
-      //   const firstCard = new ResultCard(`first${type.filter}Card`);
-      //   type.cardComponents.forEach(content => {
-      //     verifyCardHasComponent(firstCard, content);
-      //   })
-      // })
     })
   })
 })
-// })
+})

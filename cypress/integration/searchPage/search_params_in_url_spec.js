@@ -25,19 +25,29 @@ describe('When someone searches:', function () {
     });
   });
 
-  it('For a keyword and selects filter, the keyword and filter should be included in the url', function () {
+  //TODO finishe testing this
+  Cypress._.times(5, i =>{
+  it.only('For a keyword and selects a filter, the keyword and filter should be included in the url', function () {
     const keyword = 'God';
+    const filter = 'message';
     search.clearedSearchField.type(keyword).then(() => {
-      search.filterList.eq(1).scrollIntoView().as('searchFilter'); //Select the second filter
-
-      cy.get('@searchFilter').find('.ais-Menu-label').should('have.prop', 'textContent').then(label => {
-        cy.get('@searchFilter').click();
-
-        const expectedUrl = getUrlWithQuery(keyword, label);
+      search.filters.selectFilter(filter).then(() =>{
+        const expectedUrl = getUrlWithQuery(keyword, filter);
         cy.url().should('eq', expectedUrl);
-      });
+      })
+
+      // search.filterList.eq(1).scrollIntoView().as('searchFilter'); //Select the second filter
+
+      // cy.get('@searchFilter').find('.ais-Menu-label').should('have.prop', 'textContent').then(label => {
+      //   cy.get('@searchFilter').click();
+
+      //   const expectedUrl = getUrlWithQuery(keyword, label);
+      //   cy.url().should('eq', expectedUrl);
+      // });
     });
   });
+
+})
 });
 
 describe('When someone navigates to a search url:', function () {
