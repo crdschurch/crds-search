@@ -1,4 +1,4 @@
-import { SearchPanelFactory, ResultCard } from "../../support/SearchPanel";
+import { SearchPanelFactory, ResultCard, SearchFilterHelper } from "../../support/SearchPanel";
 
 //Tests the results are formatted by content
 const resultContentSpecs = [
@@ -107,13 +107,7 @@ function verifyCardHasComponent(resultCard, component) {
   }
 }
 
-// function reloadAndSearchIfDifferentKeyword(currentKeyword, newKeyword) {
-//   if(currentKeyword !== newKeyword){
-//     cy.visit('http://localhost:3000/');
-//     search.clearedSearchField.type(type.keyword);
-//     currentKeyword = type.keyword;
-//   }
-// }
+
 
 describe('Search results can be filtered by type and cards are formatted correctly', function () {
   let search;
@@ -123,7 +117,7 @@ describe('Search results can be filtered by type and cards are formatted correct
 
     // //DE6720 - force open the modal
     // cy.get('button[data-target="#searchModal"]').first().click({ force: true });
-    // search = SearchPanelFactory.MobileSharedHeaderSearchModal();
+
 
     //TODO build for /search so can serve locally
     cy.visit('http://localhost:3000/');///search');
@@ -131,25 +125,48 @@ describe('Search results can be filtered by type and cards are formatted correct
 
   beforeEach(function () {
     search = SearchPanelFactory.SearchPage();
-    // search.clearedSearchField.type('God');
+    // search = SearchPanelFactory.MobileSharedHeaderSearchModal();
   })
 
+  //Cypress._.times(10, i => {
   resultContentSpecs.forEach(type => {
     it(`Tests ${type.filter} filter and card layout`, function () {
-      if(currentKeyword !== type.keyword){
-        cy.visit('http://localhost:3000/');
+      if (currentKeyword !== type.keyword) {
+        cy.visit('http://localhost:3000/'); //TODO remove before merge - not needed for modal
         search.clearedSearchField.type(type.keyword);
         currentKeyword = type.keyword;
       }
 
-      search.getFilterByName(type.filter).click(); //TODO need to wait for filter to apply before any further assertions
-      search.selectedFilterLabel.should('have.text', type.filter);
-      search.resultList.first().as(`first${type.filter}Card`);
+      const pageFilter = new SearchFilterHelper('searchPanel');//TODO not liking the random alias
+      pageFilter.findFilterByName(type.filter).click();
 
-      const firstCard = new ResultCard(`first${type.filter}Card`);
-      type.cardComponents.forEach(content => {
-        verifyCardHasComponent(firstCard, content);
+      pageFilter.findFilterByName(type.filter)
+        //cy.get(pageFilter.filterAlias).click()
+        .should('have.prop', 'class', 'ais-Menu-item ais-Menu-item--selected').then(() => {
+          //search.selectedFilterLabel.should('have.text', type.filter) //Redundant
+          search.resultList.first().as(`first${type.filter}Card`);
+
+          const firstCard = new ResultCard(`first${type.filter}Card`);
+          type.cardComponents.forEach(content => {
+            verifyCardHasComponent(firstCard, content);
+          })
+       // })
       })
+
+      //search.getFilterByName(type.filter).as('filter').click();
+      //search.selectedFilterLabel.should('have.text', type.filter)
+      // search.aliasFilterByName(type.filter);
+      // cy.get(`@${type.filter}Filter`).click();
+      // cy.get(`@${type.filter}Filter`).should('have.prop', 'class', 'ais-Menu-item ais-Menu-item--selected').then(() => {
+      //   search.selectedFilterLabel.should('have.text', type.filter) //Redundant
+      //   search.resultList.first().as(`first${type.filter}Card`);
+
+      //   const firstCard = new ResultCard(`first${type.filter}Card`);
+      //   type.cardComponents.forEach(content => {
+      //     verifyCardHasComponent(firstCard, content);
+      //   })
+      // })
     })
   })
 })
+// })

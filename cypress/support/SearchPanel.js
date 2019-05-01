@@ -69,13 +69,26 @@ class SearchPanel {
   /**
    * Filters
    */
+  aliasFilterByName(filterName) {
+    cy.get(`@${this._alias}`).find('.ais-Menu').should('have.prop', 'textContent').then(text => {
+      if(text.includes('Show more')) {
+        cy.get(`@${this._alias}`).find('.ais-Menu-showMore').click();
+      }
+    }).then(() => {
+      const labelAlias = `${filterName}FilterLabel`;
+      cy.get(`@${this._alias}`).find('.ais-Menu-label').contains(filterName).as(labelAlias);
+      cy.get(`@${labelAlias}`).parent('.ais-Menu-link').as(`${filterName}FilterLink`);
+      cy.get(`@${filterName}FilterLink`).parent('.ais-Menu-item').as(`${filterName}Filter`) //top level
+    })
+  }
+
   getFilterByName(filterName) {
     return cy.get(`@${this._alias}`).find('.ais-Menu').should('have.prop', 'textContent').then(text => {
       if(text.includes('Show more')) {
         cy.get(`@${this._alias}`).find('.ais-Menu-showMore').click();
       }
     }).then(() => {
-      return cy.get(`@${this._alias}`).find('.ais-Menu-label').contains(filterName);
+      return cy.get(`@${this._alias}`).find('.ais-Menu-item').contains(filterName);
     })
   }
 
@@ -101,6 +114,50 @@ class SearchPanel {
 
   get showMoreFilters() {
     return cy.get(`@${this._alias}`).find('.ais-Menu-showMore');
+  }
+}
+
+/**
+ * Finds a filter and creates aliases for each component
+ */
+export class SearchFilterHelper {
+  constructor(searchPanelAlias){
+    this._searchAlias = searchPanelAlias;
+  }
+
+  //TODO test?
+  selectFilter(filterName) {
+    return this._clickShowMoreIfDisplayed().then(() => {
+      cy.get(`@${this._searchAlias}`).find('.ais-Menu-label').contains(filterName).parent()
+    })
+  }
+
+
+  //The class name of this item changes when selected, so must be re-found
+ //TODO issue here is the menu-item drops off the dom when renamed - we'd need to reget it manually after being selected
+
+  findFilterByName(filterName) {
+    return this._clickShowMoreIfDisplayed().then(() => {
+      this._filterAlias = `${filterName}Filter`;
+      this._filterLinkAlias = `${filterName}FilterLink`;
+      this._filterLabelAlias = `${filterName}FilterLabel`;
+      cy.get(`@${this._searchAlias}`).find('.ais-Menu-label').contains(filterName).as(this._filterLabelAlias);
+      cy.get(`@${this._filterLabelAlias}`).parent('.ais-Menu-link').as(this._filterLinkAlias);
+      return cy.get(`@${this._filterLinkAlias}`).parent('.ais-Menu-item').as(this._filterAlias); //top level//'.ais-Menu-item'
+
+    })
+  }
+
+  //returns the 'show more' button or the search menu bar <- not linkin this but not indented to be chained really
+  _clickShowMoreIfDisplayed() {
+    cy.get(`@${this._searchAlias}`).find('.ais-Menu').as('searchMenu');
+    return cy.get('@searchMenu').should('have.prop', 'textContent').then(text => {
+      if(text.includes('Show more')) {
+        return cy.get('@searchMenu').find('.ais-Menu-showMore').click();
+      } else {
+        return cy.get('@searchMenu');
+      }
+    })
   }
 }
 
