@@ -9,7 +9,7 @@ function getUrlWithQuery(keyword, filterLabel = undefined) {
   return url;
 }
 
-describe.only('When someone searches:', function () {
+describe('When someone searches:', function () {
   let search;
   beforeEach(function () {
     cy.visit('/search');

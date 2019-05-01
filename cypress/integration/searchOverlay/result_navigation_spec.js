@@ -1,6 +1,6 @@
 import { SearchPanelFactory } from '../../support/SearchPanel'
 
-describe.only('Searching for a keyword returns results, and the expected page opens when a result is clicked', function (){
+describe('Searching for a keyword returns results, and the expected page opens when a result is clicked', function () {
   let search;
   beforeEach(function () {
     cy.visit('/firstimpressions');
@@ -16,8 +16,7 @@ describe.only('Searching for a keyword returns results, and the expected page op
     search.getResultTitlesByHref(buyABikiniUrl).first().scrollIntoView().as('articleCard')
       .should('exist').and('be.visible')
       .click({ force: true });
-
-      cy.url().should('eq', buyABikiniUrl);
+    cy.url().should('eq', buyABikiniUrl);
   })
 
   it('Searching for a page that requires authentication opens /signin', function () {
