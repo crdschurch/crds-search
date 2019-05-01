@@ -73,10 +73,10 @@ describe('Given a result indexed from a System Page, When that link is clicked, 
     cy.get('[href="/corkboard/need"]', { timeout: 20000 }).as('corkboardNeedButton').should('exist').and('be.visible');
   });
 
-  it('Keyword: "Media" - page lives in crds-media and requires a redirect to the media subdomain', function () {
+  it('Keyword: "Crossroads Media" - page lives in crds-media and requires a redirect to the media subdomain', function () {
     const mediaURL = `${Cypress.config().baseUrl}/media`;
 
-    search.clearedSearchField.type('Media');
+    search.clearedSearchField.type('Crossroads Media');
     search.getResultTitlesByHref(mediaURL).first().scrollIntoView().as('mediaCard')
       .should('exist').and('be.visible')
       .click({ force: true });
