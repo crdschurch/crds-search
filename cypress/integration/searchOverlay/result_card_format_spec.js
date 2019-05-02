@@ -1,4 +1,4 @@
-import { SearchPanelFactory, ResultCard, SearchFilterHelper } from "../../support/SearchPanel";
+import { SearchPanelFactory, ResultCard } from "../../support/SearchPanel";
 
 //Tests the results are formatted by content
 const resultContentSpecs = [

@@ -28,3 +28,7 @@ import { Formatter } from './Formatter';
 Cypress.Commands.add('displayedText', {prevSubject: 'element'}, (subject) =>{
   return cy.wrap(subject).should('have.prop', 'textContent').then(elementText => Formatter.normalizeText(elementText));
 });
+
+Cypress.Commands.add('text', { prevSubject: 'element' }, (subject) => {
+  return cy.wrap(subject).should('have.prop', 'textContent');
+});

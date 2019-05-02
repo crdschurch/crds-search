@@ -21,33 +21,25 @@ describe('When someone searches:', function () {
     const expectedUrl = getUrlWithQuery(keyword);
 
     search.clearedSearchField.type(keyword, { delay: 1000 }).then(() => {
-      cy.url().should('eq', expectedUrl);
+      search.searchField.should('have.prop', 'value', keyword).then(() => {
+        cy.url().should('eq', expectedUrl);
+      });
     });
   });
 
-  //TODO finishe testing this
-  Cypress._.times(5, i =>{
-  it.only('For a keyword and selects a filter, the keyword and filter should be included in the url', function () {
+  it('For a keyword and selects a filter, the keyword and filter should be included in the url', function () {
     const keyword = 'God';
     const filter = 'message';
+    const expectedUrl = getUrlWithQuery(keyword, filter);
+
     search.clearedSearchField.type(keyword).then(() => {
-      search.filters.selectFilter(filter).then(() =>{
-        const expectedUrl = getUrlWithQuery(keyword, filter);
-        cy.url().should('eq', expectedUrl);
+      search.searchField.should('have.prop', 'value', keyword).then(() => {
+        search.filters.selectFilter(filter).then(() => {
+          cy.url().should('eq', expectedUrl);
+        })
       })
-
-      // search.filterList.eq(1).scrollIntoView().as('searchFilter'); //Select the second filter
-
-      // cy.get('@searchFilter').find('.ais-Menu-label').should('have.prop', 'textContent').then(label => {
-      //   cy.get('@searchFilter').click();
-
-      //   const expectedUrl = getUrlWithQuery(keyword, label);
-      //   cy.url().should('eq', expectedUrl);
-      // });
     });
   });
-
-})
 });
 
 describe('When someone navigates to a search url:', function () {
@@ -61,16 +53,13 @@ describe('When someone navigates to a search url:', function () {
   })
 
   it('With a keyword and filter in it, the page should load with the filtered results for the keyword', function () {
-    const filterType = 'message';
-    const urlWithFilteredQuery = getUrlWithQuery('god', filterType);
+    const filter = 'message';
+    const urlWithFilteredQuery = getUrlWithQuery('god', filter);
 
     cy.visit(urlWithFilteredQuery);
 
     const search = SearchPanelFactory.SearchPage();
+    search.filters.selectedFilterName.should('eq', filter);
     search.resultList.first().as('firstResult').should('be.visible');
-
-    search.selectedFilter.find('.ais-Menu-label').as('selectedFilter').should('have.prop', 'textContent').then(label => {
-      expect(label).to.be.eq(filterType);
-    })
-  })
+  });
 });
