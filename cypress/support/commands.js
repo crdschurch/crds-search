@@ -32,3 +32,12 @@ Cypress.Commands.add('displayedText', {prevSubject: 'element'}, (subject) =>{
 Cypress.Commands.add('text', { prevSubject: 'element' }, (subject) => {
   return cy.wrap(subject).should('have.prop', 'textContent');
 });
+
+//Here for convenience but use sparingly - we usually want these to be thrown
+Cypress.Commands.add('ignoreUncaughtException', (expectedMessage) => {
+  cy.on('uncaught:exception', (err) => {
+    expect(err.message).to.include(expectedMessage);
+    done();
+    return false;
+  });
+});

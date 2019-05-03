@@ -2,10 +2,6 @@ import { AlgoliaAPI } from "../../Algolia/AlgoliaAPI";
 
 const expectedEntries = [
   {
-    title: 'Woman Camp Signup',
-    url: `${Cypress.config().baseUrl}/womancamp/signup/`
-  },
-  {
     title: 'Woman Camp',
     url: `${Cypress.config().baseUrl}/womancamp/`
   },
@@ -18,7 +14,7 @@ const expectedEntries = [
     url: `${Cypress.config().baseUrl}/corkboard`
   },
   {
-    title: 'Crossroads Media',
+    title: 'Media',
     url: `${Cypress.config().baseUrl}/media`
   }
 ]

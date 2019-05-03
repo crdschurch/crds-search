@@ -64,6 +64,12 @@ const resultContentSpecs = [
   }
 ]
 
+const card = [{
+  keyword: 'Wherever',
+  filter: 'album',
+  cardComponents: ['title', 'description', 'image', 'date']
+}]
+
 function verifyCardHasComponent(resultCard, component) {
   switch (component) {
     case 'title':
@@ -113,7 +119,7 @@ describe('Search results can be filtered by type and cards are formatted correct
   let search;
   let currentKeyword;
   before(function () {
-    // cy.visit('/firstimpressions');
+    // cy.visit('/prayer');
 
     // //DE6720 - force open the modal
     // cy.get('button[data-target="#searchModal"]').first().click({ force: true });
@@ -128,7 +134,6 @@ describe('Search results can be filtered by type and cards are formatted correct
     // search = SearchPanelFactory.MobileSharedHeaderSearchModal();
   })
 
-  Cypress._.times(1, i => {
   resultContentSpecs.forEach(type => {
     it(`Tests ${type.filter} filter and card layout`, function () {
       if (currentKeyword !== type.keyword) {
@@ -138,14 +143,11 @@ describe('Search results can be filtered by type and cards are formatted correct
       }
 
       search.filters.selectFilter(type.filter).then(() => {
-          search.resultList.first().as(`first${type.filter}Card`);
-
-          const firstCard = new ResultCard(`first${type.filter}Card`);
-          type.cardComponents.forEach(content => {
-            verifyCardHasComponent(firstCard, content);
-          })
-      })
-    })
-  })
-})
-})
+        const firstCard = search.results.firstCard;
+        type.cardComponents.forEach(content => {
+          verifyCardHasComponent(firstCard, content);
+        });
+      });
+    });
+  });
+});

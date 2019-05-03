@@ -3,9 +3,8 @@ import { AlgoliaAPI } from '../../Algolia/AlgoliaAPI';
 /**
  * Verifies that the Algolia responses contain what we expect so we know our stubbed responses are accurate.
  */
-
 const standardProperties = ['title', 'category', 'tags', 'description', 'url', 'objectID', 'image']
-const contentTypeProperties = {
+const requiredProperties = {
   page: [],
   message: ['date', 'duration', 'date_timestamp', 'series'],
   series: ['start_date', 'end_date', 'messages', 'date_timestamp'],
@@ -17,8 +16,24 @@ const contentTypeProperties = {
   promo: ['date', 'date_timestamp'],
   location: ['serviceTimes', 'map_url'],
   podcast: ['author', 'children_count'],
-  category: [],
   album: ['date', 'duration', 'date_timestamp', 'author'],
+  category: []
+}
+
+const optionalProperties = {
+  page: [],
+  message: ['date', 'duration', 'date_timestamp', 'series'],
+  series: ['start_date', 'end_date', 'messages', 'date_timestamp'],
+  video: ['date', 'duration', 'date_timestamp'],
+  article: ['date', 'duration', 'date_timestamp', 'author'],
+  episode: ['date', 'duration', 'date_timestamp', 'podcast'],
+  song: ['date', 'duration', 'date_timestamp'],
+  author: [],
+  promo: ['date', 'date_timestamp'],
+  location: ['serviceTimes', 'map_url'],
+  podcast: ['author', 'children_count'],
+  album: ['date', 'duration', 'date_timestamp', 'author'],
+  category: []
 }
 
 describe('Tests that the responses from the Algilia API have expected properties', function (){
@@ -39,9 +54,8 @@ describe('Tests that the responses from the Algilia API have expected properties
     });
   });
 
-  const algoliaContentTypes = Object.keys(contentTypeProperties);
+  const algoliaContentTypes = Object.keys(requiredProperties);
   algoliaContentTypes.forEach(type => {
-
     it(`Responses for content type "${type}" should have expected properties`, function () {
       AlgoliaAPI.searchByContentType(type).then(response => {
         expect(response).to.have.property('hits').with.property('length').gte('0');
@@ -49,7 +63,7 @@ describe('Tests that the responses from the Algilia API have expected properties
       }).then(firstHit => {
         expect(firstHit).to.have.property('contentType', type);
 
-        const expectedProperties = standardProperties.concat(contentTypeProperties[type]);
+        const expectedProperties = standardProperties.concat(requiredProperties[type]);
         expectedProperties.forEach(prop => {
           expect(firstHit).to.have.property(prop).and.to.not.be.undefined;
         })

@@ -49,8 +49,8 @@ describe('When someone navigates to a search url:', function () {
     cy.visit(urlWithQuery);
 
     const search = SearchPanelFactory.SearchPage();
-    search.resultList.first().as('firstResult').should('be.visible');
-  })
+    search.results.firstCard.title.should('be.visible');
+  });
 
   it('With a keyword and filter in it, the page should load with the filtered results for the keyword', function () {
     const filter = 'message';
@@ -60,6 +60,6 @@ describe('When someone navigates to a search url:', function () {
 
     const search = SearchPanelFactory.SearchPage();
     search.filters.selectedFilterName.should('eq', filter);
-    search.resultList.first().as('firstResult').should('be.visible');
+    search.results.firstCard.title.should('be.visible');
   });
 });
