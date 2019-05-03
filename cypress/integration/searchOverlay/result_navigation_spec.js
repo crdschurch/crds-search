@@ -17,7 +17,7 @@ describe('Searching for a keyword returns results, and the expected page opens w
     cy.url().should('eq', mediaPageUrl);
   })
 
-  it.only('Searching for a page that requires authentication opens /signin', function () {
+  it('Searching for a page that requires authentication opens /signin', function () {
     const requiresAuthUrl = `${Cypress.config().baseUrl}/preschool/register/`;
 
     search.clearedSearchField.type('Preschool Registration');

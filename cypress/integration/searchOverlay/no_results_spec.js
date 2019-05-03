@@ -14,7 +14,7 @@ describe('Concerning searches with no results:', function () {
     search = SearchPanelFactory.MobileSharedHeaderSearchModal();
   });
 
-  it.only('When a keyword returns no results, the expected "no results" message is displayed', function () {
+  it('When a keyword returns no results, the expected "no results" message is displayed', function () {
     const noResultsKeyword = 'a7'
     search.clearedSearchField.type(noResultsKeyword).then(() => {
       search.results.noResultsBlock.as('noResultsBlock').should('be.visible')

@@ -4,23 +4,7 @@ import { AlgoliaAPI } from '../../Algolia/AlgoliaAPI';
  * Verifies that the Algolia responses contain what we expect so we know our stubbed responses are accurate.
  */
 const standardProperties = ['title', 'category', 'tags', 'description', 'url', 'objectID', 'image']
-const requiredProperties = {
-  page: [],
-  message: ['date', 'duration', 'date_timestamp', 'series'],
-  series: ['start_date', 'end_date', 'messages', 'date_timestamp'],
-  video: ['date', 'duration', 'date_timestamp'],
-  article: ['date', 'duration', 'date_timestamp', 'author'],
-  episode: ['date', 'duration', 'date_timestamp', 'podcast'],
-  song: ['date', 'duration', 'date_timestamp'],
-  author: [],
-  promo: ['date', 'date_timestamp'],
-  location: ['serviceTimes', 'map_url'],
-  podcast: ['author', 'children_count'],
-  album: ['date', 'duration', 'date_timestamp', 'author'],
-  category: []
-}
-
-const optionalProperties = {
+const contentTypeProperties = {
   page: [],
   message: ['date', 'duration', 'date_timestamp', 'series'],
   series: ['start_date', 'end_date', 'messages', 'date_timestamp'],
@@ -54,7 +38,7 @@ describe('Tests that the responses from the Algilia API have expected properties
     });
   });
 
-  const algoliaContentTypes = Object.keys(requiredProperties);
+  const algoliaContentTypes = Object.keys(contentTypeProperties);
   algoliaContentTypes.forEach(type => {
     it(`Responses for content type "${type}" should have expected properties`, function () {
       AlgoliaAPI.searchByContentType(type).then(response => {
@@ -63,7 +47,7 @@ describe('Tests that the responses from the Algilia API have expected properties
       }).then(firstHit => {
         expect(firstHit).to.have.property('contentType', type);
 
-        const expectedProperties = standardProperties.concat(requiredProperties[type]);
+        const expectedProperties = standardProperties.concat(contentTypeProperties[type]);
         expectedProperties.forEach(prop => {
           expect(firstHit).to.have.property(prop).and.to.not.be.undefined;
         })
