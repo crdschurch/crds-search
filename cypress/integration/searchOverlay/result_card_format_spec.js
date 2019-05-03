@@ -64,12 +64,6 @@ const resultContentSpecs = [
   }
 ]
 
-const card = [{
-  keyword: 'Wherever',
-  filter: 'album',
-  cardComponents: ['title', 'description', 'image', 'date']
-}]
-
 function verifyCardHasComponent(resultCard, component) {
   switch (component) {
     case 'title':
@@ -113,31 +107,23 @@ function verifyCardHasComponent(resultCard, component) {
   }
 }
 
-
-
 describe('Search results can be filtered by type and cards are formatted correctly', function () {
   let search;
   let currentKeyword;
   before(function () {
-    // cy.visit('/prayer');
+    cy.visit('/prayer');
 
-    // //DE6720 - force open the modal
-    // cy.get('button[data-target="#searchModal"]').first().click({ force: true });
-
-
-    //TODO build for /search so can serve locally
-    cy.visit('http://localhost:3000/');///search');
+    //DE6720 - force open the modal
+    cy.get('button[data-target="#searchModal"]').first().click({ force: true });
   })
 
   beforeEach(function () {
-    search = SearchPanelFactory.SearchPage();
-    // search = SearchPanelFactory.MobileSharedHeaderSearchModal();
+    search = SearchPanelFactory.MobileSharedHeaderSearchModal();
   })
 
   resultContentSpecs.forEach(type => {
     it(`Tests ${type.filter} filter and card layout`, function () {
       if (currentKeyword !== type.keyword) {
-        cy.visit('http://localhost:3000/'); //TODO remove before merge - not needed for modal
         search.clearedSearchField.type(type.keyword);
         currentKeyword = type.keyword;
       }
