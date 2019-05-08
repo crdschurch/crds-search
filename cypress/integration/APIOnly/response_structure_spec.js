@@ -3,7 +3,6 @@ import { AlgoliaAPI } from '../../Algolia/AlgoliaAPI';
 /**
  * Verifies that the Algolia responses contain what we expect so we know our stubbed responses are accurate.
  */
-
 const standardProperties = ['title', 'category', 'tags', 'description', 'url', 'objectID', 'image']
 const contentTypeProperties = {
   page: [],
@@ -17,8 +16,8 @@ const contentTypeProperties = {
   promo: ['date', 'date_timestamp'],
   location: ['serviceTimes', 'map_url'],
   podcast: ['author', 'children_count'],
-  category: [],
   album: ['date', 'duration', 'date_timestamp', 'author'],
+  category: []
 }
 
 describe('Tests that the responses from the Algilia API have expected properties', function (){
@@ -41,7 +40,6 @@ describe('Tests that the responses from the Algilia API have expected properties
 
   const algoliaContentTypes = Object.keys(contentTypeProperties);
   algoliaContentTypes.forEach(type => {
-
     it(`Responses for content type "${type}" should have expected properties`, function () {
       AlgoliaAPI.searchByContentType(type).then(response => {
         expect(response).to.have.property('hits').with.property('length').gte('0');

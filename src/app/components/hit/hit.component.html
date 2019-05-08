@@ -11,8 +11,8 @@
   </div>
 
   <img class="img-responsive"
-    [attr.ix-src]="hit | imgixAspectRatio" 
-    sizes="(min-width: 768px) 180px, 100vw" 
+    [attr.ix-src]="hit | imgixAspectRatio"
+    sizes="(min-width: 768px) 180px, 100vw"
     alt="{{ hit.title }}">
 </a>
 
@@ -20,7 +20,7 @@
 
 <div class="hit-meta text-gray-light">
   <p class="font-size-smaller flush">
-    <a *ngIf="hit.map_url" href="{{ hit.map_url }}" target="_blank" class="font-size-smaller flush">
+    <a *ngIf="hit.map_url" href="{{ hit.map_url }}" target="_blank" class="font-size-smaller flush" data-automation-id="hit-directions">
       Get Directions
     </a>
     <span *ngIf="hit.start_date && hit.end_date" class="hit-series-date">{{hit.start_date}} - {{hit.end_date}}</span>
