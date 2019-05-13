@@ -114,6 +114,7 @@ class SearchFilterHelper {
    */
   selectFilter(filterName) {
     return this._filterMenu().contains('[class="ais-Menu-item"]', filterName)
+      .scrollIntoView()
       .should('be.visible') //Verify this is visible since we need to force the click to avoid flaky tests due to erroneous 'element not visible' errors on click
       .click({ force: true }).then(() => {
         //Clicking the filter removes the original element from the DOM, so re-find it and return

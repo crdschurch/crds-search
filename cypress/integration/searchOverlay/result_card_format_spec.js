@@ -48,7 +48,7 @@ const resultContentSpecs = [
     cardComponents: ['title', 'description', 'image']
   },
   {
-    keyword: 'Wherever',
+    keyword: 'Whatever',
     filter: 'album',
     cardComponents: ['title', 'description', 'image', 'date']
   },
@@ -107,26 +107,39 @@ function verifyCardHasComponent(resultCard, component) {
   }
 }
 
-describe('Search results can be filtered by type and cards are formatted correctly', function () {
+function openPageAndSearchModal() {
+  cy.visit('/prayer');
+
+  //DE6720 - force open the modal
+  cy.get('button[data-target="#searchModal"]').first().click({ force: true });
+  return SearchPanelFactory.MobileSharedHeaderSearchModal();
+}
+
+//Reload the whole page to ensure a previous filter is not applied to the results of a new keyword.
+// This takes time though, so only do it when necessary.
+function searchForKeyword(keywordStatus){
   let search;
-  let currentKeyword;
-  before(function () {
-    cy.visit('/prayer');
-
-    //DE6720 - force open the modal
-    cy.get('button[data-target="#searchModal"]').first().click({ force: true });
-  })
-
-  beforeEach(function () {
+  if (keywordStatus.current !== keywordStatus.next) {
+    search = openPageAndSearchModal();
+    search.clearedSearchField.type(keywordStatus.next);
+    keywordStatus.current = keywordStatus.next;
+  } else {
     search = SearchPanelFactory.MobileSharedHeaderSearchModal();
-  })
+  }
+
+  return search;
+}
+
+describe('Search results can be filtered by type and cards are formatted correctly', function () {
+  const keywordStatus = {
+    current: undefined,
+    next: undefined
+  }
 
   resultContentSpecs.forEach(type => {
     it(`Tests ${type.filter} filter and card layout`, function () {
-      if (currentKeyword !== type.keyword) {
-        search.clearedSearchField.type(type.keyword);
-        currentKeyword = type.keyword;
-      }
+      keywordStatus.next = type.keyword;
+      const search = searchForKeyword(keywordStatus);
 
       search.filters.selectFilter(type.filter).then(() => {
         const firstCard = search.results.firstCard;
