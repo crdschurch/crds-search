@@ -50,6 +50,7 @@
     "@types/algoliasearch": "3.30.1",
     "@types/jasmine": "3.3.5",
     "@types/jasminewd2": "2.0.6",
+    "algoliasearch": "^3.32.1",
     "bootstrap-sass": "^3.4.1",
     "codelyzer": "4.5.0",
     "crds-cypress-tools": "^1.2.0",
