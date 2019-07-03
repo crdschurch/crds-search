@@ -12,12 +12,18 @@ describe('The pre-search content block should be displayed:', function () {
   })
 
   beforeEach(function () {
-    cy.visit('/prayer');
-
-    //DE6720 - force open the modal
-    cy.get('button[data-target="#searchModal"]').first().click({ force: true });
-    search = SearchPanelFactory.MobileSharedHeaderSearchModal();
+    cy.visit('/search');
+    search = SearchPanelFactory.SearchPage();
   });
+
+  //Use below for testing the search overlay
+  // beforeEach(function () {
+  //   cy.visit('/prayer');
+
+  //   //DE6720 - force open the modal
+  //   cy.get('button[data-target="#searchModal"]').first().click({ force: true });
+  //   search = SearchPanelFactory.MobileSharedHeaderSearchModal();
+  // });
 
   it('Before a search', function () {
     search.results.suggestedSearchBlock.as('preSearchContent')
