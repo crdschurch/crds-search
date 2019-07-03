@@ -20,6 +20,13 @@ const expectedEntries = [
 ]
 
 describe('Tests these entries exist in the index', function () {
+  it.skip('tests', function() {
+    AlgoliaAPI.searchByKeyword('Corkboard', true).then(response => {
+      expect(response).to.have.property('hits').with.property('length').gte('0');
+      cy.log(`response is ${JSON.stringify(response)}`);
+    })
+  });
+
   expectedEntries.forEach(entry => {
     it(`"${entry.title}" should be searchable`, function () {
       AlgoliaAPI.searchByKeyword(entry.title, true).then(response => {

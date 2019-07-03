@@ -1,13 +1,13 @@
-import { ContentBlockQueryManager } from '../../Contentful/QueryManagers/ContentBlockQueryManager';
 import { SearchPanelFactory } from '../../support/SearchPanel';
+import { ContentfulLibrary } from 'crds-cypress-tools';
 
 describe('The pre-search content block should be displayed:', function () {
   let preSearchContentBlock;
   let search;
   before(function () {
-    const cbqm = new ContentBlockQueryManager()
-    cbqm.fetchContentBlockByTitle('suggestedSearch').then(() => {
-      preSearchContentBlock = cbqm.queryResult;
+    const cbqm = new ContentfulLibrary.queryManager.contentBlockQueryManager();
+    cbqm.fetchSingleEntry(cbqm.query.byTitle('suggestedSearch')).then(contentBlock => {
+      preSearchContentBlock = contentBlock;
     });
   })
 

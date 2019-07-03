@@ -1,6 +1,5 @@
 import { AlgoliaAPI } from '../../Algolia/AlgoliaAPI';
-import { SeriesQueryManager } from '../../Contentful/QueryManagers/SeriesQueryManager';
-import { MessageQueryManager } from '../../Contentful/QueryManagers/MessageQueryManager';
+import { ContentfulLibrary } from 'crds-cypress-tools';
 
 /*
 * Note: Since we are not modifying entries in Contentful, these tests only passively confirm that the message link is stored correctly in Algolia when either the
@@ -8,9 +7,9 @@ import { MessageQueryManager } from '../../Contentful/QueryManagers/MessageQuery
 */
 describe("Given that the link to a message includes its series, When a message or series is updated, Then the message result should have the correct link:", function () {
   it('The most recently updated message should have the correct url', function () {
-    const mqm = new MessageQueryManager();
-    mqm.fetchRecentlyUpdatedMessage().then(() => {
-      const updatedMessage = mqm.queryResult;
+    const mqm = new ContentfulLibrary.queryManager.messageQueryManager();
+    mqm.fetchSingleEntry(mqm.query.orderBy.updatedMostRecently).then(message => {
+      const updatedMessage = message;
       const messageURL = updatedMessage.URL.absolute;
 
       AlgoliaAPI.searchByKeyword(updatedMessage.title.text).then(response => {
@@ -26,9 +25,9 @@ describe("Given that the link to a message includes its series, When a message o
   })
 
   it('A message in the most recently updated series should have the correct url', function () {
-    const sqm = new SeriesQueryManager();
-    sqm.saveRecentlyUpdatedSeriesWithMessage().then(() => {
-      const updatedSeries = sqm.queryResult;
+    const sqm = new ContentfulLibrary.queryManager.seriesQueryManager();
+    sqm.fetchSingleEntry(`${sqm.query.orderBy.updatedMostRecently}&${sqm.query.messageExists(true)}`).then(series => {
+      const updatedSeries = series;
 
       updatedSeries.fetchPublishedMessages().then(() => {
         cy.wrap({ updatedSeries }).its('updatedSeries.messages').should('have.length.gte', 1).then(() => {
