@@ -9,7 +9,7 @@ install:
   - yarn install
 defaults: &runCypress
   script:
-  - "$(yarn bin)/cypress run --record --key $cypressDashboard --parallel --group crds-search-parallel --env useConfig=$config_file,CONTENTFUL_SPACE_ID=$contentfulSpaceId,CONTENTFUL_ACCESS_TOKEN=$contentfulToken,ALGOLIA_APP_ID=$algoliaAppId,ALGOLIA_API_KEY=$algoliaApiKey"
+  - "$(yarn bin)/cypress run --record --key $cypressDashboard --parallel --group crds-search-parallel -c baseUrl=$baseURL --env useConfig=$config_file,CONTENTFUL_SPACE_ID=$contentfulSpaceId,CONTENTFUL_ACCESS_TOKEN=$contentfulToken,ALGOLIA_APP_ID=$algoliaAppId,ALGOLIA_API_KEY=$algoliaApiKey"
 jobs:
   include:
   # run tests in parallel by including several jobs with same "stage" name
