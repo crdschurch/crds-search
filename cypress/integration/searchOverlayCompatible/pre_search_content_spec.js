@@ -1,23 +1,29 @@
-import { ContentBlockQueryManager } from '../../Contentful/QueryManagers/ContentBlockQueryManager';
 import { SearchPanelFactory } from '../../support/SearchPanel';
+import { ContentfulLibrary } from 'crds-cypress-tools';
 
 describe('The pre-search content block should be displayed:', function () {
   let preSearchContentBlock;
   let search;
   before(function () {
-    const cbqm = new ContentBlockQueryManager()
-    cbqm.fetchContentBlockByTitle('suggestedSearch').then(() => {
-      preSearchContentBlock = cbqm.queryResult;
+    const cbqm = new ContentfulLibrary.queryManager.contentBlockQueryManager();
+    cbqm.fetchSingleEntry(cbqm.query.byTitle('suggestedSearch')).then(contentBlock => {
+      preSearchContentBlock = contentBlock;
     });
   })
 
   beforeEach(function () {
-    cy.visit('/prayer');
-
-    //DE6720 - force open the modal
-    cy.get('button[data-target="#searchModal"]').first().click({ force: true });
-    search = SearchPanelFactory.MobileSharedHeaderSearchModal();
+    cy.visit('/search');
+    search = SearchPanelFactory.SearchPage();
   });
+
+  //Use below for testing the search overlay
+  // beforeEach(function () {
+  //   cy.visit('/prayer');
+
+  //   //DE6720 - force open the modal
+  //   cy.get('button[data-target="#searchModal"]').first().click({ force: true });
+  //   search = SearchPanelFactory.MobileSharedHeaderSearchModal();
+  // });
 
   it('Before a search', function () {
     search.results.suggestedSearchBlock.as('preSearchContent')

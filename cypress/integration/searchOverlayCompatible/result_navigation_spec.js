@@ -3,12 +3,18 @@ import { SearchPanelFactory } from '../../support/SearchPanel'
 describe('Searching for a keyword returns results, and the expected page opens when a result is clicked', function () {
   let search;
   beforeEach(function () {
-    cy.visit('/prayer');
-
-    //DE6720 - force open the modal
-    cy.get('button[data-target="#searchModal"]').first().click({ force: true });
-    search = SearchPanelFactory.MobileSharedHeaderSearchModal();
+    cy.visit('/search');
+    search = SearchPanelFactory.SearchPage();
   });
+
+  //Use below for testing the search overlay
+  // beforeEach(function () {
+  //   cy.visit('/prayer');
+
+  //   //DE6720 - force open the modal
+  //   cy.get('button[data-target="#searchModal"]').first().click({ force: true });
+  //   search = SearchPanelFactory.MobileSharedHeaderSearchModal();
+  // });
 
   it('Searching for an article opens the article in /media', function () {
     const mediaPageUrl = `${Cypress.config().baseUrl}/media/articles/god-told-me-to-buy-a-bikini`;

@@ -1,18 +1,26 @@
-import { Formatter } from '../../support/Formatter';
 import { SearchPanelFactory } from '../../support/SearchPanel';
 
 describe('Concerning searches with no results:', function () {
   let search;
-  before(function () {
-    cy.visit('/prayer');
-
-    //DE6720 - force open the modal
-    cy.get('button[data-target="#searchModal"]').first().click({ force: true });
+  before(function() {
+    cy.visit('/search');
   });
 
   beforeEach(function () {
-    search = SearchPanelFactory.MobileSharedHeaderSearchModal();
+    search = SearchPanelFactory.SearchPage();
   });
+
+  //Use below for testing the search overlay
+  // before(function () {
+  //   cy.visit('/prayer');
+
+  //   //DE6720 - force open the modal
+  //   cy.get('button[data-target="#searchModal"]').first().click({ force: true });
+  // });
+
+  // beforeEach(function () {
+  //   search = SearchPanelFactory.MobileSharedHeaderSearchModal();
+  // });
 
   it('When a keyword returns no results, the expected "no results" message is displayed', function () {
     const noResultsKeyword = 'a7'

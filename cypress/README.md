@@ -5,10 +5,6 @@ Environment variables needed to run locally:
 ```sh
 CYPRESS_CONTENTFUL_ACCESS_TOKEN
 CYPRESS_CONTENTFUL_SPACE_ID
-CYPRESS_CONTENTFUL_ENV
-CYPRESS_CRDS_BASE_URL #https://int.crossroads.net
-CYPRESS_CRDS_MEDIA_ENDPOINT #https://mediaint.crossroads.net
-CYPRESS_ALGOLIA_INDEX
 CYPRESS_ALGOLIA_APP_ID
 CYPRESS_ALGOLIA_API_KEY
 ```
@@ -16,18 +12,14 @@ CYPRESS_ALGOLIA_API_KEY
 
 Environment variables set in Netlify to run Cypress through Travis.ci:
 ```sh
+CYPRESS_CONFIG_FILE #which config file to use. ex. int_crossroads
+ALGOLIA_APP_ID
+ALGOLIA_API_KEY
 CONTENTFUL_ACCESS_TOKEN
 CONTENTFUL_SPACE_ID
-CONTENTFUL_ENV
 RUN_CYPRESS #true/false
 TRAVIS_CI #Travis's API Authentication token
 CYPRESS_INSTALL_BINARY = 0
-SITE_URL #https://int.crossroads.net/search
-CRDS_BASE_URL #https://int.crossroads.net
-CRDS_MEDIA_ENDPOINT #https://mediaint.crossroads.net
-ALGOLIA_INDEX
-ALGOLIA_APP_ID
-ALGOLIA_API_KEY
 ```
 
 ## Run Locally
@@ -42,4 +34,10 @@ or headless with:
 
 ```sh
 yarn run cypress run
+```
+
+The default config file used is int_crossroads. To load a different config, use the --env useConfig=[...] flag.
+```sh
+yarn run cypress open --env useConfig=demo_crossroads
+yarn run cypress run --env useConfig=demo_crossroads
 ```
