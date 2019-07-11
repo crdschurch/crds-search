@@ -11,6 +11,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "env:replace": "sed -i.bak \"s/env=\\\".*\\\"/env=\\\"$CRDS_ENV\\\"/g\" ./dist/search-ui/index.html",
     "package": "mkdirp ./dist/search-component && cat ./dist/search-ui/runtime.js ./dist/search-ui/polyfills.js ./dist/search-ui/scripts.js ./dist/search-ui/main.js > ./dist/search-component/crds-search.js"
   },
   "dependencies": {
@@ -31,8 +32,7 @@
     "angulartics2": "6.3.1",
     "contentful": "^7.1.0",
     "core-js": "2.6.1",
-    "crds-shared-header": "^0.7.2",
-    "crds-styles": "crdschurch/crds-styles#development",
+    "crds-styles": "3.3.3",
     "imgix.js": "^3.1.0",
     "jquery": "^3.3.1",
     "mkdirp": "^0.5.1",

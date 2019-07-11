@@ -1317,11 +1317,6 @@ boolbase@~1.0.0:
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha1-aN/1++YMUes3cl6p4+0xDcwed24=
 
-bootstrap-sass@^3.4.0:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/bootstrap-sass/-/bootstrap-sass-3.4.0.tgz#b1c330a56782347f626d31d497fa4aea16b3f99b"
-  integrity sha512-qdUyw4KmNNPSIdBadn+eyuuQFH0LsZlRCs6tor1zN8sQas7mnY5JNfemauraOdNPiFQd2gFeeo3gZjZZCuohZg==
-
 bootstrap-sass@^3.4.1:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/bootstrap-sass/-/bootstrap-sass-3.4.1.tgz#6843c73b1c258a0ac5cb2cc6f6f5285b664a8e9a"
@@ -2209,17 +2204,13 @@ crds-cypress-tools@^1.4.1:
   dependencies:
     remove-markdown "^0.3.0"
 
-crds-shared-header@^0.7.2:
-  version "0.7.3"
-  resolved "https://registry.yarnpkg.com/crds-shared-header/-/crds-shared-header-0.7.3.tgz#835c71ba121c854934ba1fe8314ccb815150eb2b"
-  integrity sha512-711591JpnaDyk+q1nfeY6GnR5ChkYWH1mPoCwVhcPix/J8N2pvtq9TrEZLCwnql5JLQoVwhyEr6VxITfnutQ6Q==
-
-crds-styles@crdschurch/crds-styles#development:
-  version "3.1.0"
-  resolved "https://codeload.github.com/crdschurch/crds-styles/tar.gz/24c149de5c3fc3f60c1f8ec7938d161dea6fa4e2"
+crds-styles@3.3.3:
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/crds-styles/-/crds-styles-3.3.3.tgz#834a0f50e017f816eacf0f806f09c703176ac7b3"
+  integrity sha512-SYrN37lm8rdV8RVwCzfiMEmjfI0W7edBM10BXLKqo3dS3NiQdMws/X0WAO3DvqTxQsfk3t2l+jFVTZzTD4uVOg==
   dependencies:
     aws-sdk "^2.381.0"
-    bootstrap-sass "^3.4.0"
+    bootstrap-sass "^3.4.1"
     cheerio "^1.0.0-rc.2"
     commander "^2.19.0"
     lodash "^4.17.11"
