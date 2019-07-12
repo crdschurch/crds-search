@@ -35,16 +35,24 @@
     })(window, document, 'script',
       'dataLayer', 'GTM-MFS4MJ');
   </script>
+
+  <script src="https://crds-components.netlify.com/dist/crds-components.js"></script>
 </head>
 
 <body class="crds-styles">
-  <div class="crds-shared-header">
-    <div data-header></div>
+  <div class="shared-header-skeleton">
+    <crds-shared-header env="int"></crds-shared-header>
   </div>
+  <div class="snail-trail-skeleton">
+    <crds-snail-trail name="trending" env="int"></crds-snail-trail>
+  </div>
+
   <app-root></app-root>
-  <div class="crds-shared-header">
-    <div data-footer></div>
+
+  <div class="shared-footer-skeleton">
+    <crds-shared-footer env="int"></crds-shared-footer>
   </div>
+
   <script>
     try {
       Typekit.load({
