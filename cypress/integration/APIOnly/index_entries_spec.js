@@ -24,11 +24,8 @@ describe('Tests these entries exist in the index', function () {
     it(`"${entry.title}" should be searchable`, function () {
       AlgoliaAPI.searchByKeyword(entry.title, true).then(response => {
         expect(response).to.have.property('hits').with.property('length').gte('0');
-        return response.hits;
-      }).then(results => {
-        const match = results.find(r => {
-          return r.title === entry.title;
-        });
+
+        const match = response.hits.find(r => r.title === entry.title);
         expect(match.url).to.equal(entry.url);
       })
     })
@@ -48,11 +45,8 @@ describe('Tests these entries are not in the index', function (){
     it(`"${entry.title}" should not be searchable`, function () {
       AlgoliaAPI.searchByKeyword(entry.title, true).then(response => {
         expect(response).to.have.property('hits').with.property('length').gte('0');
-        return response.hits;
-      }).then(results => {
-        const match = results.find(r => {
-          return r.title === entry.title;
-        });
+
+        const match = response.hits.find(r => r.title === entry.title);
         expect(match).to.be.undefined;
       })
     })
