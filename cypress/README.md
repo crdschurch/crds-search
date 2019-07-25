@@ -36,8 +36,8 @@ or headless with:
 yarn run cypress run
 ```
 
-The default config file used is int_crossroads. To load a different config, use the --env useConfig=[...] flag.
+The default config file used is int_crossroads. To load a different config, use the --env configFile=[...] flag.
 ```sh
-yarn run cypress open --env useConfig=demo_crossroads
-yarn run cypress run --env useConfig=demo_crossroads
+yarn run cypress open --env configFile=demo_crossroads
+yarn run cypress run --env configFile=demo_crossroads
 ```
