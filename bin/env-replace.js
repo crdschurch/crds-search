@@ -5,6 +5,7 @@ const replace = require("replace-in-file");
 // ---------------------------------------- | Environment Check
 
 const env = process.env.CRDS_ENV;
+
 if (env == "int" || env == "development" || env == "dev") {
   console.log("[env:replace] No replacement for int environment.");
   return;
@@ -26,6 +27,9 @@ try {
 }
 
 // ---------------------------------------- | Library
+
+// Demo uses the int library.
+if (env == "demo" || env == "release") return;
 
 const libOptions = {
   files: "./dist/search-ui/index.html",
