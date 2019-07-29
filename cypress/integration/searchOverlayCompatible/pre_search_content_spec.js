@@ -1,12 +1,12 @@
 import { SearchPanelFactory } from '../../support/SearchPanel';
-import { ContentfulLibrary } from 'crds-cypress-tools';
+import { ContentBlockQueryManager } from 'crds-cypress-contentful';
 
 describe('The pre-search content block should be displayed:', function () {
   let preSearchContentBlock;
   let search;
   before(function () {
-    const cbqm = new ContentfulLibrary.queryManager.contentBlockQueryManager();
-    cbqm.fetchSingleEntry(cbqm.query.byTitle('suggestedSearch')).then(contentBlock => {
+    const cbqm = new ContentBlockQueryManager();
+    cbqm.getSingleEntry(cbqm.query.byTitle('suggestedSearch')).then(contentBlock => {
       preSearchContentBlock = contentBlock;
     });
   })
@@ -28,7 +28,7 @@ describe('The pre-search content block should be displayed:', function () {
   it('Before a search', function () {
     search.results.suggestedSearchBlock.as('preSearchContent')
       .should('be.visible')
-      .displayedText().should('contain', preSearchContentBlock.content.displayedText);
+      .displayedText().should('contain', preSearchContentBlock.content.unformattedText);
   });
 
 
@@ -39,7 +39,7 @@ describe('The pre-search content block should be displayed:', function () {
         search.resetIcon.as('clearSearchIcon').click();
         search.results.suggestedSearchBlock.as('preSearchContent')
           .should('be.visible')
-          .displayedText().should('contain', preSearchContentBlock.content.displayedText);
+          .displayedText().should('contain', preSearchContentBlock.content.unformattedText);
       })
     })
   });
@@ -51,7 +51,7 @@ describe('The pre-search content block should be displayed:', function () {
         search.clearedSearchField.then(() => {
           search.results.suggestedSearchBlock.as('preSearchContent')
             .should('be.visible')
-            .displayedText().should('contain', preSearchContentBlock.content.displayedText);
+            .displayedText().should('contain', preSearchContentBlock.content.unformattedText);
         });
       });
     });

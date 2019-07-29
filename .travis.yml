@@ -1,15 +1,21 @@
 language: node_js
 node_js:
   - '10'
+dist: trusty #Needed to include Chrome
+addons:
+  chrome: stable
+  apt:
+    packages:
+      - libgconf-2-4
 cache:
+  yarn: true
   directories:
-    - ~/.yarn
     - ~/.cache
 install:
   - yarn install
 defaults: &runCypress
   script:
-  - "$(yarn bin)/cypress run --record --key $cypressDashboard --parallel --group crds-search-parallel -c baseUrl=$baseURL --env useConfig=$config_file,CONTENTFUL_SPACE_ID=$contentfulSpaceId,CONTENTFUL_ACCESS_TOKEN=$contentfulToken,ALGOLIA_APP_ID=$algoliaAppId,ALGOLIA_API_KEY=$algoliaApiKey"
+  - "$(yarn bin)/cypress run --record --key $cypressDashboard --parallel --group crds-search-parallel --browser chrome --env configFile=$configFile,CONTENTFUL_SPACE_ID=$contentfulSpaceId,CONTENTFUL_ACCESS_TOKEN=$contentfulToken,ALGOLIA_APP_ID=$algoliaAppId,ALGOLIA_API_KEY=$algoliaApiKey"
 jobs:
   include:
   # run tests in parallel by including several jobs with same "stage" name
