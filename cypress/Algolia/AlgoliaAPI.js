@@ -29,13 +29,12 @@ export class AlgoliaAPI {
     const client = algoliasearch(Cypress.env('ALGOLIA_APP_ID'), Cypress.env('ALGOLIA_API_KEY'));
     const index = client.initIndex(Cypress.env('ALGOLIA_INDEX'));
 
-    const responseWrapper = {}
-    index.search(queryObject).then(response => {
-      responseWrapper.response = response;
+    const response = {};
+    index.search(queryObject).then(result => {
+      response.result = result;
     })
 
-    //Warning: Cypress does not scope external Promises to their tests correctly.
-    //Responses must be converted into a Cypress 'promise like' object or tests will behave unexpectedly.
-    return cy.wrap({responseWrapper}).its('responseWrapper.response').should('not.be.undefined').then(() => responseWrapper.response )
+    //Cypress does not wait for external promises to resolve before continuing a test, so we must force it to wait
+    return cy.wrap({response}).its('response.result').should('not.be.undefined');
   }
 }

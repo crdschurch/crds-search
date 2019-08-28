@@ -1,0 +1,8 @@
+{
+  "baseUrl": "https://demo.crossroads.net",
+  "env": {
+    "CONTENTFUL_ENV": "demo",
+    "ALGOLIA_INDEX": "demo_crds",
+    "CRDS_MEDIA_ENDPOINT": "https://demo.crossroads.net/media"
+  }
+}

@@ -6,6 +6,8 @@ dist/
 .DS_Store
 .vscode
 loadenv.ps1
+.envrc
+
+#Cypress stuff
 cypress/videos
 cypress/screenshots
-cypress.env.json

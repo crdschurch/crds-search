@@ -17,12 +17,3 @@ $cr-path-to-icons-sprite: '/crds-styles/assets/svgs/';
 * {
   box-sizing: border-box;
 }
-
-// prevent jumpy loading
-.crds-shared-header {
-  min-height: 64px;
-
-  @media (min-width: 767px) {
-    min-height: 72px;
-  }
-}
