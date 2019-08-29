@@ -2,6 +2,7 @@
 [build]
   command = '''
   yarn run build --configuration=${COMPONENT_CONFIG}development &&
+  npm run env:replace &&
   yarn run package &&
   bash ./cypress/kickOffCypress.sh
   '''
@@ -9,18 +10,39 @@
 [context.deploy-preview]
   command = '''
   yarn run build --configuration=${COMPONENT_CONFIG}preview &&
+  npm run env:replace &&
   yarn run package
   '''
+
+[context.deploy-preview.environment]
+  CRDS_ENV = "int"
+
+[context.branch-deploy.environment]
+  CRDS_ENV = "int"
 
 [context.release]
   command = '''
   yarn run build --configuration=${COMPONENT_CONFIG}demo &&
+  npm run env:replace &&
   yarn run package &&
   bash ./cypress/kickOffCypress.sh
   '''
 
+[context.release.environment]
+  CRDS_ENV = "demo"
+
+[context.development.environment]
+  CRDS_ENV = "int"
+
 [context.master]
     command = '''
   yarn run build --configuration=${COMPONENT_CONFIG}production &&
+  npm run env:replace &&
   yarn run package 
   '''
+
+[context.master.environment]
+  CRDS_ENV = "prod"
+
+[context.production.environment]
+  CRDS_ENV = "prod"

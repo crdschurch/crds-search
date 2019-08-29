@@ -48,7 +48,7 @@ const resultContentSpecs = [
     cardComponents: ['title', 'description', 'image']
   },
   {
-    keyword: 'Whatever',
+    keyword: 'Whatever pleases',
     filter: 'album',
     cardComponents: ['title', 'description', 'image', 'date']
   },
@@ -115,16 +115,21 @@ function openPageAndSearchModal() {
   return SearchPanelFactory.MobileSharedHeaderSearchModal();
 }
 
+function openSearchPage() {
+  cy.visit('/search');
+  return SearchPanelFactory.SearchPage();
+}
+
 //Reload the whole page to ensure a previous filter is not applied to the results of a new keyword.
 // This takes time though, so only do it when necessary.
-function searchForKeyword(keywordStatus){
+function searchForKeyword(keywordStatus) {
   let search;
   if (keywordStatus.current !== keywordStatus.next) {
-    search = openPageAndSearchModal();
+    search = openSearchPage(); //openPageAndSearchModal();
     search.clearedSearchField.type(keywordStatus.next);
     keywordStatus.current = keywordStatus.next;
   } else {
-    search = SearchPanelFactory.MobileSharedHeaderSearchModal();
+    search = SearchPanelFactory.SearchPage(); //SearchPanelFactory.MobileSharedHeaderSearchModal();
   }
 
   return search;

@@ -1,28 +1,34 @@
-import { ContentBlockQueryManager } from '../../Contentful/QueryManagers/ContentBlockQueryManager';
 import { SearchPanelFactory } from '../../support/SearchPanel';
+import { ContentBlockQueryManager } from 'crds-cypress-contentful';
 
 describe('The pre-search content block should be displayed:', function () {
   let preSearchContentBlock;
   let search;
   before(function () {
-    const cbqm = new ContentBlockQueryManager()
-    cbqm.fetchContentBlockByTitle('suggestedSearch').then(() => {
-      preSearchContentBlock = cbqm.queryResult;
+    const cbqm = new ContentBlockQueryManager();
+    cbqm.getSingleEntry(cbqm.query.byTitle('suggestedSearch')).then(contentBlock => {
+      preSearchContentBlock = contentBlock;
     });
   })
 
   beforeEach(function () {
-    cy.visit('/prayer');
-
-    //DE6720 - force open the modal
-    cy.get('button[data-target="#searchModal"]').first().click({ force: true });
-    search = SearchPanelFactory.MobileSharedHeaderSearchModal();
+    cy.visit('/search');
+    search = SearchPanelFactory.SearchPage();
   });
+
+  //Use below for testing the search overlay
+  // beforeEach(function () {
+  //   cy.visit('/prayer');
+
+  //   //DE6720 - force open the modal
+  //   cy.get('button[data-target="#searchModal"]').first().click({ force: true });
+  //   search = SearchPanelFactory.MobileSharedHeaderSearchModal();
+  // });
 
   it('Before a search', function () {
     search.results.suggestedSearchBlock.as('preSearchContent')
       .should('be.visible')
-      .displayedText().should('contain', preSearchContentBlock.content.displayedText);
+      .displayedText().should('contain', preSearchContentBlock.content.unformattedText);
   });
 
 
@@ -33,7 +39,7 @@ describe('The pre-search content block should be displayed:', function () {
         search.resetIcon.as('clearSearchIcon').click();
         search.results.suggestedSearchBlock.as('preSearchContent')
           .should('be.visible')
-          .displayedText().should('contain', preSearchContentBlock.content.displayedText);
+          .displayedText().should('contain', preSearchContentBlock.content.unformattedText);
       })
     })
   });
@@ -45,7 +51,7 @@ describe('The pre-search content block should be displayed:', function () {
         search.clearedSearchField.then(() => {
           search.results.suggestedSearchBlock.as('preSearchContent')
             .should('be.visible')
-            .displayedText().should('contain', preSearchContentBlock.content.displayedText);
+            .displayedText().should('contain', preSearchContentBlock.content.unformattedText);
         });
       });
     });
