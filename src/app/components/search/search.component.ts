@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
-import { SearchService }  from '../../services/search.service';
+import { SearchService } from '../../services/search.service';
 import { NativeWindowRefService } from '../../services/native-window-ref.service';
 import { Angulartics2Segment } from 'angulartics2/segment';
 import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
@@ -8,7 +8,7 @@ import { AnalyticsService } from '../../services/analytics.service';
 @Component({ selector: 'app-search', templateUrl: './search.component.html', styleUrls: ['./search.component.scss'], encapsulation: ViewEncapsulation.None })
 
 export class SearchComponent implements OnInit {
-    @Input() routingEnabled: boolean; 
+    @Input() routingEnabled: boolean;
     public config;
     constructor(
         private searchService: SearchService,
@@ -20,7 +20,7 @@ export class SearchComponent implements OnInit {
 
     }
 
-    ngOnInit(){
+    ngOnInit() {
         this.config = this.searchService.configAlgolia(this.routingEnabled);
     }
 }
