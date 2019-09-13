@@ -19,11 +19,6 @@ const resultContentSpecs = [
   },
   {
     keyword: 'God',
-    filter: 'video',
-    cardComponents: ['title', 'description', 'image', 'imageTimestampOverlay', 'date', 'category']
-  },
-  {
-    keyword: 'God',
     filter: 'article',
     cardComponents: ['title', 'description', 'image', 'imageTimestampOverlay', 'date', 'category', 'author']
   },
@@ -34,16 +29,21 @@ const resultContentSpecs = [
   },
   {
     keyword: 'God',
-    filter: 'song',
-    cardComponents: ['title', 'description', 'image', 'date']
-  },
-  {
-    keyword: 'God',
     filter: 'promo',
     cardComponents: ['title', 'description', 'image', 'date', 'hitUrl']
   },
   {
-    keyword: 'God',
+    keyword: 'Dresses',
+    filter: 'video',
+    cardComponents: ['title', 'description', 'image', 'imageTimestampOverlay', 'date', 'category']
+  },
+  {
+    keyword: 'Redemption Song',
+    filter: 'song',
+    cardComponents: ['title', 'description', 'image', 'date']
+  },
+  {
+    keyword: 'Michael Whelan',
     filter: 'author',
     cardComponents: ['title', 'description', 'image']
   },
