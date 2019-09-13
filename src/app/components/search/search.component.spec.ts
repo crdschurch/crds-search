@@ -41,29 +41,21 @@ import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 import { AnalyticsService } from '../../services/analytics.service';
 
 @Injectable()
-class MockSearchService { }
-
-@Injectable()
 class MockNativeWindowRefService { }
 
 @Injectable()
 class MockAnalyticsService { }
 
 @Injectable()
-class SearchServiceStub {
+class MockSearchService {
   configAlgolia(given) {
     return given;
   }
 }
 
 describe('SearchComponent', () => {
-  // let searchServiceStub: Partial<MockSearchService>;
   let fixture;
   let component;
-
-  // searchServiceStub = {
-  //   configAlgolia() { }
-  // };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -71,7 +63,7 @@ describe('SearchComponent', () => {
         SearchComponent
       ],
       providers: [
-        { provide: SearchService, useClass: SearchServiceStub },
+        { provide: SearchService, useClass: MockSearchService },
         { provide: NativeWindowRefService, useClass: MockNativeWindowRefService },
         { provide: Angulartics2Segment, useClass: MockAnalyticsService },
         { provide: Angulartics2GoogleAnalytics, useClass: MockAnalyticsService },
@@ -80,7 +72,7 @@ describe('SearchComponent', () => {
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
     fixture = TestBed.createComponent(SearchComponent);
-    component = fixture.debugElement.componentInstance;
+    component = fixture.componentInstance;
   });
 
   it('should be created', async () => {
@@ -97,6 +89,11 @@ describe('SearchComponent', () => {
     expect(component.config).toBeTruthy();
   });
 
-  // TODO elements - how do subcomponents get information??
-  // TODO test services first
+  it('should have ais-instantsearch tag with config', () => {
+    component.routingEnabled = true;
+    component.config = {};
+
+    const instantSearchElement = fixture.nativeElement.querySelector('ais-instantsearch');
+    expect(instantSearchElement).toBeTruthy();
+  });
 });
