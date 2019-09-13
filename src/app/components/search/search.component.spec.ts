@@ -96,4 +96,7 @@ describe('SearchComponent', () => {
     const instantSearchElement = fixture.nativeElement.querySelector('ais-instantsearch');
     expect(instantSearchElement).toBeTruthy();
   });
+
+  // TODO finish up app-suggested
+  // TODO tests app-hits
 });

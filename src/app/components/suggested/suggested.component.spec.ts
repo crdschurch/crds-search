@@ -1,13 +1,6 @@
-// tslint:disable
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Injectable, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { isPlatformBrowser, AsyncPipe } from '@angular/common';
-import { By } from '@angular/platform-browser';
-// import { Observable } from 'rxjs/Observable';
-// import 'rxjs/add/observable/of';
-// import 'rxjs/add/observable/throw';
-
-import { Component, Directive } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
 import { SuggestedComponent } from './suggested.component';
 import { ContentfulService } from 'src/app/services/contentful.service';
 import { ParseMarkdownPipe } from 'src/app/pipes/parseMarkdown.pipe';

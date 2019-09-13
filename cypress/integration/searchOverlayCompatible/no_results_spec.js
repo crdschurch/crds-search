@@ -1,7 +1,9 @@
 import { SearchPanelFactory } from '../../support/SearchPanel';
-
+//TODO check absolute links - make sure env is set correctly
 describe('Concerning searches with no results:', function () {
+  const noResultsKeyword = 'a7';
   let search;
+
   before(function() {
     cy.visit('/search');
   });
@@ -23,7 +25,6 @@ describe('Concerning searches with no results:', function () {
   // });
 
   it('When a keyword returns no results, the expected "no results" message is displayed', function () {
-    const noResultsKeyword = 'a7'
     search.clearedSearchField.type(noResultsKeyword).then(() => {
       search.results.noResultsBlock.as('noResultsBlock').should('be.visible')
         .find('[data-automation-id="no-results-message"]').as('noResultsMessage');
@@ -33,8 +34,7 @@ describe('Concerning searches with no results:', function () {
   });
 
   it('When a keyword returns no results, links to other pages are displayed', function () {
-    const noResultsKeyword = 'a7'
-    search.clearedSearchField.type(noResultsKeyword).then(() => {
+      search.clearedSearchField.type(noResultsKeyword).then(() => {
       search.results.noResultsBlock.as('noResultsBlock').should('be.visible');
 
       //Expected urls exist
@@ -43,12 +43,16 @@ describe('Concerning searches with no results:', function () {
 
       cy.get('@noResultsBlock').find('[data-automation-id="no-results-groups-link"]').as('groupsLink');
       cy.get('@groupsLink').should('be.visible').and('has.attr', 'href').and('contains', `/groups/search`);
+
+      cy.get('@noResultsBlock').find('[data-automation-id="no-results-help-link"]').as('helpLink');
+      cy.get('@helpLink').should('be.visible').and('has.attr', 'href').and('contains', `/help`);
     });
   });
 
   it('When a successful search is made after a no-results search, results are displayed', function () {
-    const noResultsKeyword = 'a7'
-    search.clearedSearchField.type(noResultsKeyword);
+    search.clearedSearchField.type(noResultsKeyword).then(() => {
+      search.results.noResultsBlock.as('noResultsBlock').should('be.visible');
+    }); //TODO nest this like in pre-search-content-spec
 
     const resultsKeyword = 'god'
     search.clearedSearchField.type(resultsKeyword).then(() => {

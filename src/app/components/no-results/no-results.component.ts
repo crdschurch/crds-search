@@ -14,8 +14,7 @@ export class NoResultsComponent implements OnInit {
   public groupsUrl;
   public helpUrl;
 
-  constructor() {
-  }
+  constructor() { }
 
   ngOnInit() {
     this.corkboardUrl = `${environment.appEndpoint}/corkboard`;
