@@ -1,4 +1,4 @@
-import {Component, Input, AfterViewInit} from '@angular/core';
+import { Component, Input, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-hit',
@@ -6,12 +6,10 @@ import {Component, Input, AfterViewInit} from '@angular/core';
   styleUrls: ['./hit.component.scss']
 })
 export class HitComponent implements AfterViewInit {
-  @Input()hit;
+  @Input() hit;
 
-  constructor() {}
-//TODO extract card-stamp logic here?
   ngAfterViewInit() {
     // @ts-ignore
-    imgix.init({force: true});
+    imgix.init({ force: true });
   }
 }

@@ -25,7 +25,7 @@ describe('HitComponent', () => {
     fixture = TestBed.createComponent(HitComponent);
     component = fixture.debugElement.componentInstance;
 
-    window['imgix'] = new MockImgix(); //imgix is globally defined by another script
+    window['imgix'] = new MockImgix(); // imgix is globally defined by another script
   });
 
   it('should create a component', async () => {
@@ -35,31 +35,32 @@ describe('HitComponent', () => {
   describe('Tests hit.image states', () => {
     it('should have 3 blocks if hit.image is truthy: image link, text, meta', () => {
       component.hit = {
-        image: 'image.png'
+        image: 'image.png',
+        url: 'https://www.crossroads.net/'
       };
 
       fixture.detectChanges();
 
       const imageLink = fixture.nativeElement.querySelector('.hit-img');
       expect(imageLink).toBeTruthy();
-      expect(imageLink.tagName).toBe('A');
+      expect(imageLink.href).toBe(component.hit.url);
       const hitText = fixture.nativeElement.querySelector('app-hit-text');
       expect(hitText).toBeTruthy();
       const hitMeta = fixture.nativeElement.querySelector('.hit-meta');
       expect(hitMeta).toBeTruthy();
-      expect(hitMeta.tagName).toBe('DIV');
     });
 
     it('should have image if hit.image is truthy', () => {
       component.hit = {
-        image: 'image.png'
+        image: 'image.png',
+        title: 'Some Article'
       };
 
       fixture.detectChanges();
 
       const image = fixture.nativeElement.querySelector('.img-responsive');
       expect(image).toBeTruthy();
-      expect(image.tagName).toBe('IMG');
+      expect(image.alt).toBe(component.hit.title);
     });
 
     it('should have 2 blocks if hit.image is falsy: text, meta', () => {
@@ -105,11 +106,11 @@ describe('HitComponent', () => {
         const cardStamp = fixture.nativeElement.querySelector('.card-stamp');
         expect(cardStamp).toBeTruthy();
 
-        const duration = cardStamp.querySelector('[data-automation-id="duration"]');
+        const duration = cardStamp.querySelector('[data-automation-id="hit-duration"]');
         expect(duration.textContent).toBe(component.hit.duration);
 
         const image = cardStamp.querySelector('.icon > use');
-        expect(image.getAttribute('xlink:href')).toBeTruthy();
+        expect(image.href).toBeTruthy();
       });
     });
 
@@ -139,6 +140,7 @@ describe('HitComponent', () => {
 
       const getDirections = fixture.nativeElement.querySelector('[data-automation-id="hit-directions"]');
       expect(getDirections).toBeTruthy();
+      expect(getDirections.href).toBe(component.hit.map_url);
     });
 
     it('should not have directions link if hit has no map url', () => {
@@ -160,6 +162,7 @@ describe('HitComponent', () => {
 
       const dateRange = fixture.nativeElement.querySelector('.hit-series-date');
       expect(dateRange).toBeTruthy();
+      expect(dateRange.textContent).toBe(`${component.hit.start_date} - ${component.hit.end_date}`);
     });
 
     it('should not have date range if missing start date', () => {
@@ -193,6 +196,7 @@ describe('HitComponent', () => {
 
       const date = fixture.nativeElement.querySelector('.hit-date');
       expect(date).toBeTruthy();
+      expect(date.textContent).toBe(component.hit.date);
     });
 
     it('should not have date if hit missing date', () => {
@@ -204,19 +208,4 @@ describe('HitComponent', () => {
       expect(date).toBeFalsy();
     });
   });
-
-  const aHit = {
-    image: '123',
-    contentType: '123',
-    url: '123',
-    duration: '123',
-    title: '123',
-    map_url: '123',
-    start_date: '123',
-    end_date: '123',
-    date: '123'
-  }
-
-
-  //TODO test app-hit-text
 });
