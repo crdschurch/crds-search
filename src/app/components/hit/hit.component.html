@@ -1,7 +1,7 @@
-<a *ngIf="hit.image && hit.image !== null" class="hit-img relative" href="{{hit.url}}">
+<a *ngIf="hit.image" class="hit-img relative" href="{{hit.url}}">
   <div *ngIf="hit.contentType == 'article' || hit.contentType == 'video' || hit.contentType == 'episode' || hit.contentType == 'message'"
     class="card-stamp bg-charcoal text-white">
-    <span class="font-size-smallest push-quarter-right">{{hit.duration}}</span>
+    <span class="font-size-smallest push-quarter-right" data-automation-id="duration">{{hit.duration}}</span>
     <svg class="icon" viewBox="0 0 256 256" [ngSwitch]="hit.contentType">
       <use *ngSwitchCase="'article'" xlink:href="/assets/svgs/icons.svg#media-article"></use>
       <use *ngSwitchCase="'video'" xlink:href="/assets/svgs/icons.svg#media-video"></use>

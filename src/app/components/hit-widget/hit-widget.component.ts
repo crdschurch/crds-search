@@ -11,6 +11,6 @@ export class HitWidgetComponent implements AfterViewInit {
   constructor() {}
   ngAfterViewInit() {
     // @ts-ignore
-    imgix.init({force: true})
+    imgix.init({force: true});
   }
 }

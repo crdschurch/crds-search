@@ -68,7 +68,7 @@ describe('SuggestedComponent', () => {
 
     const nodes = fixture.nativeElement.childNodes;
     expect(nodes.length).toBeGreaterThanOrEqual(1);
-    expect(nodes[0].data).toMatch(/"ng-reflect-ng-if":\W?"true"/);
+    expect(nodes[0].data).toMatch(/"ng-reflect-ng-if":\W?"true"/); //TODO this might not be the best test
   });
 
   it('should display content block content if it exists', () => {
