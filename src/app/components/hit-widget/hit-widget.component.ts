@@ -5,12 +5,11 @@ import { Component, Input, AfterViewInit } from '@angular/core';
   templateUrl: './hit-widget.component.html',
   styleUrls: ['./hit-widget.component.scss']
 })
-
 export class HitWidgetComponent implements AfterViewInit {
   @Input() hit;
-  constructor() {}
+
   ngAfterViewInit() {
     // @ts-ignore
-    imgix.init({force: true});
+    imgix.init({ force: true });
   }
 }

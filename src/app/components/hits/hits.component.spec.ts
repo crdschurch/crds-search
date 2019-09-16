@@ -60,6 +60,5 @@ describe('HitsComponent', () => {
     // const result = component.ngOnDestroy();
   });
 
-  //TODO test app-hit
   //TODO test app-hit-widget
 });
