@@ -24,6 +24,7 @@ describe('Concerning searches with no results:', function () {
   //   search = SearchPanelFactory.MobileSharedHeaderSearchModal();
   // });
 
+  //TODO move to smoke test suite?
   it('When a keyword returns no results, the expected "no results" message is displayed', function () {
     search.clearedSearchField.type(noResultsKeyword).then(() => {
       search.results.noResultsBlock.as('noResultsBlock').should('be.visible')
@@ -33,31 +34,14 @@ describe('Concerning searches with no results:', function () {
     });
   });
 
-  it('When a keyword returns no results, links to other pages are displayed', function () {
-      search.clearedSearchField.type(noResultsKeyword).then(() => {
-      search.results.noResultsBlock.as('noResultsBlock').should('be.visible');
-
-      //Expected urls exist
-      cy.get('@noResultsBlock').find('[data-automation-id="no-results-corkboard-link"]').as('corkboardLink');
-      cy.get('@corkboardLink').should('be.visible').and('has.attr', 'href').and('contains', `/corkboard`);
-
-      cy.get('@noResultsBlock').find('[data-automation-id="no-results-groups-link"]').as('groupsLink');
-      cy.get('@groupsLink').should('be.visible').and('has.attr', 'href').and('contains', `/groups/search`);
-
-      cy.get('@noResultsBlock').find('[data-automation-id="no-results-help-link"]').as('helpLink');
-      cy.get('@helpLink').should('be.visible').and('has.attr', 'href').and('contains', `/help`);
-    });
-  });
-
   it('When a successful search is made after a no-results search, results are displayed', function () {
     search.clearedSearchField.type(noResultsKeyword).then(() => {
-      search.results.noResultsBlock.as('noResultsBlock').should('be.visible');
-    }); //TODO nest this like in pre-search-content-spec
-
-    const resultsKeyword = 'god'
-    search.clearedSearchField.type(resultsKeyword).then(() => {
-      search.results.firstCard.title.should('be.visible');
-      search.results.noResultsBlock.should('not.exist');
+      search.results.noResultsBlock.as('noResultsBlock').should('be.visible').then(() => {
+        search.clearedSearchField.type('god').then(() => {
+          search.results.firstCard.title.should('be.visible');
+          search.results.noResultsBlock.should('not.exist');
+        });
+      });
     });
   });
 });

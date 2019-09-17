@@ -143,7 +143,7 @@ class SearchFilterHelper {
     })
   }
 }
-
+//TODO clean this up if needed
 class ResultCard {
   constructor (cardAlias) {
     this._cardAlias = cardAlias;

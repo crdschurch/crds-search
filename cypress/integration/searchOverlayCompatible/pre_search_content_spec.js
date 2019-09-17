@@ -37,6 +37,7 @@ describe('The pre-search content block should be displayed:', function () {
     search.clearedSearchField.type(searchString).then(() => {
       search.results.firstCard.title.should('be.visible').then(() => {
         search.resetIcon.as('clearSearchIcon').click();
+
         search.results.suggestedSearchBlock.as('preSearchContent')
           .should('be.visible')
           .displayedText().should('contain', preSearchContentBlock.content.unformattedText);

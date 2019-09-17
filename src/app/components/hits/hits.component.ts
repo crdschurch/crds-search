@@ -3,6 +3,7 @@ import { Subject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { AnalyticsService } from 'src/app/services/analytics.service';
 
+//TODO need to add testing around analytics
 @Component({
   selector: 'app-hits',
   templateUrl: './hits.component.html',
@@ -17,38 +18,6 @@ export class HitsComponent implements OnChanges, OnInit, OnDestroy {
   private results$Subscription: Subscription;
 
   constructor(private analyticsService: AnalyticsService) { }
-
-  public handleHitClick(event: any) {
-    let target: any, position: number, isWidget: boolean;
-    const targetEl = event.path.find(this.isParent);
-    const targetId = targetEl.dataset.hitId;
-
-    for (let i = 0; i < this.results.hits.length; i += 1) {
-      if (this.results.hits[i].objectID.toLowerCase() === targetId.toLowerCase()) {
-        target = this.results.hits[i];
-        position = i + 1;
-        isWidget = this.isSearchWidget(targetEl);
-      }
-    }
-
-    this.analyticsService.trackConversion(
-      this.results.query,
-      target,
-      position,
-      isWidget
-    );
-  }
-
-  private isSearchWidget(el) {
-    return el.classList.contains('hit-widget') ? true : false;
-  }
-
-  private isParent(el) {
-    const str = el.outerHTML;
-    if (str.includes('data-hit-id')) {
-      return el;
-    }
-  }
 
   ngOnInit() {
     // send analytics on URL param search
@@ -76,5 +45,36 @@ export class HitsComponent implements OnChanges, OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.results$Subscription.unsubscribe();
+  }
+
+  public handleHitClick(event: any) {
+    let target: any, position: number, isWidget: boolean;
+    const targetEl = event.path.find(this.isParent);
+    const targetId = targetEl.dataset.hitId;
+
+    for (let i = 0; i < this.results.hits.length; i += 1) {
+      if (this.results.hits[i].objectID.toLowerCase() === targetId.toLowerCase()) {
+        target = this.results.hits[i];
+        position = i + 1;
+        isWidget = this.isSearchWidget(targetEl);
+      }
+    }
+
+    this.analyticsService.trackConversion(
+      this.results.query,
+      target,
+      position,
+      isWidget
+    );
+  }
+
+  private isSearchWidget(el) {
+    return el.classList.contains('hit-widget') ? true : false;
+  }
+
+  private isParent(el) {
+    if (el.outerHTML.includes('data-hit-id')) {
+      return el;
+    }
   }
 }

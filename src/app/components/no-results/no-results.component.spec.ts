@@ -3,6 +3,10 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NoResultsComponent } from './no-results.component';
 
 describe('NoResultsComponent', () => {
+  const corkboardRegex = new RegExp('https?:\/\/(?:int|demo|www).crossroads.net\/corkboard');
+  const groupRegex = new RegExp('https?:\/\/(?:int|demo|www).crossroads.net\/groups\/search');
+  const helpRegex = new RegExp('https?:\/\/(?:int|demo|www).crossroads.net\/help');
+
   let fixture;
   let component;
 
@@ -29,9 +33,9 @@ describe('NoResultsComponent', () => {
 
     component.ngOnInit();
 
-    expect(component.corkboardUrl).toBeTruthy();
-    expect(component.groupsUrl).toBeTruthy();
-    expect(component.helpUrl).toBeTruthy();
+    expect(component.corkboardUrl).toMatch(corkboardRegex);
+    expect(component.groupsUrl).toMatch(groupRegex);
+    expect(component.helpUrl).toMatch(helpRegex);
   });
 
   const queryMade = [' ', 'some query'];
@@ -45,7 +49,7 @@ describe('NoResultsComponent', () => {
       const noResults = fixture.nativeElement.querySelector('.no-results');
       expect(noResults).toBeTruthy();
     });
-  })
+  });
 
   const noResultsQueries = [undefined, null, ''];
   noResultsQueries.forEach(query => {
@@ -58,5 +62,38 @@ describe('NoResultsComponent', () => {
       const noResults = fixture.nativeElement.querySelector('.no-results');
       expect(noResults).toBeFalsy();
     });
+  });
+
+  it('should include valid links to corkboard', () => {
+    component.hits = [];
+    component.results = { query: 'some query' };
+
+    fixture.detectChanges();
+
+    const corkboard = fixture.nativeElement.querySelector('[data-automation-id="no-results-corkboard-link"]');
+    expect(corkboard).toBeTruthy();
+    expect(corkboard.href).toMatch(corkboardRegex);
+  });
+
+  it('should include valid links to groups', () => {
+    component.hits = [];
+    component.results = { query: 'some query' };
+
+    fixture.detectChanges();
+
+    const groups = fixture.nativeElement.querySelector('[data-automation-id="no-results-groups-link"]');
+    expect(groups).toBeTruthy();
+    expect(groups.href).toMatch(groupRegex);
+  });
+
+  it('should include valid links to help', () => {
+    component.hits = [];
+    component.results = { query: 'some query' };
+
+    fixture.detectChanges();
+
+    const help = fixture.nativeElement.querySelector('[data-automation-id="no-results-help-link"]');
+    expect(help).toBeTruthy();
+    expect(help.href).toMatch(helpRegex);
   });
 });
