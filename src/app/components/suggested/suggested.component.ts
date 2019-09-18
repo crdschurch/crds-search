@@ -10,6 +10,7 @@ export class SuggestedComponent implements OnInit {
   @Input() results;
 
   public content$;
+
   constructor(private contentService: ContentfulService) { }
 
   ngOnInit() {

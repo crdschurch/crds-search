@@ -13,13 +13,15 @@ import { AnalyticsService } from '../../services/analytics.service';
 })
 export class SearchComponent implements OnInit {
   @Input() routingEnabled: boolean;
+
   public config;
+
   constructor(
     private searchService: SearchService,
-    // private windowRef: NativeWindowRefService, // TODO What do these do?
-    // private angulartics2Segment: Angulartics2Segment,
-    // private angulartics2GA: Angulartics2GoogleAnalytics,
-    // private analyticsService: AnalyticsService
+    private windowRef: NativeWindowRefService,
+    private angulartics2Segment: Angulartics2Segment,
+    private angulartics2GA: Angulartics2GoogleAnalytics,
+    private analyticsService: AnalyticsService
   ) {}
 
   ngOnInit() {

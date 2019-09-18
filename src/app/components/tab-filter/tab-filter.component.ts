@@ -5,9 +5,7 @@ import { Component, Input } from '@angular/core';
   templateUrl: './tab-filter.component.html',
   styleUrls: ['./tab-filter.component.scss']
 })
-export class TabFilter {
+export class TabFilterComponent {
   @Input() hits;
   @Input() results;
-
-  constructor() { }
 }
