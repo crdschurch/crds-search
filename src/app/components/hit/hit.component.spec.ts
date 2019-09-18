@@ -24,6 +24,7 @@ describe('HitComponent', () => {
     }).compileComponents();
     fixture = TestBed.createComponent(HitComponent);
     component = fixture.debugElement.componentInstance;
+    component.hit = {};
 
     window['imgix'] = new MockImgix(); // imgix is globally defined by another script
   });
@@ -34,10 +35,8 @@ describe('HitComponent', () => {
 
   describe('Tests hit.image states', () => {
     it('should have 3 blocks if hit.image is truthy: image link, text, meta', () => {
-      component.hit = {
-        image: 'image.png',
-        url: 'https://www.crossroads.net/'
-      };
+      component.hit.image = 'image.png';
+      component.hit.url = 'https://www.crossroads.net/';
 
       fixture.detectChanges();
 
@@ -51,10 +50,8 @@ describe('HitComponent', () => {
     });
 
     it('should have image if hit.image is truthy', () => {
-      component.hit = {
-        image: 'image.png',
-        title: 'Some Article'
-      };
+      component.hit.image = 'image.png';
+      component.hit.title = 'Some Article';
 
       fixture.detectChanges();
 
@@ -64,9 +61,7 @@ describe('HitComponent', () => {
     });
 
     it('should have 2 blocks if hit.image is falsy: text, meta', () => {
-      component.hit = {
-        image: null
-      };
+      component.hit.image = null;
 
       fixture.detectChanges();
 
@@ -81,9 +76,7 @@ describe('HitComponent', () => {
 
     [undefined, null, false, ''].forEach(image => {
       it(`should not have image link if hit.image is "${image}"`, () => {
-        component.hit = {
-          image: image
-        };
+        component.hit.image = image;
 
         fixture.detectChanges();
 
@@ -95,11 +88,9 @@ describe('HitComponent', () => {
     const cardStampContent = ['article', 'video', 'episode', 'message'];
     cardStampContent.forEach(contentType => {
       it(`should have card stamp with duration and image if content type is "${contentType}"`, () => {
-        component.hit = {
-          image: 'image.png',
-          contentType: contentType,
-          duration: '1m 30s'
-        };
+        component.hit.image = 'image.png';
+        component.hit.contentType = contentType;
+        component.hit.duration = '1m 30s';
 
         fixture.detectChanges();
 
@@ -117,10 +108,8 @@ describe('HitComponent', () => {
     const noCardStampContent = ['series', 'song', 'promo', 'album'];
     noCardStampContent.forEach(contentType => {
       it(`should not have card stamp if content type is "${contentType}"`, () => {
-        component.hit = {
-          image: 'image.png',
-          contentType: contentType
-        };
+        component.hit.image = 'image.png';
+        component.hit.contentType = contentType;
 
         fixture.detectChanges();
 
@@ -132,9 +121,7 @@ describe('HitComponent', () => {
 
   describe('Tests hit meta section', () => {
     it('should have a directions link if hit has map url', () => {
-      component.hit = {
-        map_url: 'https://www.google.com/maps/place/Crossroads+Church+Oakley'
-      };
+      component.hit.map_url = 'https://www.google.com/maps/place/Crossroads+Church+Oakley';
 
       fixture.detectChanges();
 
@@ -144,8 +131,6 @@ describe('HitComponent', () => {
     });
 
     it('should not have directions link if hit has no map url', () => {
-      component.hit = {};
-
       fixture.detectChanges();
 
       const getDirections = fixture.nativeElement.querySelector('[data-automation-id="hit-directions"]');
@@ -153,10 +138,8 @@ describe('HitComponent', () => {
     });
 
     it('should have date range if hit has start & end date', () => {
-      component.hit = {
-        start_date: '9.16.19',
-        end_date: '10.16.19'
-      };
+      component.hit.start_date = '9.16.19';
+      component.hit.end_date = '10.16.19';
 
       fixture.detectChanges();
 
@@ -166,9 +149,7 @@ describe('HitComponent', () => {
     });
 
     it('should not have date range if missing start date', () => {
-      component.hit = {
-        end_date: '10.16.19'
-      };
+      component.hit.end_date = '10.16.19';
 
       fixture.detectChanges();
 
@@ -177,9 +158,7 @@ describe('HitComponent', () => {
     });
 
     it('should not have date range if missing end date', () => {
-      component.hit = {
-        start_date: '9.16.19'
-      };
+      component.hit.start_date = '9.16.19';
 
       fixture.detectChanges();
 
@@ -188,9 +167,7 @@ describe('HitComponent', () => {
     });
 
     it('should have date if hit has date', () => {
-      component.hit = {
-        date: '9.16.19'
-      };
+      component.hit.date = '9.16.19';
 
       fixture.detectChanges();
 
@@ -200,8 +177,6 @@ describe('HitComponent', () => {
     });
 
     it('should not have date if hit missing date', () => {
-      component.hit = {};
-
       fixture.detectChanges();
 
       const date = fixture.nativeElement.querySelector('.hit-date');

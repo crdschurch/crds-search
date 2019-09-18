@@ -23,6 +23,7 @@ describe('HitWidgetComponent', () => {
     }).compileComponents();
     fixture = TestBed.createComponent(HitWidgetComponent);
     component = fixture.debugElement.componentInstance;
+    component.hit = {};
 
     window['imgix'] = new MockImgix(); // imgix is globally defined by another script
   });
@@ -32,9 +33,7 @@ describe('HitWidgetComponent', () => {
   });
 
   it('should display widget if hit.image is truthy', () => {
-    component.hit = {
-      image: 'fakeImage.png'
-    };
+    component.hit.image = 'fakeImage.png';
 
     fixture.detectChanges();
 
@@ -45,10 +44,8 @@ describe('HitWidgetComponent', () => {
   });
 
   it('should display image with title as alt', () => {
-    component.hit = {
-      image: 'fakeImage.png',
-      title: 'Fake Title'
-    };
+    component.hit.image = 'fakeImage.png';
+    component.hit.title = 'Fake Title';
 
     fixture.detectChanges();
 
@@ -58,10 +55,8 @@ describe('HitWidgetComponent', () => {
   });
 
   it('should display image with description', () => {
-    component.hit = {
-      image: 'fakeImage.png',
-      description: 'this image has a description'
-    };
+    component.hit.image = 'fakeImage.png';
+    component.hit.description = 'this image has a description';
 
     fixture.detectChanges();
 
@@ -71,8 +66,6 @@ describe('HitWidgetComponent', () => {
   });
 
   it('should display widget without image if hit.image is falsy', () => {
-    component.hit = {};
-
     fixture.detectChanges();
 
     const widgetNoImage = fixture.nativeElement.querySelector('[data-automation-id="hit-widget-description"]');
@@ -82,9 +75,7 @@ describe('HitWidgetComponent', () => {
   });
 
   it('should display description for widget without image', () => {
-    component.hit = {
-      description: 'this widget has a description'
-    };
+    component.hit.description = 'this widget has a description';
 
     fixture.detectChanges();
 

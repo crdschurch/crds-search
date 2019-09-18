@@ -1,6 +1,7 @@
 # int build & anything that doesn't match below
 [build]
   command = '''
+  yarn run test &&
   yarn run build --configuration=${COMPONENT_CONFIG}development &&
   npm run env:replace &&
   yarn run package &&
@@ -9,6 +10,7 @@
 
 [context.deploy-preview]
   command = '''
+  yarn run test &&
   yarn run build --configuration=${COMPONENT_CONFIG}preview &&
   npm run env:replace &&
   yarn run package
@@ -22,6 +24,7 @@
 
 [context.release]
   command = '''
+  yarn run test &&
   yarn run build --configuration=${COMPONENT_CONFIG}demo &&
   npm run env:replace &&
   yarn run package &&
@@ -35,10 +38,11 @@
   CRDS_ENV = "int"
 
 [context.master]
-    command = '''
+  command = '''
+  yarn run test &&
   yarn run build --configuration=${COMPONENT_CONFIG}production &&
   npm run env:replace &&
-  yarn run package 
+  yarn run package
   '''
 
 [context.master.environment]

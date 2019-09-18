@@ -20,6 +20,8 @@ describe('NoResultsComponent', () => {
     }).compileComponents();
     fixture = TestBed.createComponent(NoResultsComponent);
     component = fixture.debugElement.componentInstance;
+
+    component.hits = [];
   });
 
   it('should create a component', async () => {
@@ -41,7 +43,6 @@ describe('NoResultsComponent', () => {
   const queryMade = [' ', 'some query'];
   queryMade.forEach(query => {
     it(`should display if a query is "${query}" and has no hits`, () => {
-      component.hits = [];
       component.results = { query: query };
 
       fixture.detectChanges();
@@ -54,7 +55,6 @@ describe('NoResultsComponent', () => {
   const noResultsQueries = [undefined, null, ''];
   noResultsQueries.forEach(query => {
     it(`should not display if a query is "${query}" and has no hits`, () => {
-      component.hits = [];
       component.results = { query: query };
 
       fixture.detectChanges();
@@ -65,7 +65,6 @@ describe('NoResultsComponent', () => {
   });
 
   it('should include valid links to corkboard', () => {
-    component.hits = [];
     component.results = { query: 'some query' };
 
     fixture.detectChanges();
@@ -76,7 +75,6 @@ describe('NoResultsComponent', () => {
   });
 
   it('should include valid links to groups', () => {
-    component.hits = [];
     component.results = { query: 'some query' };
 
     fixture.detectChanges();
@@ -87,7 +85,6 @@ describe('NoResultsComponent', () => {
   });
 
   it('should include valid links to help', () => {
-    component.hits = [];
     component.results = { query: 'some query' };
 
     fixture.detectChanges();

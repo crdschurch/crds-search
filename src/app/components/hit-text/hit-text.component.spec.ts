@@ -17,6 +17,8 @@ describe('HitTextComponent', () => {
     }).compileComponents();
     fixture = TestBed.createComponent(HitTextComponent);
     component = fixture.componentInstance;
+
+    component.hit = {};
   });
 
   it('should create a component', async () => {
@@ -24,9 +26,7 @@ describe('HitTextComponent', () => {
   });
 
   it('should display category if hit.category is truthy', () => {
-    component.hit = {
-      category: 'Work'
-    };
+    component.hit.category = 'Work';
 
     fixture.detectChanges();
 
@@ -36,8 +36,6 @@ describe('HitTextComponent', () => {
   });
 
   it('should not display category if hit.category is falsy', () => {
-    component.hit = {};
-
     fixture.detectChanges();
 
     const category = fixture.nativeElement.querySelector('[data-automation-id="hit-category"]');
@@ -45,9 +43,7 @@ describe('HitTextComponent', () => {
   });
 
   it('should have link to url from title', () => {
-    component.hit = {
-      url: 'https://www.crossroads.net/'
-    };
+    component.hit.url = 'https://www.crossroads.net/';
 
     fixture.detectChanges();
 
@@ -57,9 +53,7 @@ describe('HitTextComponent', () => {
   });
 
   it('should display description if hit.description is truthy', () => {
-    component.hit = {
-      description: 'some description'
-    };
+    component.hit.description = 'some description';
     const matchRegex = new RegExp(component.hit.description);
 
     fixture.detectChanges();
@@ -70,10 +64,9 @@ describe('HitTextComponent', () => {
   });
 
   it('should display only part of a very long description', () => {
-    component.hit = {
-      // tslint:disable-next-line: max-line-length
-      description: '1 In the beginning God created the heavens and the earth. 2 Now the earth was formless and empty, darkness was over the surface of the deep, and the Spirit of God was hovering over the waters. 3 And God said, “Let there be light,” and there was light.'
-    };
+    // tslint:disable-next-line: max-line-length
+    component.hit.description = '1 In the beginning God created the heavens and the earth. 2 Now the earth was formless and empty, darkness was over the surface of the deep, and the Spirit of God was hovering over the waters. 3 And God said, “Let there be light,” and there was light.';
+
     const maxLineLength = 180;
     const matchRegex = new RegExp(`^.{${maxLineLength}}...`);
 
@@ -84,8 +77,6 @@ describe('HitTextComponent', () => {
   });
 
   it('should not display description if hit.description is falsy', () => {
-    component.hit = {};
-
     fixture.detectChanges();
 
     const description = fixture.nativeElement.querySelector('[data-automation-id="hit-description"]');
@@ -93,9 +84,7 @@ describe('HitTextComponent', () => {
   });
 
   it('should display service times if hit.serviceTimes is truthy', () => {
-    component.hit = {
-      serviceTimes: 'Sunday morning'
-    };
+    component.hit.serviceTimes = 'Sunday morning';
     const matchRegex = new RegExp(component.hit.serviceTimes);
 
     fixture.detectChanges();
@@ -106,8 +95,6 @@ describe('HitTextComponent', () => {
   });
 
   it('should not display service times if hit.serviceTimes is falsy', () => {
-    component.hit = {};
-
     fixture.detectChanges();
 
     const serviceTimes = fixture.nativeElement.querySelector('[data-automation-id="hit-serviceTimes"]');
@@ -115,9 +102,7 @@ describe('HitTextComponent', () => {
   });
 
   it('should display author if hit.author is truthy', () => {
-    component.hit = {
-      author: 'St Paul'
-    };
+    component.hit.author = 'St Paul';
 
     fixture.detectChanges();
 
@@ -127,8 +112,6 @@ describe('HitTextComponent', () => {
   });
 
   it('should not display author if hit.author is falsy', () => {
-    component.hit = {};
-
     fixture.detectChanges();
 
     const author = fixture.nativeElement.querySelector('.hit-author');
@@ -136,9 +119,7 @@ describe('HitTextComponent', () => {
   });
 
   it('should display series if hit.series is truthy', () => {
-    component.hit = {
-      series: 'Real Fake Series'
-    };
+    component.hit.series = 'Real Fake Series';
 
     fixture.detectChanges();
 
@@ -148,8 +129,6 @@ describe('HitTextComponent', () => {
   });
 
   it('should not display series if hit.series is falsy', () => {
-    component.hit = {};
-
     fixture.detectChanges();
 
     const series = fixture.nativeElement.querySelector('.hit-series');
@@ -157,10 +136,8 @@ describe('HitTextComponent', () => {
   });
 
   it('should display number of messages if a series has messages', () => {
-    component.hit = {
-      contentType: 'series',
-      children_count: 5
-    };
+    component.hit.contentType = 'series';
+    component.hit.children_count = 5;
     const matchRegex = new RegExp(`${component.hit.children_count} messages`);
 
     fixture.detectChanges();
@@ -172,10 +149,8 @@ describe('HitTextComponent', () => {
 
   [0, -1, null, undefined].forEach(badCount => {
     it(`should not display number of messages if a series has "${badCount}" messages`, () => {
-      component.hit = {
-        contentType: 'series',
-        children_count: badCount
-      };
+      component.hit.contentType = 'series';
+      component.hit.children_count = badCount;
 
       fixture.detectChanges();
 
@@ -185,10 +160,8 @@ describe('HitTextComponent', () => {
   });
 
   it('should display number of episodes if a podcast has episodes', () => {
-    component.hit = {
-      contentType: 'podcast',
-      children_count: 5
-    };
+    component.hit.contentType = 'podcast';
+    component.hit.children_count = 5;
     const matchRegex = new RegExp(`${component.hit.children_count} episodes`);
 
     fixture.detectChanges();
@@ -200,10 +173,8 @@ describe('HitTextComponent', () => {
 
   [0, -1, null, undefined].forEach(badCount => {
     it(`should not display number of episodes if a podcast has "${badCount}" episodes`, () => {
-      component.hit = {
-        contentType: 'podcast',
-        children_count: badCount
-      };
+      component.hit.contentType = 'podcast';
+      component.hit.children_count = badCount;
 
       fixture.detectChanges();
 
@@ -213,9 +184,7 @@ describe('HitTextComponent', () => {
   });
 
   it('should not display number of child entries if the content type does not have child entries', () => {
-    component.hit = {
-      contentType: 'video'
-    };
+    component.hit.contentType = 'video';
 
     fixture.detectChanges();
 
@@ -225,10 +194,8 @@ describe('HitTextComponent', () => {
 
   ['page', 'promo'].forEach(type => {
     it(`should display url if content type is "${type}"`, () => {
-      component.hit = {
-        contentType: type,
-        url: 'https://www.crossroads.net/'
-      };
+      component.hit.contentType = type;
+      component.hit.url = 'https://www.crossroads.net/';
 
       fixture.detectChanges();
 
@@ -240,10 +207,8 @@ describe('HitTextComponent', () => {
   });
 
   it('should not display url if content type should not display it', () => {
-    component.hit = {
-      contentType: 'video',
-      url: 'https://www.crossroads.net/'
-    };
+    component.hit.contentType = 'video';
+    component.hit.url = 'https://www.crossroads.net/';
 
     fixture.detectChanges();
 

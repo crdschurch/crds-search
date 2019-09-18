@@ -3,7 +3,6 @@ import { Subject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { AnalyticsService } from 'src/app/services/analytics.service';
 
-//TODO need to add testing around analytics
 @Component({
   selector: 'app-hits',
   templateUrl: './hits.component.html',
