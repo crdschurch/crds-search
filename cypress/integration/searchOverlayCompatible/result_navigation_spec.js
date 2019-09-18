@@ -18,7 +18,7 @@ describe('Searching for a keyword returns results, and the expected page opens w
 
   it('Searching for an article opens the article in /media', function () {
     const mediaPageUrl = `${Cypress.env('CRDS_ENDPOINT')}/media/articles/god-told-me-to-buy-a-bikini`;
-    search.clearedSearchField.type('Buy a Bikini');
+    search.clearedSearchField.type('Buy a Bikini'); //TODO nest this
     search.results.findByHref(mediaPageUrl).title.click({ force: true });
     cy.url().should('eq', mediaPageUrl);
   })
