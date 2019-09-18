@@ -68,6 +68,15 @@ describe('HitsComponent', () => {
       component.results.nbHits = 10;
     });
 
+    it('should not display if only 1 hit exists', () => {
+      component.hits = [{}];
+
+      fixture.detectChanges();
+
+      const counter = fixture.nativeElement.querySelector('[data-automation-id="hits-hit-counter"]');
+      expect(counter).toBeFalsy();
+    });
+
     it('should display if > 1 hits exist', () => {
       component.hits = [{}, {}];
 

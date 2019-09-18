@@ -36,8 +36,8 @@ describe('When someone searches:', function () {
       search.searchField.should('have.prop', 'value', keyword).then(() => {
         search.filters.selectFilter(filter).then(() => {
           cy.url().should('eq', expectedUrl);
-        })
-      })
+        });
+      });
     });
   });
 });

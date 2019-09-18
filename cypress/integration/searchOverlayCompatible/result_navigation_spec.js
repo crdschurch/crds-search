@@ -17,23 +17,23 @@ describe('Searching for a keyword returns results, and the expected page opens w
   // });
 
   it('Searching for an article opens the article in /media', function () {
-    const mediaPageUrl = `${Cypress.config().baseUrl}/media/articles/god-told-me-to-buy-a-bikini`;
+    const mediaPageUrl = `${Cypress.env('CRDS_ENDPOINT')}/media/articles/god-told-me-to-buy-a-bikini`;
     search.clearedSearchField.type('Buy a Bikini');
     search.results.findByHref(mediaPageUrl).title.click({ force: true });
     cy.url().should('eq', mediaPageUrl);
   })
 
   it('Searching for a page that requires authentication opens /signin', function () {
-    const requiresAuthUrl = `${Cypress.config().baseUrl}/preschool/register/`;
+    const requiresAuthUrl = `${Cypress.env('CRDS_ENDPOINT')}/preschool/register/`;
 
     search.clearedSearchField.type('Preschool Registration');
     search.results.findByHref(requiresAuthUrl).title.click({ force: true });
     cy.contains('Sign In').should('exist').and('be.visible');
-    cy.url().should('eq', `${Cypress.config().baseUrl}/signin`);
+    cy.url().should('eq', `${Cypress.env('CRDS_ENDPOINT')}/signin`);
   })
 
   it('Searching for an ordinary Contentful page on crds.net opens that page', function () {
-    const crdsNetUrl = `${Cypress.config().baseUrl}/jobs/`;
+    const crdsNetUrl = `${Cypress.env('CRDS_ENDPOINT')}/jobs/`;
 
     search.clearedSearchField.type('jobs');
     search.results.findByHref(crdsNetUrl).title.click({ force: true });

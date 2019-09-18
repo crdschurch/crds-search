@@ -1,5 +1,5 @@
 {
-  "baseUrl": "https://int.crossroads.net",
+  "baseUrl": "http://localhost:3000",
   "env": {
     "CONTENTFUL_ENV": "int",
     "ALGOLIA_INDEX": "int_crds",

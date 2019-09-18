@@ -1,6 +1,6 @@
 import { SearchPanelFactory } from '../../support/SearchPanel';
-//TODO check absolute links - make sure env is set correctly
-describe('Concerning searches with no results:', function () {
+
+describe('Tests searches with no results:', function () {
   const noResultsKeyword = 'a7';
   let search;
 
@@ -24,8 +24,7 @@ describe('Concerning searches with no results:', function () {
   //   search = SearchPanelFactory.MobileSharedHeaderSearchModal();
   // });
 
-  //TODO move to smoke test suite?
-  it('When a keyword returns no results, the expected "no results" message is displayed', function () {
+  it('checks "no results" message is displayed', () => {
     search.clearedSearchField.type(noResultsKeyword).then(() => {
       search.results.noResultsBlock.as('noResultsBlock').should('be.visible')
         .find('[data-automation-id="no-results-message"]').as('noResultsMessage');
@@ -34,7 +33,14 @@ describe('Concerning searches with no results:', function () {
     });
   });
 
-  it('When a successful search is made after a no-results search, results are displayed', function () {
+  it('checks links are for the correct environment', () =>{
+    search.clearedSearchField.type(noResultsKeyword).then(() => {
+      cy.get('[data-automation-id="no-results-corkboard-link"]').as('corkboardLink').should('be.visible');
+      cy.get('@corkboardLink').should('have.attr', 'href', `${Cypress.env('CRDS_ENDPOINT')}/corkboard`);
+    });
+  });
+
+  it('checks results are displayed when a successful search is made after a no-results search', function () {
     search.clearedSearchField.type(noResultsKeyword).then(() => {
       search.results.noResultsBlock.as('noResultsBlock').should('be.visible').then(() => {
         search.clearedSearchField.type('god').then(() => {

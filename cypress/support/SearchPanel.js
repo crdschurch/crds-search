@@ -1,3 +1,4 @@
+//TODO move these to their own files in a folder
 //Convenience class with pre-defined search panels
 export class SearchPanelFactory {
   /**

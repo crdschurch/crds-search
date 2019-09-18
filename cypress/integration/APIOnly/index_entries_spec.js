@@ -3,19 +3,19 @@ import { AlgoliaAPI } from "../../Algolia/AlgoliaAPI";
 const expectedEntries = [
   {
     title: 'Woman Camp',
-    url: `${Cypress.config().baseUrl}/womancamp/`
+    url: `${Cypress.env('CRDS_ENDPOINT')}/womancamp/`
   },
   {
     title: 'Live Streaming',
-    url: `${Cypress.config().baseUrl}/live`
+    url: `${Cypress.env('CRDS_ENDPOINT')}/live`
   },
   {
     title: 'Corkboard',
-    url: `${Cypress.config().baseUrl}/corkboard`
+    url: `${Cypress.env('CRDS_ENDPOINT')}/corkboard`
   },
   {
     title: 'Media',
-    url: `${Cypress.config().baseUrl}/media`
+    url: `${Cypress.env('CRDS_ENDPOINT')}/media`
   }
 ]
 
@@ -36,7 +36,7 @@ describe('Tests these entries exist in the index', function () {
 const notSearchableContent = [
   {
     title: 'Locker Room',
-    url: `${Cypress.config().baseUrl}/lockerroom`
+    url: `${Cypress.env('CRDS_ENDPOINT')}/lockerroom`
   }
 ]
 
