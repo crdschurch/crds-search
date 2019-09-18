@@ -1,4 +1,4 @@
-import { SearchPanelFactory } from '../../support/SearchPanel';
+import { SearchPanelFactory } from '../../SearchPanel/SearchPanel';
 
 function getUrlWithQuery(keyword, filterLabel = undefined) {
   const encodedKeyword = encodeURI(keyword);

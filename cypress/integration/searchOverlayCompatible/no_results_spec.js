@@ -1,4 +1,4 @@
-import { SearchPanelFactory } from '../../support/SearchPanel';
+import { SearchPanelFactory } from '../../SearchPanel/SearchPanel';
 
 describe('Tests searches with no results:', function () {
   const noResultsKeyword = 'a7';

@@ -1,4 +1,4 @@
-import { SearchPanelFactory } from "../../support/SearchPanel";
+import { SearchPanelFactory } from "../../SearchPanel/SearchPanel";
 
 describe('Tests pagination behavior', () => {
   let search;

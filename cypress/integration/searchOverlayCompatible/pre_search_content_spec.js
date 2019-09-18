@@ -1,6 +1,6 @@
-import { SearchPanelFactory } from '../../support/SearchPanel';
+import { SearchPanelFactory } from '../../SearchPanel/SearchPanel';
 import { ContentBlockQueryManager } from 'crds-cypress-contentful';
-//TODO add should not be displayed if there are no results
+
 describe('The pre-search content block should be displayed:', function () {
   let preSearchContentBlock;
   let search;

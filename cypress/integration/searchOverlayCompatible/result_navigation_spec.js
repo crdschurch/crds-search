@@ -1,4 +1,4 @@
-import { SearchPanelFactory } from '../../support/SearchPanel'
+import { SearchPanelFactory } from '../../SearchPanel/SearchPanel'
 
 describe('Searching for a keyword returns results, and the expected page opens when a result is clicked', function () {
   let search;
