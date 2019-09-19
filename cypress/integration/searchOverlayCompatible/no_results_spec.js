@@ -40,7 +40,7 @@ describe('Tests searches with no results:', function () {
     });
   });
 
-  it('checks results are displayed when a successful search is made after a no-results search', function () {
+  it('checks search results after a no-results search', function () {
     search.clearedSearchField.type(noResultsKeyword).then(() => {
       search.results.noResultsBlock.as('noResultsBlock').should('be.visible').then(() => {
         search.clearedSearchField.type('god').then(() => {
