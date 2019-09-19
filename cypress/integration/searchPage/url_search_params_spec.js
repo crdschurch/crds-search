@@ -9,14 +9,14 @@ function getUrlWithQuery(keyword, filterLabel = undefined) {
   return url;
 }
 
-describe('When someone searches:', function () {
+describe('Tests query params added to url', () => {
   let search;
-  beforeEach(function () {
+  beforeEach(() => {
     cy.visit('/search');
     search = SearchPanelFactory.SearchPage();
   });
 
-  it('For a keyword, the keyword should be included in the url', function () {
+  it('checks keyword added to url', () => {
     const keyword = 'God';
     const expectedUrl = getUrlWithQuery(keyword);
 
@@ -27,7 +27,7 @@ describe('When someone searches:', function () {
     });
   });
 
-  it('For a keyword and selects a filter, the keyword and filter should be included in the url', function () {
+  it('checks keyword and filter added to url', () => {
     const keyword = 'God';
     const filter = 'message';
     const expectedUrl = getUrlWithQuery(keyword, filter);
@@ -42,8 +42,8 @@ describe('When someone searches:', function () {
   });
 });
 
-describe('When someone navigates to a search url:', function () {
-  it('With a keyword in it, the page should load with the results for the keyword', function () {
+describe('Tests query params in url trigger search automatically', () => {
+  it('checks search triggered by keyword', () => {
     const urlWithQuery = getUrlWithQuery('god');
 
     cy.visit(urlWithQuery);
@@ -52,7 +52,7 @@ describe('When someone navigates to a search url:', function () {
     search.results.firstCard.title.should('be.visible');
   });
 
-  it('With a keyword and filter in it, the page should load with the filtered results for the keyword', function () {
+  it('checks search triggered by keyword and then filtered', () => {
     const filter = 'message';
     const urlWithFilteredQuery = getUrlWithQuery('god', filter);
 

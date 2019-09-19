@@ -34,7 +34,7 @@ describe('Tests pagination behavior', () => {
     });
   });
 
-  describe('Tests if results fit on one page', () => {
+  describe('Tests if all results fit on one page', () => {
     beforeEach(() => {
       const lowResultString = 'abc';
       search.clearedSearchField.type(lowResultString);

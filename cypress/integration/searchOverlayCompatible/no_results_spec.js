@@ -1,6 +1,6 @@
 import { SearchPanelFactory } from '../../SearchPanel/SearchPanel';
 
-describe('Tests searches with no results:', function () {
+describe('Tests search with no results', () => {
   const noResultsKeyword = 'a7';
   let search;
 
@@ -8,19 +8,19 @@ describe('Tests searches with no results:', function () {
     cy.visit('/search');
   });
 
-  beforeEach(function () {
+  beforeEach(() => {
     search = SearchPanelFactory.SearchPage();
   });
 
   //Use below for testing the search overlay
-  // before(function () {
+  // before(() => {
   //   cy.visit('/prayer');
 
   //   //DE6720 - force open the modal
   //   cy.get('button[data-target="#searchModal"]').first().click({ force: true });
   // });
 
-  // beforeEach(function () {
+  // beforeEach(() => {
   //   search = SearchPanelFactory.MobileSharedHeaderSearchModal();
   // });
 
@@ -40,7 +40,7 @@ describe('Tests searches with no results:', function () {
     });
   });
 
-  it('checks search results after a no-results search', function () {
+  it('checks success of search after a no-results search', () => {
     search.clearedSearchField.type(noResultsKeyword).then(() => {
       search.results.noResultsBlock.as('noResultsBlock').should('be.visible').then(() => {
         search.clearedSearchField.type('god').then(() => {

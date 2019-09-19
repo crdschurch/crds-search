@@ -3,11 +3,11 @@ import { SearchPanelFactory } from "../../SearchPanel/SearchPanel";
 describe('Tests result filters', () => {
   let search;
 
-  before(function () {
+  before(() => {
     cy.visit('/search');
   });
 
-  beforeEach(function () {
+  beforeEach(() => {
     search = SearchPanelFactory.SearchPage();
   });
 

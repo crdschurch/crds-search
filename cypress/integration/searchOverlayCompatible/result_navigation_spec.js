@@ -1,14 +1,14 @@
 import { SearchPanelFactory } from '../../SearchPanel/SearchPanel'
 
-describe('Tests the expected page opens when result is clicked', function () {
+describe('Tests the expected page opens when result is clicked', () => {
   let search;
-  beforeEach(function () {
+  beforeEach(() => {
     cy.visit('/search');
     search = SearchPanelFactory.SearchPage();
   });
 
   //Use below for testing the search overlay
-  // beforeEach(function () {
+  // beforeEach(() => {
   //   cy.visit('/prayer');
 
   //   //DE6720 - force open the modal
@@ -16,7 +16,7 @@ describe('Tests the expected page opens when result is clicked', function () {
   //   search = SearchPanelFactory.MobileSharedHeaderSearchModal();
   // });
 
-  it('checks article result opens the article in /media', function () {
+  it('checks article result opens the article in /media', () => {
     const mediaPageUrl = `${Cypress.env('CRDS_ENDPOINT')}/media/articles/god-told-me-to-buy-a-bikini`;
 
     search.clearedSearchField.type('Buy a Bikini');
@@ -24,7 +24,7 @@ describe('Tests the expected page opens when result is clicked', function () {
     cy.url().should('eq', mediaPageUrl);
   })
 
-  it('checks result requiring authentication opens /signin', function () {
+  it('checks result requiring authentication opens /signin', () => {
     const requiresAuthUrl = `${Cypress.env('CRDS_ENDPOINT')}/preschool/register/`;
 
     search.clearedSearchField.type('Preschool Registration');
@@ -33,7 +33,7 @@ describe('Tests the expected page opens when result is clicked', function () {
     cy.url().should('eq', `${Cypress.env('CRDS_ENDPOINT')}/signin`);
   })
 
-  it('checks result for page from Contentful opens that page', function () {
+  it('checks result for page from Contentful opens that page', () => {
     const crdsNetUrl = `${Cypress.env('CRDS_ENDPOINT')}/jobs/`;
 
     search.clearedSearchField.type('jobs');
