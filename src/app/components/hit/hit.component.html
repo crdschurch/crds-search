@@ -1,26 +1,26 @@
-<a *ngIf="hit.image && hit.image !== null" class="hit-img relative" href="{{hit.url}}">
-  <div *ngIf="hit.contentType == 'article' || hit.contentType == 'video' || hit.contentType == 'episode' || hit.contentType == 'message'"
+<a *ngIf="hit.image" class="hit-img relative" href="{{hit.url}}">
+  <div
+    *ngIf="hit.contentType == 'article' || hit.contentType == 'video' || hit.contentType == 'episode' || hit.contentType == 'message'"
     class="card-stamp bg-charcoal text-white">
-    <span class="font-size-smallest push-quarter-right">{{hit.duration}}</span>
+    <span class="font-size-smallest push-quarter-right" data-automation-id="hit-duration">{{hit.duration}}</span>
     <svg class="icon" viewBox="0 0 256 256" [ngSwitch]="hit.contentType">
-      <use *ngSwitchCase="'article'" xlink:href="/assets/svgs/icons.svg#media-article"></use>
-      <use *ngSwitchCase="'video'" xlink:href="/assets/svgs/icons.svg#media-video"></use>
-      <use *ngSwitchCase="'message'" xlink:href="/assets/svgs/icons.svg#media-video"></use>
-      <use *ngSwitchCase="'episode'" xlink:href="/assets/svgs/icons.svg#media-podcast"></use>
+      <use *ngSwitchCase="'article'" href="/assets/svgs/icons.svg#media-article"></use>
+      <use *ngSwitchCase="'video'" href="/assets/svgs/icons.svg#media-video"></use>
+      <use *ngSwitchCase="'message'" href="/assets/svgs/icons.svg#media-video"></use>
+      <use *ngSwitchCase="'episode'" href="/assets/svgs/icons.svg#media-podcast"></use>
     </svg>
   </div>
 
-  <img class="img-responsive"
-    [attr.ix-src]="hit | imgixAspectRatio"
-    sizes="(min-width: 768px) 180px, 100vw"
-    alt="{{ hit.title }}">
+  <img class="img-responsive" [attr.ix-src]="hit | imgixAspectRatio" sizes="(min-width: 768px) 180px, 100vw"
+    alt="{{hit.title}}">
 </a>
 
 <app-hit-text [hit]="hit"></app-hit-text>
 
 <div class="hit-meta text-gray-light">
   <p class="font-size-smaller flush">
-    <a *ngIf="hit.map_url" href="{{ hit.map_url }}" target="_blank" class="font-size-smaller flush" data-automation-id="hit-directions">
+    <a *ngIf="hit.map_url" href="{{hit.map_url}}" target="_blank" class="font-size-smaller flush"
+      data-automation-id="hit-directions">
       Get Directions
     </a>
     <span *ngIf="hit.start_date && hit.end_date" class="hit-series-date">{{hit.start_date}} - {{hit.end_date}}</span>

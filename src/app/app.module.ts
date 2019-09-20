@@ -14,16 +14,13 @@ import { environment } from '../environments/environment';
   providers: [],
 })
 export class AppModule {
-  constructor(private injector: Injector) {
-
-  }
+  constructor(private injector: Injector) { }
 
   ngDoBootstrap(appRef) {
     if (environment.package_component) {
       const el = createCustomElement(SearchModalComponent, { injector: this.injector });
       customElements.define('crds-search', el);
-    }
-    else {
+    } else {
       appRef.bootstrap(AppComponent);
     }
   }

@@ -7,10 +7,8 @@ import { NativeWindowRefService } from './services/native-window-ref.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-
 export class AppComponent {
   constructor(
     private windowRef: NativeWindowRefService,
-    ) {
-  }
+    ) {}
 }

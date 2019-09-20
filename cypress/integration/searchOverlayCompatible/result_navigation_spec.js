@@ -1,14 +1,14 @@
-import { SearchPanelFactory } from '../../support/SearchPanel'
+import { SearchPanelFactory } from '../../SearchPanel/SearchPanel'
 
-describe('Searching for a keyword returns results, and the expected page opens when a result is clicked', function () {
+describe('Tests the expected page opens when result is clicked', () => {
   let search;
-  beforeEach(function () {
+  beforeEach(() => {
     cy.visit('/search');
     search = SearchPanelFactory.SearchPage();
   });
 
   //Use below for testing the search overlay
-  // beforeEach(function () {
+  // beforeEach(() => {
   //   cy.visit('/prayer');
 
   //   //DE6720 - force open the modal
@@ -16,24 +16,25 @@ describe('Searching for a keyword returns results, and the expected page opens w
   //   search = SearchPanelFactory.MobileSharedHeaderSearchModal();
   // });
 
-  it('Searching for an article opens the article in /media', function () {
-    const mediaPageUrl = `${Cypress.config().baseUrl}/media/articles/god-told-me-to-buy-a-bikini`;
+  it('checks article result opens the article in /media', () => {
+    const mediaPageUrl = `${Cypress.env('CRDS_ENDPOINT')}/media/articles/god-told-me-to-buy-a-bikini`;
+
     search.clearedSearchField.type('Buy a Bikini');
     search.results.findByHref(mediaPageUrl).title.click({ force: true });
     cy.url().should('eq', mediaPageUrl);
   })
 
-  it('Searching for a page that requires authentication opens /signin', function () {
-    const requiresAuthUrl = `${Cypress.config().baseUrl}/preschool/register/`;
+  it('checks result requiring authentication opens /signin', () => {
+    const requiresAuthUrl = `${Cypress.env('CRDS_ENDPOINT')}/preschool/register/`;
 
     search.clearedSearchField.type('Preschool Registration');
     search.results.findByHref(requiresAuthUrl).title.click({ force: true });
     cy.contains('Sign In').should('exist').and('be.visible');
-    cy.url().should('eq', `${Cypress.config().baseUrl}/signin`);
+    cy.url().should('eq', `${Cypress.env('CRDS_ENDPOINT')}/signin`);
   })
 
-  it('Searching for an ordinary Contentful page on crds.net opens that page', function () {
-    const crdsNetUrl = `${Cypress.config().baseUrl}/jobs/`;
+  it('checks result for page from Contentful opens that page', () => {
+    const crdsNetUrl = `${Cypress.env('CRDS_ENDPOINT')}/jobs/`;
 
     search.clearedSearchField.type('jobs');
     search.results.findByHref(crdsNetUrl).title.click({ force: true });

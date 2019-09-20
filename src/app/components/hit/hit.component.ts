@@ -1,12 +1,15 @@
-import {Component, Input, AfterViewInit} from '@angular/core';
+import { Component, Input, AfterViewInit } from '@angular/core';
 
-@Component({selector: 'app-hit', templateUrl: './hit.component.html', styleUrls: ['./hit.component.scss']})
+@Component({
+  selector: 'app-hit',
+  templateUrl: './hit.component.html',
+  styleUrls: ['./hit.component.scss']
+})
 export class HitComponent implements AfterViewInit {
-  @Input()hit;
-  constructor() {}
+  @Input() hit;
 
   ngAfterViewInit() {
     // @ts-ignore
-    imgix.init({force: true})
+    imgix.init({ force: true });
   }
 }

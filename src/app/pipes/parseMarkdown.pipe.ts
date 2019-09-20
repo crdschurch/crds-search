@@ -1,14 +1,13 @@
-import {Pipe, PipeTransform} from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 import kramed from 'kramed';
 
 /*
  * Takes markdown and renders HTML
  */
 
-@Pipe({name: 'parseMarkdown'})
+@Pipe({ name: 'parseMarkdown' })
 export class ParseMarkdownPipe implements PipeTransform {
-  transform(items : any) : any {
-    let parsed = kramed(items);
-    return parsed;
+  transform(items: any): any {
+    return kramed(items);
   }
 }
