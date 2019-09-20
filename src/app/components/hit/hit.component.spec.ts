@@ -34,7 +34,7 @@ describe('HitComponent', () => {
   });
 
   describe('Tests hit.image states', () => {
-    it('should have 3 blocks if hit.image is truthy: image link, text, meta', () => {
+    it('should have image link, text, meta if hit.image is truthy: ', () => {
       component.hit.image = 'image.png';
       component.hit.url = 'https://www.crossroads.net/';
 
@@ -60,7 +60,7 @@ describe('HitComponent', () => {
       expect(image.alt).toBe(component.hit.title);
     });
 
-    it('should have 2 blocks if hit.image is falsy: text, meta', () => {
+    it('should have text, meta if hit.image is falsy', () => {
       component.hit.image = null;
 
       fixture.detectChanges();
@@ -85,102 +85,110 @@ describe('HitComponent', () => {
       });
     });
 
-    const cardStampContent = ['article', 'video', 'episode', 'message'];
-    cardStampContent.forEach(contentType => {
-      it(`should have card stamp with duration and image if content type is "${contentType}"`, () => {
-        component.hit.image = 'image.png';
-        component.hit.contentType = contentType;
-        component.hit.duration = '1m 30s';
+    describe('Tests card stamp', () => {
+      const cardStampContent = ['article', 'video', 'episode', 'message'];
+      cardStampContent.forEach(contentType => {
+        it(`should have duration and image for type "${contentType}"`, () => {
+          component.hit.image = 'image.png';
+          component.hit.contentType = contentType;
+          component.hit.duration = '1m 30s';
 
-        fixture.detectChanges();
+          fixture.detectChanges();
 
-        const cardStamp = fixture.nativeElement.querySelector('.card-stamp');
-        expect(cardStamp).toBeTruthy();
+          const cardStamp = fixture.nativeElement.querySelector('.card-stamp');
+          expect(cardStamp).toBeTruthy();
 
-        const duration = cardStamp.querySelector('[data-automation-id="hit-duration"]');
-        expect(duration.textContent).toBe(component.hit.duration);
+          const duration = cardStamp.querySelector('[data-automation-id="hit-duration"]');
+          expect(duration.textContent).toBe(component.hit.duration);
 
-        const image = cardStamp.querySelector('.icon > use');
-        expect(image.href).toBeTruthy();
+          const image = cardStamp.querySelector('.icon > use');
+          expect(image.href).toBeTruthy();
+        });
       });
-    });
 
-    const noCardStampContent = ['series', 'song', 'promo', 'album'];
-    noCardStampContent.forEach(contentType => {
-      it(`should not have card stamp if content type is "${contentType}"`, () => {
-        component.hit.image = 'image.png';
-        component.hit.contentType = contentType;
+      const noCardStampContent = ['series', 'song', 'promo', 'album'];
+      noCardStampContent.forEach(contentType => {
+        it(`should not have card stamp for type "${contentType}"`, () => {
+          component.hit.image = 'image.png';
+          component.hit.contentType = contentType;
 
-        fixture.detectChanges();
+          fixture.detectChanges();
 
-        const cardStamp = fixture.nativeElement.querySelector('.card-stamp');
-        expect(cardStamp).toBeFalsy();
+          const cardStamp = fixture.nativeElement.querySelector('.card-stamp');
+          expect(cardStamp).toBeFalsy();
+        });
       });
     });
   });
 
   describe('Tests hit meta section', () => {
-    it('should have a directions link if hit has map url', () => {
-      component.hit.map_url = 'https://www.google.com/maps/place/Crossroads+Church+Oakley';
+    describe('Tests directions link', () => {
+      it('should display if hit has map url', () => {
+        component.hit.map_url = 'https://www.google.com/maps/place/Crossroads+Church+Oakley';
 
-      fixture.detectChanges();
+        fixture.detectChanges();
 
-      const getDirections = fixture.nativeElement.querySelector('[data-automation-id="hit-directions"]');
-      expect(getDirections).toBeTruthy();
-      expect(getDirections.href).toBe(component.hit.map_url);
+        const getDirections = fixture.nativeElement.querySelector('[data-automation-id="hit-directions"]');
+        expect(getDirections).toBeTruthy();
+        expect(getDirections.href).toBe(component.hit.map_url);
+      });
+
+      it('should not display if hit has no map url', () => {
+        fixture.detectChanges();
+
+        const getDirections = fixture.nativeElement.querySelector('[data-automation-id="hit-directions"]');
+        expect(getDirections).toBeFalsy();
+      });
     });
 
-    it('should not have directions link if hit has no map url', () => {
-      fixture.detectChanges();
+    describe('Tests date range', () => {
+      it('should display if hit has start & end date', () => {
+        component.hit.start_date = '9.16.19';
+        component.hit.end_date = '10.16.19';
 
-      const getDirections = fixture.nativeElement.querySelector('[data-automation-id="hit-directions"]');
-      expect(getDirections).toBeFalsy();
+        fixture.detectChanges();
+
+        const dateRange = fixture.nativeElement.querySelector('.hit-series-date');
+        expect(dateRange).toBeTruthy();
+        expect(dateRange.textContent).toBe(`${component.hit.start_date} - ${component.hit.end_date}`);
+      });
+
+      it('should not display if missing start date', () => {
+        component.hit.end_date = '10.16.19';
+
+        fixture.detectChanges();
+
+        const dateRange = fixture.nativeElement.querySelector('.hit-series-date');
+        expect(dateRange).toBeFalsy();
+      });
+
+      it('should not display if missing end date', () => {
+        component.hit.start_date = '9.16.19';
+
+        fixture.detectChanges();
+
+        const dateRange = fixture.nativeElement.querySelector('.hit-series-date');
+        expect(dateRange).toBeFalsy();
+      });
     });
 
-    it('should have date range if hit has start & end date', () => {
-      component.hit.start_date = '9.16.19';
-      component.hit.end_date = '10.16.19';
+    describe('Tests date', () => {
+      it('should display if hit has date', () => {
+        component.hit.date = '9.16.19';
 
-      fixture.detectChanges();
+        fixture.detectChanges();
 
-      const dateRange = fixture.nativeElement.querySelector('.hit-series-date');
-      expect(dateRange).toBeTruthy();
-      expect(dateRange.textContent).toBe(`${component.hit.start_date} - ${component.hit.end_date}`);
-    });
+        const date = fixture.nativeElement.querySelector('.hit-date');
+        expect(date).toBeTruthy();
+        expect(date.textContent).toBe(component.hit.date);
+      });
 
-    it('should not have date range if missing start date', () => {
-      component.hit.end_date = '10.16.19';
+      it('should not display if hit missing date', () => {
+        fixture.detectChanges();
 
-      fixture.detectChanges();
-
-      const dateRange = fixture.nativeElement.querySelector('.hit-series-date');
-      expect(dateRange).toBeFalsy();
-    });
-
-    it('should not have date range if missing end date', () => {
-      component.hit.start_date = '9.16.19';
-
-      fixture.detectChanges();
-
-      const dateRange = fixture.nativeElement.querySelector('.hit-series-date');
-      expect(dateRange).toBeFalsy();
-    });
-
-    it('should have date if hit has date', () => {
-      component.hit.date = '9.16.19';
-
-      fixture.detectChanges();
-
-      const date = fixture.nativeElement.querySelector('.hit-date');
-      expect(date).toBeTruthy();
-      expect(date.textContent).toBe(component.hit.date);
-    });
-
-    it('should not have date if hit missing date', () => {
-      fixture.detectChanges();
-
-      const date = fixture.nativeElement.querySelector('.hit-date');
-      expect(date).toBeFalsy();
+        const date = fixture.nativeElement.querySelector('.hit-date');
+        expect(date).toBeFalsy();
+      });
     });
   });
 });

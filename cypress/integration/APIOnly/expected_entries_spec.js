@@ -19,9 +19,9 @@ const expectedEntries = [
   }
 ]
 
-describe('Tests these entries exist in the index', () => {
+describe('Tests these entries should be in the index', () => {
   expectedEntries.forEach(entry => {
-    it(`"${entry.title}" should be searchable`, () => {
+    it(`checks "${entry.title}" exists`, () => {
       AlgoliaAPI.searchByKeyword(entry.title, true).then(response => {
         expect(response).to.have.property('hits').with.property('length').gte('0');
 
@@ -40,9 +40,9 @@ const notSearchableContent = [
   }
 ]
 
-describe('Tests these entries are not in the index', function (){
+describe('Tests entries should not be in the index', function (){
   notSearchableContent.forEach(entry => {
-    it(`"${entry.title}" should not be searchable`, () => {
+    it(`checks "${entry.title}" does not exist`, () => {
       AlgoliaAPI.searchByKeyword(entry.title, true).then(response => {
         expect(response).to.have.property('hits').with.property('length').gte('0');
 

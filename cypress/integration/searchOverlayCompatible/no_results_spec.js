@@ -1,6 +1,6 @@
 import { SearchPanelFactory } from '../../SearchPanel/SearchPanel';
 
-describe('Tests searches with no results:', () => {
+describe('Tests search with no results', () => {
   const noResultsKeyword = 'a7';
   let search;
 
@@ -40,7 +40,7 @@ describe('Tests searches with no results:', () => {
     });
   });
 
-  it('checks results are displayed when a successful search is made after a no-results search', () => {
+  it('checks success of search after a no-results search', () => {
     search.clearedSearchField.type(noResultsKeyword).then(() => {
       search.results.noResultsBlock.as('noResultsBlock').should('be.visible').then(() => {
         search.clearedSearchField.type('god').then(() => {

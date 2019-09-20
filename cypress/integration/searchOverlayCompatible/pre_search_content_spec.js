@@ -1,7 +1,7 @@
 import { SearchPanelFactory } from '../../SearchPanel/SearchPanel';
 import { ContentBlockQueryManager } from 'crds-cypress-contentful';
 
-describe('The pre-search content block should be displayed:', () => {
+describe('Tests suggested search block', () => {
   let preSearchContentBlock;
   let search;
   before(() => {
@@ -25,14 +25,13 @@ describe('The pre-search content block should be displayed:', () => {
   //   search = SearchPanelFactory.MobileSharedHeaderSearchModal();
   // });
 
-  it('Before a search', () => {
+  it('checks suggestions displayed before searching', () => {
     search.results.suggestedSearchBlock.as('preSearchContent')
       .should('be.visible')
       .displayedText().should('contain', preSearchContentBlock.content.unformattedText);
   });
 
-
-  it('After the search bar is cleared using the icon', () => {
+  it('checks suggestions displayed after search cleared using icon', () => {
     const searchString = 'a'
     search.clearedSearchField.type(searchString).then(() => {
       search.results.firstCard.title.should('be.visible').then(() => {
@@ -45,7 +44,7 @@ describe('The pre-search content block should be displayed:', () => {
     })
   });
 
-  it('After the search bar is cleared manually', () => {
+  it('checks suggestions displayed after search cleared manually', () => {
     const searchString = 'a'
     search.searchField.type(searchString).then(() => {
       search.results.firstCard.title.should('be.visible').then(() => {
