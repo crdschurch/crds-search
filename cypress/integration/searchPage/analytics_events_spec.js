@@ -49,7 +49,7 @@ describe('Tests analytics events are fired', () => {
       }
     });
 
-    const searchString = 'job'
+    const searchString = 'group'
     search.clearedSearchField.type(searchString).then(() => {
       search.results.firstCard.click();
       cy.wrap(requestFilter).its('matches').should('have.length', 1).then(matches => {

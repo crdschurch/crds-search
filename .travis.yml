@@ -13,18 +13,23 @@ cache:
     - ~/.cache
 install:
   - yarn install
-defaults: &runCypress
+unitTests: &unitTest
   script:
-  - "$(yarn bin)/cypress run --record --key $cypressDashboard --parallel --group crds-search-parallel --browser chrome --env configFile=$configFile,CONTENTFUL_SPACE_ID=$contentfulSpaceId,CONTENTFUL_ACCESS_TOKEN=$contentfulToken,ALGOLIA_APP_ID=$algoliaAppId,ALGOLIA_API_KEY=$algoliaApiKey"
+    - "yarn run test"
+cypressScript: &integrationTest
+  script:
+    - "yarn run cypress run --record --key $cypressDashboard --parallel --group crds-search-parallel --browser chrome --env configFile=$configFile,CONTENTFUL_SPACE_ID=$contentfulSpaceId,CONTENTFUL_ACCESS_TOKEN=$contentfulToken,ALGOLIA_APP_ID=$algoliaAppId,ALGOLIA_API_KEY=$algoliaApiKey"
 jobs:
   include:
+    - stage: unitTest
+      <<: *unitTest
   # run tests in parallel by including several jobs with same "stage" name
-    - stage: test
-      <<: *runCypress
-    - stage: test
-      <<: *runCypress
-    - stage: test
-      <<: *runCypress
+    - stage: integraionTest
+      <<: *integrationTest
+    - stage: integraionTest
+      <<: *integrationTest
+    - stage: integraionTest
+      <<: *integrationTest
 notifications:
   slack:
     rooms:
