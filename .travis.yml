@@ -23,10 +23,13 @@ jobs:
       <<: *unitTest
   # run tests in parallel by including several jobs with same "stage" name
     - stage: Integraion Tests
+      if: env(RUN_CYPRESS) = true
       <<: *integrationTest
     - stage: Integraion Tests
+      if: env(RUN_CYPRESS) = true
       <<: *integrationTest
     - stage: Integraion Tests
+      if: env(RUN_CYPRESS) = true
       <<: *integrationTest
 notifications:
   slack:
