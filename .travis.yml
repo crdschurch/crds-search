@@ -14,21 +14,19 @@ cache:
 install:
   - yarn install
 unitTests: &unitTest
-  script:
-    - "yarn run test"
-cypressScript: &integrationTest
-  script:
-    - "yarn run cypress run --record --key $cypressDashboard --parallel --group crds-search-parallel --browser chrome --env configFile=$configFile,CONTENTFUL_SPACE_ID=$contentfulSpaceId,CONTENTFUL_ACCESS_TOKEN=$contentfulToken,ALGOLIA_APP_ID=$algoliaAppId,ALGOLIA_API_KEY=$algoliaApiKey"
+  script: "yarn run test_headless"
+integrationTests: &integrationTest
+  script: "yarn run cypress run --record --key $cypressDashboard --parallel --group crds-search-parallel --browser chrome --env configFile=$configFile,CONTENTFUL_SPACE_ID=$contentfulSpaceId,CONTENTFUL_ACCESS_TOKEN=$contentfulToken,ALGOLIA_APP_ID=$algoliaAppId,ALGOLIA_API_KEY=$algoliaApiKey"
 jobs:
   include:
-    - stage: unitTest
+    - stage: Unit Tests
       <<: *unitTest
   # run tests in parallel by including several jobs with same "stage" name
-    - stage: integraionTest
+    - stage: Integraion Tests
       <<: *integrationTest
-    - stage: integraionTest
+    - stage: Integraion Tests
       <<: *integrationTest
-    - stage: integraionTest
+    - stage: Integraion Tests
       <<: *integrationTest
 notifications:
   slack:
