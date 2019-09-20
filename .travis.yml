@@ -23,15 +23,6 @@ unitTests: &unitTest
 integrationTests: &integrationTest
   if: env(RUN_CYPRESS) = true
   script: "yarn run cypress run --record --key $cypressDashboard --parallel --group crds-search-parallel --browser chrome --env configFile=$configFile,CONTENTFUL_SPACE_ID=$contentfulSpaceId,CONTENTFUL_ACCESS_TOKEN=$contentfulToken,ALGOLIA_APP_ID=$algoliaAppId,ALGOLIA_API_KEY=$algoliaApiKey"
-  notifications:
-    slack:
-      rooms:
-        - crdschurch:iZZLQf36DkUtiv0SqLhlOklj
-      template:
-        - "Build <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) of %{repository_slug}@%{branch} by %{author} %{result} in %{elapsed_time}"
-      on_success: always
-      on_failure: always
-      on_pull_requests: false
 
 jobs:
   include:
@@ -44,12 +35,13 @@ jobs:
       <<: *integrationTest
     - stage: Integraion Tests
       <<: *integrationTest
-# notifications:
-#   slack:
-#     rooms:
-#       - crdschurch:iZZLQf36DkUtiv0SqLhlOklj
-#     template:
-#       - "Build <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) of %{repository_slug}@%{branch} by %{author} %{result} in %{elapsed_time}"
-#     on_success: always
-#     on_failure: always
-#     on_pull_requests: false
+
+notifications:
+  slack:
+    rooms:
+      - crdschurch:iZZLQf36DkUtiv0SqLhlOklj
+    template:
+      - "Build <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) of %{repository_slug}@%{branch} by %{author} %{result} in %{elapsed_time}"
+    on_success: always
+    on_failure: always
+    on_pull_requests: false

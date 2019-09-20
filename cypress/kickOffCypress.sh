@@ -1,28 +1,13 @@
 #!/usr/bin/env bash
 shopt -s nocasematch; #ignore case
 
-#Skip all testing if testing toggled off
-# if [[ "$RUN_CYPRESS" != "true" ]];
-# then
-#     exit 0
-# fi
-
 #Skip all testing against preview branches
 if [ "$CONTEXT" != "production" ];
 then
     exit 0
 fi
 
-#Below is temporarily disabled until tests are more stable
-#Test the live site if we're deploying to it, else test Netlify's preview
-# if [ "$CONTEXT" == "production" ];
-# then
-#     test_this_URL=$CRDS_APP_CLIENT_ENDPOINT
-# else
-#     test_this_URL=$DEPLOY_URL
-# fi
-
-body="{\"request\": { \"branch\":\"$HEAD\", \"config\": {\"env\": { \"configFile\": \"$CYPRESS_CONFIG_FILE\", \"contentfulSpaceId\": \"$CONTENTFUL_SPACE_ID\", \"contentfulToken\": \"$CONTENTFUL_ACCESS_TOKEN\", \"algoliaAppId\": \"$ALGOLIA_APP_ID\", \"algoliaApiKey\": \"$ALGOLIA_API_KEY\", \"DEBUG_NetlifyContext\": \"$CONTEXT\"}}}}"
+body="{\"request\": { \"branch\":\"$HEAD\", \"config\": {\"env\": { \"RUN_CYPRESS\": \"$RUN_CYPRESS\", \"configFile\": \"$CYPRESS_CONFIG_FILE\", \"contentfulSpaceId\": \"$CONTENTFUL_SPACE_ID\", \"contentfulToken\": \"$CONTENTFUL_ACCESS_TOKEN\", \"algoliaAppId\": \"$ALGOLIA_APP_ID\", \"algoliaApiKey\": \"$ALGOLIA_API_KEY\", \"DEBUG_NetlifyContext\": \"$CONTEXT\"}}}}"
 
 curl -s -X POST \
 -H "Content-Type: application/json" \
