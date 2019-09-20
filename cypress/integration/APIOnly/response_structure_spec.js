@@ -24,7 +24,7 @@ describe('Tests that the responses from the Algilia API have expected properties
   const keywords = ['god', 'lksjd;flakjds'];
   keywords.forEach(keyword => {
 
-    it(`Response for keyword "${keyword}" should have keyword, hit count, and pagination information`, function () {
+    it(`Response for keyword "${keyword}" should have keyword, hit count, and pagination information`, () => {
       AlgoliaAPI.searchByKeyword(keyword).then(response => {
         expect(response).to.have.property('query', keyword);
         expect(response).to.have.property('params');
@@ -40,7 +40,7 @@ describe('Tests that the responses from the Algilia API have expected properties
 
   const algoliaContentTypes = Object.keys(contentTypeProperties);
   algoliaContentTypes.forEach(type => {
-    it(`Responses for content type "${type}" should have expected properties`, function () {
+    it(`Responses for content type "${type}" should have expected properties`, () => {
       AlgoliaAPI.searchByContentType(type).then(response => {
         expect(response).to.have.property('hits').with.property('length').gte('0');
         return response.hits[0];

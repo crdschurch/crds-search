@@ -5,8 +5,8 @@ import { MessageQueryManager, SeriesQueryManager } from 'crds-cypress-contentful
 * Note: Since we are not modifying entries in Contentful, these tests only passively confirm that the message link is stored correctly in Algolia when either the
 * Message or Series slug is updated.
 */
-describe("Given that the link to a message includes its series, When a message or series is updated, Then the message result should have the correct link:", function () {
-  it('The most recently updated message should have the correct url', function () {
+describe("Given that the link to a message includes its series, When a message or series is updated, Then the message result should have the correct link:", () => {
+  it('The most recently updated message should have the correct url', () => {
     const mqm = new MessageQueryManager();
     mqm.getSingleEntry(mqm.query.orderBy.updatedMostRecently).then(message => {
 
@@ -21,7 +21,7 @@ describe("Given that the link to a message includes its series, When a message o
     });
   });
 
-  it('A message in the most recently updated series should have the correct url', function () {
+  it('A message in the most recently updated series should have the correct url', () => {
     const sqm = new SeriesQueryManager();
 
     sqm.getSingleEntry(`${sqm.query.orderBy.updatedMostRecently}&${sqm.query.messageExists(true)}`).then(series => {

@@ -1,22 +1,6 @@
 import { SearchPanelFactory } from "../../SearchPanel/SearchPanel";
-
-
-class RequestFilter {
-  constructor (cb) {
-    this._matching_requests = [];
-    this._match_cb = cb;
-  }
-
-  get matches() {
-    return this._matching_requests;
-  }
-
-  keepMatch(request) {
-    if (this._match_cb(request)) {
-      this._matching_requests.push(request);
-    }
-  }
-}
+import { RequestFilter } from "../../Analytics/RequestFilter";
+import { metarouter } from "../../fixtures/event_filters";
 
 describe('Tests analytics events are fired', () => {
   let search;
@@ -30,24 +14,23 @@ describe('Tests analytics events are fired', () => {
   });
 
   it('checks event triggered on search submit and has expected values', () => {
-    const isSearchEvent = (request) => { return request.body.event === 'WebsiteSearch'; }
-    const searchEventFilter = new RequestFilter(isSearchEvent);
+    const requestFilter = new RequestFilter(metarouter.isSearchEvent);
 
     cy.route({
       method: 'POST',
       url: 'https://e.metarouter.io/v1/t',
       onRequest: (xhr) => {
-        searchEventFilter.keepMatch(xhr.request);
+        requestFilter.keepMatch(xhr.request);
       }
     })
 
     const searchString = 'g'
     search.clearedSearchField.type(searchString);
 
-    cy.wrap(searchEventFilter).its('matches').should('have.length', 1)
+    cy.wrap(requestFilter).its('matches').should('have.length', 1)
 
 
-    cy.wrap(searchEventFilter).its('matches').should('have.length', 1).then(matches => {
+    cy.wrap(requestFilter).its('matches').should('have.length', 1).then(matches => {
       cy.wrap(matches[0]).should('have.property', 'body').and('have.property', 'properties').as('eventProperties');
 
       cy.get('@eventProperties').should('have.property', 'Query', 'g');
@@ -55,22 +38,21 @@ describe('Tests analytics events are fired', () => {
     });
   });
 
-  it.only('checks event triggered on search result click', () => {
-    const isConversionEvent = (request) => { return request.body.event === 'WebsiteSearchConversion'; }
-    const conversionEventFilter = new RequestFilter(isConversionEvent);
+  it('checks event triggered on search result click', () => {
+    const requestFilter = new RequestFilter(metarouter.isConversionEvent);
 
     cy.route({
       method: 'POST',
       url: 'https://e.metarouter.io/v1/t',
       onRequest: (xhr) => {
-        conversionEventFilter.keepMatch(xhr.request);
+        requestFilter.keepMatch(xhr.request);
       }
-    })
+    });
 
     const searchString = 'job'
     search.clearedSearchField.type(searchString).then(() => {
-      search.results.firstCard.click(); //TODO use this way to click everywhere
-      cy.wrap(conversionEventFilter).its('matches').should('have.length', 1).then(matches => {
+      search.results.firstCard.click();
+      cy.wrap(requestFilter).its('matches').should('have.length', 1).then(matches => {
         cy.wrap(matches[0]).should('have.property', 'body').and('have.property', 'properties').as('eventProperties');
 
         cy.get('@eventProperties').should('have.property', 'Query');
