@@ -3,6 +3,11 @@ export class ResultCard {
     this._cardAlias = cardAlias;
   }
 
+  click() {
+    // Click on title, not app-hit, so events are fired and page navigates
+    this.title.click({force: true});
+  }
+
   get image() {
     return cy.get(`@${this._cardAlias}`).find('.hit-img');
   }
