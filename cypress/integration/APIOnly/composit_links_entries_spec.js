@@ -35,7 +35,6 @@ describe('Tests entries with composite urls have correct url', () => {
           expect(response).to.have.property('hits').with.property('length').gte('0');
 
           firstMessage.getURL().then(messageURL => {
-            console.log(messageURL)
             const match = response.hits.find(r => r.url.includes(messageURL.absolute));
             expect(match).to.not.be.undefined;
           });
