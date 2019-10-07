@@ -30,7 +30,7 @@ describe('Tests the expected page opens when result is clicked', () => {
     search.clearedSearchField.type('Preschool').then(() => {
       search.results.findByHref(requiresAuthUrl).click();
       cy.contains('Sign In').should('exist').and('be.visible');
-      cy.url().should('eq', `${Cypress.env('CRDS_ENDPOINT')}/signin`);
+      cy.url().should('contain', `${Cypress.env('CRDS_ENDPOINT')}/signin`);
     });
   })
 
