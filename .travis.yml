@@ -22,7 +22,7 @@ unitTests: &unitTest
 # Integration Test stage
 integrationTests: &integrationTest
   if: env(RUN_CYPRESS) = true
-  script: "yarn run cypress run --record --key $cypressDashboard --parallel --group crds-search-parallel --browser chrome --env configFile=$configFile,VAULT_SECRET_ID=$VAULT_SECRET_ID,VAULT_ROLE_ID=$VAULT_ROLE_ID"
+  script: "yarn run cypress run --record --key $cypressDashboard --parallel --group crds-search-parallel --browser chrome"
 
 jobs:
   include:
