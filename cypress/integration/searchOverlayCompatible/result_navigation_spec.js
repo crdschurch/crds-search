@@ -35,9 +35,9 @@ describe('Tests the expected page opens when result is clicked', () => {
   })
 
   it('checks result for page from Contentful opens that page', () => {
-    const crdsNetUrl = `${Cypress.env('CRDS_ENDPOINT')}/locations`;
+    const crdsNetUrl = `${Cypress.env('CRDS_ENDPOINT')}/wayfinder-leader-resources/`;
 
-    search.clearedSearchField.type('loca').then(() => {
+    search.clearedSearchField.type('wayfinder').then(() => {
       search.results.findByHref(crdsNetUrl).click();
       cy.url().should('match', new RegExp(`${crdsNetUrl}/?`));
     });
