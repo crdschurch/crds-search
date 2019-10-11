@@ -25,21 +25,21 @@ describe('Tests the expected page opens when result is clicked', () => {
   })
 
   it('checks result requiring authentication opens /signin', () => {
-    const requiresAuthUrl = `${Cypress.env('CRDS_ENDPOINT')}/preschool/register/`;
+    const requiresAuthUrl = `${Cypress.env('CRDS_ENDPOINT')}/profile/personal`;
 
-    search.clearedSearchField.type('Preschool').then(() => {
+    search.clearedSearchField.type('Profile').then(() => {
       search.results.findByHref(requiresAuthUrl).click();
       cy.contains('Sign In').should('exist').and('be.visible');
-      cy.url().should('eq', `${Cypress.env('CRDS_ENDPOINT')}/signin`);
+      cy.url().should('match', new RegExp(`${Cypress.env('CRDS_ENDPOINT')}/signin/?`));
     });
   })
 
   it('checks result for page from Contentful opens that page', () => {
-    const crdsNetUrl = `${Cypress.env('CRDS_ENDPOINT')}/jobs/`;
+    const crdsNetUrl = `${Cypress.env('CRDS_ENDPOINT')}/wayfinder-leader-resources/`;
 
-    search.clearedSearchField.type('jobs').then(() => {
+    search.clearedSearchField.type('wayfinder').then(() => {
       search.results.findByHref(crdsNetUrl).click();
-      cy.url().should('eq', crdsNetUrl);
+      cy.url().should('match', new RegExp(`${crdsNetUrl}/?`));
     });
   })
 })

@@ -1,20 +1,14 @@
 import { SearchPanelFactory } from "../../SearchPanel/SearchPanel";
 
 describe('Tests pagination behavior', () => {
-  let search;
-
   before(() => {
     cy.visit('/search');
   });
 
-  beforeEach(() => {
-    search = SearchPanelFactory.SearchPage();
-  });
-
   describe(`Tests if results don't fit on one page`, () => {
-    beforeEach(() => {
+    before(() => {
       const searchString = 'god'
-      search.clearedSearchField.type(searchString);
+      SearchPanelFactory.SearchPage().clearedSearchField.type(searchString);
     });
 
     it('checks "Show More" button displayed', () => {
@@ -35,9 +29,9 @@ describe('Tests pagination behavior', () => {
   });
 
   describe('Tests if all results fit on one page', () => {
-    beforeEach(() => {
-      const lowResultString = 'abc';
-      search.clearedSearchField.type(lowResultString);
+    before(() => {
+      const lowResultString = 'bb';
+      SearchPanelFactory.SearchPage().clearedSearchField.type(lowResultString);
     });
 
     it('checks "Show More" button is not displayed', () => {
