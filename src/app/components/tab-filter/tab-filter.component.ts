@@ -12,7 +12,7 @@ export class TabFilter {
   transformItems(items) {
     return items.map(item => ({
       ...item,
-      label: `${item.label.replace('_', ' ')}`
+      label: item.label.replace('_', ' ')
     }));
   }
 }
