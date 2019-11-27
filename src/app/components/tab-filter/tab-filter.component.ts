@@ -8,4 +8,11 @@ import { Component, Input } from '@angular/core';
 export class TabFilterComponent {
   @Input() hits;
   @Input() results;
+
+  transformItems(items) {
+    return items.map(item => ({
+      ...item,
+      label: item.label.replace('_', ' ')
+    }));
+  }
 }
