@@ -9,5 +9,10 @@ export class TabFilter {
   @Input() hits;
   @Input() results;
 
-  constructor() { }
+  transformItems(items) {
+    return items.map(item => ({
+      ...item,
+      label: `${item.label.replace('_', ' ')}`
+    }));
+  }
 }
