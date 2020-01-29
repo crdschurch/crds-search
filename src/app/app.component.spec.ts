@@ -1,22 +1,30 @@
-import { TestBed, async } from '@angular/core/testing';
-import { NgAisModule } from 'angular-instantsearch';
+import { TestBed } from '@angular/core/testing';
+import { Injectable, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppComponent } from './app.component';
+import { NativeWindowRefService } from './services/native-window-ref.service';
+
+@Injectable()
+class MockNativeWindowRefService { }
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
+  let fixture;
+  let component;
+
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent
       ],
-      imports: [
-        NgAisModule.forRoot(),
+      providers: [
+        { provide: NativeWindowRefService, useClass: MockNativeWindowRefService },
       ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
-  }));
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.debugElement.componentInstance;
+  });
 
-  it('should create the app', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  }));
+  it('should create a component', async () => {
+    expect(component).toBeTruthy();
+  });
 });
