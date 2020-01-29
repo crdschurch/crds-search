@@ -10,14 +10,10 @@ $cr-path-to-icons-sprite: '/crds-styles/assets/svgs/';
 @import './app/components/search-input/search-input.component';
 @import './app/components/hits/hits.component';
 @import './app/components/hit/hit.component';
+@import './app/components/hit-widget/hit-widget.component';
 @import './app/components/hit-text/hit-text.component';
 @import './app/components/tab-filter/tab-filter.component';
 
 * {
   box-sizing: border-box;
-}
-
-// prevent jumpy loading
-.crds-shared-header {
-  min-height: 64px;
 }

@@ -83,3 +83,11 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 (window as any).process = {
   env: { DEBUG: undefined },
 };
+
+
+import '@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js';
+// Used for browsers with partially native support of Custom Elements
+import '@webcomponents/custom-elements/src/native-shim';
+
+// Used for browsers without a native support of Custom Elements
+import '@webcomponents/custom-elements/custom-elements.min';

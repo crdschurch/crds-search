@@ -22,8 +22,7 @@ fi
 #     test_this_URL=$DEPLOY_URL
 # fi
 
-test_this_URL=$SITE_URL
-body="{\"request\": { \"branch\":\"$HEAD\", \"config\": {\"env\": { \"baseURL\": \"$test_this_URL\", \"contentfulSpaceId\": \"$CONTENTFUL_SPACE_ID\", \"contentfulEnv\": \"$CONTENTFUL_ENV\", \"contentfulToken\": \"$CONTENTFUL_ACCESS_TOKEN\", \"DEBUG_NetlifyContext\": \"$CONTEXT\"}}}}"
+body="{\"request\": { \"branch\":\"$HEAD\", \"config\": {\"env\": { \"configFile\": \"$CYPRESS_CONFIG_FILE\", \"contentfulSpaceId\": \"$CONTENTFUL_SPACE_ID\", \"contentfulToken\": \"$CONTENTFUL_ACCESS_TOKEN\", \"algoliaAppId\": \"$ALGOLIA_APP_ID\", \"algoliaApiKey\": \"$ALGOLIA_API_KEY\", \"DEBUG_NetlifyContext\": \"$CONTEXT\"}}}}"
 
 curl -s -X POST \
 -H "Content-Type: application/json" \

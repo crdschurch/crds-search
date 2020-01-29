@@ -16,8 +16,7 @@
 
   .hit-meta {
     @media (min-width: 767px) {
-      width: 40vw;
-      max-width: 170px;
+      width: 170px;
       // pin to right hand side in flex
       margin-left: auto;
       text-align: right;
@@ -26,9 +25,9 @@
 
   .hit-img {
     margin-bottom: 1rem;
+    width: 100%;
 
     @media (min-width: 767px) {
-      width: 50vw;
       max-width: 150px;
       margin-right: 1rem;
       margin-bottom: 0;

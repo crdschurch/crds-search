@@ -1,21 +1,21 @@
 <div class="hit-text text-gray-dark">
-    <span *ngIf="hit.category" class="text-gray font-size-smaller font-family-base-mid text-uppercase">{{hit.category}}</span>
+    <span *ngIf="hit.category" class="text-gray font-size-smaller font-family-base-mid text-uppercase" data-automation-id="hit-category">{{hit.category}}</span>
   <a class="hit-title component-header" href="{{hit.url}}">
     <ais-highlight class="text-gray-dark" attribute="title" [hit]="hit">
     </ais-highlight>
   </a>
-  <ng-container *ngIf="hit.contentType !== 'location'; else locationText">
-    <p *ngIf="hit.description" class="font-size-smaller push-quarter-bottom">
+  <ng-container>
+    <p *ngIf="hit.description" class="font-size-smaller push-quarter-bottom" data-automation-id="hit-description">
       {{hit.description.substr(0, 180)}}
       <span *ngIf="hit.description.length > 180" style="margin-left: -3px;">...</span>
     </p>
   </ng-container>
-  <ng-template #locationText>
-    <p *ngIf="hit.serviceTimes" class="font-size-smaller">
+  <ng-container>
+    <p *ngIf="hit.serviceTimes" class="font-size-smaller" data-automation-id="hit-serviceTimes">
       <span class="control-label block">Service Times</span>
       {{ hit.serviceTimes }}
     </p>
-  </ng-template>
+  </ng-container>
   <p class="font-size-smaller text-gray-light flush">
     <span *ngIf="hit.author" class="hit-author">{{hit.author}}</span>
     <span *ngIf="hit.series" class="hit-series">{{hit.series}}</span>

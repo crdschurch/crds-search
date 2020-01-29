@@ -28,7 +28,7 @@
               "src/assets",
               {
                 "glob": "*",
-                "input": "../node_modules/crds-styles/assets/svgs",
+                "input": "./node_modules/crds-styles/assets/svgs",
                 "output": "assets"
               }
             ],
@@ -37,7 +37,9 @@
               "node_modules/angular-instantsearch/bundles/instantsearch-theme-algolia.min.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/imgix.js/dist/imgix.min.js"
+            ]
           },
           "configurations": {
             "local": {
@@ -111,10 +113,83 @@
               ]
             },
             "production": {
-              "fileReplacements": [{
-                "replace": "src/environments/environment.ts",
-                "with": "src/environments/environment.prod.ts"
-              }],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "baseHref": "/search/",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            },
+            "component.development": {
+              "baseHref": "/search/",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "fileReplacements": [
+                {
+                  "replace": "/src/environments/environment.ts",
+                  "with": "/src/environments/environment.component.int.ts"
+                }
+              ]
+            },
+            "component.preview": {
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": true,
+              "extractCss": false,
+              "namedChunks": true,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "fileReplacements": [
+                {
+                  "replace": "/src/environments/environment.ts",
+                  "with": "/src/environments/environment.component.int.ts"
+                }
+              ]
+            },
+            "component.demo": {
+              "baseHref": "/search/",
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "fileReplacements": [
+                {
+                  "replace": "/src/environments/environment.ts",
+                  "with": "/src/environments/environment.component.demo.ts"
+                }
+              ]
+            },
+            "component.production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.component.prod.ts"
+                }
+              ],
               "baseHref": "/search/",
               "optimization": true,
               "outputHashing": "all",
