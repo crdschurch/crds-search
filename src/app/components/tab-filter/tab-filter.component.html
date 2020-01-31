@@ -3,6 +3,7 @@
       <ais-menu
               [hidden]="state.nbHits === 0 || !state.query"
               attribute="contentType"
+              [transformItems]="transformItems"
               [limit]="5"
               [showMoreLimit]="9"
               [sortBy]="['count']">
