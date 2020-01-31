@@ -1,65 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta property="ix:useHttps" content="true" />
+    <meta property="ix:srcInputAttribute" content="ix-src" />
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="ix:useHttps" content="true">
-  <meta property="ix:srcInputAttribute" content="ix-src">
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="//crossroads-media.s3.amazonaws.com/images/favicon/favicon.ico"
+    />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="shortcut icon" href="favicon.png" />
 
+    <title>Search Crossroads.net</title>
 
-  <link rel="icon" type="image/x-icon" href="//crossroads-media.s3.amazonaws.com/images/favicon/favicon.ico">
-  <link rel="manifest" href="manifest.json">
-  <link rel="shortcut icon" href="favicon.png">
+    <script src="https://use.typekit.net/ccb3vpa.js"></script>
 
-  <title>Search Crossroads.net</title>
+    <script>
+      (function(w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+          "gtm.start": new Date().getTime(),
+          event: "gtm.js"
+        });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-MFS4MJ");
+    </script>
 
-  <script src="https://use.typekit.net/ccb3vpa.js"></script>
+    <script
+      type="module"
+      src="https://components-int.crossroads.net/dist/crds-components/crds-components.esm.js"
+    ></script>
+    <script
+      nomodule=""
+      src="https://components-int.crossroads.net/dist/crds-components/crds-components.js"
+    ></script>
+  </head>
 
-  <script>
-    (function (w, d, s, l, i) {
-      w[l] = w[l] || [];
-      w[l].push({
-        'gtm.start': new Date().getTime(),
-        event: 'gtm.js'
-      });
-      var
-        f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s),
-        dl = l != 'dataLayer' ? '&l=' + l : '';
-      j.async = true;
-      j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-      f.parentNode.insertBefore(j, f);
-    })(window, document, 'script',
-      'dataLayer', 'GTM-MFS4MJ');
-  </script>
+  <body class="crds-styles">
+    <div class="shared-header-skeleton">
+      <crds-shared-header env="int"></crds-shared-header>
+    </div>
+    <div class="snail-trail-skeleton">
+      <crds-snail-trail name="trending" env="int"></crds-snail-trail>
+    </div>
 
-  <script src="https://crds-components-int.netlify.com/dist/crds-components.js"></script>
-</head>
+    <app-root></app-root>
 
-<body class="crds-styles">
-  <div class="shared-header-skeleton">
-    <crds-shared-header env="int"></crds-shared-header>
-  </div>
-  <div class="snail-trail-skeleton">
-    <crds-snail-trail name="trending" env="int"></crds-snail-trail>
-  </div>
+    <div class="shared-footer-skeleton">
+      <crds-shared-footer env="int"></crds-shared-footer>
+    </div>
 
-  <app-root></app-root>
-
-  <div class="shared-footer-skeleton">
-    <crds-shared-footer env="int"></crds-shared-footer>
-  </div>
-
-  <script>
-    try {
-      Typekit.load({
-        async: false
-      });
-    } catch (e) {
-      console.error(e);
-    }
-  </script>
-</body>
-
+    <script>
+      try {
+        Typekit.load({
+          async: false
+        });
+      } catch (e) {
+        console.error(e);
+      }
+    </script>
+  </body>
 </html>
