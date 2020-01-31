@@ -2226,9 +2226,9 @@ cosmiconfig@^4.0.0:
     parse-json "^4.0.0"
     require-from-string "^2.0.1"
 
-"crds-components-env-replace@github:crdschurch/crds-components-env-replace#master":
+"crds-components-env-replace@github:crdschurch/crds-components-env-replace#1.0.1":
   version "1.0.0"
-  resolved "https://codeload.github.com/crdschurch/crds-components-env-replace/tar.gz/4755a6f807a30149b0c587a5b9e7efdfa17e74a2"
+  resolved "https://codeload.github.com/crdschurch/crds-components-env-replace/tar.gz/5b9f393b1a2ab736bad5bc62e9f6e160fb878096"
   dependencies:
     commander "^2.20.0"
     replace-in-file "^4.1.1"
