@@ -1,3 +1,3 @@
 <ng-container *ngIf="!results.query">
-    <div class="suggested-container text-gray-dark" *ngIf="content$|async as content" [innerHTML]="content.content | parseMarkdown"></div>
+    <div class="suggested-container text-gray-dark" *ngIf="content$ | async as content" [innerHTML]="content.content | parseMarkdown"></div>
 </ng-container>

@@ -7,19 +7,16 @@ import * as jQuery from 'jquery';
   styleUrls: ['./search-modal.component.scss'],
   encapsulation: ViewEncapsulation.Emulated
 })
-export class SearchModalComponent {
+export class SearchModalComponent implements OnInit {
   public isVisible = false;
 
-  constructor() {
-  }
+  constructor() { }
 
   ngOnInit() {
     $('#searchModal').on('shown.bs.modal', () => {
-      setTimeout(() => { $('input.ais-SearchBox-input').focus() }, 500);
+      setTimeout(() => { $('input.ais-SearchBox-input').focus(); }, 500);
     });
 
-    $('#searchModal').on('hidden.bs.modal', () => {
-
-    });
+    $('#searchModal').on('hidden.bs.modal', () => {});
   }
 }

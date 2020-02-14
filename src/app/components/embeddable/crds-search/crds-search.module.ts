@@ -6,7 +6,7 @@ import { SearchInputComponent } from '../../../components/search-input/search-in
 import { HitsComponent } from '../../../components/hits/hits.component';
 import { HitComponent } from '../../../components/hit/hit.component';
 import { SuggestedComponent } from '../../../components/suggested/suggested.component';
-import { TabFilter } from '../../../components/tab-filter/tab-filter.component';
+import { TabFilterComponent } from '../../../components/tab-filter/tab-filter.component';
 import { NoResultsComponent } from '../../../components/no-results/no-results.component';
 import { HitTextComponent } from '../../../components/hit-text/hit-text.component';
 import { HitWidgetComponent } from '../../../components/hit-widget/hit-widget.component';
@@ -28,7 +28,7 @@ import { Angulartics2Segment } from 'angulartics2/segment';
         HitsComponent,
         HitComponent,
         SuggestedComponent,
-        TabFilter,
+        TabFilterComponent,
         NoResultsComponent,
         HitTextComponent,
         HitWidgetComponent,
@@ -53,7 +53,5 @@ import { Angulartics2Segment } from 'angulartics2/segment';
     exports: [SearchModalComponent, SearchComponent]
 })
 export class CrdsSearchModule {
-    constructor(private injector: Injector) {
-
-    }
+    constructor(private injector: Injector) {}
 }

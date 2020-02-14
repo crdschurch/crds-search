@@ -3,25 +3,25 @@ import { AlgoliaAPI } from "../../Algolia/AlgoliaAPI";
 const expectedEntries = [
   {
     title: 'Woman Camp',
-    url: `${Cypress.config().baseUrl}/womancamp/`
+    url: `${Cypress.env('CRDS_ENDPOINT')}/womancamp/`
   },
   {
     title: 'Live Streaming',
-    url: `${Cypress.config().baseUrl}/live`
+    url: `${Cypress.env('CRDS_ENDPOINT')}/live`
   },
   {
     title: 'Corkboard',
-    url: `${Cypress.config().baseUrl}/corkboard`
+    url: `${Cypress.env('CRDS_ENDPOINT')}/corkboard`
   },
   {
     title: 'Media',
-    url: `${Cypress.config().baseUrl}/media`
+    url: `${Cypress.env('CRDS_ENDPOINT')}/media`
   }
 ]
 
-describe('Tests these entries exist in the index', function () {
+describe('Tests these entries should be in the index', () => {
   expectedEntries.forEach(entry => {
-    it(`"${entry.title}" should be searchable`, function () {
+    it(`checks "${entry.title}" exists`, () => {
       AlgoliaAPI.searchByKeyword(entry.title, true).then(response => {
         expect(response).to.have.property('hits').with.property('length').gte('0');
 
@@ -36,13 +36,13 @@ describe('Tests these entries exist in the index', function () {
 const notSearchableContent = [
   {
     title: 'Locker Room',
-    url: `${Cypress.config().baseUrl}/lockerroom`
+    url: `${Cypress.env('CRDS_ENDPOINT')}/lockerroom`
   }
 ]
 
-describe('Tests these entries are not in the index', function (){
+describe('Tests entries should not be in the index', function (){
   notSearchableContent.forEach(entry => {
-    it(`"${entry.title}" should not be searchable`, function () {
+    it(`checks "${entry.title}" does not exist`, () => {
       AlgoliaAPI.searchByKeyword(entry.title, true).then(response => {
         expect(response).to.have.property('hits').with.property('length').gte('0');
 

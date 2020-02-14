@@ -7,10 +7,10 @@ export const environment = {
   ALGOLIA_APP_ID: '8Y3N3H5PNJ',
   ALGOLIA_API_KEY: '609661e7d659e337fe7a1b5bee6b42f0',
   crdsEnv: 'demo',
-  authRedirectUrl: 'https://demo.crossroads.net/signin', 
-  cookieDomain: '.crossroads.net', 
-  cmsEndpoint: 'https://contentdemo.crossroads.net', 
+  authRedirectUrl: 'https://demo.crossroads.net/signin',
+  cookieDomain: '.crossroads.net',
+  cmsEndpoint: 'https://contentdemo.crossroads.net',
   appEndpoint: 'https://demo.crossroads.net',
-  apiEndpoint: "https://gatewaydemo.crossroads.net",
+  apiEndpoint: 'https://gatewaydemo.crossroads.net',
   package_component: false
 };

@@ -5,8 +5,7 @@ import { Angulartics2 } from 'angulartics2';
   providedIn: 'root'
 })
 export class AnalyticsService {
-
-  constructor(private analytics : Angulartics2) { }
+  constructor(private analytics: Angulartics2) { }
 
   public trackSearch(Query, ResultsCount) {
     this.analytics.eventTrack.next({
