@@ -1,12 +1,16 @@
-import { TestBed } from '@angular/core/testing';
-
 import { ContentfulService } from './contentful.service';
 
 describe('ContentfulService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  let service: ContentfulService;
+  beforeEach(() => {
+    service = new ContentfulService();
+  });
 
-  it('should be created', () => {
-    const service: ContentfulService = TestBed.get(ContentfulService);
-    expect(service).toBeTruthy();
+  it('should return content block when getSuggestedContentBlock called', (done) => {
+    service.getSuggestedContentBlock().subscribe(contentBlock => {
+      expect(contentBlock.content).toBeTruthy();
+      expect(typeof contentBlock.content).toBe('string');
+      done();
+    });
   });
 });

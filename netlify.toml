@@ -35,7 +35,7 @@
   CRDS_ENV = "int"
 
 [context.master]
-    command = '''
+  command = '''
   npm run build --configuration=${COMPONENT_CONFIG}production &&
   npm run env:replace &&
   npm run package 
