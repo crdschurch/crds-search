@@ -1,17 +1,17 @@
 # int build & anything that doesn't match below
 [build]
   command = '''
-  yarn run build --configuration=${COMPONENT_CONFIG}development &&
+  npm run build --configuration=${COMPONENT_CONFIG}development &&
   npm run env:replace &&
-  yarn run package &&
+  npm run package &&
   bash ./cypress/kickOffCypress.sh
   '''
 
 [context.deploy-preview]
   command = '''
-  yarn run build --configuration=${COMPONENT_CONFIG}preview &&
+  npm run build --configuration=${COMPONENT_CONFIG}preview &&
   npm run env:replace &&
-  yarn run package
+  npm run package
   '''
 
 [context.deploy-preview.environment]
@@ -22,9 +22,9 @@
 
 [context.release]
   command = '''
-  yarn run build --configuration=${COMPONENT_CONFIG}demo &&
+  npm run build --configuration=${COMPONENT_CONFIG}demo &&
   npm run env:replace &&
-  yarn run package &&
+  npm run package &&
   bash ./cypress/kickOffCypress.sh
   '''
 
@@ -36,9 +36,9 @@
 
 [context.master]
     command = '''
-  yarn run build --configuration=${COMPONENT_CONFIG}production &&
+  npm run build --configuration=${COMPONENT_CONFIG}production &&
   npm run env:replace &&
-  yarn run package 
+  npm run package 
   '''
 
 [context.master.environment]
