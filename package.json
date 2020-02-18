@@ -14,8 +14,7 @@
     "e2e": "ng e2e",
     "integration_test": "cypress open",
     "integration_test_headless": "cypress run",
-    "env:replace": "crds-components-env-replace --env $CRDS_ENV --file ./dist/search-ui/index.html",
-    "package": "mkdirp ./dist/search-component && cat ./dist/search-ui/runtime.js ./dist/search-ui/polyfills.js ./dist/search-ui/scripts.js ./dist/search-ui/main.js > ./dist/search-component/crds-search.js"
+    "env:replace": "crds-components-env-replace --env $CRDS_ENV --file ./dist/search-ui/index.html"
   },
   "dependencies": {
     "@angular/animations": "^9.0.1",

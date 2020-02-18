@@ -1,17 +1,15 @@
 # int build & anything that doesn't match below
 [build]
   command = '''
-  npm run build --configuration=${COMPONENT_CONFIG}development &&
+  npm run build --configuration=development &&
   npm run env:replace &&
-  npm run package &&
   bash ./cypress/kickOffCypress.sh
   '''
 
 [context.deploy-preview]
   command = '''
-  npm run build --configuration=${COMPONENT_CONFIG}preview &&
+  npm run build --configuration=preview &&
   npm run env:replace &&
-  npm run package
   '''
 
 [context.deploy-preview.environment]
@@ -22,9 +20,8 @@
 
 [context.release]
   command = '''
-  npm run build --configuration=${COMPONENT_CONFIG}demo &&
+  npm run build --configuration=demo &&
   npm run env:replace &&
-  npm run package &&
   bash ./cypress/kickOffCypress.sh
   '''
 
@@ -36,9 +33,8 @@
 
 [context.master]
   command = '''
-  npm run build --configuration=${COMPONENT_CONFIG}production &&
-  npm run env:replace &&
-  npm run package 
+  npm run build --configuration=production &&
+  npm run env:replace
   '''
 
 [context.master.environment]
