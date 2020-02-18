@@ -9,7 +9,7 @@
 [context.deploy-preview]
   command = '''
   npm run build --configuration=preview &&
-  npm run env:replace &&
+  npm run env:replace
   '''
 
 [context.deploy-preview.environment]
