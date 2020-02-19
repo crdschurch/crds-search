@@ -11,6 +11,5 @@ export const environment = {
     cookieDomain: '.crossroads.net',
     cmsEndpoint: 'https://contentint.crossroads.net',
     appEndpoint: 'https://int.crossroads.net',
-    apiEndpoint: 'https://gatewayint.crossroads.net',
-    package_component: true
+    apiEndpoint: 'https://gatewayint.crossroads.net'
 };
