@@ -10,13 +10,9 @@ export class TabFilterComponent {
   @Input() results;
 
   transformItems(items) {
-    const transformedItems = [];
-    
-    for(const item of items){
-      (item as any).label = item.label.replace('_', ' ');
-      transformedItems.push(item);
-    }
-
-    return transformedItems;
+    return items.map(item => ({
+      ...item,
+      label: item.label.replace('_', ' ')
+    }));
   }
 }
