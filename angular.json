@@ -90,7 +90,6 @@
               ]
             },
             "development": {
-              "baseHref": "/search/",
               "budgets": [
                 {
                   "type": "anyComponentStyle",
@@ -114,7 +113,6 @@
               ]
             },
             "demo": {
-              "baseHref": "/search/",
               "budgets": [
                 {
                   "type": "anyComponentStyle",
@@ -150,7 +148,6 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "baseHref": "/search/",
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -161,101 +158,6 @@
               "vendorChunk": false,
               "buildOptimizer": true
             },
-            "component.development": {
-              "baseHref": "/search/",
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "fileReplacements": [
-                {
-                  "replace": "/src/environments/environment.ts",
-                  "with": "/src/environments/environment.component.int.ts"
-                }
-              ]
-            },
-            "component.preview": {
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": true,
-              "extractCss": false,
-              "namedChunks": true,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "fileReplacements": [
-                {
-                  "replace": "/src/environments/environment.ts",
-                  "with": "/src/environments/environment.component.int.ts"
-                }
-              ]
-            },
-            "component.demo": {
-              "baseHref": "/search/",
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "fileReplacements": [
-                {
-                  "replace": "/src/environments/environment.ts",
-                  "with": "/src/environments/environment.component.demo.ts"
-                }
-              ]
-            },
-            "component.production": {
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.component.prod.ts"
-                }
-              ],
-              "baseHref": "/search/",
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true
-            }
           }
         },
         "serve": {
