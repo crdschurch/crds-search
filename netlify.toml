@@ -1,7 +1,7 @@
 # int build & anything that doesn't match below
 [build]
   command = '''
-  npm run build --configuration=development --base-href=/search/ &&
+  npm run build --configuration=development &&
   npm run env:replace &&
   bash ./cypress/kickOffCypress.sh
   '''
@@ -20,7 +20,7 @@
 
 [context.release]
   command = '''
-  npm run build --configuration=demo --base-href=/search/ &&
+  npm run build --configuration=demo &&
   npm run env:replace &&
   bash ./cypress/kickOffCypress.sh
   '''
@@ -33,7 +33,7 @@
 
 [context.master]
   command = '''
-  npm run build --configuration=production --base-href=/search/ &&
+  npm run build --configuration=production &&
   npm run env:replace
   '''
 

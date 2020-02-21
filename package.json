@@ -6,7 +6,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port 3000",
-    "build": "ng build --output-hashing=none",
+    "build": "ng build --output-hashing=none --base-href=/search/",
     "component": "ng build --output-hashing=none",
     "lint": "ng lint",
     "test": "ng test",
