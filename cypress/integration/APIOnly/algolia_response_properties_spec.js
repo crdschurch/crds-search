@@ -20,13 +20,14 @@ const contentTypeProperties = {
   category: []
 }
 
-describe('Tests that the responses from the Algilia API have expected properties', function (){
+describe('Tests properties on Algolia responses', function (){
   const keywords = ['god', 'lksjd;flakjds'];
   keywords.forEach(keyword => {
 
-    it(`Response for keyword "${keyword}" should have keyword, hit count, and pagination information`, function () {
-      AlgoliaAPI.searchByKeyword(keyword).then(response => {
-        expect(response).to.have.property('query', keyword);
+    describe(`Tests response for keyword "${keyword}"`, () => {
+      it(`checks properties for keyword "${keyword}"`, () => {
+        AlgoliaAPI.searchByKeyword(keyword).then(response => {
+          expect(response).to.have.property('query', keyword);
         expect(response).to.have.property('params');
 
         expect(response).to.have.property('hitsPerPage');
@@ -34,22 +35,23 @@ describe('Tests that the responses from the Algilia API have expected properties
 
         expect(response).to.have.property('nbHits');
         expect(response).to.have.property('nbPages', Math.ceil(response.nbHits / response.hitsPerPage));
+        });
       });
     });
   });
 
   const algoliaContentTypes = Object.keys(contentTypeProperties);
   algoliaContentTypes.forEach(type => {
-    it(`Responses for content type "${type}" should have expected properties`, function () {
+
+    it(`checks properties for type "${type}"`, () => {
       AlgoliaAPI.searchByContentType(type).then(response => {
         expect(response).to.have.property('hits').with.property('length').gte('0');
-        return response.hits[0];
-      }).then(firstHit => {
-        expect(firstHit).to.have.property('contentType', type);
+        const firstResponse = response.hits[0];
 
-        const expectedProperties = standardProperties.concat(contentTypeProperties[type]);
-        expectedProperties.forEach(prop => {
-          expect(firstHit).to.have.property(prop).and.to.not.be.undefined;
+        expect(firstResponse).to.have.property('contentType', type);
+
+        standardProperties.concat(contentTypeProperties[type]).forEach(prop => {
+          expect(firstResponse).to.have.property(prop).and.to.not.be.undefined;
         })
       })
     })

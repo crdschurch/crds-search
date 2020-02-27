@@ -1,5 +1,6 @@
 <div class="hit-text text-gray-dark">
-    <span *ngIf="hit.category" class="text-gray font-size-smaller font-family-base-mid text-uppercase" data-automation-id="hit-category">{{hit.category}}</span>
+  <span *ngIf="hit.category" class="text-gray font-size-smaller font-family-base-mid text-uppercase"
+    data-automation-id="hit-category">{{hit.category}}</span>
   <a class="hit-title component-header" href="{{hit.url}}">
     <ais-highlight class="text-gray-dark" attribute="title" [hit]="hit">
     </ais-highlight>
@@ -13,14 +14,17 @@
   <ng-container>
     <p *ngIf="hit.serviceTimes" class="font-size-smaller" data-automation-id="hit-serviceTimes">
       <span class="control-label block">Service Times</span>
-      {{ hit.serviceTimes }}
+      {{hit.serviceTimes}}
     </p>
   </ng-container>
   <p class="font-size-smaller text-gray-light flush">
     <span *ngIf="hit.author" class="hit-author">{{hit.author}}</span>
     <span *ngIf="hit.series" class="hit-series">{{hit.series}}</span>
-    <span *ngIf="hit.children_count > 1 && hit.contentType == 'series'" class="hit-children">{{hit.children_count}} messages</span>
-    <span *ngIf="hit.children_count > 1 && hit.contentType == 'podcast'" class="hit-children">{{hit.children_count}} episodes</span>
+    <span *ngIf="hit.children_count > 1 && hit.contentType == 'series'" class="hit-children">
+      {{hit.children_count}} messages</span>
+    <span *ngIf="hit.children_count > 1 && hit.contentType == 'podcast'" class="hit-children">
+      {{hit.children_count}} episodes</span>
   </p>
-  <a *ngIf="hit.contentType == 'page' || hit.contentType == 'promo'" class="hit-url font-size-smaller" href="{{hit.url}}">{{hit.url}}</a>
+  <a *ngIf="hit.contentType == 'page' || hit.contentType == 'promo'" class="hit-url font-size-smaller"
+    href="{{hit.url}}">{{hit.url}}</a>
 </div>
