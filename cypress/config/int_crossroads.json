@@ -3,6 +3,8 @@
   "env": {
     "CONTENTFUL_ENV": "int",
     "ALGOLIA_INDEX": "int_crds",
-    "CRDS_MEDIA_ENDPOINT": "https://int.crossroads.net/media"
+    "CRDS_ENDPOINT": "https://int.crossroads.net",
+    "CRDS_MEDIA_ENDPOINT": "https://int.crossroads.net/media",
+    "vaultEnv": "int"
   }
 }

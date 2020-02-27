@@ -6,19 +6,20 @@ import { environment } from '../../environments/environment';
 })
 
 export class SearchService {
-  public firstSearch = true;
   public configAlgolia(routing: boolean) {
-    let config = {
+    const config = {
       indexName: environment.ALGOLIA_INDEX,
       appId: environment.ALGOLIA_APP_ID,
       apiKey: environment.ALGOLIA_API_KEY,
       routing: routing,
+      firstSearch: true,
       searchFunction(helper) {
-        if (helper.state.query || this.firstSearch == false)
+        if (helper.state.query || this.firstSearch === false) {
           helper.search();
+        }
         this.firstSearch = false;
       }
-    }
+    };
 
     return config;
   }

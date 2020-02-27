@@ -1,7 +1,8 @@
-<ng-container *ngIf='hits.length === 0 && results.query !== undefined && results.query !== ""'>
+<ng-container *ngIf='hits.length === 0 && results.query'>
   <div class="no-results">
     <h1 class="text-lowercase page-header">Whoops</h1>
-    <h2 class="lead push-bottom" data-automation-id="no-results-message">We can't find anything for <strong>{{results.query}}</strong>.</h2>
+    <h2 class="lead push-bottom" data-automation-id="no-results-message">We can't find anything for
+      <strong>{{results.query}}</strong>.</h2>
     <p>Try checking out these other places:</p>
     <p><a href="{{corkboardUrl}}" data-automation-id="no-results-corkboard-link">Corkboard</a></p>
     <p><a href="{{groupsUrl}}" data-automation-id="no-results-groups-link">Groups</a></p>
@@ -9,9 +10,10 @@
     <p class="push-top">
       <strong>Still need help?</strong>
       <br>Browse our
-      <a href="{{helpUrl}}">help section</a>,
-      <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;tf=1&amp;to=websupport@%63ros%73ro%61ds%2Enet" target="_blank">email
-        us</a> or give us a call at 513‑731‑7400.
+      <a href="{{helpUrl}}" data-automation-id="no-results-help-link">help section</a>,
+      <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;tf=1&amp;to=websupport@%63ros%73ro%61ds%2Enet"
+        target="_blank">email us</a>
+        or give us a call at 513‑731‑7400.
     </p>
   </div>
 </ng-container>
