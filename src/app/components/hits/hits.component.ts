@@ -48,7 +48,7 @@ export class HitsComponent implements OnChanges, OnInit, OnDestroy {
 
   public handleHitClick(event: any) {
     let target: any, position: number, isWidget: boolean;
-    const targetEl = event.path.find(this.isParent);
+    const targetEl = event.composedPath().find(this.isParent);
     const targetId = targetEl.dataset.hitId;
 
     for (let i = 0; i < this.results.hits.length; i += 1) {
