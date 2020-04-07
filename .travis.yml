@@ -8,21 +8,20 @@ addons:
     packages:
       - libgconf-2-4
 cache:
-  yarn: true
   directories:
     - ~/.cache
 install:
-  - yarn install
+  - npm install
 
 # Unit Test stage
 unitTests: &unitTest
   if: type = pull_request
-  script: "yarn run test_headless"
+  script: "npm run test_headless"
 
 # Integration Test stage
 integrationTests: &integrationTest
   if: env(RUN_CYPRESS) = true
-  script: "yarn run cypress run --record --key $cypressDashboard --parallel --group crds-search-parallel"
+  script: "npm run cypress run --record --key $cypressDashboard --parallel --group crds-search-parallel"
 
 jobs:
   include:

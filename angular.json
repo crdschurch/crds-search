@@ -157,7 +157,7 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true
-            },
+            }
           }
         },
         "serve": {
