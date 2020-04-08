@@ -10,6 +10,8 @@ describe('Tests analytics events are fired', () => {
 
   beforeEach(() => {
     search = SearchPanelFactory.SearchPage();
+    const errorsToIgnore = [/.*Cannot set property\W+\w+\W+of undefined.*/];  
+    cy.ignoreMatchingErrors(errorsToIgnore);
     cy.server();
   });
 

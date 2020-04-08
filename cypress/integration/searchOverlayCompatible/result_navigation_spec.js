@@ -3,6 +3,9 @@ import { SearchPanelFactory } from '../../SearchPanel/SearchPanel'
 describe('Tests the expected page opens when result is clicked', () => {
   let search;
   beforeEach(() => {
+  const errorsToIgnore = [/.*Cannot set property\W+\w+\W+of undefined.*/];  
+  cy.ignoreMatchingErrors(errorsToIgnore);
+
     cy.visit('/search');
     search = SearchPanelFactory.SearchPage();
   });
@@ -25,6 +28,8 @@ describe('Tests the expected page opens when result is clicked', () => {
   })
 
   it('checks result requiring authentication opens /signin', () => {
+    const errorsToIgnore = [/.*Script error.*/];  
+    cy.ignoreMatchingErrors(errorsToIgnore);
     const requiresAuthUrl = `${Cypress.env('CRDS_ENDPOINT')}/profile/personal`;
 
     search.clearedSearchField.type('Profile').then(() => {
@@ -36,9 +41,8 @@ describe('Tests the expected page opens when result is clicked', () => {
 
   it('checks result for page from Contentful opens that page', () => {
     const crdsNetUrl = `${Cypress.env('CRDS_ENDPOINT')}/wayfinder-leader-resources/`;
-
     search.clearedSearchField.type('wayfinder').then(() => {
-      search.results.findByHref(crdsNetUrl).click();
+      search.results.findByHref(crdsNetUrl, { delay: 2000 }).click();
       cy.url().should('match', new RegExp(`${crdsNetUrl}/?`));
     });
   })
