@@ -32,7 +32,7 @@ describe('Tests query params added to url', () => {
     const filter = 'message';
     const expectedUrl = getUrlWithQuery(keyword, filter);
 
-    search.clearedSearchField.type(keyword).then(() => {
+    search.clearedSearchField.type(keyword , { delay: 1000 } ).then(() => {
       search.searchField.should('have.prop', 'value', keyword).then(() => {
         search.filters.selectFilter(filter).then(() => {
           cy.url().should('eq', expectedUrl);
