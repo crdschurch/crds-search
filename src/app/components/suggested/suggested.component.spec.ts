@@ -55,7 +55,7 @@ describe('SuggestedComponent', () => {
 
     const nodes = fixture.nativeElement.childNodes;
     expect(nodes.length).toBeGreaterThanOrEqual(1);
-    expect(nodes[0].data).toMatch(/"ng-reflect-ng-if":\W?"true"/);
+    expect(nodes[0].data).toMatch(/"ng-reflect-ng-if": null/);
   });
 
   it('should not display content block content if it does not exist', () => {
@@ -65,6 +65,6 @@ describe('SuggestedComponent', () => {
 
     const nodes = fixture.nativeElement.childNodes;
     expect(nodes.length).toBeGreaterThanOrEqual(3);
-    expect(nodes[2].data).toMatch(/"ng-reflect-ng-if":\W?null/);
+    expect(nodes[2].data).toMatch(/"ng-reflect-ng-if": "true"/);
   });
 });

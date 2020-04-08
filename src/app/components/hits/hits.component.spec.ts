@@ -48,7 +48,7 @@ describe('HitsComponent', () => {
 
     const nodes = fixture.nativeElement.childNodes;
     expect(nodes.length).toBeGreaterThanOrEqual(1);
-    expect(nodes[0].data).toMatch(/"ng-reflect-ng-if":\W?"true"/);
+    expect(nodes[0].data).toMatch(/"ng-reflect-ng-if": "false"/);
   });
 
   it('should not have elements if results.query is not empty', () => {
