@@ -1,13 +1,14 @@
-import { SearchPanelFactory } from '../../SearchPanel/SearchPanel'
+import { SearchPanelFactory } from '../../SearchPanel/SearchPanel';
+
+ const errorsToIgnore = [/.*Cannot set property\W+\w+\W+of undefined.*/, /.*Script error.*/]; 
 
 describe('Tests the expected page opens when result is clicked', () => {
   let search;
   beforeEach(() => {
   const errorsToIgnore = [/.*Cannot set property\W+\w+\W+of undefined.*/];  
   cy.ignoreMatchingErrors(errorsToIgnore);
-
-    cy.visit('/search');
-    search = SearchPanelFactory.SearchPage();
+  cy.visit('/search');
+  search = SearchPanelFactory.SearchPage();
   });
 
   //Use below for testing the search overlay
@@ -33,9 +34,9 @@ describe('Tests the expected page opens when result is clicked', () => {
     const requiresAuthUrl = `${Cypress.env('CRDS_ENDPOINT')}/profile/personal`;
 
     search.clearedSearchField.type('Profile').then(() => {
-      search.results.findByHref(requiresAuthUrl).click();
-      cy.contains('Sign In').should('exist').and('be.visible');
-      cy.url().should('match', new RegExp(`${Cypress.env('CRDS_ENDPOINT')}/signin/?`));
+    search.results.findByHref(requiresAuthUrl).click();
+    cy.contains('Sign In').should('exist').and('be.visible');
+    cy.url().should('match', new RegExp(`${Cypress.env('CRDS_ENDPOINT')}/signin/?`));
     });
   })
 

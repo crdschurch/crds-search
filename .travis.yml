@@ -21,7 +21,7 @@ unitTests: &unitTest
 # Integration Test stage
 integrationTests: &integrationTest
   if: env(RUN_CYPRESS) = true
-  script: "npm run cypress run --record --key $cypressDashboard --parallel --group crds-search-parallel"
+  script: "npx cypress run --record --key $cypressDashboard --parallel --group crds-search-parallel"
 
 jobs:
   include:

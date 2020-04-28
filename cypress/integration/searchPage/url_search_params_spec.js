@@ -1,3 +1,4 @@
+  
 import { SearchPanelFactory } from '../../SearchPanel/SearchPanel';
 
 function getUrlWithQuery(keyword, filterLabel = undefined) {
@@ -31,10 +32,9 @@ describe('Tests query params added to url', () => {
     const keyword = 'God';
     const filter = 'message';
     const expectedUrl = getUrlWithQuery(keyword, filter);
-
-    search.clearedSearchField.type(keyword , { delay: 1000 } ).then(() => {
-      search.searchField.should('have.prop', 'value', keyword).then(() => {
-        search.filters.selectFilter(filter).then(() => {
+    search.clearedSearchField.type(keyword,  { delay: 1000 } ).then(() => {
+    search.searchField.should('have.prop', 'value', keyword).then(() => {
+    search.filters.selectFilter(filter).then(() => {
           cy.url().should('eq', expectedUrl);
         });
       });
