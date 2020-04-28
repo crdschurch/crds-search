@@ -1,3 +1,4 @@
+  
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -34,10 +35,15 @@ Cypress.Commands.add('text', { prevSubject: 'element' }, (subject) => {
 });
 
 //Here for convenience but use sparingly - we usually want these to be thrown
-Cypress.Commands.add('ignoreUncaughtException', (expectedMessage) => {
-  cy.on('uncaught:exception', (err) => {
-    expect(err.message).to.include(expectedMessage);
-    done();
-    return false;
+//Given list of regex, will ignore if error matches any
+Cypress.Commands.add('ignoreMatchingErrors', (errorList) => {
+ cy.on('uncaught:exception', (err) => {
+ const matchingError = errorList.find(errorRegex => err.message.match(errorRegex) !== null);
+
+    if(matchingError){
+      expect(err.message).to.match(matchingError); //Post result to console
+    }
+
+    return matchingError === undefined;
   });
 });
