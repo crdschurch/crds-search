@@ -38,7 +38,7 @@ Cypress.Commands.add('text', { prevSubject: 'element' }, (subject) => {
 //Given list of regex, will ignore if error matches any
 Cypress.Commands.add('ignoreMatchingErrors', (errorList) => {
  cy.on('uncaught:exception', (err) => {
-    const matchingError = errorList.find(errorRegex => err.message.match(errorRegex) !== null);
+ const matchingError = errorList.find(errorRegex => err.message.match(errorRegex) !== null);
 
     if(matchingError){
       expect(err.message).to.match(matchingError); //Post result to console
