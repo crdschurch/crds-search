@@ -5,7 +5,6 @@ import { SearchPanelFactory } from '../../SearchPanel/SearchPanel';
 describe('Tests the expected page opens when result is clicked', () => {
   let search;
   beforeEach(() => {
-  const errorsToIgnore = [/.*Cannot set property\W+\w+\W+of undefined.*/];  
   cy.ignoreMatchingErrors(errorsToIgnore);
   cy.visit('/search');
   search = SearchPanelFactory.SearchPage();
