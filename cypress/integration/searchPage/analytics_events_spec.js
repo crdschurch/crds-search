@@ -7,7 +7,7 @@ const errorsToIgnore = [/.*Cannot set property\W+\w+\W+of undefined.*/];
 describe('Tests analytics events are fired', () => {
   let search;
   before(() => {
-      cy.ignoreUncaughtException(errorsToIgnore);
+      cy.ignoreMatchingErrors(errorsToIgnore);
       cy.visit('/search');
   });
 
