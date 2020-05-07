@@ -4,7 +4,7 @@ const errorsToIgnore = [/.*Cannot set property\W+\w+\W+of undefined.*/];
 
 describe('Tests pagination behavior', () => {
   before(() => {
-    cy.ignoreUncaughtException(errorsToIgnore);
+    cy.ignoreMatchingErrors(errorsToIgnore);
     cy.visit('/search');
   });
 

@@ -7,13 +7,12 @@ const errorsToIgnore = [/.*Cannot set property\W+\w+\W+of undefined.*/];
 describe('Tests analytics events are fired', () => {
   let search;
   before(() => {
+      cy.ignoreMatchingErrors(errorsToIgnore);
       cy.visit('/search');
   });
 
   beforeEach(() => {
-    cy.ignoreUncaughtException(errorsToIgnore);
     search = SearchPanelFactory.SearchPage();
-    const errorsToIgnore = [/.*Cannot set property\W+\w+\W+of undefined.*/];  
     cy.ignoreMatchingErrors(errorsToIgnore);
     cy.server();
   });
