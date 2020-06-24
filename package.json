@@ -55,6 +55,7 @@
     "bootstrap-sass": "^3.4.1",
     "codelyzer": "4.5.0",
     "crds-components-env-replace": "github:crdschurch/crds-components-env-replace#1.1.1",
+    "crds-cypress-config": "^1.0.0",
     "crds-cypress-contentful": "^1.0.0",
     "cypress": "3.4.1",
     "jasmine-core": "3.3.0",
