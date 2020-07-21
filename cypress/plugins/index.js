@@ -12,7 +12,20 @@
 // the project's config changing)
 
 const loadConfig = require('crds-cypress-config');
+const { addContentfulTasks } = require('./contentfulTasks');
+const { manageBlacklist } = require('./blacklistHosts');
 
 module.exports = (on, config) => {
-  return loadConfig.loadConfigFromFile(config).then(newConfig => loadConfig.loadConfigFromVault(newConfig));
+  return loadConfig.loadConfigFromVault(config)
+  .then((newConfig) => {
+    addContentfulTasks(on, newConfig);
+
+    manageBlacklist(newConfig);
+    
+    return newConfig;
+  });
 };
+
+//TODO blacklist
+// TODO remove search overlay functionality
+//TODO clean up structures //TODO optimize 

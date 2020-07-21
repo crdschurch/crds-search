@@ -1,12 +1,15 @@
 import { SearchPanelFactory } from '../../SearchPanel/SearchPanel';
-import { ContentBlockQueryManager } from 'crds-cypress-contentful';
+import { ContentfulQueryBuilder, normalizeText } from 'crds-cypress-contentful';
 
 describe('Tests suggested search block', () => {
   let preSearchContentBlock;
   let search;
   before(() => {
-    const cbqm = new ContentBlockQueryManager();
-    cbqm.getSingleEntry(cbqm.query.byTitle('suggestedSearch')).then(contentBlock => {
+    const qb = new ContentfulQueryBuilder('content_block');
+    qb.select = 'fields.content';
+    qb.searchFor ='fields.title=suggestedSearch' 
+    cy.task('getCNFLResource', qb.queryParams)
+    .then(contentBlock => {
       preSearchContentBlock = contentBlock;
     });
   })
@@ -28,7 +31,7 @@ describe('Tests suggested search block', () => {
   it('checks suggestions displayed before searching', () => {
     search.results.suggestedSearchBlock.as('preSearchContent')
       .should('be.visible')
-      .displayedText().should('contain', preSearchContentBlock.content.unformattedText);
+      .displayedText().should('contain', normalizeText(preSearchContentBlock.content.text));
   });
 
   it('checks suggestions displayed after search cleared using icon', () => {
@@ -39,7 +42,7 @@ describe('Tests suggested search block', () => {
 
         search.results.suggestedSearchBlock.as('preSearchContent')
           .should('be.visible')
-          .displayedText().should('contain', preSearchContentBlock.content.unformattedText);
+          .displayedText().should('contain', normalizeText(preSearchContentBlock.content.text));
       })
     })
   });
@@ -51,7 +54,7 @@ describe('Tests suggested search block', () => {
         search.clearedSearchField.then(() => {
           search.results.suggestedSearchBlock.as('preSearchContent')
             .should('be.visible')
-            .displayedText().should('contain', preSearchContentBlock.content.unformattedText);
+            .displayedText().should('contain', normalizeText(preSearchContentBlock.content.text));
         });
       });
     });

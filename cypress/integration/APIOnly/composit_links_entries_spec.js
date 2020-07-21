@@ -1,5 +1,6 @@
 import { AlgoliaAPI } from '../../Algolia/AlgoliaAPI';
-import { MessageQueryManager, SeriesQueryManager } from 'crds-cypress-contentful';
+import { MessageQueryBuilder, SeriesQueryBuilder } from 'crds-cypress-contentful';
+import { getRelativeMessageUrl } from '../../support/GetUrl';
 
 /*
 * Note: Since we are not modifying entries in Contentful, these tests only passively confirm that the message link is stored correctly in Algolia when either the
@@ -7,16 +8,19 @@ import { MessageQueryManager, SeriesQueryManager } from 'crds-cypress-contentful
 */
 describe('Tests entries with composite urls have correct url', () => {
   it('checks recently updated message', () => {
-    const mqm = new MessageQueryManager();
+    const qb = new MessageQueryBuilder();
+    qb.orderBy = '-sys.updatedAt';
+    qb.select = 'fields.title,fields.slug';
+    cy.task('getCNFLResource', qb.queryParams)
+    .then((message) => {
+      getRelativeMessageUrl(message)
+      .then((messageURL) => {
 
-    mqm.getSingleEntry(mqm.query.orderBy.updatedMostRecently).then(message => {
+        AlgoliaAPI.searchByKeyword(message.title.text)
+        .then(response => {
+          expect(response).to.have.property('hits').with.property('length').gte(0);
 
-      message.getURL().then(messageURL => {
-
-        AlgoliaAPI.searchByKeyword(message.title.text).then(response => {
-          expect(response).to.have.property('hits').with.property('length').gte('0');
-
-          const match = response.hits.find(r => r.url.includes(messageURL.absolute));
+          const match = response.hits.find(r => r.url.includes(messageURL));
           expect(match).to.not.be.undefined;
         })
       });
@@ -24,21 +28,27 @@ describe('Tests entries with composite urls have correct url', () => {
   });
 
   it('checks message on recently updated series', () => {
-    const sqm = new SeriesQueryManager();
+    const qb = new SeriesQueryBuilder();
+    qb.orderBy = '-sys.updatedAt';
+    qb.select = 'fields.slug,fields.videos';
+    qb.searchBy = 'fields.videos[exist]=true'
+    cy.task('getCNFLResource', qb.queryParams)
+      .its('videos').as('messages').should('have.length.gte', 1);
 
-    sqm.getSingleEntry(`${sqm.query.orderBy.updatedMostRecently}&${sqm.query.messageExists(true)}`).then(series => {
-      expect(series.messageLinks.length).to.be.gte(1);
+    cy.get('@messages')
+    .then((messages) => messages[0])
+    .then((firstMessage) => {
+      AlgoliaAPI.searchByKeyword(firstMessage.title.text)
 
-      series.messageLinks[0].getResource().then(firstMessage => {
+      .then(response => {
+        expect(response).to.have.property('hits').with.property('length').gte(0);
 
-        AlgoliaAPI.searchByKeyword(firstMessage.title.text).then(response => {
-          expect(response).to.have.property('hits').with.property('length').gte('0');
-
-          firstMessage.getURL().then(messageURL => {
-            const match = response.hits.find(r => r.url.includes(messageURL.absolute));
+        // firstMessage.getURL()
+        getRelativeMessageUrl(firstMessage)
+          .then(messageURL => {
+            const match = response.hits.find(r => r.url.includes(messageURL));
             expect(match).to.not.be.undefined;
           });
-        });
       });
     });
   });

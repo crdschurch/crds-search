@@ -1,11 +1,8 @@
 import { SearchPanelFactory } from '../../SearchPanel/SearchPanel';
 
- const errorsToIgnore = [/.*Cannot set property\W+\w+\W+of undefined.*/, /.*Script error.*/]; 
-
 describe('Tests the expected page opens when result is clicked', () => {
   let search;
   beforeEach(() => {
-  cy.ignoreMatchingErrors(errorsToIgnore);
   cy.visit('/search');
   search = SearchPanelFactory.SearchPage();
   });
@@ -28,8 +25,6 @@ describe('Tests the expected page opens when result is clicked', () => {
   })
 
   it('checks result requiring authentication opens /signin', () => {
-    const errorsToIgnore = [/.*Script error.*/];  
-    cy.ignoreMatchingErrors(errorsToIgnore);
     const requiresAuthUrl = `${Cypress.env('CRDS_ENDPOINT')}/profile/personal`;
 
     search.clearedSearchField.type('Profile').then(() => {

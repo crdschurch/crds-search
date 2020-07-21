@@ -25,19 +25,32 @@
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-import { Formatter } from './Formatter';
+const { normalizeText } = require("crds-cypress-contentful");
+
 Cypress.Commands.add('displayedText', {prevSubject: 'element'}, (subject) =>{
-  return cy.wrap(subject).should('have.prop', 'textContent').then(elementText => Formatter.normalizeText(elementText));
+  return cy.wrap(subject).should('have.prop', 'textContent').then(elementText => normalizeText(elementText));
 });
 
 Cypress.Commands.add('text', { prevSubject: 'element' }, (subject) => {
   return cy.wrap(subject).should('have.prop', 'textContent');
 });
 
+/**
+ * Call this in a beforeEach clause to make assertions against any analytics.track
+ *   calls.
+ */
+Cypress.Commands.add('stubAnalyticsTrackEvent', (aliasName) => {
+  cy.window().then((win) => {
+    win.analytics = {
+      track: cy.stub().as(aliasName)
+    };
+  });
+});
+
 //Here for convenience but use sparingly - we usually want these to be thrown
 //Given list of regex, will ignore if error matches any
 Cypress.Commands.add('ignoreMatchingErrors', (errorList) => {
- cy.on('uncaught:exception', (err) => {
+ Cypress.on('uncaught:exception', (err) => {
  const matchingError = errorList.find(errorRegex => err.message.match(errorRegex) !== null);
 
     if(matchingError){

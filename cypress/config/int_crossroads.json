@@ -1,10 +1,13 @@
 {
+  "projectId": "zxgg1j",
   "baseUrl": "https://int.crossroads.net",
+  "testFiles": "**/*spec.js",
   "env": {
     "CONTENTFUL_ENV": "int",
     "ALGOLIA_INDEX": "int_crds",
+    "ALGOLIA_APP_ID": "8Y3N3H5PNJ",
+    "ALGOLIA_API_KEY": "609661e7d659e337fe7a1b5bee6b42f0",
     "CRDS_ENDPOINT": "https://int.crossroads.net",
-    "CRDS_MEDIA_ENDPOINT": "https://int.crossroads.net/media",
     "vaultEnv": "int"
   }
 }

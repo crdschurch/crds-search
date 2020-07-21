@@ -46,7 +46,7 @@ describe('Tests properties on Algolia responses', function (){
 
     it(`checks properties for type "${type}"`, () => {
       AlgoliaAPI.searchByContentType(type).then(response => {
-        expect(response).to.have.property('hits').with.property('length').gte('0');
+        expect(response).to.have.property('hits').with.property('length').gte(0);
         const firstResponse = response.hits[0];
 
         expect(firstResponse).to.have.property('contentType', type);
