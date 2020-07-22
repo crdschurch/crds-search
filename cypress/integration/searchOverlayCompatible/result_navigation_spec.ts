@@ -5,7 +5,7 @@ describe('Tests the expected page opens when result is clicked', () => {
 
   it('checks article result opens the article in /media', () => {
     const mediaPageUrl = `${Cypress.env('CRDS_ENDPOINT')}/media/articles/god-told-me-to-buy-a-bikini`;
-    
+
     cy.searchFor('bikini');
 
     cy.get(`[class*="hit-title"][href="${mediaPageUrl}"]`)
@@ -39,5 +39,5 @@ describe('Tests the expected page opens when result is clicked', () => {
       .click();
 
     cy.url().should('match', new RegExp(`${crdsNetUrl}/?`));
-  })
-})
+  });
+});

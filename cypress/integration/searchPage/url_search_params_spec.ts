@@ -1,9 +1,9 @@
 
-function getUrlWithQuery(keyword, filterLabel = undefined) {
+function getUrlWithQuery(keyword: string, filterLabel?: string) {
   const encodedKeyword = encodeURI(keyword);
-  let url = `${Cypress.config().baseUrl}/search?query=${encodedKeyword}`
+  let url = `${Cypress.config().baseUrl}/search?query=${encodedKeyword}`;
   if (filterLabel !== undefined) {
-    url = `${url}&menu%5BcontentType%5D=${filterLabel}`
+    url = `${url}&menu%5BcontentType%5D=${filterLabel}`;
   }
   return url;
 }
@@ -57,8 +57,8 @@ describe('Tests query params in url trigger search automatically', () => {
 
     cy.get('.ais-Menu-item--selected .ais-Menu-label')
       .should('exist')
-      .text().should('eq', filter)
-    
+      .text().should('eq', filter);
+
     cy.get('app-hit .hit-title').first().as('firstResultTitle')
       .should('be.visible');
   });

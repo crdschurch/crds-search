@@ -1,6 +1,6 @@
 {
   "baseUrl": "http://localhost:3000",
-  "testFiles": "**/*spec.js",
+  "testFiles": "**/*spec.ts",
   "env": {
     "CONTENTFUL_ENV": "int",
     "ALGOLIA_INDEX": "int_crds",

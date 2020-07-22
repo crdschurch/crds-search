@@ -4,7 +4,7 @@ import { searchAlgolia, searchAlgoliaByContentType } from '../../Algolia/Algolia
 /**
  * Verifies that the Algolia responses contain what we expect so we know our stubbed responses are accurate.
  */
-const standardProperties = ['title', 'category', 'tags', 'url', 'objectID', 'image']
+const standardProperties = ['title', 'category', 'tags', 'url', 'objectID', 'image'];
 const contentTypeProperties = {
   page: [],
   message: ['date', 'duration', 'date_timestamp', 'description', 'series'],
@@ -19,7 +19,7 @@ const contentTypeProperties = {
   podcast: ['author', 'description', 'children_count'],
   album: ['date', 'duration', 'date_timestamp', 'description', 'author'],
   category: []
-}
+};
 
 describe('Tests properties on Algolia responses', function () {
   const keywords = ['god', 'lksjd;flakjds'];
@@ -55,8 +55,8 @@ describe('Tests properties on Algolia responses', function () {
 
         standardProperties.concat(contentTypeProperties[type]).forEach(prop => {
           expect(firstResponse).to.have.property(prop).and.to.not.be.undefined;
-        })
-      })
-    })
-  })
-})
+        });
+      });
+    });
+  });
+});

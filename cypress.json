@@ -1,5 +1,5 @@
 {
   "projectId": "zxgg1j",
   "baseUrl": "https://int.crossroads.net",
-  "testFiles": "**/*spec.js"
+  "testFiles": "**/*spec.ts"
 }

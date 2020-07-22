@@ -14,7 +14,7 @@ export function getRelativeMessageUrl(message) {
   return cy.task('getCNFLResource', qb.queryParams)
     .then((series) => {
       const seriesComponent = series.isPublished ? `/series/${series.slug.text}` : '';
-      let messageUrl = seriesComponent + `/${message.slug.text}`;
+      const messageUrl = seriesComponent + `/${message.slug.text}`;
       return messageUrl;
     });
 }

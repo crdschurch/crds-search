@@ -1,0 +1,10 @@
+{
+  "extends": "../tslint.json",
+  "rulesDirectory": [
+    "tslint-no-unused-expression-chai"
+  ],
+  "rules": {
+    "no-unused-expression": false,
+    "no-unused-expression-chai": true
+  }
+}

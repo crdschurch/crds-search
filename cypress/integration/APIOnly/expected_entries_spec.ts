@@ -1,4 +1,4 @@
-import { searchAlgolia } from "../../Algolia/AlgoliaAPI";
+import { searchAlgolia } from '../../Algolia/AlgoliaAPI';
 
 const expectedEntries = [
   {
@@ -17,7 +17,7 @@ const expectedEntries = [
     title: 'Media',
     url: `${Cypress.env('CRDS_ENDPOINT')}/media`
   }
-]
+];
 
 describe('Tests these entries should be in the index', () => {
   expectedEntries.forEach(entry => {
@@ -27,10 +27,10 @@ describe('Tests these entries should be in the index', () => {
 
         const match = response.hits.find(r => r.title === entry.title);
         expect(match.url).to.equal(entry.url);
-      })
-    })
-  })
-})
+      });
+    });
+  });
+});
 
 describe('Tests entries should not be in the index', function () {
   it(`checks "Locker Room" does not exist`, () => {
@@ -40,6 +40,6 @@ describe('Tests entries should not be in the index', function () {
 
       const match = response.hits.find(r => r.title === title);
       expect(match).to.be.undefined;
-    })
-  })
-})
+    });
+  });
+});

@@ -1,4 +1,3 @@
-  
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -25,9 +24,9 @@
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-const { normalizeText } = require("crds-cypress-contentful");
+const { normalizeText } = require('crds-cypress-contentful');
 
-Cypress.Commands.add('displayedText', {prevSubject: 'element'}, (subject) =>{
+Cypress.Commands.add('displayedText', {prevSubject: 'element'}, (subject) => {
   return cy.wrap(subject).should('have.prop', 'textContent').then(elementText => normalizeText(elementText));
 });
 
@@ -46,14 +45,14 @@ Cypress.Commands.add('stubAnalyticsTrackEvent', (aliasName) => {
   });
 });
 
-//Here for convenience but use sparingly - we usually want these to be thrown
-//Given list of regex, will ignore if error matches any
+// Here for convenience but use sparingly - we usually want these to be thrown
+// Given list of regex, will ignore if error matches any
 Cypress.Commands.add('ignoreMatchingErrors', (errorList) => {
  Cypress.on('uncaught:exception', (err) => {
  const matchingError = errorList.find(errorRegex => err.message.match(errorRegex) !== null);
 
-    if(matchingError){
-      expect(err.message).to.match(matchingError); //Post result to console
+    if (matchingError) {
+      expect(err.message).to.match(matchingError); // Post result to console
     }
 
     return matchingError === undefined;

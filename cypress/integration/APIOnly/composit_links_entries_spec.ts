@@ -3,7 +3,8 @@ import { MessageQueryBuilder, SeriesQueryBuilder } from 'crds-cypress-contentful
 import { getRelativeMessageUrl } from '../../support/GetUrl';
 
 /*
-* Note: Since we are not modifying entries in Contentful, these tests only passively confirm that the message link is stored correctly in Algolia when either the
+* Note: Since we are not modifying entries in Contentful,
+*  these tests only passively confirm that the message link is stored correctly in Algolia when either the
 * Message or Series slug is updated.
 */
 describe('Tests entries with composite urls have correct url', () => {
@@ -22,7 +23,7 @@ describe('Tests entries with composite urls have correct url', () => {
 
           const match = response.hits.find(r => r.url.includes(messageURL));
           expect(match).to.not.be.undefined;
-        })
+        });
       });
     });
   });
@@ -31,7 +32,7 @@ describe('Tests entries with composite urls have correct url', () => {
     const qb = new SeriesQueryBuilder();
     qb.orderBy = '-sys.updatedAt';
     qb.select = 'fields.slug,fields.videos';
-    qb.searchBy = 'fields.videos[exist]=true'
+    qb.searchBy = 'fields.videos[exist]=true';
     cy.task('getCNFLResource', qb.queryParams)
       .its('videos').as('messages').should('have.length.gte', 1);
 

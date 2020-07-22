@@ -10,7 +10,7 @@ describe('Tests result filters', () => {
   });
 
   it('checks filter is applied when clicked', () => {
-    const searchString = 'god'
+    const searchString = 'god';
     const filter = 'message';
 
     cy.searchFor(searchString);

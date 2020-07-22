@@ -26,6 +26,6 @@ module.exports = (on, config) => {
   });
 };
 
-// Typescript
+// TODO add interfaces for Typescript
+// TODO add more search command helpers
 //TODO clean up structures //TODO optimize 
-//TODO add linter

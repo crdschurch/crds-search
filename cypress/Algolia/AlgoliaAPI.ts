@@ -1,4 +1,4 @@
-import algoliasearch from "algoliasearch";
+import algoliasearch from 'algoliasearch';
 
 const client = algoliasearch(Cypress.env('ALGOLIA_APP_ID'), Cypress.env('ALGOLIA_API_KEY'));
 const index = client.initIndex(Cypress.env('ALGOLIA_INDEX'));

@@ -5,7 +5,7 @@ describe('Tests pagination behavior', () => {
 
   describe(`Tests if results don't fit on one page`, () => {
     before(() => {
-      const searchString = 'god'
+      const searchString = 'god';
       cy.searchFor(searchString);
     });
 

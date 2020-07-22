@@ -5,12 +5,12 @@ describe('Tests suggested search block', () => {
   before(() => {
     const qb = new ContentfulQueryBuilder('content_block');
     qb.select = 'fields.content';
-    qb.searchFor = 'fields.title=suggestedSearch'
+    qb.searchFor = 'fields.title=suggestedSearch';
     cy.task('getCNFLResource', qb.queryParams)
       .then(contentBlock => {
         preSearchContentBlock = contentBlock;
       });
-  })
+  });
 
   beforeEach(() => {
     cy.visit('/search');
@@ -26,9 +26,9 @@ describe('Tests suggested search block', () => {
 
   it('checks suggestions displayed after search cleared using icon', () => {
     const searchString = 'a';
-    
+
     cy.searchFor(searchString);
-    
+
     cy.get('app-hit .hit-title').first().scrollIntoView().as('firstResultTitle')
       .should('be.visible');
 
