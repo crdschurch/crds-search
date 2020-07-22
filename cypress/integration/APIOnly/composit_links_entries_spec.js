@@ -1,4 +1,4 @@
-import { AlgoliaAPI } from '../../Algolia/AlgoliaAPI';
+import { searchAlgolia } from '../../Algolia/AlgoliaAPI';
 import { MessageQueryBuilder, SeriesQueryBuilder } from 'crds-cypress-contentful';
 import { getRelativeMessageUrl } from '../../support/GetUrl';
 
@@ -16,7 +16,7 @@ describe('Tests entries with composite urls have correct url', () => {
       getRelativeMessageUrl(message)
       .then((messageURL) => {
 
-        AlgoliaAPI.searchByKeyword(message.title.text)
+        searchAlgolia(message.title.text)
         .then(response => {
           expect(response).to.have.property('hits').with.property('length').gte(0);
 
@@ -38,12 +38,11 @@ describe('Tests entries with composite urls have correct url', () => {
     cy.get('@messages')
     .then((messages) => messages[0])
     .then((firstMessage) => {
-      AlgoliaAPI.searchByKeyword(firstMessage.title.text)
+      searchAlgolia(firstMessage.title.text)
 
       .then(response => {
         expect(response).to.have.property('hits').with.property('length').gte(0);
 
-        // firstMessage.getURL()
         getRelativeMessageUrl(firstMessage)
           .then(messageURL => {
             const match = response.hits.find(r => r.url.includes(messageURL));

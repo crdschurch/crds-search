@@ -1,4 +1,4 @@
-import { AlgoliaAPI } from "../../Algolia/AlgoliaAPI";
+import { searchAlgolia } from "../../Algolia/AlgoliaAPI";
 
 const expectedEntries = [
   {
@@ -22,7 +22,7 @@ const expectedEntries = [
 describe('Tests these entries should be in the index', () => {
   expectedEntries.forEach(entry => {
     it(`checks "${entry.title}" exists`, () => {
-      AlgoliaAPI.searchByKeyword(entry.title, true).then(response => {
+      searchAlgolia(entry.title, true).then(response => {
         expect(response).to.have.property('hits').with.property('length').gte(0);
 
         const match = response.hits.find(r => r.title === entry.title);
@@ -32,23 +32,14 @@ describe('Tests these entries should be in the index', () => {
   })
 })
 
+describe('Tests entries should not be in the index', function () {
+  it(`checks "Locker Room" does not exist`, () => {
+    const title = 'Locker Room';
+    searchAlgolia(title, true).then(response => {
+      expect(response).to.have.property('hits').with.property('length').gte(0);
 
-const notSearchableContent = [
-  {
-    title: 'Locker Room',
-    url: `${Cypress.env('CRDS_ENDPOINT')}/lockerroom`
-  }
-]
-
-describe('Tests entries should not be in the index', function (){
-  notSearchableContent.forEach(entry => {
-    it(`checks "${entry.title}" does not exist`, () => {
-      AlgoliaAPI.searchByKeyword(entry.title, true).then(response => {
-        expect(response).to.have.property('hits').with.property('length').gte(0);
-
-        const match = response.hits.find(r => r.title === entry.title);
-        expect(match).to.be.undefined;
-      })
+      const match = response.hits.find(r => r.title === title);
+      expect(match).to.be.undefined;
     })
   })
 })

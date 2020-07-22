@@ -26,8 +26,6 @@ module.exports = (on, config) => {
   });
 };
 
-
-// TODO remove search overlay functionality
-//TODO add linter
-// TODO handle Algolia API results more concisely 
+// Typescript
 //TODO clean up structures //TODO optimize 
+//TODO add linter
