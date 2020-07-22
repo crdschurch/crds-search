@@ -21,11 +21,13 @@ module.exports = (on, config) => {
     addContentfulTasks(on, newConfig);
 
     manageBlacklist(newConfig);
-    
+
     return newConfig;
   });
 };
 
-//TODO blacklist
+
 // TODO remove search overlay functionality
+//TODO add linter
+// TODO handle Algolia API results more concisely 
 //TODO clean up structures //TODO optimize 

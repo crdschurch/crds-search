@@ -1,5 +1,3 @@
-  
-import { SearchPanelFactory } from '../../SearchPanel/SearchPanel';
 
 function getUrlWithQuery(keyword, filterLabel = undefined) {
   const encodedKeyword = encodeURI(keyword);
@@ -11,34 +9,33 @@ function getUrlWithQuery(keyword, filterLabel = undefined) {
 }
 
 describe('Tests query params added to url', () => {
-  let search;
   beforeEach(() => {
     cy.visit('/search');
-    search = SearchPanelFactory.SearchPage();
   });
 
   it('checks keyword added to url', () => {
     const keyword = 'God';
     const expectedUrl = getUrlWithQuery(keyword);
 
-    search.clearedSearchField.type(keyword, { delay: 1000 }).then(() => {
-      search.searchField.should('have.prop', 'value', keyword).then(() => {
-        cy.url().should('eq', expectedUrl);
-      });
-    });
+    // Type slowly so url can be updated
+    cy.searchFor(keyword, 1000)
+      .should('have.prop', 'value', keyword);
+
+    cy.url().should('eq', expectedUrl);
   });
 
   it('checks keyword and filter added to url', () => {
     const keyword = 'God';
     const filter = 'message';
     const expectedUrl = getUrlWithQuery(keyword, filter);
-    search.clearedSearchField.type(keyword,  { delay: 1000 } ).then(() => {
-    search.searchField.should('have.prop', 'value', keyword).then(() => {
-    search.filters.selectFilter(filter).then(() => {
-          cy.url().should('eq', expectedUrl);
-        });
-      });
-    });
+
+    cy.searchFor(keyword, 1000)
+      .should('have.prop', 'value', keyword);
+
+    cy.contains(filter).as('filter')
+      .click({ force: true });
+
+    cy.url().should('eq', expectedUrl);
   });
 });
 
@@ -48,8 +45,8 @@ describe('Tests query params in url trigger search automatically', () => {
 
     cy.visit(urlWithQuery);
 
-    const search = SearchPanelFactory.SearchPage();
-    search.results.firstCard.title.should('be.visible');
+    cy.get('app-hit .hit-title').first().as('firstResultTitle')
+      .should('be.visible');
   });
 
   it('checks search triggered by keyword and then filtered', () => {
@@ -58,8 +55,11 @@ describe('Tests query params in url trigger search automatically', () => {
 
     cy.visit(urlWithFilteredQuery);
 
-    const search = SearchPanelFactory.SearchPage();
-    search.filters.selectedFilterName.should('eq', filter);
-    search.results.firstCard.title.should('be.visible');
+    cy.get('.ais-Menu-item--selected .ais-Menu-label')
+      .should('exist')
+      .text().should('eq', filter)
+    
+    cy.get('app-hit .hit-title').first().as('firstResultTitle')
+      .should('be.visible');
   });
 });

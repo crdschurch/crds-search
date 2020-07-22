@@ -15,6 +15,7 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
+import './searchCommands';
 import './globalTestSetup';
 
 // Alternatively you can use CommonJS syntax:

@@ -1,22 +1,18 @@
-import { SearchPanelFactory } from "../../SearchPanel/SearchPanel";
 
 describe('Tests analytics events are fired', () => {
-  let search;
-  before(() => {
-      cy.visit('/search');
-  });
-
   beforeEach(() => {
-    search = SearchPanelFactory.SearchPage();
+    cy.visit('/search');
+
     cy.server();
     //Re-stub track event to make assertions against it.
     cy.stubAnalyticsTrackEvent('analytics.track');
   });
 
   it('checks event triggered on search submit and has expected values', () => {
-    const searchString = 'g';
+    const searchString = 'group';
     const paginationLimit = 20;
-    search.clearedSearchField.type(searchString);
+    
+    cy.searchFor(searchString);
 
     // Verify event called with expected properties
     const queryMatch = Cypress.sinon.match.has('Query', searchString);
@@ -28,17 +24,17 @@ describe('Tests analytics events are fired', () => {
   it('checks event triggered on search result click', () => {
     const searchString = 'group';
 
-    search.clearedSearchField.type(searchString)
-    .then(() => {      
-      search.results.firstCard.click();
+    cy.searchFor(searchString);
 
-      // Verify event called with expected properties
-      const queryMatch = Cypress.sinon.match.has('Query', searchString);
-      const targetMatch = Cypress.sinon.match.has('Target', Cypress.sinon.match.object);
-      const targetPositionMatch = Cypress.sinon.match.has('TargetPosition', 1);
-      const widgetMatch = Cypress.sinon.match.has('isWidget', Cypress.sinon.match.bool);
-      cy.get('@analytics.track')
-       .should('have.been.calledWithMatch', 'WebsiteSearchConversion', queryMatch.and(targetPositionMatch).and(targetMatch).and(widgetMatch));
-    });
+    cy.get('app-hit .hit-title').first().as('firstResultTitle')
+      .click();
+
+    // Verify event called with expected properties
+    const queryMatch = Cypress.sinon.match.has('Query', searchString);
+    const targetMatch = Cypress.sinon.match.has('Target', Cypress.sinon.match.object);
+    const targetPositionMatch = Cypress.sinon.match.has('TargetPosition', 1);
+    const widgetMatch = Cypress.sinon.match.has('isWidget', Cypress.sinon.match.bool);
+    cy.get('@analytics.track')
+      .should('have.been.calledWithMatch', 'WebsiteSearchConversion', queryMatch.and(targetPositionMatch).and(targetMatch).and(widgetMatch));
   });
 });

@@ -36,8 +36,7 @@ Cypress.Commands.add('text', { prevSubject: 'element' }, (subject) => {
 });
 
 /**
- * Call this in a beforeEach clause to make assertions against any analytics.track
- *   calls.
+ * Call this in a beforeEach clause or test to make assertions against any analytics.track calls.
  */
 Cypress.Commands.add('stubAnalyticsTrackEvent', (aliasName) => {
   cy.window().then((win) => {

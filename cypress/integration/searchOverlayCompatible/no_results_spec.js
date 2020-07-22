@@ -1,53 +1,47 @@
-import { SearchPanelFactory } from '../../SearchPanel/SearchPanel';
-
 describe('Tests search with no results', () => {
   const noResultsKeyword = 'a7';
-  let search;
 
-  before(function() {
+  before(function () {
     cy.visit('/search');
+
+    cy.searchFor(noResultsKeyword);
   });
 
   beforeEach(() => {
-    search = SearchPanelFactory.SearchPage();
+    cy.get('.ais-SearchBox-input').as('searchField');
   });
-
-  //Use below for testing the search overlay
-  // before(() => {
-  //   cy.visit('/prayer');
-
-  //   //DE6720 - force open the modal
-  //   cy.get('button[data-target="#searchModal"]').first().click({ force: true });
-  // });
-
-  // beforeEach(() => {
-  //   search = SearchPanelFactory.MobileSharedHeaderSearchModal();
-  // });
 
   it('checks "no results" message is displayed', () => {
-    search.clearedSearchField.type(noResultsKeyword).then(() => {
-      search.results.noResultsBlock.as('noResultsBlock').should('be.visible')
-        .find('[data-automation-id="no-results-message"]').as('noResultsMessage');
-
-      cy.get('@noResultsMessage').text().should('eq', `We can't find anything for ${noResultsKeyword}.`);
-    });
+    cy.get('.no-results').as('noResultsBlock')
+      .should('be.visible');
+    cy.get('[data-automation-id="no-results-message"]').as('noResultsMessage')
+      .text()
+      .should('eq', `We can't find anything for ${noResultsKeyword}.`);
   });
 
-  it('checks links are for the correct environment', () =>{
-    search.clearedSearchField.type(noResultsKeyword).then(() => {
-      cy.get('[data-automation-id="no-results-corkboard-link"]').as('corkboardLink').should('be.visible');
-      cy.get('@corkboardLink').should('have.attr', 'href', `${Cypress.env('CRDS_ENDPOINT')}/corkboard`);
-    });
+  it('checks no results links', () => {
+    cy.get('[data-automation-id="no-results-corkboard-link"]').as('corkboardLink')
+      .should('be.visible')
+      .should('have.attr', 'href', `${Cypress.env('CRDS_ENDPOINT')}/corkboard`);
+
+    cy.get('[data-automation-id="no-results-groups-link"]').as('groupsLink')
+      .should('be.visible')
+      .should('have.attr', 'href', `${Cypress.env('CRDS_ENDPOINT')}/groups/search`);
   });
 
   it('checks success of search after a no-results search', () => {
-    search.clearedSearchField.type(noResultsKeyword).then(() => {
-      search.results.noResultsBlock.as('noResultsBlock').should('be.visible').then(() => {
-        search.clearedSearchField.type('god').then(() => {
-          search.results.firstCard.title.should('be.visible');
-          search.results.noResultsBlock.should('not.exist');
-        });
+    cy.get('.no-results').as('noResultsBlock')
+      .should('be.visible')
+      .then(() => {
+        cy.get('@searchField')
+          .clear()
+          .type('god');
+
+        cy.get('app-hit .hit-title').first().as('firstResultTitle')
+          .should('be.visible');
+
+        cy.get('@noResultsBlock')
+          .should('not.be.visible');
       });
-    });
   });
 });
