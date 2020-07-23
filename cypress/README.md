@@ -10,7 +10,7 @@ VAULT_SECRET_ID
 
 Environment variables set in Netlify to run Cypress through Travis.ci:
 ```bash
-CYPRESS_CONFIG_FILE #which config file to use. ex. int_crossroads
+CYPRESS_CONFIG_FILE #which config file to use. ex. int_crossroads.json
 RUN_CYPRESS #true/false
 TRAVIS_CI #Travis's API Authentication token
 CYPRESS_INSTALL_BINARY = 0
