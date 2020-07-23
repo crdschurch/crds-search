@@ -1,7 +1,7 @@
 describe('Tests search with no results', () => {
   const noResultsKeyword = 'a7';
 
-  before(function () {
+  before(() => {
     cy.visit('/search');
 
     cy.searchFor(noResultsKeyword);

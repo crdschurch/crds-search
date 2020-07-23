@@ -1,4 +1,3 @@
-
 function getUrlWithQuery(keyword: string, filterLabel?: string) {
   const encodedKeyword = encodeURI(keyword);
   let url = `${Cypress.config().baseUrl}/search?query=${encodedKeyword}`;

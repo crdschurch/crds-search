@@ -15,7 +15,7 @@ describe('Tests pagination behavior', () => {
 
     it('checks result count text matches format', () => {
       cy.get('[data-automation-id="hits-hit-counter"]').as('resultCount').should('be.visible');
-      cy.get('@resultCount').displayedText().then(txt => {
+      cy.get('@resultCount').displayedText().then((txt) => {
         const resultRegex = /showing\W+(\d+)\W+of\W+(\d+)\W+results/;
         expect(resultRegex.test(txt)).to.be.true;
 

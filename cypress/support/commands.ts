@@ -37,9 +37,9 @@ Cypress.Commands.add('text', { prevSubject: 'element' }, (subject) => {
 /**
  * Call this in a beforeEach clause or test to make assertions against any analytics.track calls.
  */
-Cypress.Commands.add('stubAnalyticsTrackEvent', (aliasName) => {
+Cypress.Commands.add('stubAnalyticsTrackEvent', (aliasName: string) => {
   cy.window().then((win) => {
-    win.analytics = {
+    (win as WindowExtended).analytics = {
       track: cy.stub().as(aliasName)
     };
   });
@@ -47,9 +47,9 @@ Cypress.Commands.add('stubAnalyticsTrackEvent', (aliasName) => {
 
 // Here for convenience but use sparingly - we usually want these to be thrown
 // Given list of regex, will ignore if error matches any
-Cypress.Commands.add('ignoreMatchingErrors', (errorList) => {
+Cypress.Commands.add('ignoreMatchingErrors', (errorList: RegExp[]) => {
  Cypress.on('uncaught:exception', (err) => {
- const matchingError = errorList.find(errorRegex => err.message.match(errorRegex) !== null);
+ const matchingError = errorList.find((errorRegex: RegExp) => err.message.match(errorRegex) !== null);
 
     if (matchingError) {
       expect(err.message).to.match(matchingError); // Post result to console

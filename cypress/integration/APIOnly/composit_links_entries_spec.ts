@@ -12,7 +12,7 @@ describe('Tests entries with composite urls have correct url', () => {
     const qb = new MessageQueryBuilder();
     qb.orderBy = '-sys.updatedAt';
     qb.select = 'fields.title,fields.slug';
-    cy.task('getCNFLResource', qb.queryParams)
+    cy.task<Message>('getCNFLResource', qb.queryParams)
     .then((message) => {
       getRelativeMessageUrl(message)
       .then((messageURL) => {
@@ -21,7 +21,7 @@ describe('Tests entries with composite urls have correct url', () => {
         .then(response => {
           expect(response).to.have.property('hits').with.property('length').gte(0);
 
-          const match = response.hits.find(r => r.url.includes(messageURL));
+          const match = response.hits.find((r: any) => r.url.includes(messageURL));
           expect(match).to.not.be.undefined;
         });
       });

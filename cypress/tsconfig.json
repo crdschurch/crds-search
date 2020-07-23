@@ -1,5 +1,7 @@
 {
+  "extends": "../tsconfig.json",
   "compilerOptions": {
+    "baseUrl": "../node_modules",
     "types": ["cypress", "node"],
     "allowJs": false,
     "target": "es5",
@@ -7,7 +9,6 @@
     "strict": true
   },
   "include": [
-    "../node_modules/cypress",
-    "./*/*.ts"
+    "./**/*.ts"
   ]
 }

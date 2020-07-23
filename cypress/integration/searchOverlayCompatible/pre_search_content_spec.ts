@@ -1,13 +1,13 @@
 import { ContentfulQueryBuilder, normalizeText } from 'crds-cypress-contentful';
 
 describe('Tests suggested search block', () => {
-  let preSearchContentBlock;
+  let preSearchContentBlock: ContentBlock;
   before(() => {
     const qb = new ContentfulQueryBuilder('content_block');
     qb.select = 'fields.content';
     qb.searchFor = 'fields.title=suggestedSearch';
-    cy.task('getCNFLResource', qb.queryParams)
-      .then(contentBlock => {
+    cy.task<ContentBlock>('getCNFLResource', qb.queryParams)
+      .then((contentBlock) => {
         preSearchContentBlock = contentBlock;
       });
   });
