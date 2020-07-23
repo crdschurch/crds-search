@@ -5,7 +5,7 @@ import { searchAlgolia, searchAlgoliaByContentType } from '../../Algolia/Algolia
  * Verifies that the Algolia responses contain what we expect so we know our stubbed responses are accurate.
  */
 const standardProperties = ['title', 'category', 'tags', 'url', 'objectID', 'image'];
-const contentTypeProperties = {
+const contentTypeProperties: any = {
   page: [],
   message: ['date', 'duration', 'date_timestamp', 'description', 'series'],
   series: ['start_date', 'end_date', 'messages', 'description', 'date_timestamp'],

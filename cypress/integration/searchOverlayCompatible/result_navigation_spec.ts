@@ -3,7 +3,7 @@ describe('Tests the expected page opens when result is clicked', () => {
     cy.visit('/search');
   });
 
-  it('checks article result opens the article in /media', () => {
+  it.only('checks article result opens the article in /media', () => {
     const mediaPageUrl = `${Cypress.env('CRDS_ENDPOINT')}/media/articles/god-told-me-to-buy-a-bikini`;
 
     cy.searchFor('bikini');

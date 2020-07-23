@@ -29,7 +29,7 @@ describe('Tests suggested search block', () => {
 
     cy.searchFor(searchString);
 
-    cy.get('app-hit .hit-title').first().scrollIntoView().as('firstResultTitle')
+    cy.get('.hit-title').first().as('firstResultTitle')
       .should('be.visible');
 
     cy.get('.ais-SearchBox-reset').as('clearSearchIcon')
@@ -47,7 +47,7 @@ describe('Tests suggested search block', () => {
 
     cy.searchFor(searchString);
 
-    cy.get('app-hit .hit-title').first().scrollIntoView().as('firstResultTitle')
+    cy.get('.hit-title').first().as('firstResultTitle')
       .should('be.visible');
 
     cy.get('@searchField')

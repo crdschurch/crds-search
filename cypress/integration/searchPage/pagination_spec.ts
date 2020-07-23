@@ -10,19 +10,24 @@ describe('Tests pagination behavior', () => {
     });
 
     it('checks "Show More" button displayed', () => {
-      cy.get('.hits-show-more-container').should('be.visible');
+      cy.get('.hits-show-more-container')
+        .should('be.visible');
     });
 
     it('checks result count text matches format', () => {
-      cy.get('[data-automation-id="hits-hit-counter"]').as('resultCount').should('be.visible');
-      cy.get('@resultCount').displayedText().then((txt) => {
-        const resultRegex = /showing\W+(\d+)\W+of\W+(\d+)\W+results/;
-        expect(resultRegex.test(txt)).to.be.true;
+      const resultRegex = /showing\W+(\d+)\W+of\W+(\d+)\W+results/;
 
-        const match = resultRegex.exec(txt);
-        expect(parseInt(match[1], 10)).to.be.lessThan(parseInt(match[2], 10));
-        expect(parseInt(match[1], 10)).to.be.greaterThan(0);
-      });
+      cy.get('[data-automation-id="hits-hit-counter"]').as('resultCount')
+        .should('be.visible')
+        .displayedText()
+        .then((txt) => resultRegex.exec(txt))
+        .should('have.length', 3)
+        .then((match) => {
+          const resultsOnPage = parseInt(match[1], 10);
+          const totalResults = parseInt(match[2], 10);
+          expect(resultsOnPage).to.be.lessThan(totalResults)
+            .and.be.greaterThan(0);
+        });
     });
   });
 
@@ -33,18 +38,22 @@ describe('Tests pagination behavior', () => {
     });
 
     it('checks "Show More" button is not displayed', () => {
-      cy.get('.hits-show-more-container').should('not.exist');
+      cy.get('.hits-show-more-container')
+        .should('not.exist');
     });
 
     it('checks result count text matches format', () => {
-      cy.get('[data-automation-id="hits-hit-counter"]').as('resultCount').should('be.visible');
-      cy.get('@resultCount').displayedText().then(txt => {
-        const resultRegex = /(\d+)\W+results/;
-        expect(resultRegex.test(txt)).to.be.true;
+      const resultRegex = /(\d+)\W+results/;
 
-        const match = resultRegex.exec(txt);
-        expect(parseInt(match[1], 10)).to.be.greaterThan(0);
-      });
+      cy.get('[data-automation-id="hits-hit-counter"]').as('resultCount')
+        .should('be.visible')
+        .displayedText()
+        .then((txt) => resultRegex.exec(txt))
+        .should('have.length', 2)
+        .then((match) => {
+          const resultCount = parseInt(match[1], 10);
+          expect(resultCount).to.be.greaterThan(0);
+        });
     });
   });
 });

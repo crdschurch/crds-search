@@ -12,7 +12,7 @@ describe('Tests query params added to url', () => {
     cy.visit('/search');
   });
 
-  it('checks keyword added to url', () => {
+  it.only('checks keyword added to url', () => {
     const keyword = 'God';
     const expectedUrl = getUrlWithQuery(keyword);
 
@@ -44,7 +44,7 @@ describe('Tests query params in url trigger search automatically', () => {
 
     cy.visit(urlWithQuery);
 
-    cy.get('app-hit .hit-title').first().as('firstResultTitle')
+    cy.get('.hit-title').first().as('firstResultTitle')
       .should('be.visible');
   });
 
@@ -56,9 +56,10 @@ describe('Tests query params in url trigger search automatically', () => {
 
     cy.get('.ais-Menu-item--selected .ais-Menu-label')
       .should('exist')
-      .text().should('eq', filter);
+      .text()
+      .should('eq', filter);
 
-    cy.get('app-hit .hit-title').first().as('firstResultTitle')
+    cy.get('.hit-title').first().as('firstResultTitle')
       .should('be.visible');
   });
 });

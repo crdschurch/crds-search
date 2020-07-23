@@ -25,7 +25,3 @@ module.exports = (on, config) => {
     return newConfig;
   });
 };
-
-// TODO add interfaces for Typescript
-// TODO add more search command helpers
-//TODO clean up structures //TODO optimize 

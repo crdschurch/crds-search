@@ -26,7 +26,7 @@ describe('Tests analytics events are fired', () => {
 
     cy.searchFor(searchString);
 
-    cy.get('app-hit .hit-title').first().as('firstResultTitle')
+    cy.get('.hit-title').first().as('firstResultTitle')
       .click();
 
     // Verify event called with expected properties

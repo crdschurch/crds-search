@@ -13,19 +13,15 @@ describe('Tests entries with composite urls have correct url', () => {
     qb.orderBy = '-sys.updatedAt';
     qb.select = 'fields.title,fields.slug';
     cy.task<Message>('getCNFLResource', qb.queryParams)
-    .then((message) => {
-      getRelativeMessageUrl(message)
-      .then((messageURL) => {
-
-        searchAlgolia(message.title.text)
-        .then(response => {
-          expect(response).to.have.property('hits').with.property('length').gte(0);
-
-          const match = response.hits.find((r: any) => r.url.includes(messageURL));
-          expect(match).to.not.be.undefined;
-        });
+      .then((message) => {
+        getRelativeMessageUrl(message)
+          .then((messageURL) => {
+            searchAlgolia(message.title.text)
+              .its('hits').should('have.length.gte', 0)
+              .then((hits) => hits.find((r: any) => r.url.includes(messageURL)))
+              .its('url').should('eq', `${Cypress.env('CRDS_ENDPOINT')}/media${messageURL}`);
+          });
       });
-    });
   });
 
   it('checks message on recently updated series', () => {
@@ -33,23 +29,19 @@ describe('Tests entries with composite urls have correct url', () => {
     qb.orderBy = '-sys.updatedAt';
     qb.select = 'fields.slug,fields.videos';
     qb.searchBy = 'fields.videos[exist]=true';
-    cy.task('getCNFLResource', qb.queryParams)
-      .its('videos').as('messages').should('have.length.gte', 1);
-
-    cy.get('@messages')
-    .then((messages) => messages[0])
-    .then((firstMessage) => {
-      searchAlgolia(firstMessage.title.text)
-
-      .then(response => {
-        expect(response).to.have.property('hits').with.property('length').gte(0);
-
+    cy.task<Series>('getCNFLResource', qb.queryParams)
+      .its('videos')
+      .should('have.length.gte', 1)
+      .then((messages) => {
+        const firstMessage: Message = messages[0];
         getRelativeMessageUrl(firstMessage)
-          .then(messageURL => {
-            const match = response.hits.find(r => r.url.includes(messageURL));
-            expect(match).to.not.be.undefined;
+          .then((messageURL) => {
+            searchAlgolia(firstMessage.title.text)
+              .its('hits').should('have.length.gte', 0)
+              .then((hits) => hits.find((r: any) => r.url.includes(messageURL)))
+              .its('url').should('eq', `${Cypress.env('CRDS_ENDPOINT')}/media${messageURL}`);
           });
       });
-    });
   });
 });
+

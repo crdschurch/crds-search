@@ -16,7 +16,7 @@ interface Message extends ContentfulModel {
 }
 
 interface Series extends ContentfulModel {
-  slug: TextFieldModel; // TODO create types for these too
+  slug: TextFieldModel;
 }
 
 interface ContentBlock extends ContentfulModel {

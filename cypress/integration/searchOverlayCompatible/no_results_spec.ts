@@ -37,7 +37,7 @@ describe('Tests search with no results', () => {
           .clear()
           .type('god');
 
-        cy.get('app-hit .hit-title').first().as('firstResultTitle')
+        cy.get('.hit-title').first().as('firstResultTitle')
           .should('be.visible');
 
         cy.get('@noResultsBlock')
