@@ -16,14 +16,3 @@
 </a>
 
 <app-hit-text [hit]="hit"></app-hit-text>
-
-<div class="hit-meta text-gray-light">
-  <p class="font-size-smaller flush">
-    <a *ngIf="hit.map_url" href="{{hit.map_url}}" target="_blank" class="font-size-smaller flush"
-      data-automation-id="hit-directions">
-      Get Directions
-    </a>
-    <span *ngIf="hit.start_date && hit.end_date" class="hit-series-date">{{hit.start_date}} - {{hit.end_date}}</span>
-    <span *ngIf="hit.date" class="hit-date">{{hit.date}}</span>
-  </p>
-</div>

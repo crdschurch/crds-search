@@ -1,10 +1,23 @@
 <div class="hit-text text-gray-dark">
-  <span *ngIf="hit.category" class="text-gray font-size-smaller font-family-base-mid text-uppercase"
-    data-automation-id="hit-category">{{hit.category}}</span>
   <a class="hit-title component-header" href="{{hit.url}}">
     <ais-highlight class="text-gray-dark" attribute="title" [hit]="hit">
     </ais-highlight>
   </a>
+  <ng-container>
+    <div>
+      <svg class="icon" viewBox="0 0 256 256" *ngIf="hit.viewCount">
+        <use href="/assets/svgs/icons.svg#eye"></use>
+      </svg>
+      <p>{{hit.viewCount}}</p>
+      <svg class="icon" viewBox="0 0 256 256" *ngIf="hit.viewCount">
+        <use href="/assets/svgs/icons.svg#Oval"></use>
+      </svg>
+      <svg class="icon" viewBox="0 0 256 256" *ngIf="hit.viewCount">
+        <use href="/assets/svgs/icons.svg#heart-o"></use>
+      </svg>
+      <p>{{hit.likes}}</p>
+    </div>
+  </ng-container>
   <ng-container>
     <p *ngIf="hit.description" class="font-size-smaller push-quarter-bottom" data-automation-id="hit-description">
       {{hit.description.substr(0, 180)}}

@@ -26,10 +26,10 @@
 
       &.ais-Menu-item--selected {
         font-weight: initial;
-        border-bottom: 3px solid $cr-orange;
+        border-bottom: 3px solid #BB4900;
 
         .ais-Menu-link .ais-Menu-label {
-          color: $cr-black;
+          color: #BB4900;
         }
       }
     }
@@ -41,10 +41,13 @@
     }
 
     .ais-Menu-label {
-      font-size: 1rem;
+      font-size: 26px;
       font-weight: 300;
-      color: $cr-gray-light;
-      text-transform: capitalize;
+      line-height: 31px;
+      letter-spacing: 0;
+      color: #BB4900;
+      text-transform: uppercase;
+      font-family: 'acumin-pro-extra-condensed';
     }
   }
 

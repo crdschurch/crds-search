@@ -5,7 +5,7 @@
   // override InstantSearch styles
   .ais-Highlight {
     display: block;
-    font-weight: 500;
+    font-weight: 300;
   }
 
   .ais-Highlight,
@@ -18,9 +18,9 @@
   .ais-Highlight-highlighted,
   .ais-Snippet-highlighted {
     display: inline-block;
-    background-color: #F0D28C !important;
+    background-color: rgba(0,0,0,0) !important;
     font-style: normal;
-    color: #151515;
+    color: #BB4900;
   }
   
   .hit-title {

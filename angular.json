@@ -209,5 +209,8 @@
       }
     }
   },
-  "defaultProject": "search-ui"
+  "defaultProject": "search-ui",
+  "cli": {
+    "analytics": false
+  }
 }
