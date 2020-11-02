@@ -10,6 +10,14 @@ export class TabFilterComponent {
   @Input() results;
 
   transformItems(items) {
+    
+    items = [
+      {
+        label: 'all results',
+        value: ''
+      },
+      ...items
+    ]
     return items.map(item => ({
       ...item,
       label: item.label.replace('_', ' ')
