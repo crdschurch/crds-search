@@ -20,8 +20,8 @@ describe('Tests the expected page opens when result is clicked', () => {
   // });
 
   it('checks article result opens the article in /media', () => {
-    const mediaPageUrl = `${Cypress.env('CRDS_ENDPOINT')}/media/articles/god-told-me-to-buy-a-bikini`;
-    search.clearedSearchField.type('Bikini').then(() => {
+    const mediaPageUrl = `${Cypress.env('CRDS_ENDPOINT')}/media/articles/what-a-ufo-cult-taught-me-about-easter`;
+    search.clearedSearchField.type('UFO').then(() => {
       search.results.findByHref(mediaPageUrl).click();
       cy.url().should('eq', mediaPageUrl);
     });
