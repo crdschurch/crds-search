@@ -4,21 +4,21 @@ import { AlgoliaAPI } from '../../Algolia/AlgoliaAPI';
 /**
  * Verifies that the Algolia responses contain what we expect so we know our stubbed responses are accurate.
  */
-const standardProperties = ['title', 'category', 'tags', 'url', 'objectID', 'image']
+const standardProperties = ['title', 'tags', 'url', 'objectID']
 const contentTypeProperties = {
   page: [],
-  message: ['date', 'duration', 'date_timestamp', 'description','series'],
-  series: ['start_date', 'end_date', 'messages', 'description','date_timestamp'],
-  video: ['date', 'duration', 'description','date_timestamp'],
-  article: ['date', 'duration', 'date_timestamp', 'description', 'author'],
-  episode: ['date', 'duration', 'date_timestamp', 'description', 'podcast'],
-  song: ['date', 'duration', 'description','date_timestamp'],
-  author: [],
-  promo: ['date', 'description', 'date_timestamp'],
-  location: ['serviceTimes', 'description', 'map_url'],
+  message: ['category','date', 'duration', 'date_timestamp', 'description','series', 'image'],
+  series: ['start_date', 'date', 'description','date_timestamp', 'image'],
+  video: ['category','date', 'duration', 'date_timestamp', 'image'],
+  article: ['category','date', 'duration', 'date_timestamp', 'description', 'author', 'image'],
+  episode: ['date', 'date_timestamp', 'description', 'podcast', 'image'],
+  song: ['date', 'duration', 'description','date_timestamp', 'image'],
+  author: ['description','date_timestamp', 'image'],
+  promo: ['date', 'description', 'date_timestamp', 'image'],
+  location: ['serviceTimes', 'description', 'map_url', 'image'],
   podcast: ['author', 'description','children_count'],
-  album: ['date', 'duration', 'date_timestamp', 'description', 'author'],
-  category: []
+  album: ['date', 'duration', 'date_timestamp', 'description'],
+  category: ['image']
 }
 
 describe('Tests properties on Algolia responses', function (){
