@@ -15,15 +15,18 @@
       ><span>{{ hits.length }} results</span></ng-template
     >
   </p>
-  <crds-search-hits
-    [attr.index-name]="groupsAlgoliaIndex"
-    facet-filters="groupType:At Home,groupType:Online"
-    [attr.search-term]="results.query"
-    number-of-results="1"
-    result-type="groupAdvertisement"
-    use-location
-  >
-  </crds-search-hits>
+  <div *ngIf="hits.length > 1">
+    <crds-search-hits
+      [attr.index-name]="groupsAlgoliaIndex"
+      facet-filters="groupType:At Home,groupType:Online"
+      [attr.search-term]="results.query"
+      number-of-results="1"
+      result-type="groupAdvertisement"
+      use-location
+    >
+    </crds-search-hits>
+  </div>
+
   <ng-container *ngFor="let hit of hits">
     <app-hit
       [attr.data-hit-id]="hit.objectID"
