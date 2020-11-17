@@ -10,6 +10,7 @@ export const environment: any = {
   ALGOLIA_INDEX: 'int_crds',
   ALGOLIA_APP_ID: '8Y3N3H5PNJ',
   ALGOLIA_API_KEY: '609661e7d659e337fe7a1b5bee6b42f0',
+  ALGOLIA_GROUPS_INDEX: 'int_crds_connect',
   crdsEnv: 'int',
   authRedirectUrl: 'https://int.crossroads.net/signin',
   cookieDomain: '.crossroads.net',
