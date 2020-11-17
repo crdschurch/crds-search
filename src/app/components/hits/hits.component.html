@@ -1,15 +1,43 @@
 <ng-container *ngIf="results.query !== ''">
-  <p class="font-size-small text-gray-light" data-automation-id="hits-hit-counter" *ngIf="hits.length > 1">
-    <span *ngIf="hits.length >= results.hitsPerPage && hits.length !== results.nbHits; else resultsOnly">showing
-      {{hits.length}} of {{results.nbHits}} results</span>
-    <ng-template #resultsOnly><span>{{hits.length}} results</span></ng-template>
+  <p
+    class="font-size-small text-gray-light push-bottom"
+    data-automation-id="hits-hit-counter"
+    *ngIf="hits.length > 1"
+  >
+    <span
+      *ngIf="
+        hits.length >= results.hitsPerPage && hits.length !== results.nbHits;
+        else resultsOnly
+      "
+      >showing {{ hits.length }} of {{ results.nbHits }} results</span
+    >
+    <ng-template #resultsOnly
+      ><span>{{ hits.length }} results</span></ng-template
+    >
   </p>
-
+  <crds-search
+    [attr.index-name]="groupsAlgoliaIndex"
+    facet-filters="groupType:At Home,groupType:Online"
+    [attr.search-term]="results.query"
+    number-of-results="1"
+    result-type="groupAdvertisement"
+  >
+  </crds-search>
   <ng-container *ngFor="let hit of hits">
-    <app-hit [attr.data-hit-id]="hit.objectID" *ngIf="!hit.showHTML" [hit]="hit" class="hit hit-{{hit.contentType}}"
-      (click)="handleHitClick($event)"></app-hit>
-    <app-hit-widget [attr.data-hit-id]="hit.objectID" *ngIf="hit.showHTML" [hit]="hit"
-      class="hit hit-widget overlay-card" (click)="handleHitClick($event)"></app-hit-widget>
+    <app-hit
+      [attr.data-hit-id]="hit.objectID"
+      *ngIf="!hit.showHTML"
+      [hit]="hit"
+      class="hit hit-{{ hit.contentType }}"
+      (click)="handleHitClick($event)"
+    ></app-hit>
+    <app-hit-widget
+      [attr.data-hit-id]="hit.objectID"
+      *ngIf="hit.showHTML"
+      [hit]="hit"
+      class="hit hit-widget overlay-card"
+      (click)="handleHitClick($event)"
+    ></app-hit-widget>
   </ng-container>
 
   <div *ngIf="hits.length < results.nbHits" class="hits-show-more-container">
