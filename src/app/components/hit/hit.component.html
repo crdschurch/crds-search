@@ -1,4 +1,4 @@
-<a *ngIf="hit.image" class="hit-img relative" href="{{hit.url}}">
+<!-- <a *ngIf="hit.image" class="hit-img relative" href="{{hit.url}}">
   <div
     *ngIf="hit.contentType == 'article' || hit.contentType == 'video' || hit.contentType == 'episode' || hit.contentType == 'message'"
     class="card-stamp bg-charcoal text-white">
@@ -26,4 +26,5 @@
     <span *ngIf="hit.start_date && hit.end_date" class="hit-series-date">{{hit.start_date}} - {{hit.end_date}}</span>
     <span *ngIf="hit.date" class="hit-date">{{hit.date}}</span>
   </p>
-</div>
+</div> -->
+<crds-content-search-card [hit]="hit"></crds-content-search-card>
