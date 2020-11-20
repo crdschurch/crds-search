@@ -1,12 +1,7 @@
-<ais-stats>
-    <ng-template let-state="state">
-      <ais-menu
-              [hidden]="state.nbHits === 0 || !state.query"
-              attribute="contentType"
-              [transformItems]="transformItems"
-              [limit]="5"
-              [showMoreLimit]="9"
-              [sortBy]="['count']">
-      </ais-menu>
-    </ng-template>
-  </ais-stats>
+<div class="font-family-condensed text-gray-dark">Filter By</div>
+<ais-menu
+  attribute="contentType"
+  [transformItems]="transformItems"
+  [sortBy]="['name:asc']"
+>
+</ais-menu>

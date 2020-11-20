@@ -4,13 +4,13 @@
     data-automation-id="hits-hit-counter"
     *ngIf="hits.length > 1"
   >
-    <span
+    <!-- <span
       *ngIf="
         hits.length >= results.hitsPerPage && hits.length !== results.nbHits;
         else resultsOnly
       "
       >showing {{ hits.length }} of {{ results.nbHits }} results</span
-    >
+    > -->
     <ng-template #resultsOnly
       ><span>{{ hits.length }} results</span></ng-template
     >

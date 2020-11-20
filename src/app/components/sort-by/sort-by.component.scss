@@ -1,0 +1,53 @@
+@import "~crds-styles/assets/stylesheets/variables";
+
+.ais-Menu-count {
+  background-color: transparent;
+  color: $cr-gray-light;
+}
+
+.ais-Menu-item {
+  margin-right: 1.5rem;
+  padding-bottom: 0.75rem;
+
+  &.ais-Menu-item--selected {
+    font-weight: initial;
+    border-left: 3px solid $cr-orange;
+
+    .ais-Menu-link .ais-Menu-label .ais-Menu-count {
+      color: $cr-black;
+    }
+  }
+}
+.ais-Menu-link {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ais-Menu-link:hover {
+  text-decoration: none;
+  color: $cr-black;
+  background-color: transparent !important;
+}
+
+.ais-Menu-label {
+  font-size: 1rem;
+  font-weight: 300;
+  color: $cr-gray-light;
+  text-transform: capitalize;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+//   .ais-Menu-showMore {
+//     display: none;
+//     font-size: .875rem;
+//     color: $cr-gray-light;
+//     background-color: transparent;
+//     padding: 0;
+//     border-radius: 0;
+
+//     @media (min-width: 767px) {
+//       display: inline;
+//     }
+//   }

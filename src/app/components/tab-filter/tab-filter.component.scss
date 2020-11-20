@@ -1,63 +1,66 @@
-@import '~crds-styles/assets/stylesheets/variables';
+@import "~crds-styles/assets/stylesheets/variables";
 
 .ais-Menu {
-  display: inline-block;
-  position: relative;
-  padding-top: 0;
-  margin-bottom: .5rem;
-  width: 100%;
-  background-color: $cr-white;
-  border-bottom: 1px solid $cr-gray-light;
-  overflow-x: auto;
-  z-index: 1;
+  //   display: inline-block;
+  //   position: relative;
+  //   padding-top: 0;
+  //   margin-bottom: .5rem;
+  //   width: 100%;
+  //   background-color: $cr-white;
+  //   border-bottom: 1px solid $cr-gray-light;
+  //   overflow-x: auto;
+  //   z-index: 1;
 
-  .ais-Menu-list {
-    display: inline-flex;
-    margin-bottom: 0;
+  //   .ais-Menu-list {
+  //     display: inline-flex;
+  //     margin-bottom: 0;
 
-    .ais-Menu-count {
-      visibility: hidden;
-      display: none;
-    }
+  .ais-Menu-count {
+    background-color: transparent;
+    color: $cr-gray-light;
+  }
 
-    .ais-Menu-item {
-      margin-right: 1.5rem;
-      padding-bottom: .75rem;
+  .ais-Menu-item {
+    margin-right: 1.5rem;
+    padding-bottom: 0.75rem;
 
-      &.ais-Menu-item--selected {
-        font-weight: initial;
-        border-bottom: 3px solid $cr-orange;
+    &.ais-Menu-item--selected {
+      font-weight: initial;
+      border-left: 3px solid $cr-orange;
 
-        .ais-Menu-link .ais-Menu-label {
-          color: $cr-black;
-        }
+      .ais-Menu-link .ais-Menu-label .ais-Menu-count {
+        color: $cr-black;
       }
     }
-
-    .ais-Menu-link:hover {
-      text-decoration: none;
-      color: $cr-black;
-      background-color: transparent !important;
-    }
-
-    .ais-Menu-label {
-      font-size: 1rem;
-      font-weight: 300;
-      color: $cr-gray-light;
-      text-transform: capitalize;
-    }
+  }
+  .ais-Menu-link {
+    display: flex;
+    justify-content: space-between;
   }
 
-  .ais-Menu-showMore {
-    display: none;
-    font-size: .875rem;
+  .ais-Menu-link:hover {
+    text-decoration: none;
+    color: $cr-black;
+    background-color: transparent !important;
+  }
+
+  .ais-Menu-label {
+    font-size: 1rem;
+    font-weight: 300;
     color: $cr-gray-light;
-    background-color: transparent;
-    padding: 0;
-    border-radius: 0;
-
-    @media (min-width: 767px) {
-      display: inline;
-    }
+    text-transform: capitalize;
   }
+
+  //   .ais-Menu-showMore {
+  //     display: none;
+  //     font-size: .875rem;
+  //     color: $cr-gray-light;
+  //     background-color: transparent;
+  //     padding: 0;
+  //     border-radius: 0;
+
+  //     @media (min-width: 767px) {
+  //       display: inline;
+  //     }
+  //   }
 }

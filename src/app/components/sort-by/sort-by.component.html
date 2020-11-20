@@ -1,0 +1,19 @@
+<!-- <select (change)="state.refine($event.target.value)">
+  <option *ngFor="let option of state.options" [value]="option.value">
+    {{ option.label }}
+  </option>
+</select> -->
+<div class="font-family-condensed text-gray-dark">Sort By</div>
+<ul class="ais-Menu-list">
+  <li
+    class="ais-menu-item"
+    [ngClass]="{ 'ais-Menu-item--selected': state.currentRefinement == option.value }"
+    *ngFor="let option of state.options"
+  >
+    <a class="ais-Menu-link">
+      <span (click)="state.refine(option.value)" class="ais-Menu-label">{{
+        option.label
+      }}</span>
+    </a>
+  </li>
+</ul>

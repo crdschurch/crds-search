@@ -1,10 +1,9 @@
-import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
+import { Injectable } from "@angular/core";
+import { environment } from "../../environments/environment";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
-
 export class SearchService {
   public configAlgolia(routing: boolean) {
     const config = {
@@ -14,11 +13,17 @@ export class SearchService {
       routing: routing,
       firstSearch: true,
       searchFunction(helper) {
+        if (
+          helper.state.hierarchicalFacetsRefinements &&
+          helper.state.hierarchicalFacetsRefinements.contentType &&
+          helper.state.hierarchicalFacetsRefinements.contentType[0] == undefined
+        )
+          delete helper.state.hierarchicalFacetsRefinements.contentType;
         if (helper.state.query || this.firstSearch === false) {
           helper.search();
         }
         this.firstSearch = false;
-      }
+      },
     };
 
     return config;
