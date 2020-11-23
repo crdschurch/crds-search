@@ -3,18 +3,18 @@
     padding: 50px 30px;
   }
 
-  .search-panel__filters {
-    flex: 1;
-  }
+.search-filters__container{
+  padding-right: 55px;
+}
 
-  .search-panel__results {
-    flex: 3;
-  }
+.search-panel__results {
+  flex: 3;
+}
 
-  .searchbox {
-  }
+.searchbox {
+}
 
-  .pagination {
-    margin: 2rem auto;
-    text-align: center;
-  }
+.pagination {
+  margin: 2rem auto;
+  text-align: center;
+}

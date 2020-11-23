@@ -4,7 +4,7 @@
   <div class="search-panel">
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">
       <div class="row">
-        <div class="col-md-3">
+        <div class="search-filters__container col-md-3">
           <ais-stats>
             <ng-template let-state="state">
               <div [hidden]="state.nbHits === 0 || !state.query">
@@ -15,7 +15,7 @@
           </ais-stats>
         </div>
         <div
-          class="col-md-8"
+          class="col-md-9"
         >
           <div class="search-panel__results">
             <ais-infinite-hits>
