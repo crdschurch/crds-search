@@ -1,19 +1,6 @@
 @import "~crds-styles/assets/stylesheets/variables";
 
 .ais-Menu {
-  //   display: inline-block;
-  //   position: relative;
-  //   padding-top: 0;
-  //   margin-bottom: .5rem;
-  //   width: 100%;
-  //   background-color: $cr-white;
-  //   border-bottom: 1px solid $cr-gray-light;
-  //   overflow-x: auto;
-  //   z-index: 1;
-
-  //   .ais-Menu-list {
-  //     display: inline-flex;
-  //     margin-bottom: 0;
 
   .ais-Menu-count {
     background-color: transparent;
@@ -45,22 +32,19 @@
   }
 
   .ais-Menu-label {
-    font-size: 1rem;
+    font-size: 14px;
     font-weight: 300;
     color: $cr-gray-light;
     text-transform: capitalize;
   }
 
-  //   .ais-Menu-showMore {
-  //     display: none;
-  //     font-size: .875rem;
-  //     color: $cr-gray-light;
-  //     background-color: transparent;
-  //     padding: 0;
-  //     border-radius: 0;
+}
 
-  //     @media (min-width: 767px) {
-  //       display: inline;
-  //     }
-  //   }
+.filter-label{
+  margin-bottom: 9px;
+  font-size: 13px;
+}
+
+.ais-Menu-list {
+  margin-bottom: 40px;
 }
