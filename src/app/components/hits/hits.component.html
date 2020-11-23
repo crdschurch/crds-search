@@ -15,7 +15,7 @@
       ><span>{{ hits.length }} results</span></ng-template
     >
   </p>
-  <div *ngIf="hits.length > 1">
+  <div class="group-ad__container" *ngIf="hits.length > 1">
     <crds-search-hits
       [attr.index-name]="groupsAlgoliaIndex"
       facet-filters="groupType:At Home,groupType:Online"
