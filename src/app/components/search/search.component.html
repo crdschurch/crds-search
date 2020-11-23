@@ -3,8 +3,19 @@
 
   <div class="search-panel">
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+      <div class="row mobile-filters">
+        <ais-stats>
+          <ng-template let-state="state">
+            <div class="mobile-filters__container" [hidden]="state.nbHits === 0 || !state.query">
+              <app-sort-by></app-sort-by>
+              <app-tab-filter></app-tab-filter>
+            </div>
+          </ng-template>
+        </ais-stats>
+      </div>
+
       <div class="row">
-        <div class="search-filters__container col-md-3">
+        <div class="search-filters__container col-sm-3">
           <ais-stats>
             <ng-template let-state="state">
               <div [hidden]="state.nbHits === 0 || !state.query">
@@ -15,7 +26,7 @@
           </ais-stats>
         </div>
         <div
-          class="col-md-9"
+          class="col-sm-9"
         >
           <div class="search-panel__results">
             <ais-infinite-hits>

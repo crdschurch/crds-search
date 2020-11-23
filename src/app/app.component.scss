@@ -3,6 +3,22 @@
     padding: 50px 30px;
   }
 
+.mobile-filters{
+  display: none;
+
+  @media screen and (max-width: 770px){
+    display: block;
+  }
+
+}
+
+.search-filters__container{
+
+  @media screen and (max-width: 770px){
+    display: none;
+  }
+}
+
 .search-filters__container{
   padding-right: 10px;
 }

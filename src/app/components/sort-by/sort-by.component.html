@@ -3,17 +3,22 @@
     {{ option.label }}
   </option>
 </select> -->
-<div class="filter-label font-family-base-bold text-gray-dark text-uppercase">Sort By</div>
-<ul class="ais-Menu-list">
-  <li
-    class="ais-menu-item"
-    [ngClass]="{ 'ais-Menu-item--selected': state.currentRefinement == option.value }"
-    *ngFor="let option of state.options"
-  >
-    <a class="ais-Menu-link">
-      <span (click)="state.refine(option.value)" class="ais-Menu-label">{{
-        option.label
-      }}</span>
-    </a>
-  </li>
-</ul>
+<div class="filters__container">
+  <div class="filter-label__container" (click)="handleClick($event)">
+    <div class="filter-label font-family-base-bold text-gray-dark text-uppercase">Sort By</div>
+    <crds-icon name="chevron-up-thin" size="12" color="gray-light"></crds-icon>
+  </div>
+  <ul class="ais-Menu-list">
+    <li
+      class="ais-menu-item"
+      [ngClass]="{ 'ais-Menu-item--selected': state.currentRefinement == option.value }"
+      *ngFor="let option of state.options"
+    >
+      <a class="ais-Menu-link">
+        <span (click)="state.refine(option.value)" class="ais-Menu-label">{{
+          option.label
+        }}</span>
+      </a>
+    </li>
+  </ul>
+</div>

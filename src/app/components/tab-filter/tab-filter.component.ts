@@ -41,6 +41,8 @@ export class TabFilterComponent {
         return a.label.localeCompare(b.label);
       });
   }
+
+  handleClick(event){
+    event.target.parentElement.parentElement.querySelector('ul').style.height = "auto";
+  }
 }
-
-

@@ -35,6 +35,10 @@ export class SortBy extends BaseWidget {
     super.ngOnInit();
   }
 
+  handleClick(event){
+    event.target.parentElement.parentElement.querySelector('ul').style.height = "auto";
+  }
+
   onClick(event) {
     console.log(event);
   }

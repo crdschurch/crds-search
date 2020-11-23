@@ -1,7 +1,12 @@
-<div class="filter-label font-family-base-bold text-gray-dark text-uppercase">Filter By</div>
-<ais-menu
-  attribute="contentType"
-  [transformItems]="transformItems"
-  [sortBy]="['name:asc']"
->
-</ais-menu>
+<div class="filters__container">
+  <div class="filter-label__container" (click)="handleClick($event)">
+    <div class="filter-label font-family-base-bold text-gray-dark text-uppercase">Filter By</div>
+    <crds-icon name="chevron-up-thin" size="12" color="gray-light"></crds-icon>
+  </div>
+  <ais-menu
+    attribute="contentType"
+    [transformItems]="transformItems"
+    [sortBy]="['name:asc']"
+  >
+  </ais-menu>
+</div>
