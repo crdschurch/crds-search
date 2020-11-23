@@ -43,6 +43,17 @@ export class TabFilterComponent {
   }
 
   handleClick(event){
-    event.target.parentElement.parentElement.querySelector('ul').style.height = "auto";
+    let filterList = event.target.parentElement.parentElement.querySelector('ul')
+    let currentHeight = filterList.offsetHeight;
+    let filterLabel = event.target.parentElement.parentElement.querySelector('.filter-label__container');
+
+    if (currentHeight === 0){
+      filterLabel.classList.add('expanded')
+      return filterList.classList.add('expanded');
+    } else {
+      filterLabel.classList.remove('expanded')
+      return filterList.classList.remove('expanded');
+    }
   }
+
 }

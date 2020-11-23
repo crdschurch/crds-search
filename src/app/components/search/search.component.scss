@@ -91,7 +91,6 @@ $cr-path-to-icons-sprite: '/crds-styles/assets/svgs/';
   .filter-label{
     font-weight: 400 !important;
     text-transform: capitalize !important;
-    font-size: 15px;
     margin-bottom: 0;
   }
 
@@ -104,6 +103,16 @@ $cr-path-to-icons-sprite: '/crds-styles/assets/svgs/';
 
     crds-icon{
       display: block;
+      transition: all .5s;
+    }
+
+    &.expanded crds-icon{
+      transform: rotate(-180deg);
+      transition: all .5s;
+    }
+
+    &:hover{
+      cursor: pointer;
     }
 
 
@@ -111,12 +120,14 @@ $cr-path-to-icons-sprite: '/crds-styles/assets/svgs/';
 
   app-sort-by{
     width: 100%;
-    padding-right: 10px;
+    padding-left: 15px;
+    padding-right: 8px;
   }
 
   app-tab-filter{
     width: 100%;
-    padding-left: 10px;
+    padding-right: 15px;
+    padding-left: 8px;
   }
 
   .mobile-filters__container{
