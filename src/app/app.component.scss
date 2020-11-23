@@ -1,21 +1,21 @@
 .search-panel {
     display: flex;
+    padding-left: 30px;
+    padding-right: 40px;
   }
-  
+
   .search-panel__filters {
     flex: 1;
   }
-  
+
   .search-panel__results {
     flex: 3;
   }
-  
+
   .searchbox {
-    margin-bottom: 2rem;
   }
-  
+
   .pagination {
     margin: 2rem auto;
     text-align: center;
   }
-  

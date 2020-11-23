@@ -4,7 +4,6 @@
 }
 
 .searchbox {
-  margin-bottom: 1rem;
 }
 
 input.ais-SearchBox-input {
@@ -19,7 +18,7 @@ input.ais-SearchBox-input {
   &:focus {
     background-color: #efefef;
   }
-  
+
   &::placeholder {
     color: #979797;
   }

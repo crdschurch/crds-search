@@ -1,18 +1,21 @@
 <ais-instantsearch [config]="config">
   <app-search-header></app-search-header>
+
   <div class="search-panel">
-    <ais-stats>
-      <ng-template let-state="state">
-        <div [hidden]="state.nbHits === 0 || !state.query">
-          <app-sort-by></app-sort-by>
-          <app-tab-filter></app-tab-filter>
-        </div>
-      </ng-template>
-    </ais-stats>
-    <div class="container">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
       <div class="row">
+        <div class="col-md-3">
+          <ais-stats>
+            <ng-template let-state="state">
+              <div [hidden]="state.nbHits === 0 || !state.query">
+                <app-sort-by></app-sort-by>
+                <app-tab-filter></app-tab-filter>
+              </div>
+            </ng-template>
+          </ais-stats>
+        </div>
         <div
-          class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2"
+          class="col-md-8"
         >
           <div class="search-panel__results">
             <ais-infinite-hits>
@@ -35,7 +38,12 @@
             </ais-infinite-hits>
           </div>
         </div>
-      </div>
+
+
     </div>
   </div>
+  </div>
+
+
+
 </ais-instantsearch>
