@@ -7,9 +7,7 @@
   background: $cr-tan-light;
   padding: 35px 30px 40px;
   position: relative;
-  box-shadow: inset 1px 1px 6px 0px rgba($cr-black, 0.25);
   align-items: flex-end;
-
 
   &::before{
     content: "";
