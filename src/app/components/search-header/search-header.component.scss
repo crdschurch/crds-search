@@ -24,7 +24,7 @@
   }
 
   @media screen and (max-width: 770px) {
-    padding: 15px 10px 35px;
+    padding: 15px 5px 35px;
   }
 
   .logo {
@@ -99,6 +99,7 @@
       text-align: left;
       font-size: 70px;
       font-weight: 300 !important;
+      padding-bottom: 10px;
 
       @media screen and (max-width: 900px){
         font-size: 60px;
@@ -107,6 +108,7 @@
       @media screen and (max-width: 770px){
         font-size: 44px;
         margin-bottom: 20px;
+        padding-bottom: 0;
       }
     }
 

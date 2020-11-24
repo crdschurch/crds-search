@@ -9,6 +9,7 @@ import { connectMenu } from "instantsearch.js/es/connectors";
 })
 export class TabFilterComponent extends BaseWidget {
   public state: any;
+  public currentRefinement: string;
   constructor(
     @Inject(forwardRef(() => NgAisInstantSearch))
     public instantSearchParent
