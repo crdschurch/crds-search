@@ -27,4 +27,16 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
     this.config = this.searchService.configAlgolia(this.routingEnabled);
   }
+
+  handleClick(event){
+    let mobileFilterIsExpanded = false;
+
+    if (event.target.querySelector('ul.ais-Menu-list.expanded') !== null){
+      mobileFilterIsExpanded = true;
+    }
+    if (mobileFilterIsExpanded){
+      event.target.querySelector('ul.ais-Menu-list.expanded').classList.remove('expanded');
+      return event.target.querySelector('.filter-label__container.expanded').classList.remove('expanded');
+    } else return;
+  }
 }

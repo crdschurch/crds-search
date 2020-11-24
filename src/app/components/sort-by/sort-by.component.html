@@ -15,7 +15,7 @@
       *ngFor="let option of state.options"
     >
       <a class="ais-Menu-link">
-        <span (click)="state.refine(option.value)" class="ais-Menu-label">{{
+        <span (click)="handleSelection($event, option.value)" class="ais-Menu-label">{{
           option.label
         }}</span>
       </a>

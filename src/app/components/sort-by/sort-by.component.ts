@@ -49,6 +49,17 @@ export class SortBy extends BaseWidget {
     }
   }
 
+  collapseMobileFilters(event){
+    let parentFilterMenu = event.target.closest('ul');
+    parentFilterMenu.classList.remove('expanded');
+    return event.target.closest('.filters__container').querySelector('.filter-label__container').classList.remove('expanded');
+  }
+
+  handleSelection(event, value){
+    this.state.refine(value)
+    this.collapseMobileFilters(event);
+  }
+
   onClick(event) {
     console.log(event);
   }

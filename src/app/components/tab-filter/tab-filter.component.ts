@@ -1,13 +1,38 @@
-import { Component, Input } from "@angular/core";
+import { Component, Inject, forwardRef } from "@angular/core";
+import { BaseWidget, NgAisInstantSearch } from 'angular-instantsearch';
+import { connectSortBySelector } from "instantsearch.js/es/connectors";
+
+
 
 @Component({
   selector: "app-tab-filter",
   templateUrl: "./tab-filter.component.html",
   styleUrls: ["./tab-filter.component.scss"],
 })
-export class TabFilterComponent {
-  @Input() hits;
-  @Input() results;
+export class TabFilterComponent extends BaseWidget{
+  public state: {
+     items: object[];
+     refine: Function;
+     createURL: Function;
+     isShowingMore: boolean;
+     canToggleShowMore: boolean;
+     toggleShowMore: Function;
+     widgetParams: object;
+  };
+
+  constructor(
+    @Inject(forwardRef(() => NgAisInstantSearch))
+    public instantSearchParent
+  ) {
+    super('TabFilterComponent');
+  }
+
+  ngOnInit() {
+    this.createWidget(connectSortBySelector, {
+      attribute: 'contentType',
+    });
+    super.ngOnInit();
+  }
 
   transformItems(items) {
     function formatLabel(label) {
