@@ -10,6 +10,7 @@ import { connectMenu } from "instantsearch.js/es/connectors";
 export class TabFilterComponent extends BaseWidget {
   public state: any;
   public currentRefinement: string;
+  public filterByisExpanded: boolean = false;
   constructor(
     @Inject(forwardRef(() => NgAisInstantSearch))
     public instantSearchParent
@@ -61,35 +62,16 @@ export class TabFilterComponent extends BaseWidget {
     super.ngOnInit();
   }
 
-  collapseMobileFilters(event) {
-    let parentFilterMenu = event.target.closest("ul");
-    parentFilterMenu.classList.remove("expanded");
-    return event.target
-      .closest(".filters__container")
-      .querySelector(".filter-label__container")
-      .classList.remove("expanded");
+  collapseMobileFilters() {
+    return this.state.filterByisExpanded = false;
   }
 
   handleSelection(event, value) {
     this.state.refine(value);
-    this.collapseMobileFilters(event);
+    return this.collapseMobileFilters();
   }
 
-  handleClick(event) {
-    let filterList = event.target.parentElement.parentElement.querySelector(
-      "ul"
-    );
-    let currentHeight = filterList.offsetHeight;
-    let filterLabel = event.target.parentElement.parentElement.querySelector(
-      ".filter-label__container"
-    );
-
-    if (currentHeight === 0) {
-      filterLabel.classList.add("expanded");
-      return filterList.classList.add("expanded");
-    } else {
-      filterLabel.classList.remove("expanded");
-      return filterList.classList.remove("expanded");
-    }
+  handleClick() {
+    return this.state.filterByisExpanded = !this.state.filterByisExpanded;
   }
 }

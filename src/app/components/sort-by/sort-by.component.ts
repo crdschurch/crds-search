@@ -10,6 +10,8 @@ import { environment } from "src/environments/environment";
 })
 export class SortBy extends BaseWidget {
   public state: any;
+  public sortByisExpanded: boolean = false;
+
   constructor(
     @Inject(forwardRef(() => NgAisInstantSearch))
     public instantSearchParent
@@ -35,29 +37,17 @@ export class SortBy extends BaseWidget {
     super.ngOnInit();
   }
 
-  handleClick(event){
-    let filterList = event.target.parentElement.parentElement.querySelector('ul')
-    let currentHeight = filterList.offsetHeight;
-    let filterLabel = event.target.parentElement.parentElement.querySelector('.filter-label__container');
-
-    if (currentHeight === 0){
-      filterLabel.classList.add('expanded')
-      return filterList.classList.add('expanded');
-    } else {
-      filterLabel.classList.remove('expanded')
-      return filterList.classList.remove('expanded');
-    }
+  handleClick(){
+    return this.state.sortByisExpanded = !this.state.sortByisExpanded;
   }
 
-  collapseMobileFilters(event){
-    let parentFilterMenu = event.target.closest('ul');
-    parentFilterMenu.classList.remove('expanded');
-    return event.target.closest('.filters__container').querySelector('.filter-label__container').classList.remove('expanded');
+  collapseMobileFilters(){
+    return this.state.sortByisExpanded = false;
   }
 
   handleSelection(event, value){
     this.state.refine(value)
-    this.collapseMobileFilters(event);
+    return this.collapseMobileFilters();
   }
 
   onClick(event) {
