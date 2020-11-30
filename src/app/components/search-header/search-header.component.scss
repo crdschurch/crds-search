@@ -1,0 +1,320 @@
+@import '~crds-styles/assets/stylesheets/variables';
+
+
+
+.search-header {
+  display: flex;
+  background: $cr-tan-light;
+  padding: 35px 30px 40px;
+  position: relative;
+  align-items: flex-end;
+
+  &::before{
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-image: url("http://crds-media.imgix.net/1KLwsN6ilL7RO0xk6JzOsX/840e8b99340ff36bff67036909c4f856/texture-topo-dark-100_2x.png");
+    background-size: cover;
+    opacity: 0.2;
+  }
+
+  @media screen and (max-width: 770px) {
+    padding: 15px 5px 35px;
+  }
+
+  .logo {
+    padding: 0.3rem;
+  }
+  .logo svg {
+    fill: rgb(255, 255, 255);
+    height: 42px;
+    width: auto;
+
+    @media screen and (max-width: 700px) {
+      height: 38px;
+    }
+
+  }
+
+  .icon-crds-word-mark {
+    height: 42px;
+    margin: 5px 0;
+
+    @media screen and (max-width: 700px) {
+      height: 32px;
+    }
+  }
+
+  .search-bar__container {
+    display: flex;
+    align-items: center;
+
+    a.desktop-only {
+      margin-right: 15px;
+
+      crds-button {
+      position: relative;
+    }
+  }
+
+
+    app-search-input{
+      width: 100%;
+
+      @media screen and (max-width: 770px){
+        width: 100%;
+        margin: 0;
+      }
+    }
+
+    @media screen and (max-width: 700px) {
+      margin: 0;
+      width: 100%;
+      max-width: unset;
+    }
+  }
+
+  .search-header-content {
+
+    .row{
+      display: flex;
+
+      @media screen and (max-width: 770px){
+        display: block;
+      }
+    }
+
+    @media screen and (max-width: 770px){
+      padding: 0 10px;
+      display: block;
+    }
+
+    .section-header{
+      margin: 0;
+      text-align: left;
+      font-size: 70px;
+      font-weight: 300 !important;
+      padding-bottom: 10px;
+
+      @media screen and (max-width: 900px){
+        font-size: 60px;
+      }
+
+      @media screen and (max-width: 770px){
+        font-size: 44px;
+        margin-bottom: 20px;
+        padding-bottom: 0;
+      }
+    }
+
+    @media screen and (max-width: 700px) {
+      display: block;
+      text-align: center;
+    }
+  }
+
+  .logo-filter__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+      @media screen and (max-width: 770px){
+        margin-bottom: 5px;
+      }
+      .mobile-only.create-group{
+        margin-top: 4px;
+      }
+  }
+
+  .mobile-buttons-container{
+    text-align: end;
+  }
+
+  .desktop-only {
+    @media screen and (max-width: 770px) {
+      display: none;
+    }
+  }
+
+  .mobile-only {
+    @media screen and (min-width: 771px) {
+      display: none;
+    }
+  }
+
+  .tooltip-arrow.arrow {
+    display: none !important;
+  }
+
+  a:hover {
+    cursor: pointer !important;
+  }
+
+}
+
+.crds-btn-box-shadow{
+  height: 29px;
+  width: 142px;
+  position: absolute;
+  right: 15px;
+  bottom: -16px;
+  z-index: 1;
+  border-radius: 4px;
+  box-shadow: 1px 2px 6px 1px rgba(61, 58, 58, 0.75);
+
+  &.mobile-only{
+    width: 119px;
+    right: 18px;
+
+    @media screen and (max-width: 700px) {
+      bottom: -12px;
+    }
+  }
+
+  @media screen and (min-width: 700px) {
+    right: 25px;
+    bottom: -15px;
+
+  }
+}
+
+
+@import '~crds-styles/assets/stylesheets/variables';
+
+// fixes a weird mobile overflowing issue
+.search-panel__results {
+  max-width: 100%;
+}
+
+.ais-SearchBox-form {
+  border-radius: 3px;
+  overflow: hidden;
+  display: inline !important;
+}
+
+.ais-SearchBox {
+  display: inline !important;
+
+  @media screen and (max-width: 770px) {
+    display: block !important;
+  }
+}
+
+.ap-dropdown-menu {
+  @media screen and (max-width: 770px) {
+    top: 2.1rem !important;
+  }
+}
+
+.ais-SearchBox-submit {
+  display: none;
+}
+
+.ap-input-icon {
+  position: absolute;
+  top: -2px;
+
+  @media screen and (max-width: 770px) {
+    top: 10px;
+    right: 14px;
+  }
+}
+
+button.ap-input-icon.ap-icon-pin {
+  width: 24px;
+  height: 24px;
+  top: -2px;
+  right: 12px;
+
+  @media screen and (max-width: 770px) {
+    top: 10px;
+    right: 14px;
+  }
+}
+
+.algolia-places {
+  display: inline !important;
+  position: absolute;
+}
+
+input.ais-SearchBox-input {
+  border: 0 !important;
+  padding: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 2rem;
+  font-weight: 300;
+  background-color: $cr-white;
+  color: $cr-gray-light;
+  transition: 0.25s all ease;
+  height: 42px;
+  width: 49%;
+
+  &:focus {
+  }
+
+  &::placeholder {
+    color: $cr-gray-light;
+    font-size: 16px;
+  }
+
+  border-radius: 0;
+  border-right-color: #d2d2d2 !important;
+  border-right-width: 1px !important;
+  border-right-style: solid !important;
+
+  &.location {
+    border-radius: 0;
+    border-right-color: none;
+    border-right-width: 0px !important;
+    border-right-style: none !important;
+  }
+}
+
+.ais-SearchBox-submit {
+  right: 0;
+  left: unset;
+  height: 100%;
+  padding: 0 22px;
+  background: #979797;
+}
+
+// x to close search
+.ais-SearchBox-reset {
+  right: 0.5rem;
+  svg {
+    height: 12px;
+    width: 12px;
+    stroke: #979797;
+
+    path {
+      fill: #979797;
+    }
+  }
+}
+
+.ais-SearchBox-submit {
+  svg {
+    height: 12px;
+    width: 12px;
+    stroke: #ffffff;
+
+    path {
+      fill: #ffffff;
+    }
+  }
+}
+
+.input-group input {
+  font-weight: 400 !important;
+
+  @media screen and (max-width: 770px) {
+    width: 100% !important;
+    border-radius: 0px !important;
+    margin-bottom: 3px;
+  }
+}

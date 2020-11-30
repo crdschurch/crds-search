@@ -1,0 +1,29 @@
+<!-- <select (change)="state.refine($event.target.value)">
+  <option *ngFor="let option of state.options" [value]="option.value">
+    {{ option.label }}
+  </option>
+</select> -->
+<div class="filters__container">
+  <div
+    class="filter-label__container"
+    [ngClass]="{ 'expanded': state.sortByisExpanded == true }"
+    (click)="handleClick()">
+    <div class="filter-label font-family-base-bold text-gray-dark text-uppercase">Sort By</div>
+    <crds-icon name="chevron-up-thin" size="12" color="gray"></crds-icon>
+  </div>
+  <ul
+    class="ais-Menu-list"
+    [ngClass]="{ 'expanded': state.sortByisExpanded == true }">
+    <li
+      class="ais-menu-item"
+      [ngClass]="{ 'ais-Menu-item--selected': state.currentRefinement == option.value }"
+      *ngFor="let option of state.options"
+    >
+      <a class="ais-Menu-link">
+        <span (click)="handleSelection($event, option.value)" class="ais-Menu-label">{{
+          option.label
+        }}</span>
+      </a>
+    </li>
+  </ul>
+</div>

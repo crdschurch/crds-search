@@ -1,9 +1,9 @@
-import { Component, Input, AfterViewInit } from '@angular/core';
+import { Component, Input, AfterViewInit, NgModule } from '@angular/core';
 
 @Component({
   selector: 'app-hit',
   templateUrl: './hit.component.html',
-  styleUrls: ['./hit.component.scss']
+  styleUrls: ['./hit.component.scss'],
 })
 export class HitComponent implements AfterViewInit {
   @Input() hit;

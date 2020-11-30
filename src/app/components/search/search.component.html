@@ -1,15 +1,60 @@
 <ais-instantsearch [config]="config">
-  <div class="search-panel">
-    <div class="search-panel__results">
-      <app-search-input></app-search-input>
-      <app-tab-filter></app-tab-filter>
-      <ais-infinite-hits>
-        <ng-template let-hits="hits" let-results="results" let-refine="showMore">
-          <app-suggested [results]="results"></app-suggested>
-          <app-no-results [hits]="hits" [results]="results"></app-no-results>
-          <app-hits [hits]="hits" [results]="results" [refine]="refine"></app-hits>
-        </ng-template>
-      </ais-infinite-hits>
+  <app-search-header></app-search-header>
+
+  <div class="search-panel" (click)="handleClick($event)">
+    <div class="col-sm-12 col-md-10 col-md-offset-1">
+      <div class="row mobile-filters">
+        <ais-stats>
+          <ng-template let-state="state">
+            <div class="mobile-filters__container" [hidden]="state.nbHits === 0 || !state.query">
+              <app-sort-by></app-sort-by>
+              <app-tab-filter></app-tab-filter>
+            </div>
+          </ng-template>
+        </ais-stats>
+      </div>
+
+      <div class="row">
+        <div class="search-filters__container col-sm-3">
+          <ais-stats>
+            <ng-template let-state="state">
+              <div [hidden]="state.nbHits === 0 || !state.query">
+                <app-sort-by></app-sort-by>
+                <app-tab-filter></app-tab-filter>
+              </div>
+            </ng-template>
+          </ais-stats>
+        </div>
+        <div
+          class="col-sm-9"
+        >
+          <div class="search-panel__results">
+            <ais-infinite-hits>
+              <ng-template
+                let-hits="hits"
+                let-results="results"
+                let-refine="showMore"
+              >
+                <app-suggested [results]="results"></app-suggested>
+                <app-no-results
+                  [hits]="hits"
+                  [results]="results"
+                ></app-no-results>
+                <app-hits
+                  [hits]="hits"
+                  [results]="results"
+                  [refine]="refine"
+                ></app-hits>
+              </ng-template>
+            </ais-infinite-hits>
+          </div>
+        </div>
+
+
     </div>
   </div>
+  </div>
+
+
+
 </ais-instantsearch>

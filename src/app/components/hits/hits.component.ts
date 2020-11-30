@@ -21,7 +21,6 @@ export class HitsComponent implements OnChanges, OnInit, OnDestroy {
   constructor(private analyticsService: AnalyticsService) {}
 
   ngOnInit() {
-    console.log(this.groupsAlgoliaIndex);
     // send analytics on URL param search
     if (this.results.hits !== undefined && this.results.query !== "") {
       this.analyticsService.trackSearch(

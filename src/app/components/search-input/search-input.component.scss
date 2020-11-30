@@ -4,22 +4,25 @@
 }
 
 .searchbox {
-  margin-bottom: 1rem;
 }
 
 input.ais-SearchBox-input {
   border: 0 !important;
   padding: 1rem;
   padding-left: 2.5rem;
-  background-color: #F4F4F4;
+  background-color: #ffffff;
   border-radius: 0;
   color: #4D4D4D;
   transition: .25s all ease;
 
-  &:focus {
-    background-color: #efefef;
+  @media screen and (max-width: 770px){
+    padding: .75rem;
+    padding-left: 2.5rem;
   }
-  
+
+  &:focus {
+  }
+
   &::placeholder {
     color: #979797;
   }

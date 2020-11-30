@@ -4,18 +4,18 @@
     data-automation-id="hits-hit-counter"
     *ngIf="hits.length > 1"
   >
-    <span
+    <!-- <span
       *ngIf="
         hits.length >= results.hitsPerPage && hits.length !== results.nbHits;
         else resultsOnly
       "
       >showing {{ hits.length }} of {{ results.nbHits }} results</span
-    >
+    > -->
     <ng-template #resultsOnly
       ><span>{{ hits.length }} results</span></ng-template
     >
   </p>
-  <div *ngIf="hits.length > 1">
+  <div class="group-ad__container" *ngIf="hits.length > 1">
     <crds-search-hits
       [attr.index-name]="groupsAlgoliaIndex"
       facet-filters="groupType:At Home,groupType:Online"

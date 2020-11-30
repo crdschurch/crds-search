@@ -1,5 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule, Injector } from "@angular/core";
+import { NgModule, Injector, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { SearchModalComponent } from "../search-modal/search-modal.component";
 import { SearchInputComponent } from "../../../components/search-input/search-input.component";
@@ -19,6 +19,8 @@ import { Angulartics2RouterlessModule } from "angulartics2/routerlessmodule";
 import { Angulartics2GoogleAnalytics } from "angulartics2/ga";
 import { Angulartics2GoogleTagManager } from "angulartics2/gtm";
 import { Angulartics2Segment } from "angulartics2/segment";
+import { SearchHeaderComponent } from '../../../components/search-header/search-header.component';
+import { SortBy } from '../../sort-by/sort-by.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,10 @@ import { Angulartics2Segment } from "angulartics2/segment";
     SearchComponent,
     SearchModalComponent,
     ImgixAspectRatioPipe,
+    SearchHeaderComponent,
+    SortBy
   ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   imports: [
     NgAisModule.forRoot(),
     CommonModule,
