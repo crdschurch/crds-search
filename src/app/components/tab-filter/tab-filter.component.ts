@@ -8,7 +8,16 @@ import { connectMenu } from "instantsearch.js/es/connectors";
   styleUrls: ["./tab-filter.component.scss"],
 })
 export class TabFilterComponent extends BaseWidget {
-  public state: any;
+  public state: {
+    items: any[];
+    refine: Function;
+    createURL: Function;
+    isShowingMore: boolean;
+    canToggleShowMore: boolean;
+    toggleShowMore: Function;
+    widgetParams: object;
+    filterByisExpanded: boolean;
+  };
   public currentRefinement: string;
   public filterByisExpanded: boolean = false;
   constructor(
@@ -63,7 +72,7 @@ export class TabFilterComponent extends BaseWidget {
   }
 
   collapseMobileFilters() {
-    return this.state.filterByisExpanded = false;
+    return (this.state.filterByisExpanded = false);
   }
 
   handleSelection(event, value) {
@@ -72,6 +81,11 @@ export class TabFilterComponent extends BaseWidget {
   }
 
   handleClick() {
-    return this.state.filterByisExpanded = !this.state.filterByisExpanded;
+    return (this.state.filterByisExpanded = !this.state.filterByisExpanded);
+  }
+
+  getSelected() {
+    var selectedItem = this.state.items.find((item) => item.isRefined === true);
+    return (selectedItem && selectedItem.label) || "all";
   }
 }

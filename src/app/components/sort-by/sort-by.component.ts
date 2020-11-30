@@ -49,8 +49,4 @@ export class SortBy extends BaseWidget {
     this.state.refine(value)
     return this.collapseMobileFilters();
   }
-
-  onClick(event) {
-    console.log(event);
-  }
 }
