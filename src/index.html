@@ -22,11 +22,11 @@
     <script src="https://use.typekit.net/ccb3vpa.js"></script>
 
     <script>
-      (function(w, d, s, l, i) {
+      (function (w, d, s, l, i) {
         w[l] = w[l] || [];
         w[l].push({
           "gtm.start": new Date().getTime(),
-          event: "gtm.js"
+          event: "gtm.js",
         });
         var f = d.getElementsByTagName(s)[0],
           j = d.createElement(s),
@@ -37,18 +37,14 @@
       })(window, document, "script", "dataLayer", "GTM-MFS4MJ");
     </script>
 
-
     <script
-          type="module"
-          src="http://local.crossroads.net:3333/build/crds-components.esm.js"
-        ></script>
-        <script
-          nomodule=""
-          src="http://local.crossroads.net:3333/build/crds-components/crds-components.js"
-        ></script>
-
-
-
+      type="module"
+      src="https://components-int.crossroads.net/dist/crds-components/crds-components.esm.js"
+    ></script>
+    <script
+      nomodule=""
+      src="https://components-int.crossroads.net/dist/crds-components/crds-components.js"
+    ></script>
   </head>
 
   <body class="crds-styles">
@@ -68,7 +64,7 @@
     <script>
       try {
         Typekit.load({
-          async: false
+          async: false,
         });
       } catch (e) {
         console.error(e);
