@@ -3,6 +3,7 @@ import { Subject, Subscription } from "rxjs";
 import { debounceTime } from "rxjs/operators";
 import { AnalyticsService } from "src/app/services/analytics.service";
 import { environment } from "src/environments/environment";
+import { Utils } from "../utils";
 
 @Component({
   selector: "app-hits",
@@ -82,10 +83,8 @@ export class HitsComponent implements OnChanges, OnInit, OnDestroy {
       return el;
     }
   }
+
   public formatLabel(label) {
-    if(!label) return;
-    label = label.replace("_", " ");
-    if (label.endsWith("s") || label == "all") return label;
-    return label + "s";
+    return Utils.formatLabel(label);
   }
 }

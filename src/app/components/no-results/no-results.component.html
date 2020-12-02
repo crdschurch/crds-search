@@ -9,21 +9,24 @@
               results._state.hierarchicalFacetsRefinements.contentType
           }"
           >{{
-            (results._state.hierarchicalFacetsRefinements.contentType &&
-              results._state.hierarchicalFacetsRefinements.contentType[0]+ 's') ||
-              "results"
+            formatLabel(
+              results._state.hierarchicalFacetsRefinements.contentType &&
+                results._state.hierarchicalFacetsRefinements.contentType[0] +
+                  "s"
+            ) || "results"
           }}</span
         >
         matching
-        <strong>{{ results.query }}</strong>.
+        <strong>{{ results.query }}</strong
+        >.
       </span>
     </div>
     <p class="push-half-top font-size-smaller">
       Need help?
       <a (click)="Intercom('show')">Chat with us</a>
     </p>
-    <br>
-    <br>
+    <br />
+    <br />
     <app-search-all
       [contentType]="
         results._state.hierarchicalFacetsRefinements.contentType &&

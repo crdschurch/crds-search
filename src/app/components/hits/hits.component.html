@@ -23,9 +23,7 @@
     </crds-search-hits>
   </div>
   <div class="no-query-header__container" [hidden]="results.query !== ''">
-    <div
-      class="filter-label font-family-serif text-gray-dark text-uppercase"
-    >
+    <div class="filter-label font-family-serif text-gray-dark text-uppercase">
       Popular Now
       <span
         [hidden]="
@@ -46,21 +44,18 @@
   </div>
 
   <div class="no-query-header__container" [hidden]="results.query === ''">
-    <div
-      class="filter-label font-family-serif text-gray-dark text-uppercase"
-    >
-    {{
-      formatLabel(
-        results._state &&
-          results._state.hierarchicalFacetsRefinements.contentType &&
-          results._state.hierarchicalFacetsRefinements.contentType[0] ||
-          "results"
-      )
-    }} matching '{{results.query}}'
-
+    <div class="filter-label font-family-serif text-gray-dark text-uppercase">
+      {{
+        formatLabel(
+          (results._state &&
+            results._state.hierarchicalFacetsRefinements.contentType &&
+            results._state.hierarchicalFacetsRefinements.contentType[0]) ||
+            "results"
+        )
+      }}
+      matching '{{ results.query }}'
     </div>
   </div>
-
 
   <ng-container *ngFor="let hit of hits">
     <app-hit
