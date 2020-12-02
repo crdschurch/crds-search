@@ -35,9 +35,11 @@
       >
         in
         {{
-          results._state &&
-            results._state.hierarchicalFacetsRefinements.contentType &&
-            results._state.hierarchicalFacetsRefinements.contentType[0]
+          formatLabel(
+            results._state &&
+              results._state.hierarchicalFacetsRefinements.contentType &&
+              results._state.hierarchicalFacetsRefinements.contentType[0]
+          )
         }}</span
       >
     </div>
