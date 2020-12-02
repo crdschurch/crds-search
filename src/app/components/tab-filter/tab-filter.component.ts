@@ -97,7 +97,13 @@ export class TabFilterComponent extends BaseWidget {
         .hierarchicalFacetsRefinements.contentType &&
       this.state.instantSearchInstance.helper.state
         .hierarchicalFacetsRefinements.contentType[0];
-    if (selectedItem) return selectedItem;
+    if (selectedItem) return this.formatLabel(selectedItem);
     return "Filter By";
+  }
+
+  formatLabel(label) {
+    label = label.replace("_", " ");
+    if (label.endsWith("s") || label == "all") return label;
+    return label + "s";
   }
 }
