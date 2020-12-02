@@ -88,4 +88,13 @@ export class TabFilterComponent extends BaseWidget {
     var selectedItem = this.state.items.find((item) => item.isRefined === true);
     return (selectedItem && selectedItem.label) || "all";
   }
+
+  getLabelForMobileFilter(){
+    debugger
+    if (!this.state.items) return 'Filter By';
+    var selectedItem = this.state.items.find((item) => item.isRefined === true);
+    if (selectedItem.label !== 'all') {
+      return selectedItem.label;
+    } else return 'Filter By'
+  }
 }
