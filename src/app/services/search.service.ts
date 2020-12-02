@@ -5,13 +5,14 @@ import { environment } from "../../environments/environment";
   providedIn: "root",
 })
 export class SearchService {
-  public configAlgolia(routing: boolean) {
+  private contentType: string;
+  public configAlgolia(routing: boolean, contentType?: string) {
+    this.contentType = contentType;
     const config = {
       indexName: environment.ALGOLIA_INDEX,
       appId: environment.ALGOLIA_APP_ID,
       apiKey: environment.ALGOLIA_API_KEY,
       routing: routing,
-      firstSearch: true,
       searchFunction(helper) {
         if (
           helper.state.hierarchicalFacetsRefinements &&
@@ -19,10 +20,19 @@ export class SearchService {
           helper.state.hierarchicalFacetsRefinements.contentType[0] == undefined
         )
           delete helper.state.hierarchicalFacetsRefinements.contentType;
-        if (helper.state.query || this.firstSearch === false) {
-          helper.search();
+        if (contentType) {
+          helper.state.hierarchicalFacets = [
+            {
+              attributes: ["contentType"],
+              name: "contentType",
+            },
+          ];
+          helper.state.hierarchicalFacetsRefinements = {
+            contentType: [contentType],
+          };
         }
-        this.firstSearch = false;
+
+        helper.search();
       },
     };
 

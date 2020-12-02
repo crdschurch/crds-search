@@ -1,0 +1,13 @@
+<ais-instantsearch [config]="config">
+  <div class="search-panel__results">
+    <ais-infinite-hits>
+      <ng-template let-hits="hits" let-results="results" let-refine="showMore">
+        <app-hits
+          [hits]="hits"
+          [results]="results"
+          [refine]="refine"
+        ></app-hits>
+      </ng-template>
+    </ais-infinite-hits>
+  </div>
+</ais-instantsearch>
