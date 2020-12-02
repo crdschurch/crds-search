@@ -17,6 +17,7 @@ export class TabFilterComponent extends BaseWidget {
     toggleShowMore: Function;
     widgetParams: object;
     filterByisExpanded: boolean;
+    instantSearchInstance: any;
   };
   public currentRefinement: string;
   public filterByisExpanded: boolean = false;
@@ -89,12 +90,14 @@ export class TabFilterComponent extends BaseWidget {
     return (selectedItem && selectedItem.label) || "all";
   }
 
-  getLabelForMobileFilter(){
-    debugger
-    if (!this.state.items) return 'Filter By';
-    var selectedItem = this.state.items.find((item) => item.isRefined === true);
-    if (selectedItem.label !== 'all') {
-      return selectedItem.label;
-    } else return 'Filter By'
+  getLabelForMobileFilter() {
+    if (!this.state.items) return "Filter By";
+    var selectedItem =
+      this.state.instantSearchInstance.helper.state
+        .hierarchicalFacetsRefinements.contentType &&
+      this.state.instantSearchInstance.helper.state
+        .hierarchicalFacetsRefinements.contentType[0];
+    if (selectedItem) return selectedItem;
+    return "Filter By";
   }
 }
