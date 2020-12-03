@@ -1,3 +1,10 @@
+@import "~crds-styles/assets/stylesheets/variables";
+
 .no-results {
   color: #737373;
+}
+
+.info-message__container {
+  padding-bottom: 15px;
+  border-bottom: 1px solid $cr-gray-lightest;
 }

@@ -7,8 +7,12 @@
   padding-top: 1rem;
 }
 
-.group-ad__container{
+.group-ad__container {
   padding-bottom: 35px;
-  border-bottom: 1px solid $cr-gray-lightest;
   margin-top: -22px;
+}
+
+.no-query-header__container {
+  padding-bottom: 15px;
+  border-bottom: 1px solid $cr-gray-lightest;
 }

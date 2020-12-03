@@ -3,6 +3,7 @@ import { Subject, Subscription } from "rxjs";
 import { debounceTime } from "rxjs/operators";
 import { AnalyticsService } from "src/app/services/analytics.service";
 import { environment } from "src/environments/environment";
+import { Utils } from "../utils";
 
 @Component({
   selector: "app-hits",
@@ -81,5 +82,9 @@ export class HitsComponent implements OnChanges, OnInit, OnDestroy {
     if (el.outerHTML.includes("data-hit-id")) {
       return el;
     }
+  }
+
+  public formatLabel(label) {
+    return Utils.formatLabel(label);
   }
 }

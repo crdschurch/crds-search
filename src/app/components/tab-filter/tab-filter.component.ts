@@ -1,6 +1,7 @@
 import { Component, Inject, forwardRef } from "@angular/core";
 import { BaseWidget, NgAisInstantSearch } from "angular-instantsearch";
 import { connectMenu } from "instantsearch.js/es/connectors";
+import { Utils } from "../utils";
 
 @Component({
   selector: "app-tab-filter",
@@ -17,6 +18,7 @@ export class TabFilterComponent extends BaseWidget {
     toggleShowMore: Function;
     widgetParams: object;
     filterByisExpanded: boolean;
+    instantSearchInstance: any;
   };
   public currentRefinement: string;
   public filterByisExpanded: boolean = false;
@@ -32,9 +34,7 @@ export class TabFilterComponent extends BaseWidget {
       attributeName: "contentType",
       transformItems: (items) => {
         function formatLabel(label) {
-          label = label.replace("_", " ");
-          if (label.endsWith("s") || label == "all") return label;
-          return label + "s";
+          return Utils.formatLabel(label);
         }
 
         if (!items.find((i) => i.label == "all"))
@@ -58,7 +58,7 @@ export class TabFilterComponent extends BaseWidget {
             if (item.label == "all" && isAll) item.isRefined = true;
             return {
               ...item,
-              label: formatLabel(item.label),
+              label: Utils.formatLabel(item.label),
             };
           })
           .sort((a, b) => {
@@ -87,5 +87,16 @@ export class TabFilterComponent extends BaseWidget {
   getSelected() {
     var selectedItem = this.state.items.find((item) => item.isRefined === true);
     return (selectedItem && selectedItem.label) || "all";
+  }
+
+  getLabelForMobileFilter() {
+    if (!this.state.items) return "Filter By";
+    var selectedItem =
+      this.state.instantSearchInstance.helper.state
+        .hierarchicalFacetsRefinements.contentType &&
+      this.state.instantSearchInstance.helper.state
+        .hierarchicalFacetsRefinements.contentType[0];
+    if (selectedItem) return Utils.formatLabel(selectedItem);
+    return "Filter By";
   }
 }

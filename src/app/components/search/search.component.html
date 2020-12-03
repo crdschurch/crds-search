@@ -6,7 +6,7 @@
       <div class="row mobile-filters">
         <ais-stats>
           <ng-template let-state="state">
-            <div class="mobile-filters__container" [hidden]="state.nbHits === 0 || !state.query">
+            <div class="mobile-filters__container">
               <app-sort-by></app-sort-by>
               <app-tab-filter></app-tab-filter>
             </div>
@@ -15,10 +15,10 @@
       </div>
 
       <div class="row">
-        <div class="search-filters__container col-sm-3">
+        <div class="search-filters__container col-sm-2">
           <ais-stats>
             <ng-template let-state="state">
-              <div [hidden]="state.nbHits === 0 || !state.query">
+              <div>
                 <app-sort-by></app-sort-by>
                 <app-tab-filter></app-tab-filter>
               </div>
@@ -26,7 +26,7 @@
           </ais-stats>
         </div>
         <div
-          class="col-sm-9"
+          class="col-sm-9 col-sm-offset-1"
         >
           <div class="search-panel__results">
             <ais-infinite-hits>

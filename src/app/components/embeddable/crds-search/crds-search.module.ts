@@ -21,6 +21,7 @@ import { Angulartics2GoogleTagManager } from "angulartics2/gtm";
 import { Angulartics2Segment } from "angulartics2/segment";
 import { SearchHeaderComponent } from '../../../components/search-header/search-header.component';
 import { SortBy } from '../../sort-by/sort-by.component';
+import { SearchComponentAll } from '../../search-all-results/search-all.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { SortBy } from '../../sort-by/sort-by.component';
     SearchModalComponent,
     ImgixAspectRatioPipe,
     SearchHeaderComponent,
+    SearchComponentAll,
     SortBy
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],

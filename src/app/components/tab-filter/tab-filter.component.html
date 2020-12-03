@@ -5,9 +5,14 @@
     (click)="handleClick()"
   >
     <div
-      class="filter-label font-family-base-bold text-gray-dark text-uppercase"
+      class="filter-label font-family-base-bold text-gray-dark text-uppercase hidden-xs"
     >
       Filter By
+    </div>
+    <div
+      class="filter-label font-family-base-bold text-gray-dark text-uppercase visible-xs"
+    >
+     {{getLabelForMobileFilter()}}
     </div>
     <crds-icon name="chevron-up-thin" size="12" color="gray"></crds-icon>
   </div>
@@ -28,6 +33,7 @@
           class="ais-Menu-label"
           >{{ option.label }}</span
         >
+        <span class="ais-Menu-count">{{ option.count }}</span>
       </a>
     </li>
   </ul>
