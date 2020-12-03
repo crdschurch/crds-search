@@ -8,3 +8,9 @@
   padding-bottom: 15px;
   border-bottom: 1px solid $cr-gray-lightest;
 }
+
+.intercom{
+  &:hover{
+    cursor: pointer;
+  }
+}
