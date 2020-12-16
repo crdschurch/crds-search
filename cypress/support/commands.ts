@@ -1,4 +1,3 @@
-  
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -25,23 +24,35 @@
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-import { Formatter } from './Formatter';
-Cypress.Commands.add('displayedText', {prevSubject: 'element'}, (subject) =>{
-  return cy.wrap(subject).should('have.prop', 'textContent').then(elementText => Formatter.normalizeText(elementText));
+const { normalizeText } = require('crds-cypress-contentful');
+
+Cypress.Commands.add('displayedText', {prevSubject: 'element'}, (subject) => {
+  return cy.wrap(subject).should('have.prop', 'textContent').then(elementText => normalizeText(elementText));
 });
 
 Cypress.Commands.add('text', { prevSubject: 'element' }, (subject) => {
   return cy.wrap(subject).should('have.prop', 'textContent');
 });
 
-//Here for convenience but use sparingly - we usually want these to be thrown
-//Given list of regex, will ignore if error matches any
-Cypress.Commands.add('ignoreMatchingErrors', (errorList) => {
- cy.on('uncaught:exception', (err) => {
- const matchingError = errorList.find(errorRegex => err.message.match(errorRegex) !== null);
+/**
+ * Call this in a beforeEach clause or test to make assertions against any analytics.track calls.
+ */
+Cypress.Commands.add('stubAnalyticsTrackEvent', (aliasName: string) => {
+  cy.window().then((win) => {
+    (win as WindowExtended).analytics = {
+      track: cy.stub().as(aliasName)
+    };
+  });
+});
 
-    if(matchingError){
-      expect(err.message).to.match(matchingError); //Post result to console
+// Here for convenience but use sparingly - we usually want these to be thrown
+// Given list of regex, will ignore if error matches any
+Cypress.Commands.add('ignoreMatchingErrors', (errorList: RegExp[]) => {
+ Cypress.on('uncaught:exception', (err) => {
+ const matchingError = errorList.find((errorRegex: RegExp) => err.message.match(errorRegex) !== null);
+
+    if (matchingError) {
+      expect(err.message).to.match(matchingError); // Post result to console
     }
 
     return matchingError === undefined;

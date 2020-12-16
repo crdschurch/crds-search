@@ -1,10 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { environment } from '../../../environments/environment';
+import { Component, Input, OnInit } from "@angular/core";
+import { environment } from "../../../environments/environment";
+import { Utils } from "../utils";
 
 @Component({
-  selector: 'app-no-results',
-  templateUrl: './no-results.component.html',
-  styleUrls: ['./no-results.component.scss']
+  selector: "app-no-results",
+  templateUrl: "./no-results.component.html",
+  styleUrls: ["./no-results.component.scss"],
 })
 export class NoResultsComponent implements OnInit {
   @Input() hits;
@@ -18,5 +19,9 @@ export class NoResultsComponent implements OnInit {
     this.corkboardUrl = `${environment.appEndpoint}/corkboard`;
     this.groupsUrl = `${environment.appEndpoint}/groups/search`;
     this.helpUrl = `${environment.appEndpoint}/help`;
+  }
+
+  formatLabel(label) {
+    return Utils.formatLabel(label);
   }
 }

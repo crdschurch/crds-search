@@ -1,15 +1,77 @@
-<ng-container *ngIf="results.query !== ''">
-  <p class="font-size-small text-gray-light" data-automation-id="hits-hit-counter" *ngIf="hits.length > 1">
-    <span *ngIf="hits.length >= results.hitsPerPage && hits.length !== results.nbHits; else resultsOnly">showing
-      {{hits.length}} of {{results.nbHits}} results</span>
-    <ng-template #resultsOnly><span>{{hits.length}} results</span></ng-template>
+<ng-container>
+  <p
+    class="font-size-small text-gray-light push-bottom"
+    data-automation-id="hits-hit-counter"
+    *ngIf="hits.length > 1"
+  >
+    <ng-template #resultsOnly
+      ><span>{{ hits.length }} results</span></ng-template
+    >
   </p>
+  <div
+    class="group-ad__container"
+    *ngIf="hits.length > 1 && results.query !== ''"
+  >
+    <crds-search-hits
+      [attr.index-name]="groupsAlgoliaIndex"
+      facet-filters="groupType:At Home,groupType:Online"
+      [attr.search-term]="results.query"
+      number-of-results="1"
+      result-type="groupAdvertisement"
+      use-location
+    >
+    </crds-search-hits>
+  </div>
+  <div class="no-query-header__container" [hidden]="results.query !== ''">
+    <div class="filter-label font-family-serif text-gray-dark text-uppercase">
+      Popular Now
+      <span
+        [hidden]="
+          !results._state ||
+          !results._state.hierarchicalFacetsRefinements.contentType
+        "
+      >
+        in
+        {{
+          formatLabel(
+            results._state &&
+              results._state.hierarchicalFacetsRefinements.contentType &&
+              results._state.hierarchicalFacetsRefinements.contentType[0]
+          )
+        }}</span
+      >
+    </div>
+  </div>
+
+  <div class="no-query-header__container" [hidden]="results.query === ''">
+    <div class="filter-label font-family-serif text-gray-dark text-uppercase">
+      {{
+        formatLabel(
+          (results._state &&
+            results._state.hierarchicalFacetsRefinements.contentType &&
+            results._state.hierarchicalFacetsRefinements.contentType[0]) ||
+            "results"
+        )
+      }}
+      matching '{{ results.query }}'
+    </div>
+  </div>
 
   <ng-container *ngFor="let hit of hits">
-    <app-hit [attr.data-hit-id]="hit.objectID" *ngIf="!hit.showHTML" [hit]="hit" class="hit hit-{{hit.contentType}}"
-      (click)="handleHitClick($event)"></app-hit>
-    <app-hit-widget [attr.data-hit-id]="hit.objectID" *ngIf="hit.showHTML" [hit]="hit"
-      class="hit hit-widget overlay-card" (click)="handleHitClick($event)"></app-hit-widget>
+    <app-hit
+      [attr.data-hit-id]="hit.objectID"
+      *ngIf="!hit.showHTML"
+      [hit]="hit"
+      class="hit hit-{{ hit.contentType }}"
+      (click)="handleHitClick($event)"
+    ></app-hit>
+    <app-hit-widget
+      [attr.data-hit-id]="hit.objectID"
+      *ngIf="hit.showHTML"
+      [hit]="hit"
+      class="hit hit-widget overlay-card"
+      (click)="handleHitClick($event)"
+    ></app-hit-widget>
   </ng-container>
 
   <div *ngIf="hits.length < results.nbHits" class="hits-show-more-container">
