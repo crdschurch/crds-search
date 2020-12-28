@@ -33,6 +33,8 @@ export class TabFilterComponent extends BaseWidget {
       // instance options
       attributeName: "contentType",
       transformItems: (items) => {
+
+        console.log(items);
         function formatLabel(label) {
           return Utils.formatLabel(label);
         }
@@ -67,6 +69,7 @@ export class TabFilterComponent extends BaseWidget {
             return a.label.localeCompare(b.label);
           });
       },
+      limit: 100
     });
     super.ngOnInit();
   }
