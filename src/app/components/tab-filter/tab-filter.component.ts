@@ -33,8 +33,6 @@ export class TabFilterComponent extends BaseWidget {
       // instance options
       attributeName: "contentType",
       transformItems: (items) => {
-
-        console.log(items);
         function formatLabel(label) {
           return Utils.formatLabel(label);
         }
