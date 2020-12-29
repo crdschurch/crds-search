@@ -28,4 +28,17 @@ export class AnalyticsService {
       }
     });
   }
+
+  public trackShowMoreClicked(Query, hitsPerPage){
+    const failedHits = document.getElementsByTagName('app-hit').length;
+    console.log(hitsPerPage);
+    this.analytics.eventTrack.next({
+      action: 'WebsiteSearchShowMoreClicked',
+      properties: {
+        Query,
+        failedHits,
+        newHitCount: failedHits + hitsPerPage
+      }
+    })
+  }
 }

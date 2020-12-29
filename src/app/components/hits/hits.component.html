@@ -75,7 +75,7 @@
   </ng-container>
 
   <div *ngIf="hits.length < results.nbHits" class="hits-show-more-container">
-    <button class="btn btn-primary btn-outline" (click)="refine($event)">
+    <button class="btn btn-primary btn-outline" (click)="refine($event); showMoreClicked()">
       Show more
     </button>
   </div>
