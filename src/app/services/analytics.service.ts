@@ -29,7 +29,7 @@ export class AnalyticsService {
     });
   }
 
-  public trackShowMoreClicked(Query, hitsPerPage, selectedRefinements){
+  public trackShowMoreClicked(Query, hitsPerPage, state){
     const failedHits = document.getElementsByTagName('app-hit').length;
     this.analytics.eventTrack.next({
       action: 'WebsiteSearchShowMoreClicked',
@@ -37,7 +37,8 @@ export class AnalyticsService {
         Query,
         failedHits,
         newHitCount: failedHits + hitsPerPage,
-        selectedRefinements: selectedRefinements
+        selectedRefinements: state.hierarchicalFacetsRefinements,
+        index: state.index
       }
     })
   }
