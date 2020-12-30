@@ -77,7 +77,8 @@ export class HitsComponent implements OnChanges, OnInit, OnDestroy {
   private showMoreClicked() {
     this.analyticsService.trackShowMoreClicked(
       this.results.query,
-      this.results.hitsPerPage
+      this.results.hitsPerPage,
+      this.results._state.hierarchicalFacetsRefinements
     );
   }
 

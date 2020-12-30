@@ -29,15 +29,15 @@ export class AnalyticsService {
     });
   }
 
-  public trackShowMoreClicked(Query, hitsPerPage){
+  public trackShowMoreClicked(Query, hitsPerPage, selectedRefinements){
     const failedHits = document.getElementsByTagName('app-hit').length;
-    console.log(hitsPerPage);
     this.analytics.eventTrack.next({
       action: 'WebsiteSearchShowMoreClicked',
       properties: {
         Query,
         failedHits,
-        newHitCount: failedHits + hitsPerPage
+        newHitCount: failedHits + hitsPerPage,
+        selectedRefinements: selectedRefinements
       }
     })
   }
