@@ -2,7 +2,7 @@
 <ng-container *ngIf="hit.image; else htmlOnly">
   <div class="bg-overlay"></div>
   <div class="hit-widget-image" style="display: block; position: static;">
-    <img [attr.ix-src]="hit.image"
+    <img [attr.ix-src]="hit.image + '?auto=format,compress&fit=crop'"
       class="img-responsive" alt="{{hit.title}}">
     <div class="hit-widget-content" [innerHTML]="hit.description"></div>
   </div>
