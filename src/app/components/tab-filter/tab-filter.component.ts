@@ -67,6 +67,7 @@ export class TabFilterComponent extends BaseWidget {
             return a.label.localeCompare(b.label);
           });
       },
+      limit: 100
     });
     super.ngOnInit();
   }
