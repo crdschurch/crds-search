@@ -13,6 +13,9 @@ export class SearchService {
       appId: environment.ALGOLIA_APP_ID,
       apiKey: environment.ALGOLIA_API_KEY,
       routing: routing,
+      searchParameters: {
+        facetingAfterDistinct: true,
+      },
       searchFunction(helper) {
         if (
           helper.state.hierarchicalFacetsRefinements &&
