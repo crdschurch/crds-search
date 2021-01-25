@@ -30,10 +30,15 @@
     position: absolute;
     right: 0;
 
-    h2{
-      @media screen and (max-width: 770px){
-        font-size: 36px !important;
+    @media screen and (max-width: 770px){
+      bottom: 0px;
+      h2{
+          font-size: 36px !important;
+        }
+      p{
+        font-size: 14px;
       }
+
     }
   }
 }
