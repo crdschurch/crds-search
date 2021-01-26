@@ -1,7 +1,6 @@
 import { ContentfulQueryBuilder, normalizeText } from 'crds-cypress-contentful';
 
 describe.skip('Tests suggested search block', () => {
-const errorsToIgnore = [/.*Script error.*/, /.*uncaught:exception*/, /.* > Cannot assign to read only property 'process' of object '[object Window]'*/, /.*> "process" is read-only*/];
   let preSearchContentBlock: ContentBlock;
   before(() => {
     const qb = new ContentfulQueryBuilder('content_block');
@@ -14,17 +13,10 @@ const errorsToIgnore = [/.*Script error.*/, /.*uncaught:exception*/, /.* > Canno
   });
 
   beforeEach(() => {
-     cy.visit('/search');
+    cy.visit('/search');
   });
 
   it('checks suggestions displayed before searching', () => {
-    let  dag: normalizeText(preSearchContentBlock.content.text);
- //   dag = dag.substring(0, 15);
-    let boxdisplay ="box display flex flex wrap wrap box a flex 1 1 160px ";
-    boxdisplay = normalizeText(preSearchContentBlock.content.text).split(boxdisplay);
-    
-    //   cy.log(dag.text().split(boxdisplay));
-       cy.log(normalizeText(preSearchContentBlock.content.text).split(boxdisplay));
     cy.get('.suggested-container')
       .as('preSearchContent')
       .should('be.visible')
