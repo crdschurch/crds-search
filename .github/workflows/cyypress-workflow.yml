@@ -2,7 +2,9 @@ name: Run Cypress Tests
 on: 
    push:
     branches: [development]
-  
+   pull_request:
+    branches: [development]
+ 
 jobs:
  cypress-run:
     runs-on: ubuntu-latest
