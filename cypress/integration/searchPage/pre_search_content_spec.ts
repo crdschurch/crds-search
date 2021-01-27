@@ -1,6 +1,6 @@
 import { ContentfulQueryBuilder, normalizeText } from 'crds-cypress-contentful';
 
-describe('Tests suggested search block', () => {
+describe.skip('Tests suggested search block', () => {
   let preSearchContentBlock: ContentBlock;
   before(() => {
     const qb = new ContentfulQueryBuilder('content_block');
