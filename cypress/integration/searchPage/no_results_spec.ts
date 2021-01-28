@@ -1,9 +1,11 @@
+const errorToIgnore = [/.*Script error.*/, /.*uncaught:exception*/, /.*Cannot read property \'replace'\ of undefined*/, /.*> Cannot assign to read only property 'process' of object '[object Window]'*/];
 describe('Tests search with no results', () => {
+
   const noResultsKeyword = 'a7';
 
   before(() => {
+    cy.ignoreMatchingErrors(errorToIgnore);
     cy.visit('/search');
-
     cy.searchFor(noResultsKeyword);
   });
 
@@ -14,19 +16,9 @@ describe('Tests search with no results', () => {
   it('checks "no results" message is displayed', () => {
     cy.get('.no-results').as('noResultsBlock')
       .should('be.visible');
-    cy.get('[data-automation-id="no-results-message"]').as('noResultsMessage')
+    cy.get('.font-size-large').as('noResultsMessage')
       .text()
-      .should('eq', `We can't find anything for ${noResultsKeyword}.`);
-  });
-
-  it('checks no results links', () => {
-    cy.get('[data-automation-id="no-results-corkboard-link"]').as('corkboardLink')
-      .should('be.visible')
-      .should('have.attr', 'href', `${Cypress.env('CRDS_ENDPOINT')}/corkboard`);
-
-    cy.get('[data-automation-id="no-results-groups-link"]').as('groupsLink')
-      .should('be.visible')
-      .should('have.attr', 'href', `${Cypress.env('CRDS_ENDPOINT')}/groups/search`);
+      .should('eq', ` Whoops, we can't find any results matching ${noResultsKeyword}. `);
   });
 
   it('checks success of search after a no-results search', () => {
@@ -36,8 +28,8 @@ describe('Tests search with no results', () => {
         cy.get('@searchField')
           .clear()
           .type('god');
-
-        cy.get('.hit-title').first().as('firstResultTitle')
+        cy.wait(30000);
+        cy.get('.hit-album').first().as('firstResultTitle')
           .should('be.visible');
 
         cy.get('@noResultsBlock')
