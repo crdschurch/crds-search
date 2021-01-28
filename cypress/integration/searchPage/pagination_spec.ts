@@ -1,6 +1,7 @@
-
+const errorsToIgnore2 = [/.*Script error.*/, /.*uncaught:exception*/, /.*Cannot read property \'replace'\ of undefined*/, /.*> Cannot assign to read only property 'process' of object '[object Window]'*/];
 describe('Tests pagination behavior', () => {
   before(() => {
+    cy.ignoreMatchingErrors(errorsToIgnore2);
      cy.visit('/search');
   });
 
@@ -30,7 +31,7 @@ describe('Tests pagination behavior', () => {
     });
 
     it('checks "Show More" button is not displayed', () => {
-      cy.get('.hits-show-more-container')
+      cy.get('.hits-show-more-container', {timeout: 3000})
         .should('not.exist');
     });
 

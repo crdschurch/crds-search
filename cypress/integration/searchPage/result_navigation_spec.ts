@@ -1,14 +1,16 @@
-describe('Tests the expected page opens when result is clicked', () => {
+const errorsToIgnore = [/.*Script error.*/, /.*uncaught:exception*/, /.*Cannot read property \'replace'\ of undefined*/, /.*> Cannot assign to read only property 'process' of object '[object Window]'*/];
+describe ('Tests the expected page opens when result is clicked', () => {
 
   beforeEach(() => {
+    cy.ignoreMatchingErrors(errorsToIgnore);
     cy.visit('/search');
   });
 
   it('checks article result opens the article in /media', () => {
     const mediaPageUrl = `${Cypress.env('CRDS_ENDPOINT')}/media/articles/god-told-me-to-buy-a-bikini`;
 
-    cy.searchFor('bikini');
-
+    cy.searchFor('bikini', 1000);
+    cy.wait(3000);
     cy.get(`[href="${mediaPageUrl}"]`).first()
       .should('be.visible')
       .click();

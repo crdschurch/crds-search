@@ -21,26 +21,27 @@ const errorsToIgnore = [/.*Script error.*/, /.*uncaught:exception*/, /.*Cannot r
     // Verify event called with expected properties
     const queryMatch = Cypress.sinon.match.has('Query', searchString);
     const resultsCountMatch = Cypress.sinon.match.has('ResultsCount', paginationLimit);
+    cy.wait(10000);
     cy.get('@analytics.track')
       .should('have.been.calledWithMatch', 'WebsiteSearch', queryMatch.and(resultsCountMatch));
       cy.log('@analytics.track');
   });
 
-  it('checks event triggered on search result click', () => {
+  it.skip('checks event triggered on search result click', () => {
     const searchString = 'group';
 
     cy.searchFor(searchString);
-
+    cy.wait(10000);
     cy.get('.group-title').first().as('firstResultTitle')
       .click();
 
+     
     // Verify event called with expected properties
     const queryMatch = Cypress.sinon.match.has('Query', searchString);
     const targetMatch = Cypress.sinon.match.has('Target', Cypress.sinon.match.object);
     const targetPositionMatch = Cypress.sinon.match.has('TargetPosition', 1);
     const widgetMatch = Cypress.sinon.match.has('isWidget', Cypress.sinon.match.bool);
-
-    cy.wait(5000);
+    cy.wait(20000);
     cy.get('@analytics.track')
       .should('have.been.calledWithMatch',
       'WebsiteSearchConversion',

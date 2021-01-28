@@ -7,8 +7,11 @@ function getUrlWithQuery(keyword: string, filterLabel?: string) {
   return url;
 }
 
+const errorToIgnore5 = [/.*Script error.*/, /.*uncaught:exception*/, /.*Cannot read property \'replace'\ of undefined*/, /.*> Cannot assign to read only property 'process' of object '[object Window]'*/];
+
 describe('Tests query params added to url', () => {
   beforeEach(() => {
+    cy.ignoreMatchingErrors(errorToIgnore5);
       cy.visit('/search');
   });
 
@@ -47,7 +50,7 @@ describe('Tests query params in url trigger search automatically', () => {
   it('checks search triggered by keyword', () => {
     const urlWithQuery = getUrlWithQuery('god');
     cy.visit(urlWithQuery);
-
+    cy.wait(10000);
     cy.get('.group-title').first().as('firstResultTitle')
       .should('be.visible');
   });
