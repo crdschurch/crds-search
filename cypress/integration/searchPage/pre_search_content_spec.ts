@@ -1,5 +1,5 @@
 import { ContentfulQueryBuilder, normalizeText } from 'crds-cypress-contentful';
-
+const errorToIgnore = [/.*Script error.*/, /.*uncaught:exception*/, /.*Cannot read property \'replace'\ of undefined*/, /.*> Cannot assign to read only property 'process' of object '[object Window]'*/];
 describe.skip('Tests suggested search block', () => {
   let preSearchContentBlock: ContentBlock;
   before(() => {
@@ -13,6 +13,7 @@ describe.skip('Tests suggested search block', () => {
   });
 
   beforeEach(() => {
+    cy.ignoreMatchingErrors(errorToIgnore);
     cy.visit('/search');
   });
 

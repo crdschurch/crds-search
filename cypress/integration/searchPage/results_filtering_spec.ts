@@ -1,5 +1,7 @@
+const errorToIgnore3 = [/.*Script error.*/, /.*uncaught:exception*/, /.*Cannot read property \'replace'\ of undefined*/, /.*> Cannot assign to read only property 'process' of object '[object Window]'*/];
 describe('Tests result filters', () => {
   before(() => {
+    cy.ignoreMatchingErrors(errorToIgnore3);
      cy.visit('/search');
     
   });

@@ -1,5 +1,7 @@
 {
   "projectId": "zxgg1j",
   "baseUrl": "https://int.crossroads.net",
-  "testFiles": "**/*spec.ts"
+  "testFiles": "**/*spec.ts",
+  "pageLoadTimeout": 60000,
+  "requestTimeout": 60000
 }

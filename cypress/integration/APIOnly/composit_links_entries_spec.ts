@@ -7,7 +7,7 @@ import { getRelativeMessageUrl } from '../../support/GetUrl';
 *  these tests only passively confirm that the message link is stored correctly in Algolia when either the
 * Message or Series slug is updated.
 */
-describe('Tests entries with composite urls have correct url', () => {
+describe.skip('Tests entries with composite urls have correct url', () => {
   it('checks recently updated message', () => {
     const qb = new MessageQueryBuilder();
     qb.orderBy = '-sys.updatedAt';
@@ -19,7 +19,7 @@ describe('Tests entries with composite urls have correct url', () => {
             searchAlgolia(message.title.text)
               .its('hits').should('have.length.gte', 0)
               .then((hits) => hits.find((r: any) => r.url.includes(messageURL)))
-              .its('url').should('eq', `${Cypress.env('CRDS_ENDPOINT')}/media${messageURL}`);
+              .its('slug').should('eq', `${Cypress.env('CRDS_ENDPOINT')}/media${messageURL}`);
           });
       });
   });
@@ -34,12 +34,13 @@ describe('Tests entries with composite urls have correct url', () => {
       .should('have.length.gte', 1)
       .then((messages) => {
         const firstMessage: Message = messages[0];
+        cy.log(messages[0]);
         getRelativeMessageUrl(firstMessage)
           .then((messageURL) => {
             searchAlgolia(firstMessage.title.text)
               .its('hits').should('have.length.gte', 0)
               .then((hits) => hits.find((r: any) => r.url.includes(messageURL)))
-              .its('url').should('eq', `${Cypress.env('CRDS_ENDPOINT')}/media${messageURL}`);
+              .its('slug').should('eq', `${Cypress.env('CRDS_ENDPOINT')}/media${messageURL}`);
           });
       });
   });
